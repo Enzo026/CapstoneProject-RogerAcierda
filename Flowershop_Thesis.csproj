@@ -1,0 +1,587 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EA04AF66-01B1-457F-A95E-DA5EAC0B394A}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Flowershop_Thesis</RootNamespace>
+    <AssemblyName>Flowershop_Thesis</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>D:\Finish applicaiton\New folder\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>3</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>5ADB99BEA54F3BC3F4F24344C3197ED634626109</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>Flowershop_Thesis_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AdminForms\AccountsMaintenance\AccountMaintenance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminForms\AccountsMaintenance\AccountMaintenance.Designer.cs">
+      <DependentUpon>AccountMaintenance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdminForms\History Logs\Activity Logs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminForms\History Logs\Activity Logs.Designer.cs">
+      <DependentUpon>Activity Logs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdminForms\History Logs\HistoryLogs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminForms\History Logs\HistoryLogs.Designer.cs">
+      <DependentUpon>HistoryLogs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdminForms\History Logs\TransactionHistory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminForms\History Logs\TransactionHistory.Designer.cs">
+      <DependentUpon>TransactionHistory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdminForms\ProductMaintenance\ProductMaintenance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminForms\ProductMaintenance\ProductMaintenance.Designer.cs">
+      <DependentUpon>ProductMaintenance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdminForms\Reports\InventoryReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminForms\Reports\InventoryReport.Designer.cs">
+      <DependentUpon>InventoryReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdminForms\Reports\Reports.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminForms\Reports\Reports.Designer.cs">
+      <DependentUpon>Reports.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdminForms\Reports\SalesReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminForms\Reports\SalesReport.Designer.cs">
+      <DependentUpon>SalesReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdminForms\System Maintenance\SystemMaintenance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminForms\System Maintenance\SystemMaintenance.Designer.cs">
+      <DependentUpon>SystemMaintenance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InventoryClerk\LandingPage\DashboardFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InventoryClerk\LandingPage\DashboardFrm.Designer.cs">
+      <DependentUpon>DashboardFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InventoryClerk\Restocking\RestockingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InventoryClerk\Restocking\RestockingForm.Designer.cs">
+      <DependentUpon>RestockingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForms\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForms\Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForms\Admin_BasePlatform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForms\Admin_BasePlatform.Designer.cs">
+      <DependentUpon>Admin_BasePlatform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForms\InventoryClerk_BasePlatform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForms\InventoryClerk_BasePlatform.Designer.cs">
+      <DependentUpon>InventoryClerk_BasePlatform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForms\SalesClerk_BasePlatform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForms\SalesClerk_BasePlatform.Designer.cs">
+      <DependentUpon>SalesClerk_BasePlatform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\AddToCart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForms\AddToCart.Designer.cs">
+      <DependentUpon>AddToCart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\AdvanceOrderCart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForms\AdvanceOrderCart.Designer.cs">
+      <DependentUpon>AdvanceOrderCart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\Adv_CartItems.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OtherForms\Adv_CartItems.Designer.cs">
+      <DependentUpon>Adv_CartItems.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\Adv_CustomList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OtherForms\Adv_CustomList.Designer.cs">
+      <DependentUpon>Adv_CustomList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\Adv_CustomPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForms\Adv_CustomPopup.Designer.cs">
+      <DependentUpon>Adv_CustomPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\Adv_IndividualListItems.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OtherForms\Adv_IndividualListItems.Designer.cs">
+      <DependentUpon>Adv_IndividualListItems.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\CancelledOrderList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OtherForms\CancelledOrderList.Designer.cs">
+      <DependentUpon>CancelledOrderList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\CartItems.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OtherForms\CartItems.Designer.cs">
+      <DependentUpon>CartItems.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\ConfirmationIndividual.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForms\ConfirmationIndividual.Designer.cs">
+      <DependentUpon>ConfirmationIndividual.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\CustomList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OtherForms\CustomList.Designer.cs">
+      <DependentUpon>CustomList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\CustomPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForms\CustomPopup.Designer.cs">
+      <DependentUpon>CustomPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\FinishedOrdersList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OtherForms\FinishedOrdersList.Designer.cs">
+      <DependentUpon>FinishedOrdersList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\PriceListContents.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OtherForms\PriceListContents.Designer.cs">
+      <DependentUpon>PriceListContents.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\QueueBoardContent.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OtherForms\QueueBoardContent.Designer.cs">
+      <DependentUpon>QueueBoardContent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\QueuingListItems.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OtherForms\QueuingListItems.Designer.cs">
+      <DependentUpon>QueuingListItems.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\ReviewOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForms\ReviewOrder.Designer.cs">
+      <DependentUpon>ReviewOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\ReviewOrderList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OtherForms\ReviewOrderList.Designer.cs">
+      <DependentUpon>ReviewOrderList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\TimeDatefrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForms\TimeDatefrm.Designer.cs">
+      <DependentUpon>TimeDatefrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\TransactionBuoquetList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OtherForms\TransactionBuoquetList.Designer.cs">
+      <DependentUpon>TransactionBuoquetList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\TransactionItemList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OtherForms\TransactionItemList.Designer.cs">
+      <DependentUpon>TransactionItemList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\UpdateStat.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OtherForms\UpdateStat.Designer.cs">
+      <DependentUpon>UpdateStat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\UpdateStatus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForms\UpdateStatus.Designer.cs">
+      <DependentUpon>UpdateStatus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SalesClerk\Order Placement\AdvanceOrderfolder\AdvanceOrderFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SalesClerk\Order Placement\AdvanceOrderfolder\AdvanceOrderFrm.Designer.cs">
+      <DependentUpon>AdvanceOrderFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SalesClerk\Order Placement\AdvanceOrderfolder\Adv_Custom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SalesClerk\Order Placement\AdvanceOrderfolder\Adv_Custom.Designer.cs">
+      <DependentUpon>Adv_Custom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SalesClerk\Order Placement\AdvanceOrderfolder\IndividualFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SalesClerk\Order Placement\AdvanceOrderfolder\IndividualFrm.Designer.cs">
+      <DependentUpon>IndividualFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SalesClerk\Order Placement\AdvanceOrderfolder\PreBuilt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SalesClerk\Order Placement\AdvanceOrderfolder\PreBuilt.Designer.cs">
+      <DependentUpon>PreBuilt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SalesClerk\Order Placement\CustomBuoquet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SalesClerk\Order Placement\CustomBuoquet.Designer.cs">
+      <DependentUpon>CustomBuoquet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SalesClerk\Order Placement\OrderPlacement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SalesClerk\Order Placement\OrderPlacement.Designer.cs">
+      <DependentUpon>OrderPlacement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SalesClerk\PriceList\PriceList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SalesClerk\PriceList\PriceList.Designer.cs">
+      <DependentUpon>PriceList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SalesClerk\Queueing\QueuingFormBack.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SalesClerk\Queueing\QueuingFormBack.Designer.cs">
+      <DependentUpon>QueuingFormBack.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SalesClerk\Queueing\QueuingFormFont.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SalesClerk\Queueing\QueuingFormFont.Designer.cs">
+      <DependentUpon>QueuingFormFont.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SalesClerk\Transaction\TransactionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SalesClerk\Transaction\TransactionForm.Designer.cs">
+      <DependentUpon>TransactionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Temporary Forms\AddInventorie.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Temporary Forms\AddInventorie.Designer.cs">
+      <DependentUpon>AddInventorie.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Temporary Forms\Inventory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Temporary Forms\Inventory.Designer.cs">
+      <DependentUpon>Inventory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StorageUnit.cs" />
+    <EmbeddedResource Include="AdminForms\AccountsMaintenance\AccountMaintenance.resx">
+      <DependentUpon>AccountMaintenance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminForms\History Logs\Activity Logs.resx">
+      <DependentUpon>Activity Logs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminForms\History Logs\HistoryLogs.resx">
+      <DependentUpon>HistoryLogs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminForms\History Logs\TransactionHistory.resx">
+      <DependentUpon>TransactionHistory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminForms\ProductMaintenance\ProductMaintenance.resx">
+      <DependentUpon>ProductMaintenance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminForms\Reports\InventoryReport.resx">
+      <DependentUpon>InventoryReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminForms\Reports\Reports.resx">
+      <DependentUpon>Reports.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminForms\Reports\SalesReport.resx">
+      <DependentUpon>SalesReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminForms\System Maintenance\SystemMaintenance.resx">
+      <DependentUpon>SystemMaintenance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InventoryClerk\LandingPage\DashboardFrm.resx">
+      <DependentUpon>DashboardFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InventoryClerk\Restocking\RestockingForm.resx">
+      <DependentUpon>RestockingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForms\Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForms\Admin_BasePlatform.resx">
+      <DependentUpon>Admin_BasePlatform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForms\InventoryClerk_BasePlatform.resx">
+      <DependentUpon>InventoryClerk_BasePlatform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForms\SalesClerk_BasePlatform.resx">
+      <DependentUpon>SalesClerk_BasePlatform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\AddToCart.resx">
+      <DependentUpon>AddToCart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\AdvanceOrderCart.resx">
+      <DependentUpon>AdvanceOrderCart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\Adv_CartItems.resx">
+      <DependentUpon>Adv_CartItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\Adv_CustomList.resx">
+      <DependentUpon>Adv_CustomList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\Adv_CustomPopup.resx">
+      <DependentUpon>Adv_CustomPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\Adv_IndividualListItems.resx">
+      <DependentUpon>Adv_IndividualListItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\CancelledOrderList.resx">
+      <DependentUpon>CancelledOrderList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\CartItems.resx">
+      <DependentUpon>CartItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\ConfirmationIndividual.resx">
+      <DependentUpon>ConfirmationIndividual.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\CustomList.resx">
+      <DependentUpon>CustomList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\CustomPopup.resx">
+      <DependentUpon>CustomPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\FinishedOrdersList.resx">
+      <DependentUpon>FinishedOrdersList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\PriceListContents.resx">
+      <DependentUpon>PriceListContents.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\QueueBoardContent.resx">
+      <DependentUpon>QueueBoardContent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\QueuingListItems.resx">
+      <DependentUpon>QueuingListItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\ReviewOrder.resx">
+      <DependentUpon>ReviewOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\ReviewOrderList.resx">
+      <DependentUpon>ReviewOrderList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\TimeDatefrm.resx">
+      <DependentUpon>TimeDatefrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\TransactionBuoquetList.resx">
+      <DependentUpon>TransactionBuoquetList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\TransactionItemList.resx">
+      <DependentUpon>TransactionItemList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\UpdateStat.resx">
+      <DependentUpon>UpdateStat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\UpdateStatus.resx">
+      <DependentUpon>UpdateStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="SalesClerk\Order Placement\AdvanceOrderfolder\AdvanceOrderFrm.resx">
+      <DependentUpon>AdvanceOrderFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SalesClerk\Order Placement\AdvanceOrderfolder\Adv_Custom.resx">
+      <DependentUpon>Adv_Custom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SalesClerk\Order Placement\AdvanceOrderfolder\IndividualFrm.resx">
+      <DependentUpon>IndividualFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SalesClerk\Order Placement\AdvanceOrderfolder\PreBuilt.resx">
+      <DependentUpon>PreBuilt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SalesClerk\Order Placement\CustomBuoquet.resx">
+      <DependentUpon>CustomBuoquet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SalesClerk\Order Placement\OrderPlacement.resx">
+      <DependentUpon>OrderPlacement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SalesClerk\PriceList\PriceList.resx">
+      <DependentUpon>PriceList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SalesClerk\Queueing\QueuingFormBack.resx">
+      <DependentUpon>QueuingFormBack.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SalesClerk\Queueing\QueuingFormFont.resx">
+      <DependentUpon>QueuingFormFont.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SalesClerk\Transaction\TransactionForm.resx">
+      <DependentUpon>TransactionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Temporary Forms\AddInventorie.resx">
+      <DependentUpon>AddInventorie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Temporary Forms\Inventory.resx">
+      <DependentUpon>Inventory.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Flowershop_Thesis_TemporaryKey.pfx" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="try.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="try_log.ldf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DependentUpon>try.mdf</DependentUpon>
+    </Content>
+    <None Include="Resources\basket1.png" />
+    <None Include="Resources\b1_24x24.png" />
+    <None Include="Resources\b2_24x24.png" />
+    <Content Include="Resources\LoginImg.png" />
+    <None Include="Resources\LoginImg2.png" />
+    <None Include="Resources\Welcome1.png" />
+    <None Include="Resources\LoginImg1.png" />
+    <None Include="Resources\pexels-pixabay-60520.jpg" />
+    <None Include="Resources\pexels-pixabay-605201.jpg" />
+    <None Include="Resources\pexels-hson-17635079.jpg" />
+    <None Include="Resources\pexels-hilaryh-612331.jpg" />
+    <None Include="Resources\pexels-pixabay-36729.jpg" />
+    <Content Include="Resources\report.png" />
+    <None Include="Resources\undraw_open_note_6nva.png" />
+    <Content Include="Resources\Welcome.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="InventoryClerk\StockAdjustment\" />
+    <Folder Include="InventoryClerk\Suppliers\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
