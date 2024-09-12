@@ -129,6 +129,12 @@
     <Compile Include="AdminForms\System Maintenance\SystemMaintenance.Designer.cs">
       <DependentUpon>SystemMaintenance.cs</DependentUpon>
     </Compile>
+    <Compile Include="InventoryClerk\Disposal\DisposalFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InventoryClerk\Disposal\DisposalFrm.Designer.cs">
+      <DependentUpon>DisposalFrm.cs</DependentUpon>
+    </Compile>
     <Compile Include="InventoryClerk\LandingPage\DashboardFrm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -140,6 +146,18 @@
     </Compile>
     <Compile Include="InventoryClerk\Restocking\RestockingForm.Designer.cs">
       <DependentUpon>RestockingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InventoryClerk\StockAdjustment\StockAdjustmentFrmcs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InventoryClerk\StockAdjustment\StockAdjustmentFrmcs.Designer.cs">
+      <DependentUpon>StockAdjustmentFrmcs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InventoryClerk\Supplier\SupplierFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InventoryClerk\Supplier\SupplierFrm.Designer.cs">
+      <DependentUpon>SupplierFrm.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForms\Form1.cs">
       <SubType>Form</SubType>
@@ -230,6 +248,12 @@
     </Compile>
     <Compile Include="OtherForms\CustomPopup.Designer.cs">
       <DependentUpon>CustomPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\DisposalContents\CompletedDisposal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForms\DisposalContents\CompletedDisposal.Designer.cs">
+      <DependentUpon>CompletedDisposal.cs</DependentUpon>
     </Compile>
     <Compile Include="OtherForms\FinishedOrdersList.cs">
       <SubType>UserControl</SubType>
@@ -399,11 +423,20 @@
     <EmbeddedResource Include="AdminForms\System Maintenance\SystemMaintenance.resx">
       <DependentUpon>SystemMaintenance.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="InventoryClerk\Disposal\DisposalFrm.resx">
+      <DependentUpon>DisposalFrm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="InventoryClerk\LandingPage\DashboardFrm.resx">
       <DependentUpon>DashboardFrm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InventoryClerk\Restocking\RestockingForm.resx">
       <DependentUpon>RestockingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InventoryClerk\StockAdjustment\StockAdjustmentFrmcs.resx">
+      <DependentUpon>StockAdjustmentFrmcs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InventoryClerk\Supplier\SupplierFrm.resx">
+      <DependentUpon>SupplierFrm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForms\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -449,6 +482,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="OtherForms\CustomPopup.resx">
       <DependentUpon>CustomPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\DisposalContents\CompletedDisposal.resx">
+      <DependentUpon>CompletedDisposal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OtherForms\FinishedOrdersList.resx">
       <DependentUpon>FinishedOrdersList.cs</DependentUpon>
@@ -579,9 +615,6 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="InventoryClerk\StockAdjustment\" />
-    <Folder Include="InventoryClerk\Suppliers\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

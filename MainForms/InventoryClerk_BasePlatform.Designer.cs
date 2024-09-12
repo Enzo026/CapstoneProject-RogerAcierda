@@ -109,6 +109,7 @@
             this.button6.TabIndex = 7;
             this.button6.Text = "Logout";
             this.button6.UseVisualStyleBackColor = false;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // button4
             // 
@@ -122,6 +123,7 @@
             this.button4.TabIndex = 5;
             this.button4.Text = "Supplier";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button3
             // 
@@ -135,6 +137,7 @@
             this.button3.TabIndex = 4;
             this.button3.Text = "Disposal";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button2
             // 
@@ -148,6 +151,7 @@
             this.button2.TabIndex = 3;
             this.button2.Text = "StockAdjustment";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
