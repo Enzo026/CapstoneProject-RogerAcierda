@@ -184,13 +184,13 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement
 
                 con.Open();
 
-                string countQuery = "SELECT COUNT(*) FROM ItemInventory where ItemStatus = 'Available' AND ItemType = 'Buoquet' OR ItemType = 'Custom' ";
+                string countQuery = "SELECT COUNT(*) FROM ItemInventory where ItemStatus = 'Available' AND ItemType = 'Bouquet' OR ItemType = 'Custom' ";
                 using (SqlCommand countCommand = new SqlCommand(countQuery, con))
                 {
                     int rowCount = (int)countCommand.ExecuteScalar();
                     TransactionItemList[] inv = new TransactionItemList[rowCount];
 
-                    string sqlQuery = "SELECT * FROM ItemInventory where ItemStatus = 'Available' AND ItemType = 'Buoquet' OR ItemType = 'Custom' ";
+                    string sqlQuery = "SELECT * FROM ItemInventory where ItemStatus = 'Available' AND ItemType = 'Bouquet' OR ItemType = 'Custom' ";
                     using (SqlCommand command = new SqlCommand(sqlQuery, con))
                     {
                         using (SqlDataReader reader = command.ExecuteReader())
