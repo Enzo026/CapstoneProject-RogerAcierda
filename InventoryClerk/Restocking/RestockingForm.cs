@@ -56,5 +56,10 @@ namespace Flowershop_Thesis.InventoryClerk.Restocking
         {
 
         }
+
+        private void RestockingForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

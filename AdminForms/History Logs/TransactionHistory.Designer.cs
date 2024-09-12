@@ -44,7 +44,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.Silver;
+            this.panel1.BackColor = System.Drawing.SystemColors.InactiveBorder;
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.textBox1);
             this.panel1.Controls.Add(this.label1);
@@ -57,10 +57,10 @@
             // 
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Montserrat", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(980, 77);
+            this.button1.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(972, 68);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(119, 23);
+            this.button1.Size = new System.Drawing.Size(119, 32);
             this.button1.TabIndex = 2;
             this.button1.Text = "Print";
             this.button1.UseVisualStyleBackColor = false;
@@ -102,7 +102,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.label3.Location = new System.Drawing.Point(127, 118);
+            this.label3.Location = new System.Drawing.Point(128, 118);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(73, 15);
             this.label3.TabIndex = 4;
@@ -114,7 +114,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.label4.Location = new System.Drawing.Point(301, 118);
+            this.label4.Location = new System.Drawing.Point(302, 118);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(61, 15);
             this.label4.TabIndex = 5;
@@ -136,7 +136,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.label6.Location = new System.Drawing.Point(655, 118);
+            this.label6.Location = new System.Drawing.Point(656, 118);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(121, 15);
             this.label6.TabIndex = 7;
@@ -155,9 +155,9 @@
             // 
             // panel2
             // 
-            this.panel2.Location = new System.Drawing.Point(11, 138);
+            this.panel2.Location = new System.Drawing.Point(2, 136);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1090, 508);
+            this.panel2.Size = new System.Drawing.Size(1108, 519);
             this.panel2.TabIndex = 9;
             // 
             // Transaction_History
