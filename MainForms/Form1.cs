@@ -72,7 +72,7 @@ namespace Capstone_Flowershop
         {
             con.Open();
 
-            SqlCommand cmd = new SqlCommand("SELECT AccountID,Username,Password,Role from UserAccounts where Username =@User", con);
+            SqlCommand cmd = new SqlCommand("SELECT AccountID,Username,Password,Role,FirstName from UserAccounts where Username =@User", con);
             cmd.Parameters.AddWithValue("User", textBox1.Text.Trim());
             sdr = cmd.ExecuteReader();
 
@@ -83,12 +83,15 @@ namespace Capstone_Flowershop
                 string iUserName = sdr["Username"].ToString().Trim();
                 string iPassword = sdr["Password"].ToString().Trim();
                 string Position = sdr["Role"].ToString().Trim();
+                string FirstName = sdr["FirstName"].ToString().Trim();
+
 
 
 
                 if (textBox1.Text == iUserName && textBox2.Text == iPassword && Position == "Admin")
                 {
                     Admin_BasePlatform admin = new Admin_BasePlatform();
+                    admin.empName = FirstName;
                     this.Hide();
                     admin.Show();
 
@@ -102,12 +105,14 @@ namespace Capstone_Flowershop
                 else if (textBox1.Text == iUserName && textBox2.Text == iPassword && Position == "SalesClerk")
                 {
                     SalesClerk_BasePlatform admin = new SalesClerk_BasePlatform();
+                    admin.empName = FirstName;
                     this.Hide();
                     admin.Show();
                 }
                 else if (textBox1.Text == iUserName && textBox2.Text == iPassword && Position == "InventoryClerk")
                 {
                     InventoryClerk_BasePlatform admin = new InventoryClerk_BasePlatform();
+                    admin.empName = FirstName;
                     this.Hide();
                     admin.Show();
                 }

@@ -41,6 +41,8 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.EmpName = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,6 +57,8 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.label6);
+            this.panel1.Controls.Add(this.EmpName);
             this.panel1.Controls.Add(this.button6);
             this.panel1.Controls.Add(this.button5);
             this.panel1.Controls.Add(this.button4);
@@ -206,6 +210,26 @@
             this.label3.Text = "_";
             this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
+            // label6
+            // 
+            this.label6.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(2, 65);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(315, 23);
+            this.label6.TabIndex = 13;
+            this.label6.Text = "______________________________________";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // EmpName
+            // 
+            this.EmpName.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EmpName.Location = new System.Drawing.Point(6, 84);
+            this.EmpName.Name = "EmpName";
+            this.EmpName.Size = new System.Drawing.Size(315, 23);
+            this.EmpName.TabIndex = 12;
+            this.EmpName.Text = "Employee";
+            this.EmpName.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
             // Admin_BasePlatform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -244,5 +268,7 @@
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label EmpName;
     }
 }
