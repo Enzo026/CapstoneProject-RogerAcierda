@@ -325,3 +325,7 @@ D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowersho
 D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.InventoryClerk.Supplier.SupplierFrm.resources
 D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.InventoryClerk.Disposal.DisposalFrm.resources
 D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.DisposalContents.CompletedDisposal.resources
+E:\Git Thesis Repo\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.InventoryClerk.Disposal.DisposalFrm.resources
+E:\Git Thesis Repo\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.InventoryClerk.StockAdjustment.StockAdjustmentFrmcs.resources
+E:\Git Thesis Repo\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.InventoryClerk.Supplier.SupplierFrm.resources
+E:\Git Thesis Repo\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.DisposalContents.CompletedDisposal.resources
