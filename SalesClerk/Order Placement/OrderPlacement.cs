@@ -32,10 +32,11 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement
         public void testConnection()
         {
             string executableDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            string parentDirectory = Path.GetFullPath(Path.Combine(executableDirectory, @"..\..\"));
 
-            // Build the full path to the database file
-            string databaseFilePath = Path.Combine(executableDirectory, "try.mdf");
+            string databaseFilePath = Path.Combine(parentDirectory, "try.mdf");
 
+            // MessageBox.Show(databaseFilePath);
             // Build the connection string
             string connectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={databaseFilePath};Initial Catalog=try;Integrated Security=True;";
 
@@ -46,7 +47,6 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement
                 {
                     connection.Open();
                     con = new SqlConnection(connectionString);
-           
 
                     // Perform database operations here
 
@@ -136,7 +136,7 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement
                     int rowCount = (int)countCommand.ExecuteScalar();
                     TransactionItemList[] inv = new TransactionItemList[rowCount];
 
-                    string sqlQuery = "SELECT * FROM ItemInventory where ItemStatus = 'Available' ";
+                    string sqlQuery = "SELECT * FROM ItemInventory where ItemStatus = 'Available' AND ItemType = 'Individual'";
                     using (SqlCommand command = new SqlCommand(sqlQuery, con))
                     {
                         using (SqlDataReader reader = command.ExecuteReader())
@@ -184,7 +184,7 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement
 
                 con.Open();
 
-                string countQuery = "SELECT COUNT(*) FROM ItemInventory where ItemStatus = 'Available' AND ItemType = 'Bouquet' OR ItemType = 'Custom' ";
+                string countQuery = "SELECT COUNT(*) FROM ItemInventory where ItemStatus = 'Available' AND ItemType = 'Bouquet' OR ItemType = 'Custom'";
                 using (SqlCommand countCommand = new SqlCommand(countQuery, con))
                 {
                     int rowCount = (int)countCommand.ExecuteScalar();

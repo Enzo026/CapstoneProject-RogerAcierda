@@ -30,10 +30,11 @@ namespace Flowershop_Thesis.OtherForms
         public void testConnection()
         {
             string executableDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            string parentDirectory = Path.GetFullPath(Path.Combine(executableDirectory, @"..\..\"));
 
-            // Build the full path to the database file
-            string databaseFilePath = Path.Combine(executableDirectory, "try.mdf");
+            string databaseFilePath = Path.Combine(parentDirectory, "try.mdf");
 
+            // MessageBox.Show(databaseFilePath);
             // Build the connection string
             string connectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={databaseFilePath};Initial Catalog=try;Integrated Security=True;";
 
@@ -44,6 +45,7 @@ namespace Flowershop_Thesis.OtherForms
                 {
                     connection.Open();
                     con = new SqlConnection(connectionString);
+
                     // Perform database operations here
 
                 }

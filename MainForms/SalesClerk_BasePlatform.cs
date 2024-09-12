@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,13 +18,14 @@ namespace Flowershop_Thesis.MainForms
 {
     public partial class SalesClerk_BasePlatform : Form
     {
-        SqlConnection con = new SqlConnection("Data Source=DESKTOP-IH4V487\\SQLEXPRESS;Initial Catalog=CapstoneProject;Integrated Security=True");
+        SqlConnection con;
         SqlCommand cmd = new SqlCommand();
         SqlDataReader sdr;
         SqlDataAdapter sda;
         public SalesClerk_BasePlatform()
         {
             InitializeComponent();
+            testConnection();
             panel2.Controls.Clear(); //tatanggalin yung current na laman ng panel
             TransactionForm TF = new TransactionForm(); //tatawagin tapos papangalanan yung form na papalabasin
             TF.TopLevel = false; //para di mag agaw ng place
@@ -31,7 +33,34 @@ namespace Flowershop_Thesis.MainForms
             TF.BringToFront(); //front yung form 
             TF.Show(); //para lumitaw
         }
+        public void testConnection()
+        {
+            string executableDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            string parentDirectory = Path.GetFullPath(Path.Combine(executableDirectory, @"..\..\"));
 
+            string databaseFilePath = Path.Combine(parentDirectory, "try.mdf");
+
+           // MessageBox.Show(databaseFilePath);
+            // Build the connection string
+            string connectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={databaseFilePath};Initial Catalog=try;Integrated Security=True;";
+
+            // Use the connection string to connect to the database
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    con = new SqlConnection(connectionString);
+
+                    // Perform database operations here
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred: " + ex.Message);
+                }
+            }
+        }
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 

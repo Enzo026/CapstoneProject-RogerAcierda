@@ -30,10 +30,11 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement.AdvanceOrderfolder
         public void testConnection()
         {
             string executableDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            string parentDirectory = Path.GetFullPath(Path.Combine(executableDirectory, @"..\..\"));
 
-            // Build the full path to the database file
-            string databaseFilePath = Path.Combine(executableDirectory, "try.mdf");
+            string databaseFilePath = Path.Combine(parentDirectory, "try.mdf");
 
+            // MessageBox.Show(databaseFilePath);
             // Build the connection string
             string connectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={databaseFilePath};Initial Catalog=try;Integrated Security=True;";
 
@@ -44,7 +45,6 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement.AdvanceOrderfolder
                 {
                     connection.Open();
                     con = new SqlConnection(connectionString);
-                    con2 = new SqlConnection(connectionString);
 
                     // Perform database operations here
 
@@ -67,7 +67,7 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement.AdvanceOrderfolder
                     int rowCount = (int)countCommand.ExecuteScalar();
                     Adv_IndividualListItems[] inv = new Adv_IndividualListItems[rowCount];
 
-                    string sqlQuery = "SELECT * FROM ItemInventory where ItemStatus = 'Available' ";
+                    string sqlQuery = "SELECT * FROM ItemInventory where ItemStatus = 'Available' AND ItemType = 'Individual'";
                     using (SqlCommand command = new SqlCommand(sqlQuery, con))
                     {
                         using (SqlDataReader reader = command.ExecuteReader())
