@@ -22,10 +22,16 @@ namespace Flowershop_Thesis.MainForms
         SqlCommand cmd = new SqlCommand();
         SqlDataReader sdr;
         SqlDataAdapter sda;
+
+
         public SalesClerk_BasePlatform()
         {
+            
             InitializeComponent();
+
             testConnection();
+            EmpName.Text = EmployeeName;
+            
             panel2.Controls.Clear(); //tatanggalin yung current na laman ng panel
             TransactionForm TF = new TransactionForm(); //tatawagin tapos papangalanan yung form na papalabasin
             TF.TopLevel = false; //para di mag agaw ng place
@@ -33,6 +39,22 @@ namespace Flowershop_Thesis.MainForms
             TF.BringToFront(); //front yung form 
             TF.Show(); //para lumitaw
         }
+
+        private string EmployeeName;
+        public string empName
+        {
+            get { return EmployeeName; }
+            set { EmployeeName = value;  EmpName.Text = value;
+                MessageBox.Show(value);
+            }
+
+        }
+
+        public void GetEmpName()
+        {
+
+        }
+        
         public void testConnection()
         {
             string executableDirectory = AppDomain.CurrentDomain.BaseDirectory;

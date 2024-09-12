@@ -21,7 +21,17 @@ namespace Capstone_Flowershop.MainForms
         {
             InitializeComponent();
         }
+        private string EmployeeName;
+        public string empName
+        {
+            get { return EmployeeName; }
+            set
+            {
+                EmployeeName = value; EmpName.Text = value;
+                MessageBox.Show(value);
+            }
 
+        }
         private void label2_Click(object sender, EventArgs e)
         {
             Application.Exit();

@@ -31,10 +31,18 @@ namespace Flowershop_Thesis.MainForms
             DF.Show(); //para lumitaw
 
         }
+        private string EmployeeName;
+        public string empName
+        {
+            get { return EmployeeName; }
+            set
+            {
+                EmployeeName = value; EmpName.Text = value;
+                MessageBox.Show(value);
+            }
 
-        private void label6_TextChanged(object sender, EventArgs e)
-        {  
         }
+ 
 
         private void button7_Click(object sender, EventArgs e)
         {
