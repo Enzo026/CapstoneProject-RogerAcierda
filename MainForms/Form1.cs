@@ -34,9 +34,12 @@ namespace Capstone_Flowershop
         public void testConnection()
         {
             string executableDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            string parentDirectory = Path.GetFullPath(Path.Combine(executableDirectory, @"..\..\"));
+            
+          
+            string databaseFilePath = Path.Combine(parentDirectory, "try.mdf");
 
-            // Build the full path to the database file
-            string databaseFilePath = Path.Combine(executableDirectory, "try.mdf");
+            label6.Text = databaseFilePath;
 
             // Build the connection string
             string connectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={databaseFilePath};Initial Catalog=try;Integrated Security=True;";
@@ -49,7 +52,7 @@ namespace Capstone_Flowershop
                     connection.Open();
                     MessageBox.Show("Database connection opened successfully.");
                     con = new SqlConnection(connectionString);
-                    label6.Text = connectionString;
+                    //label6.Text = connectionString;
                     // Perform database operations here
 
                 }
