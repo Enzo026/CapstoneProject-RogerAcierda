@@ -1,0 +1,1 @@
+pakibasa, yun lang salamat
