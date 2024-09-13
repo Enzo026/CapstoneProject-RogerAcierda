@@ -50,25 +50,37 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.label12 = new System.Windows.Forms.Label();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel14 = new System.Windows.Forms.Panel();
             this.label54 = new System.Windows.Forms.Label();
             this.label53 = new System.Windows.Forms.Label();
             this.label52 = new System.Windows.Forms.Label();
+            this.panel28 = new System.Windows.Forms.Panel();
+            this.label121 = new System.Windows.Forms.Label();
+            this.label122 = new System.Windows.Forms.Label();
+            this.label123 = new System.Windows.Forms.Label();
+            this.panel29 = new System.Windows.Forms.Panel();
+            this.label124 = new System.Windows.Forms.Label();
+            this.label125 = new System.Windows.Forms.Label();
+            this.label126 = new System.Windows.Forms.Label();
+            this.panel30 = new System.Windows.Forms.Panel();
+            this.label127 = new System.Windows.Forms.Label();
+            this.label128 = new System.Windows.Forms.Label();
+            this.label129 = new System.Windows.Forms.Label();
+            this.panel31 = new System.Windows.Forms.Panel();
+            this.label130 = new System.Windows.Forms.Label();
+            this.label131 = new System.Windows.Forms.Label();
+            this.label132 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel7 = new System.Windows.Forms.Panel();
             this.label21 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel8 = new System.Windows.Forms.Panel();
             this.label22 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
@@ -183,32 +195,24 @@
             this.label118 = new System.Windows.Forms.Label();
             this.label119 = new System.Windows.Forms.Label();
             this.label120 = new System.Windows.Forms.Label();
-            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
-            this.panel28 = new System.Windows.Forms.Panel();
-            this.label121 = new System.Windows.Forms.Label();
-            this.label122 = new System.Windows.Forms.Label();
-            this.label123 = new System.Windows.Forms.Label();
-            this.panel29 = new System.Windows.Forms.Panel();
-            this.label124 = new System.Windows.Forms.Label();
-            this.label125 = new System.Windows.Forms.Label();
-            this.label126 = new System.Windows.Forms.Label();
-            this.panel30 = new System.Windows.Forms.Panel();
-            this.label127 = new System.Windows.Forms.Label();
-            this.label128 = new System.Windows.Forms.Label();
-            this.label129 = new System.Windows.Forms.Label();
-            this.panel31 = new System.Windows.Forms.Panel();
-            this.label130 = new System.Windows.Forms.Label();
-            this.label131 = new System.Windows.Forms.Label();
-            this.label132 = new System.Windows.Forms.Label();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
+            this.flowLayoutPanel2.SuspendLayout();
             this.panel14.SuspendLayout();
+            this.panel28.SuspendLayout();
+            this.panel29.SuspendLayout();
+            this.panel30.SuspendLayout();
+            this.panel31.SuspendLayout();
             this.panel5.SuspendLayout();
-            this.panel7.SuspendLayout();
-            this.panel6.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
+            this.panel7.SuspendLayout();
             this.panel8.SuspendLayout();
             this.panel9.SuspendLayout();
             this.panel10.SuspendLayout();
@@ -228,11 +232,7 @@
             this.panel25.SuspendLayout();
             this.panel26.SuspendLayout();
             this.panel27.SuspendLayout();
-            this.flowLayoutPanel2.SuspendLayout();
-            this.panel28.SuspendLayout();
-            this.panel29.SuspendLayout();
-            this.panel30.SuspendLayout();
-            this.panel31.SuspendLayout();
+            this.panel6.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -243,7 +243,7 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(4, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1175, 103);
+            this.panel1.Size = new System.Drawing.Size(1131, 103);
             this.panel1.TabIndex = 0;
             // 
             // label3
@@ -352,7 +352,7 @@
             this.panel3.Controls.Add(this.label5);
             this.panel3.Location = new System.Drawing.Point(744, 112);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(435, 371);
+            this.panel3.Size = new System.Drawing.Size(391, 372);
             this.panel3.TabIndex = 2;
             // 
             // label55
@@ -463,18 +463,21 @@
             this.panel4.Controls.Add(this.label11);
             this.panel4.Location = new System.Drawing.Point(744, 489);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(435, 396);
+            this.panel4.Size = new System.Drawing.Size(391, 343);
             this.panel4.TabIndex = 3;
             // 
-            // label12
+            // flowLayoutPanel2
             // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(45, 39);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(337, 15);
-            this.label12.TabIndex = 12;
-            this.label12.Text = "_______________________________________________________";
+            this.flowLayoutPanel2.AutoScroll = true;
+            this.flowLayoutPanel2.Controls.Add(this.panel14);
+            this.flowLayoutPanel2.Controls.Add(this.panel28);
+            this.flowLayoutPanel2.Controls.Add(this.panel29);
+            this.flowLayoutPanel2.Controls.Add(this.panel30);
+            this.flowLayoutPanel2.Controls.Add(this.panel31);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(12, 57);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(379, 286);
+            this.flowLayoutPanel2.TabIndex = 14;
             // 
             // panel14
             // 
@@ -484,7 +487,7 @@
             this.panel14.Controls.Add(this.label52);
             this.panel14.Location = new System.Drawing.Point(3, 3);
             this.panel14.Name = "panel14";
-            this.panel14.Size = new System.Drawing.Size(382, 70);
+            this.panel14.Size = new System.Drawing.Size(353, 70);
             this.panel14.TabIndex = 13;
             // 
             // label54
@@ -517,11 +520,185 @@
             this.label52.TabIndex = 0;
             this.label52.Text = "Alexis Payot";
             // 
+            // panel28
+            // 
+            this.panel28.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.panel28.Controls.Add(this.label121);
+            this.panel28.Controls.Add(this.label122);
+            this.panel28.Controls.Add(this.label123);
+            this.panel28.Location = new System.Drawing.Point(3, 79);
+            this.panel28.Name = "panel28";
+            this.panel28.Size = new System.Drawing.Size(353, 70);
+            this.panel28.TabIndex = 14;
+            // 
+            // label121
+            // 
+            this.label121.AutoSize = true;
+            this.label121.Font = new System.Drawing.Font("Montserrat SemiBold", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label121.Location = new System.Drawing.Point(295, 9);
+            this.label121.Name = "label121";
+            this.label121.Size = new System.Drawing.Size(53, 18);
+            this.label121.TabIndex = 2;
+            this.label121.Text = "9/11/24";
+            // 
+            // label122
+            // 
+            this.label122.AutoSize = true;
+            this.label122.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label122.Location = new System.Drawing.Point(59, 37);
+            this.label122.Name = "label122";
+            this.label122.Size = new System.Drawing.Size(260, 18);
+            this.label122.TabIndex = 1;
+            this.label122.Text = "\"Restocked 10 Rose from the inventory\"";
+            // 
+            // label123
+            // 
+            this.label123.AutoSize = true;
+            this.label123.Font = new System.Drawing.Font("Montserrat SemiBold", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label123.Location = new System.Drawing.Point(13, 9);
+            this.label123.Name = "label123";
+            this.label123.Size = new System.Drawing.Size(91, 18);
+            this.label123.TabIndex = 0;
+            this.label123.Text = "Alexis Payot";
+            // 
+            // panel29
+            // 
+            this.panel29.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.panel29.Controls.Add(this.label124);
+            this.panel29.Controls.Add(this.label125);
+            this.panel29.Controls.Add(this.label126);
+            this.panel29.Location = new System.Drawing.Point(3, 155);
+            this.panel29.Name = "panel29";
+            this.panel29.Size = new System.Drawing.Size(353, 70);
+            this.panel29.TabIndex = 15;
+            // 
+            // label124
+            // 
+            this.label124.AutoSize = true;
+            this.label124.Font = new System.Drawing.Font("Montserrat SemiBold", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label124.Location = new System.Drawing.Point(295, 9);
+            this.label124.Name = "label124";
+            this.label124.Size = new System.Drawing.Size(53, 18);
+            this.label124.TabIndex = 2;
+            this.label124.Text = "9/11/24";
+            // 
+            // label125
+            // 
+            this.label125.AutoSize = true;
+            this.label125.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label125.Location = new System.Drawing.Point(59, 37);
+            this.label125.Name = "label125";
+            this.label125.Size = new System.Drawing.Size(260, 18);
+            this.label125.TabIndex = 1;
+            this.label125.Text = "\"Restocked 10 Rose from the inventory\"";
+            // 
+            // label126
+            // 
+            this.label126.AutoSize = true;
+            this.label126.Font = new System.Drawing.Font("Montserrat SemiBold", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label126.Location = new System.Drawing.Point(13, 9);
+            this.label126.Name = "label126";
+            this.label126.Size = new System.Drawing.Size(91, 18);
+            this.label126.TabIndex = 0;
+            this.label126.Text = "Alexis Payot";
+            // 
+            // panel30
+            // 
+            this.panel30.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.panel30.Controls.Add(this.label127);
+            this.panel30.Controls.Add(this.label128);
+            this.panel30.Controls.Add(this.label129);
+            this.panel30.Location = new System.Drawing.Point(3, 231);
+            this.panel30.Name = "panel30";
+            this.panel30.Size = new System.Drawing.Size(353, 70);
+            this.panel30.TabIndex = 16;
+            // 
+            // label127
+            // 
+            this.label127.AutoSize = true;
+            this.label127.Font = new System.Drawing.Font("Montserrat SemiBold", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label127.Location = new System.Drawing.Point(295, 9);
+            this.label127.Name = "label127";
+            this.label127.Size = new System.Drawing.Size(53, 18);
+            this.label127.TabIndex = 2;
+            this.label127.Text = "9/11/24";
+            // 
+            // label128
+            // 
+            this.label128.AutoSize = true;
+            this.label128.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label128.Location = new System.Drawing.Point(59, 37);
+            this.label128.Name = "label128";
+            this.label128.Size = new System.Drawing.Size(260, 18);
+            this.label128.TabIndex = 1;
+            this.label128.Text = "\"Restocked 10 Rose from the inventory\"";
+            // 
+            // label129
+            // 
+            this.label129.AutoSize = true;
+            this.label129.Font = new System.Drawing.Font("Montserrat SemiBold", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label129.Location = new System.Drawing.Point(13, 9);
+            this.label129.Name = "label129";
+            this.label129.Size = new System.Drawing.Size(91, 18);
+            this.label129.TabIndex = 0;
+            this.label129.Text = "Alexis Payot";
+            // 
+            // panel31
+            // 
+            this.panel31.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.panel31.Controls.Add(this.label130);
+            this.panel31.Controls.Add(this.label131);
+            this.panel31.Controls.Add(this.label132);
+            this.panel31.Location = new System.Drawing.Point(3, 307);
+            this.panel31.Name = "panel31";
+            this.panel31.Size = new System.Drawing.Size(353, 70);
+            this.panel31.TabIndex = 17;
+            // 
+            // label130
+            // 
+            this.label130.AutoSize = true;
+            this.label130.Font = new System.Drawing.Font("Montserrat SemiBold", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label130.Location = new System.Drawing.Point(295, 9);
+            this.label130.Name = "label130";
+            this.label130.Size = new System.Drawing.Size(53, 18);
+            this.label130.TabIndex = 2;
+            this.label130.Text = "9/11/24";
+            // 
+            // label131
+            // 
+            this.label131.AutoSize = true;
+            this.label131.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label131.Location = new System.Drawing.Point(59, 37);
+            this.label131.Name = "label131";
+            this.label131.Size = new System.Drawing.Size(260, 18);
+            this.label131.TabIndex = 1;
+            this.label131.Text = "\"Restocked 10 Rose from the inventory\"";
+            // 
+            // label132
+            // 
+            this.label132.AutoSize = true;
+            this.label132.Font = new System.Drawing.Font("Montserrat SemiBold", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label132.Location = new System.Drawing.Point(13, 9);
+            this.label132.Name = "label132";
+            this.label132.Size = new System.Drawing.Size(91, 18);
+            this.label132.TabIndex = 0;
+            this.label132.Text = "Alexis Payot";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(28, 39);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(337, 15);
+            this.label12.TabIndex = 12;
+            this.label12.Text = "_______________________________________________________";
+            // 
             // label11
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Montserrat", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(114, 10);
+            this.label11.Location = new System.Drawing.Point(103, 10);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(210, 29);
             this.label11.TabIndex = 0;
@@ -534,8 +711,36 @@
             this.panel5.Controls.Add(this.panel6);
             this.panel5.Location = new System.Drawing.Point(4, 224);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(734, 661);
+            this.panel5.Size = new System.Drawing.Size(737, 661);
             this.panel5.TabIndex = 2;
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.AutoScroll = true;
+            this.flowLayoutPanel1.Controls.Add(this.panel7);
+            this.flowLayoutPanel1.Controls.Add(this.panel8);
+            this.flowLayoutPanel1.Controls.Add(this.panel9);
+            this.flowLayoutPanel1.Controls.Add(this.panel10);
+            this.flowLayoutPanel1.Controls.Add(this.panel11);
+            this.flowLayoutPanel1.Controls.Add(this.panel12);
+            this.flowLayoutPanel1.Controls.Add(this.panel13);
+            this.flowLayoutPanel1.Controls.Add(this.panel15);
+            this.flowLayoutPanel1.Controls.Add(this.panel16);
+            this.flowLayoutPanel1.Controls.Add(this.panel17);
+            this.flowLayoutPanel1.Controls.Add(this.panel18);
+            this.flowLayoutPanel1.Controls.Add(this.panel19);
+            this.flowLayoutPanel1.Controls.Add(this.panel20);
+            this.flowLayoutPanel1.Controls.Add(this.panel21);
+            this.flowLayoutPanel1.Controls.Add(this.panel22);
+            this.flowLayoutPanel1.Controls.Add(this.panel23);
+            this.flowLayoutPanel1.Controls.Add(this.panel24);
+            this.flowLayoutPanel1.Controls.Add(this.panel25);
+            this.flowLayoutPanel1.Controls.Add(this.panel26);
+            this.flowLayoutPanel1.Controls.Add(this.panel27);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(6, 58);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(728, 550);
+            this.flowLayoutPanel1.TabIndex = 5;
             // 
             // panel7
             // 
@@ -546,7 +751,7 @@
             this.panel7.Controls.Add(this.label20);
             this.panel7.Location = new System.Drawing.Point(3, 3);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(705, 36);
+            this.panel7.Size = new System.Drawing.Size(705, 34);
             this.panel7.TabIndex = 4;
             // 
             // label21
@@ -602,87 +807,6 @@
             this.label20.Text = "Rose";
             this.label20.Click += new System.EventHandler(this.label20_Click);
             // 
-            // panel6
-            // 
-            this.panel6.Controls.Add(this.label16);
-            this.panel6.Controls.Add(this.label15);
-            this.panel6.Controls.Add(this.label14);
-            this.panel6.Controls.Add(this.label13);
-            this.panel6.Location = new System.Drawing.Point(3, 11);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(728, 36);
-            this.panel6.TabIndex = 0;
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Montserrat SemiBold", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(459, 9);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(64, 18);
-            this.label16.TabIndex = 3;
-            this.label16.Text = "Supplier";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Montserrat SemiBold", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(309, 9);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(86, 18);
-            this.label15.TabIndex = 2;
-            this.label15.Text = "Stock Level";
-            this.label15.Click += new System.EventHandler(this.label15_Click);
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Montserrat SemiBold", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(178, 9);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(69, 18);
-            this.label14.TabIndex = 1;
-            this.label14.Text = "Quantity";
-            this.label14.Click += new System.EventHandler(this.label14_Click);
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Montserrat SemiBold", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(11, 9);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(47, 18);
-            this.label13.TabIndex = 0;
-            this.label13.Text = "Items";
-            // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.AutoScroll = true;
-            this.flowLayoutPanel1.Controls.Add(this.panel7);
-            this.flowLayoutPanel1.Controls.Add(this.panel8);
-            this.flowLayoutPanel1.Controls.Add(this.panel9);
-            this.flowLayoutPanel1.Controls.Add(this.panel10);
-            this.flowLayoutPanel1.Controls.Add(this.panel11);
-            this.flowLayoutPanel1.Controls.Add(this.panel12);
-            this.flowLayoutPanel1.Controls.Add(this.panel13);
-            this.flowLayoutPanel1.Controls.Add(this.panel15);
-            this.flowLayoutPanel1.Controls.Add(this.panel16);
-            this.flowLayoutPanel1.Controls.Add(this.panel17);
-            this.flowLayoutPanel1.Controls.Add(this.panel18);
-            this.flowLayoutPanel1.Controls.Add(this.panel19);
-            this.flowLayoutPanel1.Controls.Add(this.panel20);
-            this.flowLayoutPanel1.Controls.Add(this.panel21);
-            this.flowLayoutPanel1.Controls.Add(this.panel22);
-            this.flowLayoutPanel1.Controls.Add(this.panel23);
-            this.flowLayoutPanel1.Controls.Add(this.panel24);
-            this.flowLayoutPanel1.Controls.Add(this.panel25);
-            this.flowLayoutPanel1.Controls.Add(this.panel26);
-            this.flowLayoutPanel1.Controls.Add(this.panel27);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 53);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(728, 605);
-            this.flowLayoutPanel1.TabIndex = 5;
-            // 
             // panel8
             // 
             this.panel8.Controls.Add(this.label22);
@@ -690,7 +814,7 @@
             this.panel8.Controls.Add(this.label24);
             this.panel8.Controls.Add(this.label25);
             this.panel8.Controls.Add(this.label26);
-            this.panel8.Location = new System.Drawing.Point(3, 45);
+            this.panel8.Location = new System.Drawing.Point(3, 43);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(705, 36);
             this.panel8.TabIndex = 5;
@@ -753,7 +877,7 @@
             this.panel9.Controls.Add(this.label29);
             this.panel9.Controls.Add(this.label30);
             this.panel9.Controls.Add(this.label31);
-            this.panel9.Location = new System.Drawing.Point(3, 87);
+            this.panel9.Location = new System.Drawing.Point(3, 85);
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(705, 36);
             this.panel9.TabIndex = 6;
@@ -816,7 +940,7 @@
             this.panel10.Controls.Add(this.label34);
             this.panel10.Controls.Add(this.label35);
             this.panel10.Controls.Add(this.label36);
-            this.panel10.Location = new System.Drawing.Point(3, 129);
+            this.panel10.Location = new System.Drawing.Point(3, 127);
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(705, 36);
             this.panel10.TabIndex = 7;
@@ -879,7 +1003,7 @@
             this.panel11.Controls.Add(this.label39);
             this.panel11.Controls.Add(this.label40);
             this.panel11.Controls.Add(this.label41);
-            this.panel11.Location = new System.Drawing.Point(3, 171);
+            this.panel11.Location = new System.Drawing.Point(3, 169);
             this.panel11.Name = "panel11";
             this.panel11.Size = new System.Drawing.Size(705, 36);
             this.panel11.TabIndex = 8;
@@ -942,7 +1066,7 @@
             this.panel12.Controls.Add(this.label44);
             this.panel12.Controls.Add(this.label45);
             this.panel12.Controls.Add(this.label46);
-            this.panel12.Location = new System.Drawing.Point(3, 213);
+            this.panel12.Location = new System.Drawing.Point(3, 211);
             this.panel12.Name = "panel12";
             this.panel12.Size = new System.Drawing.Size(705, 36);
             this.panel12.TabIndex = 9;
@@ -1005,7 +1129,7 @@
             this.panel13.Controls.Add(this.label49);
             this.panel13.Controls.Add(this.label50);
             this.panel13.Controls.Add(this.label51);
-            this.panel13.Location = new System.Drawing.Point(3, 255);
+            this.panel13.Location = new System.Drawing.Point(3, 253);
             this.panel13.Name = "panel13";
             this.panel13.Size = new System.Drawing.Size(705, 36);
             this.panel13.TabIndex = 10;
@@ -1068,7 +1192,7 @@
             this.panel15.Controls.Add(this.label58);
             this.panel15.Controls.Add(this.label59);
             this.panel15.Controls.Add(this.label60);
-            this.panel15.Location = new System.Drawing.Point(3, 297);
+            this.panel15.Location = new System.Drawing.Point(3, 295);
             this.panel15.Name = "panel15";
             this.panel15.Size = new System.Drawing.Size(705, 36);
             this.panel15.TabIndex = 11;
@@ -1131,7 +1255,7 @@
             this.panel16.Controls.Add(this.label63);
             this.panel16.Controls.Add(this.label64);
             this.panel16.Controls.Add(this.label65);
-            this.panel16.Location = new System.Drawing.Point(3, 339);
+            this.panel16.Location = new System.Drawing.Point(3, 337);
             this.panel16.Name = "panel16";
             this.panel16.Size = new System.Drawing.Size(705, 36);
             this.panel16.TabIndex = 12;
@@ -1194,7 +1318,7 @@
             this.panel17.Controls.Add(this.label68);
             this.panel17.Controls.Add(this.label69);
             this.panel17.Controls.Add(this.label70);
-            this.panel17.Location = new System.Drawing.Point(3, 381);
+            this.panel17.Location = new System.Drawing.Point(3, 379);
             this.panel17.Name = "panel17";
             this.panel17.Size = new System.Drawing.Size(705, 36);
             this.panel17.TabIndex = 13;
@@ -1257,7 +1381,7 @@
             this.panel18.Controls.Add(this.label73);
             this.panel18.Controls.Add(this.label74);
             this.panel18.Controls.Add(this.label75);
-            this.panel18.Location = new System.Drawing.Point(3, 423);
+            this.panel18.Location = new System.Drawing.Point(3, 421);
             this.panel18.Name = "panel18";
             this.panel18.Size = new System.Drawing.Size(705, 36);
             this.panel18.TabIndex = 14;
@@ -1320,7 +1444,7 @@
             this.panel19.Controls.Add(this.label78);
             this.panel19.Controls.Add(this.label79);
             this.panel19.Controls.Add(this.label80);
-            this.panel19.Location = new System.Drawing.Point(3, 465);
+            this.panel19.Location = new System.Drawing.Point(3, 463);
             this.panel19.Name = "panel19";
             this.panel19.Size = new System.Drawing.Size(705, 36);
             this.panel19.TabIndex = 15;
@@ -1383,7 +1507,7 @@
             this.panel20.Controls.Add(this.label83);
             this.panel20.Controls.Add(this.label84);
             this.panel20.Controls.Add(this.label85);
-            this.panel20.Location = new System.Drawing.Point(3, 507);
+            this.panel20.Location = new System.Drawing.Point(3, 505);
             this.panel20.Name = "panel20";
             this.panel20.Size = new System.Drawing.Size(705, 36);
             this.panel20.TabIndex = 16;
@@ -1446,7 +1570,7 @@
             this.panel21.Controls.Add(this.label88);
             this.panel21.Controls.Add(this.label89);
             this.panel21.Controls.Add(this.label90);
-            this.panel21.Location = new System.Drawing.Point(3, 549);
+            this.panel21.Location = new System.Drawing.Point(3, 547);
             this.panel21.Name = "panel21";
             this.panel21.Size = new System.Drawing.Size(705, 36);
             this.panel21.TabIndex = 17;
@@ -1509,7 +1633,7 @@
             this.panel22.Controls.Add(this.label93);
             this.panel22.Controls.Add(this.label94);
             this.panel22.Controls.Add(this.label95);
-            this.panel22.Location = new System.Drawing.Point(3, 591);
+            this.panel22.Location = new System.Drawing.Point(3, 589);
             this.panel22.Name = "panel22";
             this.panel22.Size = new System.Drawing.Size(705, 36);
             this.panel22.TabIndex = 18;
@@ -1572,7 +1696,7 @@
             this.panel23.Controls.Add(this.label98);
             this.panel23.Controls.Add(this.label99);
             this.panel23.Controls.Add(this.label100);
-            this.panel23.Location = new System.Drawing.Point(3, 633);
+            this.panel23.Location = new System.Drawing.Point(3, 631);
             this.panel23.Name = "panel23";
             this.panel23.Size = new System.Drawing.Size(705, 36);
             this.panel23.TabIndex = 19;
@@ -1635,7 +1759,7 @@
             this.panel24.Controls.Add(this.label103);
             this.panel24.Controls.Add(this.label104);
             this.panel24.Controls.Add(this.label105);
-            this.panel24.Location = new System.Drawing.Point(3, 675);
+            this.panel24.Location = new System.Drawing.Point(3, 673);
             this.panel24.Name = "panel24";
             this.panel24.Size = new System.Drawing.Size(705, 36);
             this.panel24.TabIndex = 20;
@@ -1698,9 +1822,9 @@
             this.panel25.Controls.Add(this.label108);
             this.panel25.Controls.Add(this.label109);
             this.panel25.Controls.Add(this.label110);
-            this.panel25.Location = new System.Drawing.Point(3, 717);
+            this.panel25.Location = new System.Drawing.Point(3, 715);
             this.panel25.Name = "panel25";
-            this.panel25.Size = new System.Drawing.Size(691, 36);
+            this.panel25.Size = new System.Drawing.Size(705, 36);
             this.panel25.TabIndex = 21;
             // 
             // label106
@@ -1761,9 +1885,9 @@
             this.panel26.Controls.Add(this.label113);
             this.panel26.Controls.Add(this.label114);
             this.panel26.Controls.Add(this.label115);
-            this.panel26.Location = new System.Drawing.Point(3, 759);
+            this.panel26.Location = new System.Drawing.Point(3, 757);
             this.panel26.Name = "panel26";
-            this.panel26.Size = new System.Drawing.Size(691, 36);
+            this.panel26.Size = new System.Drawing.Size(705, 36);
             this.panel26.TabIndex = 22;
             // 
             // label111
@@ -1824,7 +1948,7 @@
             this.panel27.Controls.Add(this.label118);
             this.panel27.Controls.Add(this.label119);
             this.panel27.Controls.Add(this.label120);
-            this.panel27.Location = new System.Drawing.Point(3, 801);
+            this.panel27.Location = new System.Drawing.Point(3, 799);
             this.panel27.Name = "panel27";
             this.panel27.Size = new System.Drawing.Size(691, 36);
             this.panel27.TabIndex = 23;
@@ -1880,189 +2004,65 @@
             this.label120.TabIndex = 0;
             this.label120.Text = "Rose";
             // 
-            // flowLayoutPanel2
+            // panel6
             // 
-            this.flowLayoutPanel2.AutoScroll = true;
-            this.flowLayoutPanel2.Controls.Add(this.panel14);
-            this.flowLayoutPanel2.Controls.Add(this.panel28);
-            this.flowLayoutPanel2.Controls.Add(this.panel29);
-            this.flowLayoutPanel2.Controls.Add(this.panel30);
-            this.flowLayoutPanel2.Controls.Add(this.panel31);
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(12, 57);
-            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(405, 324);
-            this.flowLayoutPanel2.TabIndex = 14;
+            this.panel6.Controls.Add(this.label16);
+            this.panel6.Controls.Add(this.label15);
+            this.panel6.Controls.Add(this.label14);
+            this.panel6.Controls.Add(this.label13);
+            this.panel6.Location = new System.Drawing.Point(3, 11);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(728, 36);
+            this.panel6.TabIndex = 0;
             // 
-            // panel28
+            // label16
             // 
-            this.panel28.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.panel28.Controls.Add(this.label121);
-            this.panel28.Controls.Add(this.label122);
-            this.panel28.Controls.Add(this.label123);
-            this.panel28.Location = new System.Drawing.Point(3, 79);
-            this.panel28.Name = "panel28";
-            this.panel28.Size = new System.Drawing.Size(382, 70);
-            this.panel28.TabIndex = 14;
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Montserrat SemiBold", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(459, 9);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(64, 18);
+            this.label16.TabIndex = 3;
+            this.label16.Text = "Supplier";
             // 
-            // label121
+            // label15
             // 
-            this.label121.AutoSize = true;
-            this.label121.Font = new System.Drawing.Font("Montserrat SemiBold", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label121.Location = new System.Drawing.Point(295, 9);
-            this.label121.Name = "label121";
-            this.label121.Size = new System.Drawing.Size(53, 18);
-            this.label121.TabIndex = 2;
-            this.label121.Text = "9/11/24";
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Montserrat SemiBold", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(309, 9);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(86, 18);
+            this.label15.TabIndex = 2;
+            this.label15.Text = "Stock Level";
+            this.label15.Click += new System.EventHandler(this.label15_Click);
             // 
-            // label122
+            // label14
             // 
-            this.label122.AutoSize = true;
-            this.label122.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label122.Location = new System.Drawing.Point(59, 37);
-            this.label122.Name = "label122";
-            this.label122.Size = new System.Drawing.Size(260, 18);
-            this.label122.TabIndex = 1;
-            this.label122.Text = "\"Restocked 10 Rose from the inventory\"";
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Montserrat SemiBold", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(178, 9);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(69, 18);
+            this.label14.TabIndex = 1;
+            this.label14.Text = "Quantity";
+            this.label14.Click += new System.EventHandler(this.label14_Click);
             // 
-            // label123
+            // label13
             // 
-            this.label123.AutoSize = true;
-            this.label123.Font = new System.Drawing.Font("Montserrat SemiBold", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label123.Location = new System.Drawing.Point(13, 9);
-            this.label123.Name = "label123";
-            this.label123.Size = new System.Drawing.Size(91, 18);
-            this.label123.TabIndex = 0;
-            this.label123.Text = "Alexis Payot";
-            // 
-            // panel29
-            // 
-            this.panel29.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.panel29.Controls.Add(this.label124);
-            this.panel29.Controls.Add(this.label125);
-            this.panel29.Controls.Add(this.label126);
-            this.panel29.Location = new System.Drawing.Point(3, 155);
-            this.panel29.Name = "panel29";
-            this.panel29.Size = new System.Drawing.Size(382, 70);
-            this.panel29.TabIndex = 15;
-            // 
-            // label124
-            // 
-            this.label124.AutoSize = true;
-            this.label124.Font = new System.Drawing.Font("Montserrat SemiBold", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label124.Location = new System.Drawing.Point(295, 9);
-            this.label124.Name = "label124";
-            this.label124.Size = new System.Drawing.Size(53, 18);
-            this.label124.TabIndex = 2;
-            this.label124.Text = "9/11/24";
-            // 
-            // label125
-            // 
-            this.label125.AutoSize = true;
-            this.label125.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label125.Location = new System.Drawing.Point(59, 37);
-            this.label125.Name = "label125";
-            this.label125.Size = new System.Drawing.Size(260, 18);
-            this.label125.TabIndex = 1;
-            this.label125.Text = "\"Restocked 10 Rose from the inventory\"";
-            // 
-            // label126
-            // 
-            this.label126.AutoSize = true;
-            this.label126.Font = new System.Drawing.Font("Montserrat SemiBold", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label126.Location = new System.Drawing.Point(13, 9);
-            this.label126.Name = "label126";
-            this.label126.Size = new System.Drawing.Size(91, 18);
-            this.label126.TabIndex = 0;
-            this.label126.Text = "Alexis Payot";
-            // 
-            // panel30
-            // 
-            this.panel30.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.panel30.Controls.Add(this.label127);
-            this.panel30.Controls.Add(this.label128);
-            this.panel30.Controls.Add(this.label129);
-            this.panel30.Location = new System.Drawing.Point(3, 231);
-            this.panel30.Name = "panel30";
-            this.panel30.Size = new System.Drawing.Size(382, 70);
-            this.panel30.TabIndex = 16;
-            // 
-            // label127
-            // 
-            this.label127.AutoSize = true;
-            this.label127.Font = new System.Drawing.Font("Montserrat SemiBold", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label127.Location = new System.Drawing.Point(295, 9);
-            this.label127.Name = "label127";
-            this.label127.Size = new System.Drawing.Size(53, 18);
-            this.label127.TabIndex = 2;
-            this.label127.Text = "9/11/24";
-            // 
-            // label128
-            // 
-            this.label128.AutoSize = true;
-            this.label128.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label128.Location = new System.Drawing.Point(59, 37);
-            this.label128.Name = "label128";
-            this.label128.Size = new System.Drawing.Size(260, 18);
-            this.label128.TabIndex = 1;
-            this.label128.Text = "\"Restocked 10 Rose from the inventory\"";
-            // 
-            // label129
-            // 
-            this.label129.AutoSize = true;
-            this.label129.Font = new System.Drawing.Font("Montserrat SemiBold", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label129.Location = new System.Drawing.Point(13, 9);
-            this.label129.Name = "label129";
-            this.label129.Size = new System.Drawing.Size(91, 18);
-            this.label129.TabIndex = 0;
-            this.label129.Text = "Alexis Payot";
-            // 
-            // panel31
-            // 
-            this.panel31.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.panel31.Controls.Add(this.label130);
-            this.panel31.Controls.Add(this.label131);
-            this.panel31.Controls.Add(this.label132);
-            this.panel31.Location = new System.Drawing.Point(3, 307);
-            this.panel31.Name = "panel31";
-            this.panel31.Size = new System.Drawing.Size(382, 70);
-            this.panel31.TabIndex = 17;
-            // 
-            // label130
-            // 
-            this.label130.AutoSize = true;
-            this.label130.Font = new System.Drawing.Font("Montserrat SemiBold", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label130.Location = new System.Drawing.Point(295, 9);
-            this.label130.Name = "label130";
-            this.label130.Size = new System.Drawing.Size(53, 18);
-            this.label130.TabIndex = 2;
-            this.label130.Text = "9/11/24";
-            // 
-            // label131
-            // 
-            this.label131.AutoSize = true;
-            this.label131.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label131.Location = new System.Drawing.Point(59, 37);
-            this.label131.Name = "label131";
-            this.label131.Size = new System.Drawing.Size(260, 18);
-            this.label131.TabIndex = 1;
-            this.label131.Text = "\"Restocked 10 Rose from the inventory\"";
-            // 
-            // label132
-            // 
-            this.label132.AutoSize = true;
-            this.label132.Font = new System.Drawing.Font("Montserrat SemiBold", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label132.Location = new System.Drawing.Point(13, 9);
-            this.label132.Name = "label132";
-            this.label132.Size = new System.Drawing.Size(91, 18);
-            this.label132.TabIndex = 0;
-            this.label132.Text = "Alexis Payot";
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Montserrat SemiBold", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(11, 9);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(47, 18);
+            this.label13.TabIndex = 0;
+            this.label13.Text = "Items";
             // 
             // RestockingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MediumSlateBlue;
-            this.ClientSize = new System.Drawing.Size(1182, 897);
+            this.ClientSize = new System.Drawing.Size(1137, 833);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
@@ -2079,14 +2079,21 @@
             this.panel3.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            this.flowLayoutPanel2.ResumeLayout(false);
             this.panel14.ResumeLayout(false);
             this.panel14.PerformLayout();
+            this.panel28.ResumeLayout(false);
+            this.panel28.PerformLayout();
+            this.panel29.ResumeLayout(false);
+            this.panel29.PerformLayout();
+            this.panel30.ResumeLayout(false);
+            this.panel30.PerformLayout();
+            this.panel31.ResumeLayout(false);
+            this.panel31.PerformLayout();
             this.panel5.ResumeLayout(false);
+            this.flowLayoutPanel1.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
-            this.panel6.ResumeLayout(false);
-            this.panel6.PerformLayout();
-            this.flowLayoutPanel1.ResumeLayout(false);
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();
             this.panel9.ResumeLayout(false);
@@ -2125,15 +2132,8 @@
             this.panel26.PerformLayout();
             this.panel27.ResumeLayout(false);
             this.panel27.PerformLayout();
-            this.flowLayoutPanel2.ResumeLayout(false);
-            this.panel28.ResumeLayout(false);
-            this.panel28.PerformLayout();
-            this.panel29.ResumeLayout(false);
-            this.panel29.PerformLayout();
-            this.panel30.ResumeLayout(false);
-            this.panel30.PerformLayout();
-            this.panel31.ResumeLayout(false);
-            this.panel31.PerformLayout();
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
             this.ResumeLayout(false);
 
         }
