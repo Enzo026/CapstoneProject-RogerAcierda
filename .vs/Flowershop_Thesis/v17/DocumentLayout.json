@@ -3,32 +3,40 @@
   "WorkspaceRootPath": "D:\\Thesis Repository Capstone\\CapstoneProject-RogerAcierda\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{EA04AF66-01B1-457F-A95E-DA5EAC0B394A}|Flowershop_Thesis.csproj|D:\\Thesis Repository Capstone\\CapstoneProject-RogerAcierda\\inventoryclerk\\restocking\\restockingform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{EA04AF66-01B1-457F-A95E-DA5EAC0B394A}|Flowershop_Thesis.csproj|solutionrelative:inventoryclerk\\restocking\\restockingform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{EA04AF66-01B1-457F-A95E-DA5EAC0B394A}|Flowershop_Thesis.csproj|d:\\thesis repository capstone\\capstoneproject-rogeracierda\\otherforms\\disposalcontents\\disposalevaluation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{EA04AF66-01B1-457F-A95E-DA5EAC0B394A}|Flowershop_Thesis.csproj|solutionrelative:otherforms\\disposalcontents\\disposalevaluation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EA04AF66-01B1-457F-A95E-DA5EAC0B394A}|Flowershop_Thesis.csproj|D:\\Thesis Repository Capstone\\CapstoneProject-RogerAcierda\\inventoryclerk\\stockadjustment\\stockadjustmentfrmcs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{EA04AF66-01B1-457F-A95E-DA5EAC0B394A}|Flowershop_Thesis.csproj|solutionrelative:inventoryclerk\\stockadjustment\\stockadjustmentfrmcs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{EA04AF66-01B1-457F-A95E-DA5EAC0B394A}|Flowershop_Thesis.csproj|d:\\thesis repository capstone\\capstoneproject-rogeracierda\\otherforms\\advanceorder\\gcashorder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{EA04AF66-01B1-457F-A95E-DA5EAC0B394A}|Flowershop_Thesis.csproj|solutionrelative:otherforms\\advanceorder\\gcashorder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EA04AF66-01B1-457F-A95E-DA5EAC0B394A}|Flowershop_Thesis.csproj|d:\\thesis repository capstone\\capstoneproject-rogeracierda\\otherforms\\disposalcontents\\completeddisposal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{EA04AF66-01B1-457F-A95E-DA5EAC0B394A}|Flowershop_Thesis.csproj|solutionrelative:otherforms\\disposalcontents\\completeddisposal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EA04AF66-01B1-457F-A95E-DA5EAC0B394A}|Flowershop_Thesis.csproj|d:\\thesis repository capstone\\capstoneproject-rogeracierda\\inventoryclerk\\supplier\\supplierfrm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{EA04AF66-01B1-457F-A95E-DA5EAC0B394A}|Flowershop_Thesis.csproj|solutionrelative:inventoryclerk\\supplier\\supplierfrm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{EA04AF66-01B1-457F-A95E-DA5EAC0B394A}|Flowershop_Thesis.csproj|d:\\thesis repository capstone\\capstoneproject-rogeracierda\\otherforms\\advanceorder\\cashorder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{EA04AF66-01B1-457F-A95E-DA5EAC0B394A}|Flowershop_Thesis.csproj|solutionrelative:otherforms\\advanceorder\\cashorder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{EA04AF66-01B1-457F-A95E-DA5EAC0B394A}|Flowershop_Thesis.csproj|d:\\thesis repository capstone\\capstoneproject-rogeracierda\\inventoryclerk\\disposal\\disposalfrm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{EA04AF66-01B1-457F-A95E-DA5EAC0B394A}|Flowershop_Thesis.csproj|solutionrelative:inventoryclerk\\disposal\\disposalfrm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EA04AF66-01B1-457F-A95E-DA5EAC0B394A}|Flowershop_Thesis.csproj|d:\\thesis repository capstone\\capstoneproject-rogeracierda\\adminforms\\history logs\\historylogs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{EA04AF66-01B1-457F-A95E-DA5EAC0B394A}|Flowershop_Thesis.csproj|solutionrelative:adminforms\\history logs\\historylogs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{EA04AF66-01B1-457F-A95E-DA5EAC0B394A}|Flowershop_Thesis.csproj|d:\\thesis repository capstone\\capstoneproject-rogeracierda\\otherforms\\disposalcontents\\completeddisposal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{EA04AF66-01B1-457F-A95E-DA5EAC0B394A}|Flowershop_Thesis.csproj|solutionrelative:otherforms\\disposalcontents\\completeddisposal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EA04AF66-01B1-457F-A95E-DA5EAC0B394A}|Flowershop_Thesis.csproj|D:\\Thesis Repository Capstone\\CapstoneProject-RogerAcierda\\inventoryclerk\\restocking\\restockingform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{EA04AF66-01B1-457F-A95E-DA5EAC0B394A}|Flowershop_Thesis.csproj|solutionrelative:inventoryclerk\\restocking\\restockingform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EA04AF66-01B1-457F-A95E-DA5EAC0B394A}|Flowershop_Thesis.csproj|d:\\thesis repository capstone\\capstoneproject-rogeracierda\\inventoryclerk\\supplier\\supplierfrm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{EA04AF66-01B1-457F-A95E-DA5EAC0B394A}|Flowershop_Thesis.csproj|solutionrelative:inventoryclerk\\supplier\\supplierfrm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{EA04AF66-01B1-457F-A95E-DA5EAC0B394A}|Flowershop_Thesis.csproj|D:\\Thesis Repository Capstone\\CapstoneProject-RogerAcierda\\mainforms\\inventoryclerk_baseplatform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{EA04AF66-01B1-457F-A95E-DA5EAC0B394A}|Flowershop_Thesis.csproj|solutionrelative:mainforms\\inventoryclerk_baseplatform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EA04AF66-01B1-457F-A95E-DA5EAC0B394A}|Flowershop_Thesis.csproj|D:\\Thesis Repository Capstone\\CapstoneProject-RogerAcierda\\inventoryclerk\\stockadjustment\\stockadjustmentfrmcs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{EA04AF66-01B1-457F-A95E-DA5EAC0B394A}|Flowershop_Thesis.csproj|solutionrelative:inventoryclerk\\stockadjustment\\stockadjustmentfrmcs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{EA04AF66-01B1-457F-A95E-DA5EAC0B394A}|Flowershop_Thesis.csproj|D:\\Thesis Repository Capstone\\CapstoneProject-RogerAcierda\\mainforms\\inventoryclerk_baseplatform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -42,7 +50,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 10,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Bookmark",
@@ -70,19 +78,43 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "HistoryLogs.cs [Design]",
-              "DocumentMoniker": "D:\\Thesis Repository Capstone\\CapstoneProject-RogerAcierda\\AdminForms\\History Logs\\HistoryLogs.cs",
-              "RelativeDocumentMoniker": "AdminForms\\History Logs\\HistoryLogs.cs",
-              "ToolTip": "D:\\Thesis Repository Capstone\\CapstoneProject-RogerAcierda\\AdminForms\\History Logs\\HistoryLogs.cs [Design]",
-              "RelativeToolTip": "AdminForms\\History Logs\\HistoryLogs.cs [Design]",
+              "DocumentIndex": 2,
+              "Title": "CashOrder.cs [Design]",
+              "DocumentMoniker": "D:\\Thesis Repository Capstone\\CapstoneProject-RogerAcierda\\OtherForms\\AdvanceOrder\\CashOrder.cs",
+              "RelativeDocumentMoniker": "OtherForms\\AdvanceOrder\\CashOrder.cs",
+              "ToolTip": "D:\\Thesis Repository Capstone\\CapstoneProject-RogerAcierda\\OtherForms\\AdvanceOrder\\CashOrder.cs [Design]",
+              "RelativeToolTip": "OtherForms\\AdvanceOrder\\CashOrder.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-12T18:22:04.345Z",
+              "WhenOpened": "2024-09-13T18:36:17.266Z",
               "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
+              "Title": "GcashOrder.cs [Design]",
+              "DocumentMoniker": "D:\\Thesis Repository Capstone\\CapstoneProject-RogerAcierda\\OtherForms\\AdvanceOrder\\GcashOrder.cs",
+              "RelativeDocumentMoniker": "OtherForms\\AdvanceOrder\\GcashOrder.cs",
+              "ToolTip": "D:\\Thesis Repository Capstone\\CapstoneProject-RogerAcierda\\OtherForms\\AdvanceOrder\\GcashOrder.cs [Design]",
+              "RelativeToolTip": "OtherForms\\AdvanceOrder\\GcashOrder.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-13T17:36:46.95Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "DisposalEvaluation.cs [Design]",
+              "DocumentMoniker": "D:\\Thesis Repository Capstone\\CapstoneProject-RogerAcierda\\OtherForms\\DisposalContents\\DisposalEvaluation.cs",
+              "RelativeDocumentMoniker": "OtherForms\\DisposalContents\\DisposalEvaluation.cs",
+              "ToolTip": "D:\\Thesis Repository Capstone\\CapstoneProject-RogerAcierda\\OtherForms\\DisposalContents\\DisposalEvaluation.cs [Design]",
+              "RelativeToolTip": "OtherForms\\DisposalContents\\DisposalEvaluation.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-13T17:32:48.768Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "CompletedDisposal.cs [Design]",
               "DocumentMoniker": "D:\\Thesis Repository Capstone\\CapstoneProject-RogerAcierda\\OtherForms\\DisposalContents\\CompletedDisposal.cs",
               "RelativeDocumentMoniker": "OtherForms\\DisposalContents\\CompletedDisposal.cs",
@@ -94,7 +126,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
               "Title": "DisposalFrm.cs [Design]",
               "DocumentMoniker": "D:\\Thesis Repository Capstone\\CapstoneProject-RogerAcierda\\InventoryClerk\\Disposal\\DisposalFrm.cs",
               "RelativeDocumentMoniker": "InventoryClerk\\Disposal\\DisposalFrm.cs",
@@ -106,7 +138,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
               "Title": "SupplierFrm.cs [Design]",
               "DocumentMoniker": "D:\\Thesis Repository Capstone\\CapstoneProject-RogerAcierda\\InventoryClerk\\Supplier\\SupplierFrm.cs",
               "RelativeDocumentMoniker": "InventoryClerk\\Supplier\\SupplierFrm.cs",
@@ -118,7 +150,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 5,
               "Title": "RestockingForm.cs [Design]",
               "DocumentMoniker": "D:\\Thesis Repository Capstone\\CapstoneProject-RogerAcierda\\InventoryClerk\\Restocking\\RestockingForm.cs",
               "RelativeDocumentMoniker": "InventoryClerk\\Restocking\\RestockingForm.cs",
@@ -130,7 +162,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 8,
               "Title": "StockAdjustmentFrmcs.cs [Design]",
               "DocumentMoniker": "D:\\Thesis Repository Capstone\\CapstoneProject-RogerAcierda\\InventoryClerk\\StockAdjustment\\StockAdjustmentFrmcs.cs",
               "RelativeDocumentMoniker": "InventoryClerk\\StockAdjustment\\StockAdjustmentFrmcs.cs",
@@ -142,7 +174,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "InventoryClerk_BasePlatform.cs [Design]",
               "DocumentMoniker": "D:\\Thesis Repository Capstone\\CapstoneProject-RogerAcierda\\MainForms\\InventoryClerk_BasePlatform.cs",
               "RelativeDocumentMoniker": "MainForms\\InventoryClerk_BasePlatform.cs",
@@ -154,7 +186,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "InventoryClerk_BasePlatform.cs",
               "DocumentMoniker": "D:\\Thesis Repository Capstone\\CapstoneProject-RogerAcierda\\MainForms\\InventoryClerk_BasePlatform.cs",
               "RelativeDocumentMoniker": "MainForms\\InventoryClerk_BasePlatform.cs",

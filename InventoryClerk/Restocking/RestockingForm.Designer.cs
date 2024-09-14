@@ -371,7 +371,7 @@
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button4.Font = new System.Drawing.Font("Montserrat", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button4.ForeColor = System.Drawing.Color.Black;
-            this.button4.Location = new System.Drawing.Point(164, 276);
+            this.button4.Location = new System.Drawing.Point(146, 283);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(89, 36);
             this.button4.TabIndex = 8;
@@ -1950,7 +1950,7 @@
             this.panel27.Controls.Add(this.label120);
             this.panel27.Location = new System.Drawing.Point(3, 799);
             this.panel27.Name = "panel27";
-            this.panel27.Size = new System.Drawing.Size(691, 36);
+            this.panel27.Size = new System.Drawing.Size(705, 36);
             this.panel27.TabIndex = 23;
             // 
             // label116

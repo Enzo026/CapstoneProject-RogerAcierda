@@ -195,6 +195,18 @@
     <Compile Include="OtherForms\AdvanceOrderCart.Designer.cs">
       <DependentUpon>AdvanceOrderCart.cs</DependentUpon>
     </Compile>
+    <Compile Include="OtherForms\AdvanceOrder\CashOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForms\AdvanceOrder\CashOrder.Designer.cs">
+      <DependentUpon>CashOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\AdvanceOrder\GcashOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForms\AdvanceOrder\GcashOrder.Designer.cs">
+      <DependentUpon>GcashOrder.cs</DependentUpon>
+    </Compile>
     <Compile Include="OtherForms\Adv_CartItems.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -254,6 +266,12 @@
     </Compile>
     <Compile Include="OtherForms\DisposalContents\CompletedDisposal.Designer.cs">
       <DependentUpon>CompletedDisposal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\DisposalContents\DisposalEvaluation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForms\DisposalContents\DisposalEvaluation.Designer.cs">
+      <DependentUpon>DisposalEvaluation.cs</DependentUpon>
     </Compile>
     <Compile Include="OtherForms\FinishedOrdersList.cs">
       <SubType>UserControl</SubType>
@@ -456,6 +474,12 @@
     <EmbeddedResource Include="OtherForms\AdvanceOrderCart.resx">
       <DependentUpon>AdvanceOrderCart.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\AdvanceOrder\CashOrder.resx">
+      <DependentUpon>CashOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\AdvanceOrder\GcashOrder.resx">
+      <DependentUpon>GcashOrder.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="OtherForms\Adv_CartItems.resx">
       <DependentUpon>Adv_CartItems.cs</DependentUpon>
     </EmbeddedResource>
@@ -485,6 +509,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="OtherForms\DisposalContents\CompletedDisposal.resx">
       <DependentUpon>CompletedDisposal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\DisposalContents\DisposalEvaluation.resx">
+      <DependentUpon>DisposalEvaluation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OtherForms\FinishedOrdersList.resx">
       <DependentUpon>FinishedOrdersList.cs</DependentUpon>
