@@ -79,7 +79,6 @@
             this.label52 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
-            this.button5 = new System.Windows.Forms.Button();
             this.panel28.SuspendLayout();
             this.panel29.SuspendLayout();
             this.panel30.SuspendLayout();
@@ -402,7 +401,6 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.panel2.Controls.Add(this.button5);
             this.panel2.Controls.Add(this.textBox1);
             this.panel2.Controls.Add(this.button3);
             this.panel2.Controls.Add(this.button2);
@@ -429,7 +427,6 @@
             this.button3.TabIndex = 6;
             this.button3.Text = "Out of stock";
             this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button2
             // 
@@ -440,7 +437,6 @@
             this.button2.TabIndex = 5;
             this.button2.Text = "Low stock";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
@@ -622,17 +618,6 @@
             this.flowLayoutPanel2.Size = new System.Drawing.Size(379, 286);
             this.flowLayoutPanel2.TabIndex = 14;
             // 
-            // button5
-            // 
-            this.button5.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.Location = new System.Drawing.Point(587, 38);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(115, 28);
-            this.button5.TabIndex = 8;
-            this.button5.Text = "Refresh";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
-            // 
             // RestockNew
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -726,6 +711,5 @@
         private System.Windows.Forms.Label label52;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
-        private System.Windows.Forms.Button button5;
     }
 }

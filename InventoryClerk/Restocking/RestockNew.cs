@@ -23,7 +23,7 @@ namespace Flowershop_Thesis.InventoryClerk.Restocking
             
         }
 
-        
+
         SqlConnection con;
         SqlCommand cmd = new SqlCommand();
         SqlDataReader sdr;
@@ -104,113 +104,11 @@ namespace Flowershop_Thesis.InventoryClerk.Restocking
                     }
 
                 }
-                con.Close();
             }
             catch (Exception e)
             {
                 MessageBox.Show(e.Message);
             }
-        }
-        public void loadLowStock()
-        {
-            try
-            {
-                flowLayoutPanel1.Controls.Clear();
-                con.Open();
-                string countQuery = "select count(*) from ItemInventory where ItemQuantity = 0;";
-                using (SqlCommand countCommand = new SqlCommand(countQuery, con))
-                {
-                    int rowCount = (int)countCommand.ExecuteScalar();
-                    RestockList[] itemList = new RestockList[rowCount];
-
-                    string sqlQuery = "SELECT * FROM ItemInventory where ItemQuantity = 0";
-                    using (SqlCommand command = new SqlCommand(sqlQuery, con))
-                    {
-                        using (SqlDataReader reader = command.ExecuteReader())
-                        {
-                            int index = 0;
-                            while (reader.Read() && index < itemList.Length)
-                            {
-                                itemList[index] = new RestockList();
-                                itemList[index].itemnameData = reader["ItemName"].ToString();
-                                int qty = reader.GetOrdinal("ItemQuantity");
-                                int demo = reader.IsDBNull((int)qty) ? 0 : reader.GetInt32((int)qty);
-                                itemList[index].itemquantityData = demo;
-                                itemList[index].stocklevelData = "Out of Stock";
-
-                                itemList[index].supplierData = reader["Supplier"].ToString();
-                                flowLayoutPanel1.Controls.Add(itemList[index]);
-                                index++;
-
-                            }
-                        }
-                    }
-
-                }
-                con.Close();
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message);
-            }
-        }
-        public void loadNoStock()
-        {
-            try
-            {
-                flowLayoutPanel1.Controls.Clear();
-                con.Open();
-                string countQuery = "select count(*) from ItemInventory where ItemQuantity > 0 AND ItemQuantity <= 100;";
-                using (SqlCommand countCommand = new SqlCommand(countQuery, con))
-                {
-                    int rowCount = (int)countCommand.ExecuteScalar();
-                    RestockList[] itemList = new RestockList[rowCount];
-
-                    string sqlQuery = "SELECT * FROM ItemInventory where ItemQuantity > 0 AND ItemQuantity <= 100";
-                    using (SqlCommand command = new SqlCommand(sqlQuery, con))
-                    {
-                        using (SqlDataReader reader = command.ExecuteReader())
-                        {
-                            int index = 0;
-                            while (reader.Read() && index < itemList.Length)
-                            {
-                                itemList[index] = new RestockList();
-                                itemList[index].itemnameData = reader["ItemName"].ToString();
-                                int qty = reader.GetOrdinal("ItemQuantity");
-                                int demo = reader.IsDBNull((int)qty) ? 0 : reader.GetInt32((int)qty);
-                                itemList[index].itemquantityData = demo;
-                                itemList[index].stocklevelData = "Low Stock";
-
-                                itemList[index].supplierData = reader["Supplier"].ToString();
-                                flowLayoutPanel1.Controls.Add(itemList[index]);
-                                index++;
-
-                            }
-                        }
-                    }
-
-                }
-                con.Close();
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message);
-            }
-        }
-        private void button5_Click(object sender, EventArgs e)
-        {
-            loadTableData();
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            loadNoStock();
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            loadLowStock();
-
         }
     }
 }

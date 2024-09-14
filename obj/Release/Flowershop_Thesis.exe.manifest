@@ -42,22 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-<<<<<<< Updated upstream
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Flowershop_Thesis.exe" size="4177368">
-=======
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Flowershop_Thesis.exe" size="4253144">
->>>>>>> Stashed changes
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Flowershop_Thesis.exe" size="4175832">
       <assemblyIdentity name="Flowershop_Thesis" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-<<<<<<< Updated upstream
-        <dsig:DigestValue>c97GFujiSlN0reyHHYIO06hPnorXqTtABcLbfhD9J2A=</dsig:DigestValue>
-=======
-        <dsig:DigestValue>TFfkQtxVJ94DuO2zelj4nW5eChxun6OL8e/+eJXrYqw=</dsig:DigestValue>
->>>>>>> Stashed changes
+        <dsig:DigestValue>wgGz4k7ornbtZlKGhtM6rIqUlGhJsPRCb4lR1Xb+1XQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -103,11 +95,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-<<<<<<< Updated upstream
-      <dsig:DigestValue>PwivahsiUC8AWK4Idq9f9yTbB9bTg9a2HXxAwvmDaSI=</dsig:DigestValue>
-=======
-      <dsig:DigestValue>Vx4NL9gKzaAT4hXJ29tTSafumtnb1+f0/AWlcGZQSx0=</dsig:DigestValue>
->>>>>>> Stashed changes
+      <dsig:DigestValue>9m4frF1Qrp8IgUePYDooVt8rncq0Wpgck/7bzePIA2U=</dsig:DigestValue>
     </hash>
   </file>
   <file name="try_log.ldf" size="8388608" writeableType="applicationData">
@@ -116,11 +104,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-<<<<<<< Updated upstream
-      <dsig:DigestValue>IxG4YDtHwco95SMyQ7TOZC1RhBNAHkjSB9zvM8HSM6o=</dsig:DigestValue>
-=======
-      <dsig:DigestValue>OlbJ5ac1YPDT22jvYC43LYQ//Vg0YPgB+Dg3meqlxmw=</dsig:DigestValue>
->>>>>>> Stashed changes
+      <dsig:DigestValue>fzizUFAJvR5GaNe4kFNEgq3QRMp2sB3AZ9O8VTRBtfg=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>
