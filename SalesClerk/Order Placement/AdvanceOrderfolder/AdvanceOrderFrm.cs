@@ -149,9 +149,17 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement.AdvanceOrderfolder
         }
 
         private void button1_Click(object sender, EventArgs e)
-        {
-            AdvanceOrderCart cart = new AdvanceOrderCart();
-            cart.Show();
+        {   
+            if(button1.Text.Trim() != "0") {
+                AdvanceOrderCart cart = new AdvanceOrderCart();
+                cart.Show();
+                
+            }
+            else
+            {
+                MessageBox.Show("No items In Cart");
+            }
+         
         }
 
         private void label4_Click(object sender, EventArgs e)

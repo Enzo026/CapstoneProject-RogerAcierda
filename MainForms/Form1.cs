@@ -39,7 +39,7 @@ namespace Capstone_Flowershop
           
             string databaseFilePath = Path.Combine(parentDirectory, "try.mdf");
 
-            label6.Text = databaseFilePath;
+            
 
             // Build the connection string
             string connectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={databaseFilePath};Initial Catalog=try;Integrated Security=True;";
@@ -50,7 +50,9 @@ namespace Capstone_Flowershop
                 try
                 {
                     connection.Open();
-                    MessageBox.Show("Database connection opened successfully.");
+                    //MessageBox.Show("Database connection opened successfully.");
+                    label6.Text = "Database Connected";
+                    label7.Text = databaseFilePath;
                     con = new SqlConnection(connectionString);
                     //label6.Text = connectionString;
                     // Perform database operations here
@@ -72,7 +74,7 @@ namespace Capstone_Flowershop
         {
             con.Open();
 
-            SqlCommand cmd = new SqlCommand("SELECT AccountID,Username,Password,Role,FirstName from UserAccounts where Username =@User", con);
+            SqlCommand cmd = new SqlCommand("SELECT AccountID,Username,Password,Role,FirstName,LastName from UserAccounts where Username =@User", con);
             cmd.Parameters.AddWithValue("User", textBox1.Text.Trim());
             sdr = cmd.ExecuteReader();
 
@@ -84,6 +86,7 @@ namespace Capstone_Flowershop
                 string iPassword = sdr["Password"].ToString().Trim();
                 string Position = sdr["Role"].ToString().Trim();
                 string FirstName = sdr["FirstName"].ToString().Trim();
+                string LastName = sdr["LastName"].ToString().Trim();
 
 
 
@@ -91,23 +94,18 @@ namespace Capstone_Flowershop
                 if (textBox1.Text == iUserName && textBox2.Text == iPassword && Position == "Admin")
                 {
                     Admin_BasePlatform admin = new Admin_BasePlatform();
-                    admin.empName = FirstName;
+                 //   admin.empName = FirstName;
                     UserInfo.Empleyado = FirstName;
+                    UserInfo.FullName = FirstName + " " + LastName;
+
                     this.Hide();
                     admin.Show();
-
-                    SalesReport.instance.uid.Text = iUserName + ", " + Position;
-                    UserInfozz ui = new UserInfozz();
-                    UserInfo.Empleyado = FirstName;
-
-                    ui.Name = iUserName;
-                    
 
                 }
                 else if (textBox1.Text == iUserName && textBox2.Text == iPassword && Position == "SalesClerk")
                 {
                     SalesClerk_BasePlatform admin = new SalesClerk_BasePlatform();
-                    admin.empName = FirstName;
+                 //   admin.empName = FirstName;
 
                     UserInfo.Empleyado = FirstName;
                     this.Hide();
@@ -116,7 +114,7 @@ namespace Capstone_Flowershop
                 else if (textBox1.Text == iUserName && textBox2.Text == iPassword && Position == "InventoryClerk")
                 {
                     InventoryClerk_BasePlatform admin = new InventoryClerk_BasePlatform();
-                    admin.empName = FirstName;
+               //     admin.empName = FirstName;
                     UserInfo.Empleyado = FirstName;
                     this.Hide();
                     admin.Show();

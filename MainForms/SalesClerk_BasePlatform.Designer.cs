@@ -65,7 +65,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(321, 852);
             this.panel1.TabIndex = 6;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+
             // 
             // label6
             // 
@@ -86,7 +86,6 @@
             this.EmpName.TabIndex = 8;
             this.EmpName.Text = "Employee";
             this.EmpName.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.EmpName.TextChanged += new System.EventHandler(this.EmpName_TextChanged);
             // 
             // button6
             // 

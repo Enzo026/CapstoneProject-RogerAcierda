@@ -18,6 +18,7 @@ using Flowershop_Thesis.SalesClerk.Transaction;
 using Capstone_Flowershop;
 using Flowershop_Thesis.OtherForms.AdvanceOrder;
 using Flowershop_Thesis.OtherForms.PaymentConfirmation;
+using static System.Resources.ResXFileRef;
 
 namespace Flowershop_Thesis.OtherForms
 {
@@ -29,40 +30,29 @@ namespace Flowershop_Thesis.OtherForms
         SqlCommand cmd = new SqlCommand();
         SqlDataReader sdr;
         SqlDataAdapter sda;
-
-        public static AdvanceOrderCart instance;
-        public Label emplbl;
         public AdvanceOrderCart()
         {
             InitializeComponent();
-            getEmployeeName();
+           
             EmployeeName.Text = UserInfo.Empleyado;
-            instance = this;
-            emplbl = EmployeeName;
             testConnection();
            // getcounter();
             getCartList();
             getPrice();
             label21.Visible = false;
             DiscountTxtbox.Enabled = false;
+            NameIndicator.Visible = false;
             
             long date = DateTime.Now.Day;
             long month = DateTime.Now.Month;
             long year = DateTime.Now.Year;
             long tom = date + 1;
-            MessageBox.Show(tom +"/"+month+"/"+year);
+           // MessageBox.Show(tom +"/"+month+"/"+year);
             string tommdate = tom + "," + month + "," + year;
             PickupDate.MinDate = new DateTime((int)year,(int)month,(int)tom);
             PickupDate.Value = new DateTime((int)year, (int)month, (int)tom);
-
+            Progress.Visible = false;
             computetotal();
-        }
-        string EmpNameVal;
-        public void getEmployeeName()
-        {
-            SalesClerk_BasePlatform SB = new SalesClerk_BasePlatform();
-            EmpNameVal = SB.empName;
-            EmployeeName.Text = SB.empName;
         }
 
  
@@ -234,20 +224,9 @@ namespace Flowershop_Thesis.OtherForms
         
         private void button2_Click(object sender, EventArgs e)
         {
-            //paymentcheck();
-            //OrderIdentityCheck();
-
-            //SalesClerk_BasePlatform SB = new SalesClerk_BasePlatform();
-            //string EmpName = SalesClerk_BasePlatform.instance.EMP.Text;
-
-            //if(NameIndicator.Text.Equals("Available") && label21.Text !=  "Insufficient Payment" && label21.Visible == true && textBox1.Text.Length == 11)
-            //{
-            //    MessageBox.Show("Order Placed \n" + "Customer Name :" + CustomerName + "\n" + "Total Amount of :" + TotalAmountLbl.Text + "\n" + "DownPayment of (30%) :" + DownpaymentLbl.Text + "\n" + "Paid with" + paymentmethod + "\n" + "---------------------"+ "\n"+ "Pickup Date : "+ PickupDate.Text + "\n" + "Pickup Time :" + pickuptime + "\n" + "Employee Name : " + EmployeeName.Text);
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Please fill the the required fields");
-            //}
+            Progress.Visible = true;
+            Progress.Text = "Placing Your Order";
+            
 
 
             try
@@ -299,48 +278,96 @@ namespace Flowershop_Thesis.OtherForms
                 }
                 else
                 {
-                    runthishit();
+                    DialogResult result = MessageBox.Show("Place Order?","Confirmation",MessageBoxButtons.YesNo,MessageBoxIcon.Question);
+
+                    if (result == DialogResult.Yes)
+                    {
+                        runthishit();
+                        
+                        if(AdvanceOrderPlacement.InitializeDone == true)
+                        {
+                            Progress.Text = "Intitialize Done";
+                            TransactionTableInput();
+                            if(AdvanceOrderPlacement.InsertAdvanceOrder == true)
+                            {
+                                Progress.Text = "InsertAdvance Order Done";
+                                TransactionItemsInput();
+                                if(AdvanceOrderPlacement.InsertAdvanceOrderItems == true)
+                                {
+                                    Progress.Text ="Insert Items Done";
+                                    DeductionOfItemInventory();
+
+                                    if (CashOption.Checked == true && GcashOption.Checked == false)
+                                    {
+                                        Progress.Text = "Order Placed";
+                                        CashOrder form = new CashOrder();
+                                        form.ShowDialog();
+                                    }
+                                    else if (CashOption.Checked == false && GcashOption.Checked == true)
+                                    {
+                                        Progress.Text = "Order Placed";
+                                        GcashOrderFrm form = new GcashOrderFrm();
+                                        form.ShowDialog();
+                                    }
+                                    this.Close();
+                                }
+                            }
+                        }
+
+
+
+                    }
+                    else
+                    {
+ 
+                    }
+                    
                 }
 
             }
             catch(Exception ex)
-            {
-
+            {   
+                
+                MessageBox.Show("Error on Placing order :" + ex.Message);
             }
         }
 
         public void runthishit()
-        {   
-            
-            if(CashOption.Checked == true && GcashOption.Checked == false)
+        {
+            try
             {
-                CreateAdvanceOrder.CustomerName = CustNameTxtbox.Text;
-                CreateAdvanceOrder.TotalAmount = TotalAmountLbl.Text;
-               
-                CreateAdvanceOrder.Date = DateTime.Today.ToString();
-                CreateAdvanceOrder.Downpayment = DownpaymentLbl.Text;
-                CreateAdvanceOrder.OrderType = OrderType.Text;
-                CreateAdvanceOrder.PickUpDate = PickupDate.Text;
-                CreateAdvanceOrder.ContactNumber = textBox1.Text;
+                if (CashOption.Checked == true && GcashOption.Checked == false)
+                {
+                    CreateAdvanceOrder.CustomerName = CustNameTxtbox.Text;
+                    CreateAdvanceOrder.TotalAmount = TotalAmountLbl.Text;
 
-                CashOrder CO = new CashOrder();
-                CO.Show();
-            }
-            if(CashOption.Checked == false && GcashOption.Checked == true)
+                    CreateAdvanceOrder.Date = DateTime.Today.ToString();
+                    CreateAdvanceOrder.Downpayment = DownpaymentLbl.Text;
+                    CreateAdvanceOrder.OrderType = OrderType.Text;
+                    CreateAdvanceOrder.PickUpDate = PickupDate.Text;
+                    CreateAdvanceOrder.ContactNumber = textBox1.Text;
+
+                    AdvanceOrderPlacement.InitializeDone = true;
+
+                }
+                else if (CashOption.Checked == false && GcashOption.Checked == true)
+                {
+                    CreateAdvanceOrder.CustomerName = CustNameTxtbox.Text;
+                    CreateAdvanceOrder.TotalAmount = TotalAmountLbl.Text;
+                    CreateAdvanceOrder.Date = DateTime.Today.ToString();
+                    CreateAdvanceOrder.Downpayment = DownpaymentLbl.Text;
+                    CreateAdvanceOrder.OrderType = OrderType.Text;
+                    CreateAdvanceOrder.PickUpDate = PickupDate.Text;
+                    CreateAdvanceOrder.ContactNumber = textBox1.Text;
+
+                    AdvanceOrderPlacement.InitializeDone = true;
+
+                }
+            }catch (Exception ex)
             {
-                CreateAdvanceOrder.CustomerName = CustNameTxtbox.Text;
-                CreateAdvanceOrder.TotalAmount = TotalAmountLbl.Text;
-      
-                CreateAdvanceOrder.Date = DateTime.Today.ToString();
-                CreateAdvanceOrder.Downpayment = DownpaymentLbl.Text;
-                CreateAdvanceOrder.OrderType = OrderType.Text;
-                CreateAdvanceOrder.PickUpDate = PickupDate.Text;
-                CreateAdvanceOrder.ContactNumber = textBox1.Text;
-                GcashOrderFrm G = new GcashOrderFrm();
-                G.Show();
-               
-                
+                MessageBox.Show("Compiling Order Failed! :" + ex.Message);
             }
+        
             
 
 
@@ -497,70 +524,14 @@ namespace Flowershop_Thesis.OtherForms
         {
             try
             {
-
-                //deduction of items ordered in Cart
-                con.Open();
-                using (SqlCommand CartItems = new SqlCommand("Select Count(*) from ServingCart", con))
-                {
-                    int CartCounter = (int)CartItems.ExecuteScalar();
-
-                    int counter = int.Parse(CounterLbl.Text);
-                    if (CartCounter != counter)
-                    {
-                        label4.Text = CartCounter.ToString();
-                    }
-
-
-
-                    CartItems[] inv = new CartItems[CartCounter];
-                    string sqlQuery = "SELECT * FROM ServingCart";
-                    using (SqlCommand command = new SqlCommand(sqlQuery, con))
-                    {
-                        using (SqlDataReader reader = command.ExecuteReader())
-                        {
-                            int index = 0;
-                            while (reader.Read() && index < inv.Length)
-                            {
-                                int ID = reader.GetOrdinal("ItemID");
-                                int ItemID = reader.IsDBNull(ID) ? 0 : reader.GetInt32(ID);
-
-                                int StockQuantity = reader.GetOrdinal("OrderQty");
-                                int qty = reader.IsDBNull(StockQuantity) ? 0 : reader.GetInt32(StockQuantity);
-
-                                string updateQuery = "UPDATE ItemInventory SET ItemQuantity = ItemQuantity - @Quantity WHERE ItemID = @SID;";
-                                con2.Open();
-                                using (SqlCommand updateCommand = new SqlCommand(updateQuery, con2))
-                                {
-
-                                    updateCommand.Parameters.AddWithValue("@Quantity", qty);
-                                    updateCommand.Parameters.AddWithValue("@SID", ItemID);
-
-                                    updateCommand.ExecuteNonQuery();
-
-                                }
-                                con2.Close();
-
-                                index++;
-                            }
-                        }
-                    }
-
-                }
-
-                con.Close();
-
-
                 con.Open();  //deletion of cart items
-                cmd = new SqlCommand("TRUNCATE TABLE ServingCart", con);
+                cmd = new SqlCommand("TRUNCATE TABLE Advance_ServingCart", con);
                 cmd.ExecuteNonQuery();
                 con.Close();
-
-
-
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error on  DeductionOfItemInventory() : " + ex.Message);
+                MessageBox.Show("Error on  DeductionOfCartItems : " + ex.Message);
             }
         }
         public void TransactionItemsInput()
@@ -569,114 +540,121 @@ namespace Flowershop_Thesis.OtherForms
             {
                 int TransId;
                 con.Open();
-                using (SqlCommand TransactionID = new SqlCommand("Select TransactionID from transactionstbl where Status = 'Processing' and CustomerName = '" + PaymentTxtBox.Text + "';", con))
+                using (SqlCommand TransactionID = new SqlCommand("Select OrderID from AdvanceOrders where Status = 'Active' and CustomerName = '" + CustNameTxtbox.Text.Trim() + "';", con))
                 {
                     TransId = (int)TransactionID.ExecuteScalar();
-                    MessageBox.Show(TransId.ToString());
+                   
                 }
                 con.Close();
 
-                //deduction of items ordered in Cart
-                con.Open();
-                using (SqlCommand CartItems = new SqlCommand("Select Count(*) from ServingCart", con))
+                if(TransId != 0) 
                 {
-                    int CartCounter = (int)CartItems.ExecuteScalar();
-
-                    int counter = int.Parse(CounterLbl.Text);
-                    if (CartCounter != counter)
+                    //deduction of items ordered in Cart
+                    con.Open();
+                    using (SqlCommand CartItems = new SqlCommand("Select Count(*) from Advance_ServingCart", con))
                     {
-                        label4.Text = CartCounter.ToString();
-                    }
+                        int CartCounter = (int)CartItems.ExecuteScalar();
 
-
-
-                    CartItems[] inv = new CartItems[CartCounter];
-                    string sqlQuery = "SELECT * FROM ServingCart";
-                    using (SqlCommand command = new SqlCommand(sqlQuery, con))
-                    {
-                        using (SqlDataReader reader = command.ExecuteReader())
+                        int counter = int.Parse(CounterLbl.Text);
+                        if (CartCounter != counter)
                         {
-                            int index = 0;
-                            while (reader.Read() && index < inv.Length)
+                            label4.Text = CartCounter.ToString();
+                        }
+
+
+
+                        CartItems[] inv = new CartItems[CartCounter];
+                        string sqlQuery = "SELECT * FROM Advance_ServingCart";
+                        using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                        {
+                            using (SqlDataReader reader = command.ExecuteReader())
                             {
-                                int ID = reader.GetOrdinal("ItemID");
-                                int ItemID = reader.IsDBNull(ID) ? 0 : reader.GetInt32(ID);
-
-                                String ItemName = reader["ItemName"].ToString();
-                                String OrderType = reader["OrderType"].ToString();
-
-                                int priceIndex = reader.GetOrdinal("OrderPrice");
-                                int Price = reader.IsDBNull(priceIndex) ? 0 : reader.GetInt32(priceIndex);
-
-                                int StockQuantity = reader.GetOrdinal("OrderQty");
-                                int qty = reader.IsDBNull(StockQuantity) ? 0 : reader.GetInt32(StockQuantity);
+                                int index = 0;
+                                while (reader.Read() && index < inv.Length)
+                                {
+                                    int ID = reader.GetOrdinal("ItemID");
+                                    int ItemID = reader.IsDBNull(ID) ? 0 : reader.GetInt32(ID);
 
 
-                                con2.Open();
-                                cmd = new SqlCommand("INSERT INTO SalesItemTbl(ItemID,TransactionID,ItemName,ItemQuantity,ItemType,ItemPrice)Values" +
-                                            "(@ItemID,@TransID,@Name,@Qty,@Type,@Price);", con2);
+                                    String ItemName = reader["ItemName"].ToString();
+                                    String OrderType = reader["OrderType"].ToString();
 
-                                cmd.Parameters.AddWithValue("@Name", ItemName);
-                                cmd.Parameters.AddWithValue("@Qty", qty);
-                                cmd.Parameters.AddWithValue("@Type", OrderType);
-                                cmd.Parameters.AddWithValue("@Price", Price);
-                                cmd.Parameters.AddWithValue("@ItemID", ItemID);
-                                cmd.Parameters.AddWithValue("@TransID", TransId);
+                                    int priceIndex = reader.GetOrdinal("OrderPrice");
+                                    int Price = reader.IsDBNull(priceIndex) ? 0 : reader.GetInt32(priceIndex);
+
+                                    int StockQuantity = reader.GetOrdinal("OrderQty");
+                                    int qty = reader.IsDBNull(StockQuantity) ? 0 : reader.GetInt32(StockQuantity);
 
 
-                                cmd.ExecuteNonQuery();
-                                con2.Close();
+                                    con2.Open();
+                                    cmd = new SqlCommand("INSERT INTO AdvanceOrderItems(OrderID,ItemID,Name,Price,Quantity,Type)Values" +
+                                                "(@OrderID,@ItemID,@Name,@Price,@Qty,@Type);", con2);
+
+                                    cmd.Parameters.AddWithValue("@Name", ItemName);
+                                    cmd.Parameters.AddWithValue("@Qty", qty);
+                                    cmd.Parameters.AddWithValue("@Type", OrderType);
+                                    cmd.Parameters.AddWithValue("@Price", Price);
+                                    cmd.Parameters.AddWithValue("@ItemID", ItemID);
+                                    cmd.Parameters.AddWithValue("@OrderID", TransId);
 
 
-                                index++;
+                                    cmd.ExecuteNonQuery();
+                                    con2.Close();
+
+
+                                    index++;
+                                }
                             }
                         }
+
                     }
 
+                    con.Close();
+
+                    AdvanceOrderPlacement.InsertAdvanceOrderItems = true;
                 }
-
-                con.Close();
-
-
+                else
+                {
+                    MessageBox.Show("OrderIDNotFetched");
+                }
+ 
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error on TransactionItemsInput() : " + ex.Message);
             }
         }
-
+        Image image;
         public void TransactionTableInput()
         {
             try
             {
+                Image s_img = CreateAdvanceOrder.ProofOfPayment;
+                ImageConverter converter = new ImageConverter();
+                var ImageConvert = converter.ConvertTo(s_img, typeof(byte[]));
 
                 con.Open();
-                cmd = new SqlCommand("INSERT INTO TransactionsTbl(CustomerName,Discount,Price,Status,PaymentStatus,PaymentMethod,DateOfTransaction,Employee)Values" +
-                            "(@CustName,@Discount,@Price,@Status,@PaymentStatus,@PaymentMethod,getdate(),@Employee);", con);
-                cmd.Parameters.AddWithValue("@CustName", PaymentTxtBox.Text);
+                cmd = new SqlCommand("INSERT INTO AdvanceOrders(CustomerName,TotalPrice,ModeOfPayment,DateOfReservation,Downpayment,Discount,OrderType,PickupDate,ContactNo,EmployeeName,Status,Image)Values" +
+                 "(@CustomerName,@TotalPrice,@MOP,getdate(),@Downpayment,@Discount,@OrderType,@PickupDate,@ContactNo,@EmployeeName,'Active',@Image);", con);
+                cmd.Parameters.AddWithValue("@CustomerName", CreateAdvanceOrder.CustomerName);
+                cmd.Parameters.AddWithValue("@TotalPrice", Convert.ToDecimal(CreateAdvanceOrder.TotalAmount));
+                cmd.Parameters.AddWithValue("@MOP", CreateAdvanceOrder.ModeOfPayment);
+                cmd.Parameters.AddWithValue("@Downpayment", Convert.ToDecimal(CreateAdvanceOrder.Downpayment));
                 cmd.Parameters.AddWithValue("@Discount", Convert.ToInt32(DiscountTxtbox.Text));
-                cmd.Parameters.AddWithValue("@Price", TotalAmountLbl.Text);
-                cmd.Parameters.AddWithValue("@Status", "Processing");
-                cmd.Parameters.AddWithValue("@Employee", "Alexis Kent");
+                cmd.Parameters.AddWithValue("@OrderType", CreateAdvanceOrder.OrderType);
+                DateTime date = PickupDate.Value;
+                cmd.Parameters.AddWithValue("@PickupDate", date);//here
+                cmd.Parameters.AddWithValue("@ContactNo", CreateAdvanceOrder.ContactNumber);
+                cmd.Parameters.AddWithValue("@EmployeeName", UserInfo.Empleyado);
+                cmd.Parameters.AddWithValue("@Image", ImageConvert);
 
 
-
-
-                    if (CashOption.Checked)
-                    {
-                        cmd.Parameters.AddWithValue("@PaymentMethod", "Cash");
-                    }
-                    else if (GcashOption.Checked)
-                    {
-                        cmd.Parameters.AddWithValue("@PaymentMethod", "GCash");
-                    }
-                
 
                 cmd.ExecuteNonQuery();
                 con.Close();
 
-                MessageBox.Show("Transaction Successful!");
-
+               MessageBox.Show("Transaction Successful!");
+                AdvanceOrderPlacement.InsertAdvanceOrder = true;
             }
             catch (Exception ex)
             {
@@ -691,7 +669,7 @@ namespace Flowershop_Thesis.OtherForms
             try
             {
                 con.Open();
-                string countQuery = "select count(*) from TransactionsTbl where CustomerName='" + PaymentTxtBox.Text + "' AND Status != 'Completed' AND Status != 'Cancelled';";
+                string countQuery = "select count(*) from AdvanceOrders where CustomerName='" + CustNameTxtbox.Text + "' AND Status != 'Completed' AND Status != 'Cancelled';";
                 using (SqlCommand countCommand = new SqlCommand(countQuery, con))
                 {
                     // cmd.Parameters.AddWithValue("@CustName", CustName_txtbox.Text);
@@ -702,7 +680,7 @@ namespace Flowershop_Thesis.OtherForms
                     }
                     else if (rowCount == 0)
                     {
-                        NameIndicator.Text = "Name Available!";
+                        NameIndicator.Text = "Available";
                     }
 
 
@@ -721,8 +699,8 @@ namespace Flowershop_Thesis.OtherForms
 
         private void OrderType_SelectedIndexChanged(object sender, EventArgs e)
         {   
-            double dp = int.Parse(TotalAmountLbl.Text) * .3; 
-            DownpaymentLbl.Text = dp.ToString();
+            double dp = double.Parse(TotalAmountLbl.Text) * .3; 
+            DownpaymentLbl.Text = Math.Round(dp,0).ToString();
         }
 
         private void DiscountCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -750,15 +728,15 @@ namespace Flowershop_Thesis.OtherForms
 
    
                     // discount = int.Parse(TotalLbl.Text) * indc;
-                    if (PaymentTxtBox.Enabled == false)
+                    if (PaymentTxtBox.ReadOnly == false)
                     {
                         string inp = DiscountTxtbox.Text;
                         double dc = .01 * double.Parse(inp);
                         double finaldc = dc * int.Parse(TotalLbl.Text);
-                        DiscountLbl.Text = finaldc.ToString();
+                        DiscountLbl.Text = Math.Round(finaldc).ToString();
 
                         PaymentTxtBox.Text = DownpaymentLbl.Text;
-                        MessageBox.Show("Condition 1 running!");
+                     
                     }
                     else
                     {
@@ -766,7 +744,7 @@ namespace Flowershop_Thesis.OtherForms
                         double dc = .01 * double.Parse(inp);
                         double finaldc = dc * int.Parse(TotalLbl.Text);
                         DiscountLbl.Text = finaldc.ToString();
-                        MessageBox.Show("Condition 2 running!");
+                      
                     }
                 }
                 else
@@ -794,9 +772,9 @@ namespace Flowershop_Thesis.OtherForms
             computetotal();
             if(OrderType.SelectedIndex >= 0)
             {
-                PaymentTxtBox.Text = "0";
+                //PaymentTxtBox.Text = "0";
                 double dp = int.Parse(TotalAmountLbl.Text) * .3;
-                DownpaymentLbl.Text = dp.ToString();
+                DownpaymentLbl.Text = Math.Round(dp,0).ToString();
             }
     
         }
@@ -829,40 +807,35 @@ namespace Flowershop_Thesis.OtherForms
             TotalAmountComputation();
         }
         
-
         public void TotalAmountComputation()
         {
 
-            if (CashOption.Checked)
+            if (CashOption.Checked == true && GcashOption.Checked == false)
             {
-                if (DiscountTxtbox.Text.Length > 0) //Check if the discount area are filled
-                {
                     if (PaymentTxtBox.Text.Length > 0)
                     {
-                        int perc = int.Parse(DiscountTxtbox.Text); //Discount Percentage
+                        int perc = int.Parse(DownpaymentLbl.Text.Trim()); //Discount Percentage
                         int payment = int.Parse(PaymentTxtBox.Text); //Payment
 
-                        int TotalAmount = int.Parse(TotalAmountLbl.Text);
+                        int TotalAmount = int.Parse(DownpaymentLbl.Text);
                         int change;
 
                         if (perc > 0 && payment > 0) //if both fields payment and discount is present or active
                         {
 
-
-                            double discount = perc * .01;
-
-                            double less = TotalAmount * discount;
-                            DiscountLbl.Text = less.ToString();
-                            double DiscountedPrice = TotalAmount - less;
-
-                            change = payment - (int)DiscountedPrice;
+                            change = payment - TotalAmount;
 
                             if (change < 0)
                             {
-                                ChangeLbl.Text = "Payment insufficient";
+                                label21.Visible = true;
+                                label21.Text = "Payment insufficient";
+                                ChangeLbl.Text = "0";
+
                             }
                             else
                             {
+                                label21.Text = " ";
+                                label21.Visible = false;
                                 ChangeLbl.Text = change.ToString();
                             }
 
@@ -884,15 +857,15 @@ namespace Flowershop_Thesis.OtherForms
                     }
 
 
-                }
-                else
-                {
-                    //none
-                }
+
             }
-            else // If advance payment is not active
+            else if(GcashOption.Checked == true && CashOption.Checked == false)// If advance payment is not active
             {
-                PaymentTxtBox.Text = DownpaymentLbl.Text;
+              //  PaymentTxtBox.Text = DownpaymentLbl.Text.Trim();
+            }
+            else
+            {
+                MessageBox.Show("Select payment method");
             }
 
 
@@ -901,10 +874,10 @@ namespace Flowershop_Thesis.OtherForms
 
         private void GcashOption_CheckedChanged(object sender, EventArgs e)
         {
-            if(GcashOption.Checked)
+            if (GcashOption.Checked == true && CashOption.Checked == false)
             {
                 paymentStatus = "Unpaid";
-                PaymentTxtBox.Text = DownpaymentLbl.Text;
+            //    PaymentTxtBox.Text = DownpaymentLbl.Text;
                 PaymentTxtBox.ReadOnly = true;
                 CreateAdvanceOrder.ModeOfPayment = "Gcash";
             }
@@ -914,14 +887,12 @@ namespace Flowershop_Thesis.OtherForms
 
         private void CashOption_CheckedChanged(object sender, EventArgs e)
         {
-            if (CashOption.Checked)
+            if (CashOption.Checked == true && GcashOption.Checked == false)
             {
                 paymentmethod = "Cash";
                 PaymentTxtBox.Clear();
-                PaymentTxtBox.Enabled = true;
+                PaymentTxtBox.ReadOnly = false;
                 CreateAdvanceOrder.ModeOfPayment = "Cash";
-
-           
             }
         }
 
@@ -929,8 +900,23 @@ namespace Flowershop_Thesis.OtherForms
         {
             if(GcashOption.Checked && CashOption.Checked == false) 
             {
-                PaymentTxtBox.Text = DiscountLbl.Text;
+                PaymentTxtBox.Text = DownpaymentLbl.Text;
             }
+        }
+
+        private void CustNameTxtbox_TextChanged(object sender, EventArgs e)
+        {   
+            if(CustNameTxtbox.Text.Length > 0)
+            {
+                NameIndicator.Visible = true;
+                CheckCustomerName();
+            }
+            else
+            {
+                NameIndicator.Visible = false;
+                NameIndicator.Text = "NULL";
+            }
+           
         }
     }
 }

@@ -7,14 +7,11 @@ using System.Threading.Tasks;
 
 namespace Capstone_Flowershop
 {
-    class UserInfozz
-    {
-        private string name;
-        public string Name { get; set; }
-    }
+
     public static class UserInfo
     {
         public static string Empleyado { get; set; }
+        public static string FullName { get; set; }
     }
     public static class CreateAdvanceOrder
     {
@@ -28,7 +25,6 @@ namespace Capstone_Flowershop
         public static string ContactNumber { get; set; }
         public static Image ProofOfPayment { get; set; }
 
-
     }
     public static class PaymentConfirm
     {
@@ -37,5 +33,11 @@ namespace Capstone_Flowershop
     public static class StockImages
     {
         public static Image StockAddImg { get; set; }
+    }
+    public static class AdvanceOrderPlacement
+    {
+        public static bool InitializeDone { get; set; }
+        public static bool InsertAdvanceOrder { get; set; }
+        public static bool InsertAdvanceOrderItems { get; set; }
     }
 }

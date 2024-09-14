@@ -30,9 +30,9 @@ namespace Capstone_Flowershop.AdminForms.Reports.SalesReports
             label3.Text = date.ToString();
   
            // label2.Text = "" + ", " + ui.role;
-           UserInfozz ui = new UserInfozz();
             
-           label2.Text = ui.Name;
+            
+           label2.Text = UserInfo.FullName;
 
         }
 

@@ -70,6 +70,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
+            this.Progress = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -86,6 +87,7 @@
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.textBox1);
             this.panel1.Controls.Add(this.EmployeeName);
@@ -279,9 +281,9 @@
             this.NameIndicator.Font = new System.Drawing.Font("Montserrat SemiBold", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.NameIndicator.Location = new System.Drawing.Point(772, 197);
             this.NameIndicator.Name = "NameIndicator";
-            this.NameIndicator.Size = new System.Drawing.Size(71, 18);
+            this.NameIndicator.Size = new System.Drawing.Size(45, 18);
             this.NameIndicator.TabIndex = 27;
-            this.NameIndicator.Text = "Available";
+            this.NameIndicator.Text = "NULL";
             // 
             // label19
             // 
@@ -299,9 +301,9 @@
             this.ChangeLbl.Font = new System.Drawing.Font("Montserrat SemiBold", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ChangeLbl.Location = new System.Drawing.Point(405, 575);
             this.ChangeLbl.Name = "ChangeLbl";
-            this.ChangeLbl.Size = new System.Drawing.Size(62, 18);
+            this.ChangeLbl.Size = new System.Drawing.Size(17, 18);
             this.ChangeLbl.TabIndex = 25;
-            this.ChangeLbl.Text = "000000";
+            this.ChangeLbl.Text = "0";
             // 
             // label17
             // 
@@ -475,7 +477,7 @@
             this.CustNameTxtbox.Name = "CustNameTxtbox";
             this.CustNameTxtbox.Size = new System.Drawing.Size(286, 23);
             this.CustNameTxtbox.TabIndex = 8;
-            this.CustNameTxtbox.Text = "Enzo";
+            this.CustNameTxtbox.TextChanged += new System.EventHandler(this.CustNameTxtbox_TextChanged);
             // 
             // label7
             // 
@@ -491,7 +493,7 @@
             // 
             this.CounterLbl.AutoSize = true;
             this.CounterLbl.Font = new System.Drawing.Font("Montserrat", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CounterLbl.Location = new System.Drawing.Point(438, 31);
+            this.CounterLbl.Location = new System.Drawing.Point(95, 5);
             this.CounterLbl.Name = "CounterLbl";
             this.CounterLbl.Size = new System.Drawing.Size(35, 37);
             this.CounterLbl.TabIndex = 6;
@@ -539,18 +541,31 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Montserrat", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(354, 30);
+            this.label1.Location = new System.Drawing.Point(11, 4);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(78, 37);
             this.label1.TabIndex = 0;
             this.label1.Text = "Cart";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
+            // Progress
+            // 
+            this.Progress.AutoSize = true;
+            this.Progress.Font = new System.Drawing.Font("Montserrat SemiBold", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Progress.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.Progress.Location = new System.Drawing.Point(13, 635);
+            this.Progress.Name = "Progress";
+            this.Progress.Size = new System.Drawing.Size(42, 18);
+            this.Progress.TabIndex = 42;
+            this.Progress.Text = "Price";
+            // 
             // AdvanceOrderCart
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(909, 636);
+            this.BackColor = System.Drawing.Color.DarkSlateBlue;
+            this.ClientSize = new System.Drawing.Size(909, 662);
+            this.Controls.Add(this.Progress);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Location = new System.Drawing.Point(1200, 230);
@@ -560,6 +575,7 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -606,5 +622,6 @@
         private System.Windows.Forms.Label EmployeeName;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label Progress;
     }
 }

@@ -21,7 +21,7 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement
         {
             InitializeComponent();
             testConnection();
-            DisplayIndividual();
+           DisplayIndividual();
             instance = this;
             lbl = label4;
             cartlist = flowLayoutPanel2;
@@ -174,7 +174,7 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                MessageBox.Show("Error Individual: " + ex.Message);
             }
         }
         public void DisplayBuoquet()
@@ -228,7 +228,7 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                MessageBox.Show("Error Bouquet: " + ex.Message);
             }
         }
 

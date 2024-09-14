@@ -25,16 +25,14 @@ namespace Flowershop_Thesis.MainForms
         SqlDataReader sdr;
         SqlDataAdapter sda;
 
-        public static SalesClerk_BasePlatform instance;
-        public System.Windows.Forms.Label EMP;
+
         public SalesClerk_BasePlatform()
         {
             
             InitializeComponent();
-            instance = this;
-            EMP = EmpName;
+            EmpName.Text = UserInfo.Empleyado;
             testConnection();
-            EmpName.Text = EmployeeName;
+            
             
             panel2.Controls.Clear(); //tatanggalin yung current na laman ng panel
             TransactionForm TF = new TransactionForm(); //tatawagin tapos papangalanan yung form na papalabasin
@@ -44,23 +42,6 @@ namespace Flowershop_Thesis.MainForms
             TF.Show(); //para lumitaw
         }
 
-        private string EmployeeName;
-        public string empName
-        {
-            get { return EmployeeName; }
-            set { EmployeeName = value;  EmpName.Text = value;
-                UserInfo.Empleyado = value;
-            }
-
-        }
-
-
-
-        public void GetEmpName()
-        {
-
-        }
-        
         public void testConnection()
         {
             string executableDirectory = AppDomain.CurrentDomain.BaseDirectory;
@@ -89,11 +70,6 @@ namespace Flowershop_Thesis.MainForms
                 }
             }
         }
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void label2_Click(object sender, EventArgs e)
         {
             try
@@ -144,9 +120,6 @@ namespace Flowershop_Thesis.MainForms
             PL.Show(); //para lumitaw
         }
 
-        private void EmpName_TextChanged(object sender, EventArgs e)
-        {
-             
-        }
+
     }
 }

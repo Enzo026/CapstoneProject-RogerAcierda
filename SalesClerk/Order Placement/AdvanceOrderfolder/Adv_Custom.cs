@@ -418,7 +418,7 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement.AdvanceOrderfolder
 
                     cmd.ExecuteNonQuery();
                     con.Close();
-                    MessageBox.Show("Item Added Successfully!");
+       
                 }
                 catch (Exception ex)
                 {
@@ -427,7 +427,7 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement.AdvanceOrderfolder
             }
             else
             {
-                //MessageBox.Show("Error on items please make sure all items needed are supplied");
+                MessageBox.Show("Error on items please make sure all items needed are supplied");
             }
 
 
@@ -762,7 +762,7 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement.AdvanceOrderfolder
                 try
                 {
                     con.Open();
-                    cmd = new SqlCommand("INSERT INTO ServingCart(ItemID,ItemName,OrderQty,OrderPrice,OrderType)Values" +
+                    cmd = new SqlCommand("INSERT INTO Advance_ServingCart(ItemID,ItemName,OrderQty,OrderPrice,OrderType)Values" +
                                 "(@ID,@Name,@Qty,@Price,@Type);", con);
                     cmd.Parameters.AddWithValue("@ID", Convert.ToInt32(invID));
                     cmd.Parameters.AddWithValue("@Name", BuoquetName.Text);
@@ -780,10 +780,11 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement.AdvanceOrderfolder
 
 
                 //activation of textchange event to refresh the item list in main panel
-                int cart = int.Parse(OrderPlacement.instance.lbl.Text);
+                int cart = int.Parse(AdvanceOrderFrm.instance.cartbtn.Text);
                 cart++;
+                AdvanceOrderFrm.instance.cartbtn.Text = cart.ToString();
                 MessageBox.Show("Item Successfully Added Cart Items: " + cart.ToString());
-                OrderPlacement.instance.lbl.Text = cart.ToString();
+             
             }
 
         }
@@ -814,7 +815,7 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement.AdvanceOrderfolder
             checker();
             addInventory();
             AddCart();
-            Deduction();
+           // Deduction();
         }
 
         private void SizePrc_TextChanged(object sender, EventArgs e)

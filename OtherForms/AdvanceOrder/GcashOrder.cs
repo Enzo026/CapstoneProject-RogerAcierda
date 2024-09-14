@@ -1,4 +1,5 @@
 ﻿using Capstone_Flowershop;
+using Flowershop_Thesis.SalesClerk.Order_Placement.AdvanceOrderfolder;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -34,7 +35,19 @@ namespace Flowershop_Thesis.OtherForms.AdvanceOrder
 
         private void button1_Click(object sender, EventArgs e)
         {
+            AdvanceOrderFrm.instance.cartbtn.Text = "0";
             this.Close();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Wala pang resibo tanga! HAHAHAHA");
+            AdvanceOrderFrm.instance.cartbtn.Text = "0";
+            this.Close();
+        }
+        public void changecartvalue()
+        {
+            AdvanceOrderFrm.instance.cartbtn.Text = "0";
         }
     }
 }

@@ -275,23 +275,24 @@
             this.button2.BackColor = System.Drawing.Color.SpringGreen;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Montserrat", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(277, 315);
+            this.button2.Location = new System.Drawing.Point(248, 315);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(131, 39);
+            this.button2.Size = new System.Drawing.Size(160, 39);
             this.button2.TabIndex = 3;
             this.button2.Text = "Print Receipt";
             this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.LightCoral;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Montserrat", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(75, 315);
+            this.button1.Location = new System.Drawing.Point(79, 315);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(131, 39);
+            this.button1.Size = new System.Drawing.Size(160, 39);
             this.button1.TabIndex = 2;
-            this.button1.Text = "Cancel";
+            this.button1.Text = "Close";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
