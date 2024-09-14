@@ -141,11 +141,11 @@
     <Compile Include="InventoryClerk\LandingPage\DashboardFrm.Designer.cs">
       <DependentUpon>DashboardFrm.cs</DependentUpon>
     </Compile>
-    <Compile Include="InventoryClerk\Restocking\RestockingForm.cs">
+    <Compile Include="InventoryClerk\Restocking\RestockNew.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="InventoryClerk\Restocking\RestockingForm.Designer.cs">
-      <DependentUpon>RestockingForm.cs</DependentUpon>
+    <Compile Include="InventoryClerk\Restocking\RestockNew.Designer.cs">
+      <DependentUpon>RestockNew.cs</DependentUpon>
     </Compile>
     <Compile Include="InventoryClerk\StockAdjustment\StockAdjustmentFrmcs.cs">
       <SubType>Form</SubType>
@@ -182,6 +182,18 @@
     </Compile>
     <Compile Include="MainForms\SalesClerk_BasePlatform.Designer.cs">
       <DependentUpon>SalesClerk_BasePlatform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\Abuel\restockinglist.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForms\Abuel\restockinglist.Designer.cs">
+      <DependentUpon>restockinglist.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\Abuel\RestockList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OtherForms\Abuel\RestockList.Designer.cs">
+      <DependentUpon>RestockList.cs</DependentUpon>
     </Compile>
     <Compile Include="OtherForms\AddToCart.cs">
       <SubType>Form</SubType>
@@ -447,8 +459,8 @@
     <EmbeddedResource Include="InventoryClerk\LandingPage\DashboardFrm.resx">
       <DependentUpon>DashboardFrm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="InventoryClerk\Restocking\RestockingForm.resx">
-      <DependentUpon>RestockingForm.cs</DependentUpon>
+    <EmbeddedResource Include="InventoryClerk\Restocking\RestockNew.resx">
+      <DependentUpon>RestockNew.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InventoryClerk\StockAdjustment\StockAdjustmentFrmcs.resx">
       <DependentUpon>StockAdjustmentFrmcs.cs</DependentUpon>
@@ -467,6 +479,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainForms\SalesClerk_BasePlatform.resx">
       <DependentUpon>SalesClerk_BasePlatform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\Abuel\restockinglist.resx">
+      <DependentUpon>restockinglist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\Abuel\RestockList.resx">
+      <DependentUpon>RestockList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OtherForms\AddToCart.resx">
       <DependentUpon>AddToCart.cs</DependentUpon>

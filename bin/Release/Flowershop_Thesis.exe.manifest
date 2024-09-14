@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Flowershop_Thesis.exe" size="4191192">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Flowershop_Thesis.exe" size="4177368">
       <assemblyIdentity name="Flowershop_Thesis" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>v/QvuY3Ej+/NmyjjRE0UxdhYP+BPc3fyiO1C/+QOuSU=</dsig:DigestValue>
+        <dsig:DigestValue>c97GFujiSlN0reyHHYIO06hPnorXqTtABcLbfhD9J2A=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -95,7 +95,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>9ll4qvWWAiGAqSLTLNFBWLkX4lrWqDQYzC1iTALogrI=</dsig:DigestValue>
+      <dsig:DigestValue>PwivahsiUC8AWK4Idq9f9yTbB9bTg9a2HXxAwvmDaSI=</dsig:DigestValue>
     </hash>
   </file>
   <file name="try_log.ldf" size="8388608" writeableType="applicationData">
@@ -104,7 +104,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>iAQL4dFyvy8nHlPYto5Falk6LWT8clRyZGgwyNBKClk=</dsig:DigestValue>
+      <dsig:DigestValue>IxG4YDtHwco95SMyQ7TOZC1RhBNAHkjSB9zvM8HSM6o=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

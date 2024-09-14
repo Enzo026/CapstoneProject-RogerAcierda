@@ -57,7 +57,7 @@ namespace Flowershop_Thesis.MainForms
         private void button1_Click(object sender, EventArgs e)
         {
             panel2.Controls.Clear(); //tatanggalin yung current na laman ng panel
-            RestockingForm RF = new RestockingForm(); //tatawagin tapos papangalanan yung form na papalabasin
+            RestockNew RF = new RestockNew(); //tatawagin tapos papangalanan yung form na papalabasin
             RF.TopLevel = false; //para di mag agaw ng place
             panel2.Controls.Add(RF); //ilalagay na natin yung form
             RF.BringToFront(); //front yung form 
