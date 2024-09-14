@@ -1,5 +1,6 @@
 ﻿using Capstone_Flowershop;
 using Flowershop_Thesis.AdminForms.History_Logs;
+using Flowershop_Thesis.OtherForms;
 using Flowershop_Thesis.SalesClerk.PriceList;
 using Flowershop_Thesis.SalesClerk.Transaction;
 using System;
@@ -10,6 +11,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -23,12 +25,14 @@ namespace Flowershop_Thesis.MainForms
         SqlDataReader sdr;
         SqlDataAdapter sda;
 
-
+        public static SalesClerk_BasePlatform instance;
+        public System.Windows.Forms.Label EMP;
         public SalesClerk_BasePlatform()
         {
             
             InitializeComponent();
-
+            instance = this;
+            EMP = EmpName;
             testConnection();
             EmpName.Text = EmployeeName;
             
@@ -45,10 +49,12 @@ namespace Flowershop_Thesis.MainForms
         {
             get { return EmployeeName; }
             set { EmployeeName = value;  EmpName.Text = value;
-                MessageBox.Show(value);
+                UserInfo.Empleyado = value;
             }
 
         }
+
+
 
         public void GetEmpName()
         {
@@ -136,6 +142,11 @@ namespace Flowershop_Thesis.MainForms
             panel2.Controls.Add(PL); //ilalagay na natin yung form
             PL.BringToFront(); //front yung form 
             PL.Show(); //para lumitaw
+        }
+
+        private void EmpName_TextChanged(object sender, EventArgs e)
+        {
+             
         }
     }
 }

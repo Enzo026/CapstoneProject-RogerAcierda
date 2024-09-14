@@ -42,14 +42,22 @@
     </dependentAssembly>
   </dependency>
   <dependency>
+<<<<<<< Updated upstream
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Flowershop_Thesis.exe" size="4181976">
+=======
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Flowershop_Thesis.exe" size="4017624">
+>>>>>>> Stashed changes
       <assemblyIdentity name="Flowershop_Thesis" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+<<<<<<< Updated upstream
         <dsig:DigestValue>lBMc0+3hrWTDUuyCL0vwArpFnNgGaU1lRYKLnls3KD8=</dsig:DigestValue>
+=======
+        <dsig:DigestValue>u0EUhvtny4m4dWreD6m96v6R/CDWJa1ZudqOmmdZhx4=</dsig:DigestValue>
+>>>>>>> Stashed changes
       </hash>
     </dependentAssembly>
   </dependency>
@@ -95,7 +103,11 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+<<<<<<< Updated upstream
       <dsig:DigestValue>AiAbNCl1YGbbHeG+6skbOZHvpy+vA8m1kpK64b0yizA=</dsig:DigestValue>
+=======
+      <dsig:DigestValue>EZfEGRBtCAJcXFBByw/WxJ20auQoCm/iImISW1V2H7U=</dsig:DigestValue>
+>>>>>>> Stashed changes
     </hash>
   </file>
   <file name="try_log.ldf" size="8388608" writeableType="applicationData">
@@ -104,7 +116,11 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+<<<<<<< Updated upstream
       <dsig:DigestValue>9IEMcmiXLeOZfcA+R/wWvfY/VFLge1mB9/tOfhLBfHk=</dsig:DigestValue>
+=======
+      <dsig:DigestValue>QNubv2OP6gzxl0hEcDzQBJgQ7KEWhW7VR+ir2N9uRrA=</dsig:DigestValue>
+>>>>>>> Stashed changes
     </hash>
   </file>
 </asmv1:assembly>

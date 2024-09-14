@@ -7,9 +7,15 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Xml.Linq;
+using Flowershop_Thesis.MainForms;
+using Flowershop_Thesis.SalesClerk.Transaction;
+using Capstone_Flowershop;
 
 namespace Flowershop_Thesis.OtherForms
 {
@@ -21,14 +27,43 @@ namespace Flowershop_Thesis.OtherForms
         SqlCommand cmd = new SqlCommand();
         SqlDataReader sdr;
         SqlDataAdapter sda;
+
+        public static AdvanceOrderCart instance;
+        public Label emplbl;
         public AdvanceOrderCart()
         {
             InitializeComponent();
+            getEmployeeName();
+            EmployeeName.Text = UserInfo.Empleyado;
+            instance = this;
+            emplbl = EmployeeName;
             testConnection();
+           // getcounter();
             getCartList();
+            getPrice();
+            label21.Visible = false;
+            DiscountTxtbox.Enabled = false;
+            
+            long date = DateTime.Now.Day;
+            long month = DateTime.Now.Month;
+            long year = DateTime.Now.Year;
+            long tom = date + 1;
+            MessageBox.Show(tom +"/"+month+"/"+year);
+            string tommdate = tom + "," + month + "," + year;
+            PickupDate.MinDate = new DateTime((int)year,(int)month,(int)tom);
+            PickupDate.Value = new DateTime((int)year, (int)month, (int)tom);
 
+            computetotal();
+        }
+        string EmpNameVal;
+        public void getEmployeeName()
+        {
+            SalesClerk_BasePlatform SB = new SalesClerk_BasePlatform();
+            EmpNameVal = SB.empName;
+            EmployeeName.Text = SB.empName;
         }
 
+ 
         public void testConnection()
         {
             string executableDirectory = AppDomain.CurrentDomain.BaseDirectory;
@@ -68,6 +103,8 @@ namespace Flowershop_Thesis.OtherForms
         {
 
         }
+
+        double totalValue=0;
         private void getCartList()
         {
             try
@@ -104,7 +141,7 @@ namespace Flowershop_Thesis.OtherForms
                                 inv[index].cartID = reader.IsDBNull(CI) ? 0 : reader.GetInt32(CI);
                                 int StockQuantity = reader.GetOrdinal("OrderQty");
                                 inv[index].qty = reader.IsDBNull(StockQuantity) ? 0 : reader.GetInt32(StockQuantity);
-
+                                
                                 flowLayoutPanel1.Controls.Add(inv[index]);
                                 index++;
                             }
@@ -128,12 +165,248 @@ namespace Flowershop_Thesis.OtherForms
                 MessageBox.Show("Error on CartLsit() : " + ex.Message);
             }
         }
+        public void getcounter()
+        {
 
+            try
+            {
+
+                string countQuery = "select count(*) from Advance_ServingCart;";
+                using (SqlCommand countCommand = new SqlCommand(countQuery, con))
+                {
+                    con.Open();
+                    int rowCount = (int)countCommand.ExecuteScalar();
+                    int cartlbl = int.Parse(CounterLbl.Text);
+                    if (rowCount != cartlbl)
+                    {
+                        CounterLbl.Text = rowCount.ToString();
+                    }
+
+
+
+
+
+
+                    con.Close();
+                }
+
+
+
+
+
+
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Error on cart number : " + ex.Message);
+            }
+
+        }
+        private void getPrice()
+        {
+            
+
+
+            try
+            {
+                string countQuery = "SELECT SUM(OrderPrice) AS Total FROM Advance_ServingCart;";
+                using (SqlCommand countCommand = new SqlCommand(countQuery, con))
+                {
+                    con.Open();
+                    int amount = (int)countCommand.ExecuteScalar();
+                    TotalLbl.Text = amount.ToString();  
+                    
+                    con.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Error on getting total amount : " + ex.Message);
+            }
+
+
+        }
+        
         private void button2_Click(object sender, EventArgs e)
         {
+            //paymentcheck();
+            //OrderIdentityCheck();
+
+            //SalesClerk_BasePlatform SB = new SalesClerk_BasePlatform();
+            //string EmpName = SalesClerk_BasePlatform.instance.EMP.Text;
+
+            //if(NameIndicator.Text.Equals("Available") && label21.Text !=  "Insufficient Payment" && label21.Visible == true && textBox1.Text.Length == 11)
+            //{
+            //    MessageBox.Show("Order Placed \n" + "Customer Name :" + CustomerName + "\n" + "Total Amount of :" + TotalAmountLbl.Text + "\n" + "DownPayment of (30%) :" + DownpaymentLbl.Text + "\n" + "Paid with" + paymentmethod + "\n" + "---------------------"+ "\n"+ "Pickup Date : "+ PickupDate.Text + "\n" + "Pickup Time :" + pickuptime + "\n" + "Employee Name : " + EmployeeName.Text);
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Please fill the the required fields");
+            //}
+
+
+            try
+            {
+                if(NameIndicator.Text.Equals("Name Taken!"))
+                {
+                    MessageBox.Show("Name Taken Please Input Another");
+                }
+                else if(OrderType.SelectedIndex < 0)
+                {
+                    MessageBox.Show("Please Select An Order Type");
+                }
+                else if(textBox1.Text.Length < 11) 
+                {
+                    MessageBox.Show("Please Check Contact Number");
+                }
+                else if(GcashOption.Checked == false && CashOption.Checked == false)
+                {
+                    MessageBox.Show("Wala kang balak magbayad?!");
+                }
+                else if(DiscountCheckBox.Checked && DiscountTxtbox.Text.Equals("0"))
+                {
+                    MessageBox.Show("Kung wala namang Laman yung discount i uncheck mo!");
+                }
+                else if(PaymentTxtBox.Text.Equals("0") && CashOption.Checked) 
+                {
+                    MessageBox.Show("Ano Di ka magbabayad?");
+                }
+                else if(paymentStatus == "Unpaid")
+                {
+                    DialogResult result = MessageBox.Show(
+                    "Do you receieved the downpayment amounting of " + DownpaymentLbl.Text + " ?",     // Message text
+                    "Payment Confirmation",                // Title of the message box
+                    MessageBoxButtons.YesNo,       // Buttons to display
+                    MessageBoxIcon.Question        // Icon to display
+                    );
+
+                    // Handle the result
+                    if (result == DialogResult.Yes)
+                    {
+                        MessageBox.Show("Payment Recieved!");
+                        paymentStatus = "Paid";
+                    }
+                    else if (result == DialogResult.No)
+                    {
+                        MessageBox.Show("Please Pay the Downpayment before proceeding the order");
+                        paymentStatus = "Unpaid";
+                    }
+                }
+                else if (TotalAmountLbl.Text.Equals("0"))
+                {
+                    MessageBox.Show("Ano babayaran mo? TAnga!");
+                }
+                else if (DownpaymentLbl.Text.Equals("0"))
+                {
+                    MessageBox.Show("Ano babayaran mo nga? TAnga!");
+                }
+                else
+                {
+                    runthishit();
+                }
+
+            }
+            catch(Exception ex)
+            {
+
+            }
+        }
+        
+        public void runthishit()
+        {
+            MessageBox.Show("Order Placed \n" + "Customer Name :" + CustNameTxtbox.Text + "\n" +"Contact Number :" + textBox1.Text +"\n"+ "Total Amount of :" + TotalAmountLbl.Text + "\n" + "DownPayment of (30%) :" + DownpaymentLbl.Text + "\n" + "Paid with" + paymentmethod + "\n" + "---------------------" + "\n" + "Pickup Date : " + PickupDate.Text + "\n"  + "Employee Name : " + EmployeeName.Text);
+        }
+        int discount = 0;
+        string paymentmethod;
+        int payment;
+        string paymentStatus;
+        string pickuptime;
+        string orderType;
+        string CustomerName;
+        public void paymentcheck()
+        {
+            if(DiscountCheckBox.Checked)
+            {   
+                if(int.Parse(DiscountLbl.Text) > 0  && DiscountLbl.Enabled) {
+
+                    discount = int.Parse(DiscountLbl.Text);
+
+                }
+                
+            }
+            if(CashOption.Checked == true && GcashOption.Checked == false)
+            {
+                paymentmethod = "Cash";
+
+                if (int.Parse(PaymentTxtBox.Text) < int.Parse(TotalAmountLbl.Text))
+                {
+                    MessageBox.Show("Please Input a Valid Payment Amount");
+                }
+                else
+                {
+                    paymentStatus = "Paid";
+                }
+            }
+            else if (CashOption.Checked == false && GcashOption.Checked == true)
+            {
+                paymentmethod = "GCash";
+                DialogResult result = MessageBox.Show(
+                "Do you receieved the downpayment amounting of "+ DownpaymentLbl.Text + " ?",     // Message text
+                "Payment Confirmation",                // Title of the message box
+                MessageBoxButtons.YesNo,       // Buttons to display
+                MessageBoxIcon.Question        // Icon to display
+                );
+
+                // Handle the result
+                if (result == DialogResult.Yes)
+                {
+                    MessageBox.Show("Payment Recieved!");
+                    paymentStatus = "Paid";
+                }
+                else if (result == DialogResult.No)
+                {
+                    MessageBox.Show("Please Pay the Downpayment before proceeding the order");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please Insert Payment Method!");
+            }
+
+            
+
 
         }
 
+        
+        public void OrderIdentityCheck()
+        {
+            if(OrderType.Text.Equals("Advance Order"))
+            {
+                orderType = "Advance Order";
+            }
+            else if (OrderType.Text.Equals("Events"))
+            {
+                orderType = "Event";
+            }
+            else
+            {
+                MessageBox.Show("You must select and Order type");
+            }
+            if(NameIndicator.Text == "Available")
+            {
+                CustomerName = CustNameTxtbox.Text;
+            }
+            else
+            {
+                MessageBox.Show("Name Taken Please Input a new name!");
+            }
+
+
+        }
         public void proceedorder()
         {
 
@@ -267,7 +540,7 @@ namespace Flowershop_Thesis.OtherForms
             {
                 int TransId;
                 con.Open();
-                using (SqlCommand TransactionID = new SqlCommand("Select TransactionID from transactionstbl where Status = 'Processing' and CustomerName = '" + CustNameTxtbox.Text + "';", con))
+                using (SqlCommand TransactionID = new SqlCommand("Select TransactionID from transactionstbl where Status = 'Processing' and CustomerName = '" + PaymentTxtBox.Text + "';", con))
                 {
                     TransId = (int)TransactionID.ExecuteScalar();
                     MessageBox.Show(TransId.ToString());
@@ -351,7 +624,7 @@ namespace Flowershop_Thesis.OtherForms
                 con.Open();
                 cmd = new SqlCommand("INSERT INTO TransactionsTbl(CustomerName,Discount,Price,Status,PaymentStatus,PaymentMethod,DateOfTransaction,Employee)Values" +
                             "(@CustName,@Discount,@Price,@Status,@PaymentStatus,@PaymentMethod,getdate(),@Employee);", con);
-                cmd.Parameters.AddWithValue("@CustName", CustNameTxtbox.Text);
+                cmd.Parameters.AddWithValue("@CustName", PaymentTxtBox.Text);
                 cmd.Parameters.AddWithValue("@Discount", Convert.ToInt32(DiscountTxtbox.Text));
                 cmd.Parameters.AddWithValue("@Price", TotalAmountLbl.Text);
                 cmd.Parameters.AddWithValue("@Status", "Processing");
@@ -389,7 +662,7 @@ namespace Flowershop_Thesis.OtherForms
             try
             {
                 con.Open();
-                string countQuery = "select count(*) from TransactionsTbl where CustomerName='" + CustNameTxtbox.Text + "' AND Status != 'Completed' AND Status != 'Cancelled';";
+                string countQuery = "select count(*) from TransactionsTbl where CustomerName='" + PaymentTxtBox.Text + "' AND Status != 'Completed' AND Status != 'Cancelled';";
                 using (SqlCommand countCommand = new SqlCommand(countQuery, con))
                 {
                     // cmd.Parameters.AddWithValue("@CustName", CustName_txtbox.Text);
@@ -414,6 +687,167 @@ namespace Flowershop_Thesis.OtherForms
             catch (Exception ex)
             {
                 MessageBox.Show("Error on CheckCustomerName() : " + ex.Message);
+            }
+        }
+
+        private void OrderType_SelectedIndexChanged(object sender, EventArgs e)
+        {   
+            double dp = int.Parse(TotalAmountLbl.Text) * .3; 
+            DownpaymentLbl.Text = dp.ToString();
+        }
+
+        private void DiscountCheckBox_CheckedChanged(object sender, EventArgs e)
+        {   
+            if(DiscountCheckBox.Checked)
+            {
+                DiscountTxtbox.Enabled = true;
+            }
+            else
+            {
+                DiscountTxtbox.Text = "0";
+                DiscountLbl.Text = "0";
+                DiscountTxtbox.Enabled = false;
+            }
+           
+        }
+
+        private void DiscountTxtbox_TextChanged(object sender, EventArgs e)
+        {
+            if(DiscountTxtbox.Text.Length > 0 )
+            {
+                int indc = int.Parse(DiscountTxtbox.Text);
+                if (indc <= 50)
+                {
+
+                    string inp = DiscountTxtbox.Text;
+                    double dc = .01 * double.Parse(inp);
+                    double finaldc = dc * int.Parse(TotalLbl.Text);
+                    DiscountLbl.Text = finaldc.ToString();
+                    // discount = int.Parse(TotalLbl.Text) * indc;
+                    if (GcashOption.Checked)
+                    {
+                        PaymentTxtBox.Text = DownpaymentLbl.Text;
+                    }
+                }
+                else
+                {
+                    DiscountTxtbox.Text = "0";
+                    MessageBox.Show("Discount exceeds the 50%");
+                    
+                }
+
+
+            }
+        }
+
+        private void DiscountTxtbox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true; // Reject the input if it's not a number
+            }
+        }
+
+        private void DiscountLbl_TextChanged(object sender, EventArgs e)
+        {
+            computetotal();
+            if(OrderType.SelectedIndex >= 0)
+            {
+                PaymentTxtBox.Text = "0";
+                double dp = int.Parse(TotalAmountLbl.Text) * .3;
+                DownpaymentLbl.Text = dp.ToString();
+            }
+    
+        }
+        public void computetotal()
+        {
+
+            double dc = 0;
+            
+            if(DiscountTxtbox.Text.Length > 0 )
+            {
+                dc = double.Parse(DiscountTxtbox.Text);
+            }
+           
+            double amount = double.Parse(TotalLbl.Text);
+
+            TotalAmountLbl.Text = (amount - dc).ToString();
+        }
+
+        private void PaymentTxtBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true; // Reject the input if it's not a number
+            }
+        }
+
+        private void PaymentTxtBox_TextChanged(object sender, EventArgs e)
+        {   if(OrderType.SelectedIndex >= 0 ) 
+            {
+
+                if (PaymentTxtBox.Text.Length > 0 && PaymentTxtBox.Text != "0" && PaymentTxtBox.Enabled )
+                {
+                    int indexchck = PaymentTxtBox.Text.IndexOf("0");
+
+                   // MessageBox.Show(indexchck.ToString());
+                    if (indexchck != 0)
+                    {
+                        string paymentinput = PaymentTxtBox.Text;
+                        double payment = Convert.ToInt32(paymentinput);
+                    //    MessageBox.Show(payment.ToString());    
+                        double change = payment - int.Parse(DownpaymentLbl.Text);
+
+                        if (change >= 0)
+                        {
+                            label21.Visible = false;
+                            ChangeLbl.Text = change.ToString();
+                        }
+                        else
+                        {
+                            label21.Visible = true;
+                            label21.Text = "Insufficient Payment!";
+                        }
+                    }
+
+
+                   
+                }
+                else
+                {
+                    PaymentTxtBox.Clear();
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("Please Select Event Type First");
+            }
+
+        }
+
+        private void GcashOption_CheckedChanged(object sender, EventArgs e)
+        {
+            if(GcashOption.Checked)
+            {
+                paymentStatus = "Unpaid";
+                PaymentTxtBox.Text = DownpaymentLbl.Text;
+                PaymentTxtBox.Enabled = false;
+            }
+            
+
+        }
+
+        private void CashOption_CheckedChanged(object sender, EventArgs e)
+        {
+            if (CashOption.Checked)
+            {
+                paymentmethod = "Cash";
+                PaymentTxtBox.Clear();
+                PaymentTxtBox.Enabled = true;
+
+           
             }
         }
     }

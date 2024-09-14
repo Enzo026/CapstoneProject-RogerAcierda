@@ -11,4 +11,8 @@ namespace Capstone_Flowershop
         private string name;
         public string Name { get; set; }
     }
+    public static class UserInfo
+    {
+        public static string Empleyado { get; set; }
+    }
 }

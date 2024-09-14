@@ -27,6 +27,7 @@ namespace Flowershop_Thesis.SalesClerk.Transaction
 
         }
 
+
         private void button1_Click(object sender, EventArgs e)
         {
             panel1.Controls.Clear(); //tatanggalin yung current na laman ng panel

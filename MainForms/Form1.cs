@@ -92,11 +92,13 @@ namespace Capstone_Flowershop
                 {
                     Admin_BasePlatform admin = new Admin_BasePlatform();
                     admin.empName = FirstName;
+                    UserInfo.Empleyado = FirstName;
                     this.Hide();
                     admin.Show();
 
                     SalesReport.instance.uid.Text = iUserName + ", " + Position;
                     UserInfozz ui = new UserInfozz();
+                    UserInfo.Empleyado = FirstName;
 
                     ui.Name = iUserName;
                     
@@ -106,6 +108,8 @@ namespace Capstone_Flowershop
                 {
                     SalesClerk_BasePlatform admin = new SalesClerk_BasePlatform();
                     admin.empName = FirstName;
+
+                    UserInfo.Empleyado = FirstName;
                     this.Hide();
                     admin.Show();
                 }
@@ -113,6 +117,7 @@ namespace Capstone_Flowershop
                 {
                     InventoryClerk_BasePlatform admin = new InventoryClerk_BasePlatform();
                     admin.empName = FirstName;
+                    UserInfo.Empleyado = FirstName;
                     this.Hide();
                     admin.Show();
                 }
