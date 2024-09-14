@@ -332,3 +332,6 @@ E:\Git Thesis Repo\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.Ot
 D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.AdvanceOrder.OrderPlace.resources
 D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.DisposalContents.DisposalEvaluation.resources
 D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.AdvanceOrder.CashOrder.resources
+E:\Git Thesis Repo\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.AdvanceOrder.CashOrder.resources
+E:\Git Thesis Repo\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.AdvanceOrder.OrderPlace.resources
+E:\Git Thesis Repo\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.DisposalContents.DisposalEvaluation.resources
