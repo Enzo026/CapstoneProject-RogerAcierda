@@ -334,6 +334,7 @@ D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowersho
 E:\Git Thesis Repo\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.AdvanceOrder.CashOrder.resources
 E:\Git Thesis Repo\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.AdvanceOrder.OrderPlace.resources
 E:\Git Thesis Repo\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.DisposalContents.DisposalEvaluation.resources
+<<<<<<< Updated upstream
 C:\Users\vince\source\repos\Titis\bin\Release\try.mdf
 C:\Users\vince\source\repos\Titis\bin\Release\try_log.ldf
 C:\Users\vince\source\repos\Titis\bin\Release\Flowershop_Thesis.exe.config
@@ -410,3 +411,7 @@ C:\Users\vince\source\repos\Titis\obj\Release\Flowershop_Thesis.OtherForms.Abuel
 E:\Git Thesis Repo\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.InventoryClerk.Restocking.RestockNew.resources
 E:\Git Thesis Repo\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.Abuel.restockinglist.resources
 E:\Git Thesis Repo\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.Abuel.RestockList.resources
+=======
+E:\Git Thesis Repo\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.PaymentConfirmation.ConfirmPayment.resources
+E:\Git Thesis Repo\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.AdvanceOrder.GcashOrderFrm.resources
+>>>>>>> Stashed changes
