@@ -30,23 +30,23 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CashOrder));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label20 = new System.Windows.Forms.Label();
+            this.OrderType = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
+            this.DP = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
+            this.Date = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
+            this.EmpName = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
+            this.Contact = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
+            this.PUD = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
+            this.MOP = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.TotalAmount = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.CustomerName = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -63,23 +63,23 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this.label20);
+            this.panel1.Controls.Add(this.OrderType);
             this.panel1.Controls.Add(this.label19);
-            this.panel1.Controls.Add(this.label18);
+            this.panel1.Controls.Add(this.DP);
             this.panel1.Controls.Add(this.label17);
-            this.panel1.Controls.Add(this.label16);
+            this.panel1.Controls.Add(this.Date);
             this.panel1.Controls.Add(this.label15);
-            this.panel1.Controls.Add(this.label14);
+            this.panel1.Controls.Add(this.EmpName);
             this.panel1.Controls.Add(this.label13);
-            this.panel1.Controls.Add(this.label12);
+            this.panel1.Controls.Add(this.Contact);
             this.panel1.Controls.Add(this.label11);
-            this.panel1.Controls.Add(this.label10);
+            this.panel1.Controls.Add(this.PUD);
             this.panel1.Controls.Add(this.label9);
-            this.panel1.Controls.Add(this.label8);
+            this.panel1.Controls.Add(this.MOP);
             this.panel1.Controls.Add(this.label7);
-            this.panel1.Controls.Add(this.label6);
+            this.panel1.Controls.Add(this.TotalAmount);
             this.panel1.Controls.Add(this.label5);
-            this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.CustomerName);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.button1);
@@ -90,15 +90,15 @@
             this.panel1.Size = new System.Drawing.Size(503, 399);
             this.panel1.TabIndex = 1;
             // 
-            // label20
+            // OrderType
             // 
-            this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(403, 167);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(38, 15);
-            this.label20.TabIndex = 21;
-            this.label20.Text = "Event";
+            this.OrderType.AutoSize = true;
+            this.OrderType.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OrderType.Location = new System.Drawing.Point(403, 167);
+            this.OrderType.Name = "OrderType";
+            this.OrderType.Size = new System.Drawing.Size(38, 15);
+            this.OrderType.TabIndex = 21;
+            this.OrderType.Text = "Event";
             // 
             // label19
             // 
@@ -110,15 +110,15 @@
             this.label19.TabIndex = 20;
             this.label19.Text = "Order Type:";
             // 
-            // label18
+            // DP
             // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(403, 145);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(37, 15);
-            this.label18.TabIndex = 19;
-            this.label18.Text = "717.78";
+            this.DP.AutoSize = true;
+            this.DP.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DP.Location = new System.Drawing.Point(403, 145);
+            this.DP.Name = "DP";
+            this.DP.Size = new System.Drawing.Size(37, 15);
+            this.DP.TabIndex = 19;
+            this.DP.Text = "717.78";
             // 
             // label17
             // 
@@ -130,15 +130,15 @@
             this.label17.TabIndex = 18;
             this.label17.Text = "Downpayment:";
             // 
-            // label16
+            // Date
             // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(403, 119);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(66, 15);
-            this.label16.TabIndex = 17;
-            this.label16.Text = "14/09/2024";
+            this.Date.AutoSize = true;
+            this.Date.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Date.Location = new System.Drawing.Point(403, 119);
+            this.Date.Name = "Date";
+            this.Date.Size = new System.Drawing.Size(66, 15);
+            this.Date.TabIndex = 17;
+            this.Date.Text = "14/09/2024";
             // 
             // label15
             // 
@@ -150,15 +150,15 @@
             this.label15.TabIndex = 16;
             this.label15.Text = "Date of Reservation:";
             // 
-            // label14
+            // EmpName
             // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(141, 250);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(39, 15);
-            this.label14.TabIndex = 15;
-            this.label14.Text = "Alxesi";
+            this.EmpName.AutoSize = true;
+            this.EmpName.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EmpName.Location = new System.Drawing.Point(141, 250);
+            this.EmpName.Name = "EmpName";
+            this.EmpName.Size = new System.Drawing.Size(39, 15);
+            this.EmpName.TabIndex = 15;
+            this.EmpName.Text = "Alxesi";
             // 
             // label13
             // 
@@ -170,15 +170,15 @@
             this.label13.TabIndex = 14;
             this.label13.Text = "Employee Name:";
             // 
-            // label12
+            // Contact
             // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(141, 221);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(75, 15);
-            this.label12.TabIndex = 13;
-            this.label12.Text = "09342524521";
+            this.Contact.AutoSize = true;
+            this.Contact.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Contact.Location = new System.Drawing.Point(141, 221);
+            this.Contact.Name = "Contact";
+            this.Contact.Size = new System.Drawing.Size(75, 15);
+            this.Contact.TabIndex = 13;
+            this.Contact.Text = "09342524521";
             // 
             // label11
             // 
@@ -190,15 +190,15 @@
             this.label11.TabIndex = 12;
             this.label11.Text = "Contact Number:";
             // 
-            // label10
+            // PUD
             // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(141, 200);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(65, 15);
-            this.label10.TabIndex = 11;
-            this.label10.Text = "15/09/2024";
+            this.PUD.AutoSize = true;
+            this.PUD.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PUD.Location = new System.Drawing.Point(141, 200);
+            this.PUD.Name = "PUD";
+            this.PUD.Size = new System.Drawing.Size(65, 15);
+            this.PUD.TabIndex = 11;
+            this.PUD.Text = "15/09/2024";
             // 
             // label9
             // 
@@ -210,15 +210,15 @@
             this.label9.TabIndex = 10;
             this.label9.Text = "Pick-up Date:";
             // 
-            // label8
+            // MOP
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(141, 165);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(33, 15);
-            this.label8.TabIndex = 9;
-            this.label8.Text = "Cash";
+            this.MOP.AutoSize = true;
+            this.MOP.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MOP.Location = new System.Drawing.Point(141, 165);
+            this.MOP.Name = "MOP";
+            this.MOP.Size = new System.Drawing.Size(33, 15);
+            this.MOP.TabIndex = 9;
+            this.MOP.Text = "Cash";
             // 
             // label7
             // 
@@ -230,15 +230,15 @@
             this.label7.TabIndex = 8;
             this.label7.Text = "Mode of Payment:";
             // 
-            // label6
+            // TotalAmount
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(141, 143);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(55, 15);
-            this.label6.TabIndex = 7;
-            this.label6.Text = "10000.00";
+            this.TotalAmount.AutoSize = true;
+            this.TotalAmount.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TotalAmount.Location = new System.Drawing.Point(141, 143);
+            this.TotalAmount.Name = "TotalAmount";
+            this.TotalAmount.Size = new System.Drawing.Size(55, 15);
+            this.TotalAmount.TabIndex = 7;
+            this.TotalAmount.Text = "10000.00";
             // 
             // label5
             // 
@@ -250,15 +250,15 @@
             this.label5.TabIndex = 6;
             this.label5.Text = "Total Amount:";
             // 
-            // label4
+            // CustomerName
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(141, 119);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(98, 15);
-            this.label4.TabIndex = 5;
-            this.label4.Text = "Enzoy Dela Torre";
+            this.CustomerName.AutoSize = true;
+            this.CustomerName.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CustomerName.Location = new System.Drawing.Point(141, 119);
+            this.CustomerName.Name = "CustomerName";
+            this.CustomerName.Size = new System.Drawing.Size(98, 15);
+            this.CustomerName.TabIndex = 5;
+            this.CustomerName.Text = "Enzoy Dela Torre";
             // 
             // label3
             // 
@@ -293,6 +293,7 @@
             this.button1.TabIndex = 2;
             this.button1.Text = "Cancel";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label2
             // 
@@ -354,6 +355,7 @@
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "CashOrder";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CashOrder";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -367,23 +369,23 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label OrderType;
         private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label DP;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label Date;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label EmpName;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label Contact;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label PUD;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label MOP;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label TotalAmount;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label CustomerName;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;

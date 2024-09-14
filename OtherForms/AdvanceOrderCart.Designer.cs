@@ -30,6 +30,7 @@
         {
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.EmployeeName = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
@@ -69,7 +70,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -133,11 +133,20 @@
             this.panel1.Size = new System.Drawing.Size(882, 612);
             this.panel1.TabIndex = 2;
             // 
+            // textBox1
+            // 
+            this.textBox1.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(484, 252);
+            this.textBox1.MaxLength = 11;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(286, 23);
+            this.textBox1.TabIndex = 41;
+            // 
             // EmployeeName
             // 
             this.EmployeeName.AutoSize = true;
             this.EmployeeName.Font = new System.Drawing.Font("Montserrat SemiBold", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.EmployeeName.Location = new System.Drawing.Point(619, 472);
+            this.EmployeeName.Location = new System.Drawing.Point(623, 493);
             this.EmployeeName.Name = "EmployeeName";
             this.EmployeeName.Size = new System.Drawing.Size(53, 18);
             this.EmployeeName.TabIndex = 40;
@@ -147,7 +156,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Montserrat SemiBold", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(485, 472);
+            this.label13.Location = new System.Drawing.Point(489, 493);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(128, 18);
             this.label13.TabIndex = 39;
@@ -206,6 +215,7 @@
             this.DownpaymentLbl.Size = new System.Drawing.Size(17, 18);
             this.DownpaymentLbl.TabIndex = 32;
             this.DownpaymentLbl.Text = "0";
+            this.DownpaymentLbl.TextChanged += new System.EventHandler(this.DownpaymentLbl_TextChanged);
             // 
             // label14
             // 
@@ -397,7 +407,7 @@
             // button2
             // 
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Location = new System.Drawing.Point(484, 493);
+            this.button2.Location = new System.Drawing.Point(488, 514);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(386, 34);
             this.button2.TabIndex = 14;
@@ -408,7 +418,7 @@
             // button1
             // 
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(484, 544);
+            this.button1.Location = new System.Drawing.Point(488, 565);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(386, 34);
             this.button1.TabIndex = 13;
@@ -535,15 +545,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Cart";
             this.label1.Click += new System.EventHandler(this.label1_Click);
-            // 
-            // textBox1
-            // 
-            this.textBox1.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(484, 252);
-            this.textBox1.MaxLength = 11;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(286, 23);
-            this.textBox1.TabIndex = 41;
             // 
             // AdvanceOrderCart
             // 
