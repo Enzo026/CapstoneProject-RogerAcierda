@@ -40,4 +40,6 @@ namespace Capstone_Flowershop
         public static bool InsertAdvanceOrder { get; set; }
         public static bool InsertAdvanceOrderItems { get; set; }
     }
+
+
 }

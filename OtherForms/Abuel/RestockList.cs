@@ -58,6 +58,10 @@ namespace Flowershop_Thesis.OtherForms.Abuel
 
 
         #endregion
-       
+
+        private void restockBtnLabel_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -44,6 +44,7 @@
             this.restockBtnLabel.Size = new System.Drawing.Size(68, 18);
             this.restockBtnLabel.TabIndex = 14;
             this.restockBtnLabel.Text = "Re-stock";
+            this.restockBtnLabel.Click += new System.EventHandler(this.restockBtnLabel_Click);
             // 
             // supplierLabel
             // 

@@ -207,6 +207,12 @@
     <Compile Include="OtherForms\AdvanceOrderCart.Designer.cs">
       <DependentUpon>AdvanceOrderCart.cs</DependentUpon>
     </Compile>
+    <Compile Include="OtherForms\AdvanceOrder\AdvanceOrderListContents.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OtherForms\AdvanceOrder\AdvanceOrderListContents.Designer.cs">
+      <DependentUpon>AdvanceOrderListContents.cs</DependentUpon>
+    </Compile>
     <Compile Include="OtherForms\AdvanceOrder\CashOrder.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -371,6 +377,12 @@
     <Compile Include="SalesClerk\Order Placement\AdvanceOrderfolder\AdvanceOrderFrm.Designer.cs">
       <DependentUpon>AdvanceOrderFrm.cs</DependentUpon>
     </Compile>
+    <Compile Include="SalesClerk\Order Placement\AdvanceOrderfolder\AdvanceOrdersList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SalesClerk\Order Placement\AdvanceOrderfolder\AdvanceOrdersList.Designer.cs">
+      <DependentUpon>AdvanceOrdersList.cs</DependentUpon>
+    </Compile>
     <Compile Include="SalesClerk\Order Placement\AdvanceOrderfolder\Adv_Custom.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -504,6 +516,9 @@
     <EmbeddedResource Include="OtherForms\AdvanceOrderCart.resx">
       <DependentUpon>AdvanceOrderCart.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\AdvanceOrder\AdvanceOrderListContents.resx">
+      <DependentUpon>AdvanceOrderListContents.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="OtherForms\AdvanceOrder\CashOrder.resx">
       <DependentUpon>CashOrder.cs</DependentUpon>
     </EmbeddedResource>
@@ -594,6 +609,9 @@
     </Compile>
     <EmbeddedResource Include="SalesClerk\Order Placement\AdvanceOrderfolder\AdvanceOrderFrm.resx">
       <DependentUpon>AdvanceOrderFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SalesClerk\Order Placement\AdvanceOrderfolder\AdvanceOrdersList.resx">
+      <DependentUpon>AdvanceOrdersList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SalesClerk\Order Placement\AdvanceOrderfolder\Adv_Custom.resx">
       <DependentUpon>Adv_Custom.cs</DependentUpon>

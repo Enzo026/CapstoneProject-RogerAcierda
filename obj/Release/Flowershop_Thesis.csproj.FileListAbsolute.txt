@@ -488,3 +488,5 @@ F:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.exe.manifest
 F:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.application
 F:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.exe
 F:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.pdb
+F:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.SalesClerk.Order_Placement.AdvanceOrderfolder.AdvanceOrdersList.resources
+F:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.AdvanceOrder.AdvanceOrderListContents.resources

@@ -21,15 +21,15 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement.AdvanceOrderfolder
         SqlDataReader sdr;
         SqlDataAdapter sda;
 
-        public static AdvanceOrderFrm instance;
-        public System.Windows.Forms.Button cartbtn;
+        public static AdvanceOrderFrm instance; //this
+        public System.Windows.Forms.Button cartbtn; //this
         public AdvanceOrderFrm()
         {
             InitializeComponent();
             testConnection();
             ShowInd();
-            instance = this;
-            cartbtn = button1;
+            instance = this; //this
+            cartbtn = button1; //this
             cartNo();
         }
 

@@ -14,7 +14,7 @@ using Flowershop_Thesis.OtherForms.Abuel;
 namespace Flowershop_Thesis.InventoryClerk.Restocking
 {
     public partial class RestockNew : Form
-    {
+    {    
         public RestockNew()
         {
             InitializeComponent();
