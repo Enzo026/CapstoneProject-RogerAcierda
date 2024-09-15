@@ -408,7 +408,7 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement.AdvanceOrderfolder
                                 "(@Name,@Qty,@Type,@Color,@LifeSpan,getdate(),@Supplier,@Desc,@RSP,'Available');", con);
                     cmd.Parameters.AddWithValue("@Name", BuoquetName.Text);
                     cmd.Parameters.AddWithValue("@Qty", 1);
-                    cmd.Parameters.AddWithValue("@Type", "Custom");
+                    cmd.Parameters.AddWithValue("@Type", "AdvanceCustom");
                     cmd.Parameters.AddWithValue("@Color", PrimaryColorTxtBox.Text);
                     cmd.Parameters.AddWithValue("@LifeSpan", 3);
                     cmd.Parameters.AddWithValue("@Supplier", "Instore");
@@ -418,7 +418,7 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement.AdvanceOrderfolder
 
                     cmd.ExecuteNonQuery();
                     con.Close();
-                    MessageBox.Show("Item Added Successfully!");
+       
                 }
                 catch (Exception ex)
                 {
@@ -427,7 +427,7 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement.AdvanceOrderfolder
             }
             else
             {
-                //MessageBox.Show("Error on items please make sure all items needed are supplied");
+                MessageBox.Show("Error on items please make sure all items needed are supplied");
             }
 
 
@@ -504,22 +504,26 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement.AdvanceOrderfolder
 
 
         }
-
-        public void FlowerDeduct(string ItemName, int quantitee)
+        int ItemNameCount;
+        public void CheckName()
         {
-            int rowCount;
-
-            //Check if theres more than 1 items in the inventory making sure it will be 
             con.Open();
             string countQuery = "select count(*) from ItemInventory where ItemName = @Name;";
             using (SqlCommand countCommand = new SqlCommand(countQuery, con))
             {
-                countCommand.Parameters.AddWithValue("@Name", ItemName);
-                rowCount = (int)countCommand.ExecuteScalar();
+                countCommand.Parameters.AddWithValue("@Name", BuoquetName.Text);
+                ItemNameCount = (int)countCommand.ExecuteScalar();
 
             }
             con.Close();
-            if (rowCount == 1)
+        }
+        public void FlowerDeduct(string ItemName)
+        {
+          
+
+            //Check if theres more than 1 items in the inventory making sure it will be 
+
+            if (ItemNameCount == 1)
             {
                 con.Open();
                 string invID = "0";
@@ -537,19 +541,6 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement.AdvanceOrderfolder
                     }
                 }
                 con.Close();
-
-                string updateQuery = "UPDATE ItemInventory SET ItemQuantity = ItemQuantity - @Quantity WHERE ItemID = @ID;";
-                con2.Open();
-                using (SqlCommand updateCommand = new SqlCommand(updateQuery, con2))
-                {
-
-                    updateCommand.Parameters.AddWithValue("@Quantity", quantitee);
-                    updateCommand.Parameters.AddWithValue("@ID", int.Parse(invID));
-
-                    updateCommand.ExecuteNonQuery();
-
-                }
-                con2.Close();
             }
             else
             {
@@ -743,7 +734,7 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement.AdvanceOrderfolder
         {
             con.Open();
             string invID = "0";
-            string sqlQuery = "SELECT * FROM ItemInventory where ItemName = @Name;";
+            string sqlQuery = "SELECT * FROM ItemInventory where ItemName = @Name AND ItemType = 'AdvanceCustom';";
             using (SqlCommand command = new SqlCommand(sqlQuery, con))
             {
                 command.Parameters.AddWithValue("@Name", BuoquetName.Text);
@@ -762,16 +753,22 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement.AdvanceOrderfolder
                 try
                 {
                     con.Open();
-                    cmd = new SqlCommand("INSERT INTO ServingCart(ItemID,ItemName,OrderQty,OrderPrice,OrderType)Values" +
+                    cmd = new SqlCommand("INSERT INTO Advance_ServingCart(ItemID,ItemName,OrderQty,OrderPrice,OrderType)Values" +
                                 "(@ID,@Name,@Qty,@Price,@Type);", con);
                     cmd.Parameters.AddWithValue("@ID", Convert.ToInt32(invID));
                     cmd.Parameters.AddWithValue("@Name", BuoquetName.Text);
                     cmd.Parameters.AddWithValue("@Qty", 1);
                     cmd.Parameters.AddWithValue("@Price", int.Parse(TotalPrc.Text));
-                    cmd.Parameters.AddWithValue("@Type", "Custom");
+                    cmd.Parameters.AddWithValue("@Type", "AdvanceCustom");
 
                     cmd.ExecuteNonQuery();
                     con.Close();
+
+                    //activation of textchange event to refresh the item list in main panel
+                    int cart = int.Parse(AdvanceOrderFrm.instance.cartbtn.Text);
+                    cart++;
+                    AdvanceOrderFrm.instance.cartbtn.Text = cart.ToString();
+                    MessageBox.Show("Item Successfully Added Cart Items: " + cart.ToString());
                 }
                 catch (Exception ex)
                 {
@@ -779,21 +776,19 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement.AdvanceOrderfolder
                 }
 
 
-                //activation of textchange event to refresh the item list in main panel
-                int cart = int.Parse(OrderPlacement.instance.lbl.Text);
-                cart++;
-                MessageBox.Show("Item Successfully Added Cart Items: " + cart.ToString());
-                OrderPlacement.instance.lbl.Text = cart.ToString();
+                
+
+             
             }
 
         }
         public void Deduction()
         {
             DeductBuoquet(BuoquetName.Text.Trim(), 1);
-            FlowerDeduct(PFlowerName.Text.Trim(), int.Parse(PFlowerQty.Text));
+            FlowerDeduct(PFlowerName.Text.Trim());
             if (SFlowerCheckBox.Checked == true)
             {
-                FlowerDeduct(SFlowerName.Text.Trim(), int.Parse(SFlowerQty.Text));
+                FlowerDeduct(SFlowerName.Text.Trim());
             }
             if (CoverCheckBox.Checked == true)
             {
@@ -811,10 +806,19 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement.AdvanceOrderfolder
         }
         private void ProceedBtn_Click(object sender, EventArgs e)
         {
-            checker();
-            addInventory();
-            AddCart();
-            Deduction();
+            CheckName();
+            if(ItemNameCount == 0)
+            {
+                checker();
+                addInventory();
+                AddCart();
+            }
+            else
+            {
+                MessageBox.Show("Item Name Taken Please Choose Another one");
+            }
+    
+           // Deduction();
         }
 
         private void SizePrc_TextChanged(object sender, EventArgs e)

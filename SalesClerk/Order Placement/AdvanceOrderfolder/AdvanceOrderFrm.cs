@@ -21,17 +21,18 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement.AdvanceOrderfolder
         SqlDataReader sdr;
         SqlDataAdapter sda;
 
-        public static AdvanceOrderFrm instance;
-        public System.Windows.Forms.Button cartbtn;
+        public static AdvanceOrderFrm instance; //this
+        public System.Windows.Forms.Button cartbtn; //this
         public AdvanceOrderFrm()
         {
             InitializeComponent();
             testConnection();
             ShowInd();
-            instance = this;
-            cartbtn = button1;
+            instance = this; //this
+            cartbtn = button1; //this
             cartNo();
         }
+
         public void testConnection()
         {
             string executableDirectory = AppDomain.CurrentDomain.BaseDirectory;
@@ -148,9 +149,17 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement.AdvanceOrderfolder
         }
 
         private void button1_Click(object sender, EventArgs e)
-        {
-            AdvanceOrderCart cart = new AdvanceOrderCart();
-            cart.Show();
+        {   
+            if(button1.Text.Trim() != "0") {
+                AdvanceOrderCart cart = new AdvanceOrderCart();
+                cart.Show();
+                
+            }
+            else
+            {
+                MessageBox.Show("No items In Cart");
+            }
+         
         }
 
         private void label4_Click(object sender, EventArgs e)

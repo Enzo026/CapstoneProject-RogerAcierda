@@ -1,5 +1,6 @@
 ﻿using Capstone_Flowershop;
 using Flowershop_Thesis.AdminForms.History_Logs;
+using Flowershop_Thesis.OtherForms;
 using Flowershop_Thesis.SalesClerk.PriceList;
 using Flowershop_Thesis.SalesClerk.Transaction;
 using System;
@@ -10,6 +11,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -28,9 +30,9 @@ namespace Flowershop_Thesis.MainForms
         {
             
             InitializeComponent();
-
+            EmpName.Text = UserInfo.Empleyado;
             testConnection();
-            EmpName.Text = EmployeeName;
+            
             
             panel2.Controls.Clear(); //tatanggalin yung current na laman ng panel
             TransactionForm TF = new TransactionForm(); //tatawagin tapos papangalanan yung form na papalabasin
@@ -40,21 +42,6 @@ namespace Flowershop_Thesis.MainForms
             TF.Show(); //para lumitaw
         }
 
-        private string EmployeeName;
-        public string empName
-        {
-            get { return EmployeeName; }
-            set { EmployeeName = value;  EmpName.Text = value;
-                MessageBox.Show(value);
-            }
-
-        }
-
-        public void GetEmpName()
-        {
-
-        }
-        
         public void testConnection()
         {
             string executableDirectory = AppDomain.CurrentDomain.BaseDirectory;
@@ -83,11 +70,6 @@ namespace Flowershop_Thesis.MainForms
                 }
             }
         }
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void label2_Click(object sender, EventArgs e)
         {
             try
@@ -137,5 +119,7 @@ namespace Flowershop_Thesis.MainForms
             PL.BringToFront(); //front yung form 
             PL.Show(); //para lumitaw
         }
+
+
     }
 }

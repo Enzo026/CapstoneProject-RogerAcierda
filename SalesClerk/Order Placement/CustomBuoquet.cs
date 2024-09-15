@@ -476,13 +476,7 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement
                             }
                         }
                     }
-
-
-
                 }
-
-
-
 
                 con.Close();
 

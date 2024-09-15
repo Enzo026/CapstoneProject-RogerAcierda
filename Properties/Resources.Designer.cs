@@ -63,6 +63,16 @@ namespace Flowershop_Thesis.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap addImg {
+            get {
+                object obj = ResourceManager.GetObject("addImg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap b1_24x24 {
             get {
                 object obj = ResourceManager.GetObject("b1_24x24", resourceCulture);
