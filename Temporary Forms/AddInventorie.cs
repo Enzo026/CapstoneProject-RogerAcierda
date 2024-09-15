@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Resources.ResXFileRef;
 
 namespace Flowershop_Thesis.Temporary_Forms
 {
@@ -105,6 +106,25 @@ namespace Flowershop_Thesis.Temporary_Forms
             if (open.ShowDialog() == DialogResult.OK)
             {
                 Image.Image = new Bitmap(open.FileName);
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            try
+            {
+               
+                con.Open();
+                cmd = new SqlCommand("DELETE FROM ItemInventory Where ItemID = @ID", con);
+                cmd.Parameters.AddWithValue("@ID", textBox1.Text);
+
+                cmd.ExecuteNonQuery();
+                con.Close();
+                MessageBox.Show("Item Added Successfully!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("DeletingItem Failed!" + " : " + ex);
             }
         }
     }

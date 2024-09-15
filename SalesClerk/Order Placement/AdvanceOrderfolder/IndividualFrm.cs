@@ -33,20 +33,14 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement.AdvanceOrderfolder
             string parentDirectory = Path.GetFullPath(Path.Combine(executableDirectory, @"..\..\"));
 
             string databaseFilePath = Path.Combine(parentDirectory, "try.mdf");
-
-            // MessageBox.Show(databaseFilePath);
-            // Build the connection string
             string connectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={databaseFilePath};Initial Catalog=try;Integrated Security=True;";
 
-            // Use the connection string to connect to the database
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 try
                 {
                     connection.Open();
                     con = new SqlConnection(connectionString);
-
-                    // Perform database operations here
 
                 }
                 catch (Exception ex)

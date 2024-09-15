@@ -141,11 +141,11 @@
     <Compile Include="InventoryClerk\LandingPage\DashboardFrm.Designer.cs">
       <DependentUpon>DashboardFrm.cs</DependentUpon>
     </Compile>
-    <Compile Include="InventoryClerk\Restocking\RestockingForm.cs">
+    <Compile Include="InventoryClerk\Restocking\RestockNew.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="InventoryClerk\Restocking\RestockingForm.Designer.cs">
-      <DependentUpon>RestockingForm.cs</DependentUpon>
+    <Compile Include="InventoryClerk\Restocking\RestockNew.Designer.cs">
+      <DependentUpon>RestockNew.cs</DependentUpon>
     </Compile>
     <Compile Include="InventoryClerk\StockAdjustment\StockAdjustmentFrmcs.cs">
       <SubType>Form</SubType>
@@ -183,6 +183,18 @@
     <Compile Include="MainForms\SalesClerk_BasePlatform.Designer.cs">
       <DependentUpon>SalesClerk_BasePlatform.cs</DependentUpon>
     </Compile>
+    <Compile Include="OtherForms\Abuel\restockinglist.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForms\Abuel\restockinglist.Designer.cs">
+      <DependentUpon>restockinglist.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\Abuel\RestockList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OtherForms\Abuel\RestockList.Designer.cs">
+      <DependentUpon>RestockList.cs</DependentUpon>
+    </Compile>
     <Compile Include="OtherForms\AddToCart.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -194,6 +206,30 @@
     </Compile>
     <Compile Include="OtherForms\AdvanceOrderCart.Designer.cs">
       <DependentUpon>AdvanceOrderCart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\AdvanceOrder\AdvanceOrderListContents.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OtherForms\AdvanceOrder\AdvanceOrderListContents.Designer.cs">
+      <DependentUpon>AdvanceOrderListContents.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\AdvanceOrder\CashOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForms\AdvanceOrder\CashOrder.Designer.cs">
+      <DependentUpon>CashOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\AdvanceOrder\AnotherMode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForms\AdvanceOrder\AnotherMode.Designer.cs">
+      <DependentUpon>AnotherMode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\AdvanceOrder\GcashOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForms\AdvanceOrder\GcashOrder.Designer.cs">
+      <DependentUpon>GcashOrder.cs</DependentUpon>
     </Compile>
     <Compile Include="OtherForms\Adv_CartItems.cs">
       <SubType>UserControl</SubType>
@@ -255,11 +291,23 @@
     <Compile Include="OtherForms\DisposalContents\CompletedDisposal.Designer.cs">
       <DependentUpon>CompletedDisposal.cs</DependentUpon>
     </Compile>
+    <Compile Include="OtherForms\DisposalContents\DisposalEvaluation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForms\DisposalContents\DisposalEvaluation.Designer.cs">
+      <DependentUpon>DisposalEvaluation.cs</DependentUpon>
+    </Compile>
     <Compile Include="OtherForms\FinishedOrdersList.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="OtherForms\FinishedOrdersList.Designer.cs">
       <DependentUpon>FinishedOrdersList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\PaymentConfirmation\ConfirmPayment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForms\PaymentConfirmation\ConfirmPayment.Designer.cs">
+      <DependentUpon>ConfirmPayment.cs</DependentUpon>
     </Compile>
     <Compile Include="OtherForms\PriceListContents.cs">
       <SubType>UserControl</SubType>
@@ -328,6 +376,12 @@
     </Compile>
     <Compile Include="SalesClerk\Order Placement\AdvanceOrderfolder\AdvanceOrderFrm.Designer.cs">
       <DependentUpon>AdvanceOrderFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SalesClerk\Order Placement\AdvanceOrderfolder\AdvanceOrdersList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SalesClerk\Order Placement\AdvanceOrderfolder\AdvanceOrdersList.Designer.cs">
+      <DependentUpon>AdvanceOrdersList.cs</DependentUpon>
     </Compile>
     <Compile Include="SalesClerk\Order Placement\AdvanceOrderfolder\Adv_Custom.cs">
       <SubType>Form</SubType>
@@ -429,8 +483,8 @@
     <EmbeddedResource Include="InventoryClerk\LandingPage\DashboardFrm.resx">
       <DependentUpon>DashboardFrm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="InventoryClerk\Restocking\RestockingForm.resx">
-      <DependentUpon>RestockingForm.cs</DependentUpon>
+    <EmbeddedResource Include="InventoryClerk\Restocking\RestockNew.resx">
+      <DependentUpon>RestockNew.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InventoryClerk\StockAdjustment\StockAdjustmentFrmcs.resx">
       <DependentUpon>StockAdjustmentFrmcs.cs</DependentUpon>
@@ -450,11 +504,29 @@
     <EmbeddedResource Include="MainForms\SalesClerk_BasePlatform.resx">
       <DependentUpon>SalesClerk_BasePlatform.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\Abuel\restockinglist.resx">
+      <DependentUpon>restockinglist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\Abuel\RestockList.resx">
+      <DependentUpon>RestockList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="OtherForms\AddToCart.resx">
       <DependentUpon>AddToCart.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OtherForms\AdvanceOrderCart.resx">
       <DependentUpon>AdvanceOrderCart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\AdvanceOrder\AdvanceOrderListContents.resx">
+      <DependentUpon>AdvanceOrderListContents.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\AdvanceOrder\CashOrder.resx">
+      <DependentUpon>CashOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\AdvanceOrder\AnotherMode.resx">
+      <DependentUpon>AnotherMode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\AdvanceOrder\GcashOrder.resx">
+      <DependentUpon>GcashOrder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OtherForms\Adv_CartItems.resx">
       <DependentUpon>Adv_CartItems.cs</DependentUpon>
@@ -486,8 +558,14 @@
     <EmbeddedResource Include="OtherForms\DisposalContents\CompletedDisposal.resx">
       <DependentUpon>CompletedDisposal.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\DisposalContents\DisposalEvaluation.resx">
+      <DependentUpon>DisposalEvaluation.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="OtherForms\FinishedOrdersList.resx">
       <DependentUpon>FinishedOrdersList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\PaymentConfirmation\ConfirmPayment.resx">
+      <DependentUpon>ConfirmPayment.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OtherForms\PriceListContents.resx">
       <DependentUpon>PriceListContents.cs</DependentUpon>
@@ -531,6 +609,9 @@
     </Compile>
     <EmbeddedResource Include="SalesClerk\Order Placement\AdvanceOrderfolder\AdvanceOrderFrm.resx">
       <DependentUpon>AdvanceOrderFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SalesClerk\Order Placement\AdvanceOrderfolder\AdvanceOrdersList.resx">
+      <DependentUpon>AdvanceOrdersList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SalesClerk\Order Placement\AdvanceOrderfolder\Adv_Custom.resx">
       <DependentUpon>Adv_Custom.cs</DependentUpon>
@@ -580,6 +661,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\addImg.jpg" />
     <Content Include="try.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
