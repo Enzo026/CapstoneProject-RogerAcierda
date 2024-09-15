@@ -152,7 +152,7 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement.AdvanceOrderfolder
         {   
             if(button1.Text.Trim() != "0") {
                 AdvanceOrderCart cart = new AdvanceOrderCart();
-                cart.Show();
+                cart.ShowDialog();
                 
             }
             else
@@ -180,6 +180,12 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement.AdvanceOrderfolder
             panel2.Controls.Add(frm); //ilalagay na natin yung form
             frm.BringToFront(); //front yung form 
             frm.Show();
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+            AdvanceOrdersList form = new AdvanceOrdersList();
+            form.Show();
         }
     }
 }

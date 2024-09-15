@@ -490,3 +490,10 @@ F:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.exe
 F:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.pdb
 F:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.SalesClerk.Order_Placement.AdvanceOrderfolder.AdvanceOrdersList.resources
 F:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.AdvanceOrder.AdvanceOrderListContents.resources
+F:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.AdvanceOrder.AdvanceOrderEdit.resources
+F:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.AdvanceOrder.EditOrderItems.EditContactNumber.resources
+F:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.AdvanceOrder.EditOrderItems.EditItemOrders.resources
+F:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.AdvanceOrder.EditOrderItems.EditPickupDate.resources
+F:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.AdvanceOrder.EditOrderItems.NormalBackground.resources
+F:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.AdvanceOrder.EditOrderItems.SeeItems.resources
+F:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.AdvanceOrder.OrdersTodayList.resources

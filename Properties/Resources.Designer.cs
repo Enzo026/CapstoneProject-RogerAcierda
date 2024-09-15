@@ -103,6 +103,26 @@ namespace Flowershop_Thesis.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap cancel {
+            get {
+                object obj = ResourceManager.GetObject("cancel", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap check {
+            get {
+                object obj = ResourceManager.GetObject("check", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap LoginImg {
             get {
                 object obj = ResourceManager.GetObject("LoginImg", resourceCulture);
@@ -166,6 +186,16 @@ namespace Flowershop_Thesis.Properties {
         internal static System.Drawing.Bitmap pexels_pixabay_605201 {
             get {
                 object obj = ResourceManager.GetObject("pexels-pixabay-605201", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap undraw_New_entries_re_cffr {
+            get {
+                object obj = ResourceManager.GetObject("undraw_New_entries_re_cffr", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
