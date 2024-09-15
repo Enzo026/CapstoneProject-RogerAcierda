@@ -274,7 +274,6 @@ D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Capstone_
 D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Capstone_Flowershop.AdminForms.Reports.SalesReports.SalesReport.resources
 D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Capstone_Flowershop.AdminForms.System_Maintenance.SystemMaintenance.resources
 D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.InventoryClerk.LandingPage.DashboardFrm.resources
-D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.InventoryClerk.Restocking.RestockingForm.resources
 D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.InventoryClerk.StockAdjustment.StockAdjustmentFrmcs.resources
 D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Capstone_Flowershop.Form1.resources
 D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Capstone_Flowershop.MainForms.Admin_BasePlatform.resources
@@ -490,3 +489,10 @@ F:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.exe
 F:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.pdb
 F:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.SalesClerk.Order_Placement.AdvanceOrderfolder.AdvanceOrdersList.resources
 F:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.AdvanceOrder.AdvanceOrderListContents.resources
+D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.InventoryClerk.Restocking.RestockNew.resources
+D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.Abuel.restockinglist.resources
+D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.Abuel.RestockList.resources
+D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.AdvanceOrder.AdvanceOrderListContents.resources
+D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.AdvanceOrder.GcashOrderFrm.resources
+D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.PaymentConfirmation.ConfirmPayment.resources
+D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.SalesClerk.Order_Placement.AdvanceOrderfolder.AdvanceOrdersList.resources
