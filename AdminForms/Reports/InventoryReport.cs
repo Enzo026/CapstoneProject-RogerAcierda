@@ -16,5 +16,15 @@ namespace Capstone_Flowershop.AdminForms.Reports
         {
             InitializeComponent();
         }
+
+        private void panel12_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label88_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

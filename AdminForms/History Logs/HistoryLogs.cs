@@ -44,5 +44,10 @@ namespace Capstone_Flowershop.AdminForms.History_Logs
             SR.BringToFront(); //front yung form 
             SR.Show(); //para lumitaw
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
