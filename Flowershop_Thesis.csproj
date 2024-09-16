@@ -61,7 +61,9 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
+    <Reference Include="System">
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll</HintPath>
+    </Reference>
     <Reference Include="System.Core" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
@@ -207,6 +209,12 @@
     <Compile Include="OtherForms\AdvanceOrderCart.Designer.cs">
       <DependentUpon>AdvanceOrderCart.cs</DependentUpon>
     </Compile>
+    <Compile Include="OtherForms\AdvanceOrder\AdvanceOrderEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForms\AdvanceOrder\AdvanceOrderEdit.Designer.cs">
+      <DependentUpon>AdvanceOrderEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="OtherForms\AdvanceOrder\AdvanceOrderListContents.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -225,11 +233,53 @@
     <Compile Include="OtherForms\AdvanceOrder\AnotherMode.Designer.cs">
       <DependentUpon>AnotherMode.cs</DependentUpon>
     </Compile>
+    <Compile Include="OtherForms\AdvanceOrder\EditOrderItems\AdvanceOrderFinishPayment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForms\AdvanceOrder\EditOrderItems\AdvanceOrderFinishPayment.Designer.cs">
+      <DependentUpon>AdvanceOrderFinishPayment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\AdvanceOrder\EditOrderItems\EditContactNumber.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OtherForms\AdvanceOrder\EditOrderItems\EditContactNumber.Designer.cs">
+      <DependentUpon>EditContactNumber.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\AdvanceOrder\EditOrderItems\EditItemOrders.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OtherForms\AdvanceOrder\EditOrderItems\EditItemOrders.Designer.cs">
+      <DependentUpon>EditItemOrders.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\AdvanceOrder\EditOrderItems\EditPickupDate.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OtherForms\AdvanceOrder\EditOrderItems\EditPickupDate.Designer.cs">
+      <DependentUpon>EditPickupDate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\AdvanceOrder\EditOrderItems\NormalBackground.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OtherForms\AdvanceOrder\EditOrderItems\NormalBackground.Designer.cs">
+      <DependentUpon>NormalBackground.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\AdvanceOrder\EditOrderItems\SeeItems.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OtherForms\AdvanceOrder\EditOrderItems\SeeItems.Designer.cs">
+      <DependentUpon>SeeItems.cs</DependentUpon>
+    </Compile>
     <Compile Include="OtherForms\AdvanceOrder\GcashOrder.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="OtherForms\AdvanceOrder\GcashOrder.Designer.cs">
       <DependentUpon>GcashOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\AdvanceOrder\OrdersTodayList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OtherForms\AdvanceOrder\OrdersTodayList.Designer.cs">
+      <DependentUpon>OrdersTodayList.cs</DependentUpon>
     </Compile>
     <Compile Include="OtherForms\Adv_CartItems.cs">
       <SubType>UserControl</SubType>
@@ -516,6 +566,9 @@
     <EmbeddedResource Include="OtherForms\AdvanceOrderCart.resx">
       <DependentUpon>AdvanceOrderCart.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\AdvanceOrder\AdvanceOrderEdit.resx">
+      <DependentUpon>AdvanceOrderEdit.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="OtherForms\AdvanceOrder\AdvanceOrderListContents.resx">
       <DependentUpon>AdvanceOrderListContents.cs</DependentUpon>
     </EmbeddedResource>
@@ -525,8 +578,29 @@
     <EmbeddedResource Include="OtherForms\AdvanceOrder\AnotherMode.resx">
       <DependentUpon>AnotherMode.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\AdvanceOrder\EditOrderItems\AdvanceOrderFinishPayment.resx">
+      <DependentUpon>AdvanceOrderFinishPayment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\AdvanceOrder\EditOrderItems\EditContactNumber.resx">
+      <DependentUpon>EditContactNumber.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\AdvanceOrder\EditOrderItems\EditItemOrders.resx">
+      <DependentUpon>EditItemOrders.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\AdvanceOrder\EditOrderItems\EditPickupDate.resx">
+      <DependentUpon>EditPickupDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\AdvanceOrder\EditOrderItems\NormalBackground.resx">
+      <DependentUpon>NormalBackground.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\AdvanceOrder\EditOrderItems\SeeItems.resx">
+      <DependentUpon>SeeItems.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="OtherForms\AdvanceOrder\GcashOrder.resx">
       <DependentUpon>GcashOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\AdvanceOrder\OrdersTodayList.resx">
+      <DependentUpon>OrdersTodayList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OtherForms\Adv_CartItems.resx">
       <DependentUpon>Adv_CartItems.cs</DependentUpon>
@@ -662,6 +736,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\addImg.jpg" />
+    <None Include="Resources\cancel.png" />
+    <None Include="Resources\check.jpg" />
+    <None Include="Resources\undraw_New_entries_re_cffr.png" />
     <Content Include="try.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
