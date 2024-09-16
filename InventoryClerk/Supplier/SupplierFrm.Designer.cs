@@ -30,9 +30,10 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SupplierFrm));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label84 = new System.Windows.Forms.Label();
+            this.label83 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.label29 = new System.Windows.Forms.Label();
@@ -67,6 +68,17 @@
             this.label18 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.label47 = new System.Windows.Forms.Label();
+            this.label48 = new System.Windows.Forms.Label();
+            this.label49 = new System.Windows.Forms.Label();
+            this.label50 = new System.Windows.Forms.Label();
+            this.label51 = new System.Windows.Forms.Label();
+            this.label52 = new System.Windows.Forms.Label();
+            this.label53 = new System.Windows.Forms.Label();
+            this.label54 = new System.Windows.Forms.Label();
+            this.label55 = new System.Windows.Forms.Label();
+            this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.panel5 = new System.Windows.Forms.Panel();
             this.label20 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
@@ -89,17 +101,6 @@
             this.label45 = new System.Windows.Forms.Label();
             this.label46 = new System.Windows.Forms.Label();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.panel8 = new System.Windows.Forms.Panel();
-            this.label47 = new System.Windows.Forms.Label();
-            this.label48 = new System.Windows.Forms.Label();
-            this.label49 = new System.Windows.Forms.Label();
-            this.label50 = new System.Windows.Forms.Label();
-            this.label51 = new System.Windows.Forms.Label();
-            this.label52 = new System.Windows.Forms.Label();
-            this.label53 = new System.Windows.Forms.Label();
-            this.label54 = new System.Windows.Forms.Label();
-            this.label55 = new System.Windows.Forms.Label();
-            this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.panel9 = new System.Windows.Forms.Panel();
             this.label56 = new System.Windows.Forms.Label();
             this.label57 = new System.Windows.Forms.Label();
@@ -133,8 +134,9 @@
             this.label81 = new System.Windows.Forms.Label();
             this.label82 = new System.Windows.Forms.Label();
             this.pictureBox9 = new System.Windows.Forms.PictureBox();
-            this.label83 = new System.Windows.Forms.Label();
-            this.label84 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
@@ -144,12 +146,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.panel8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
-            this.panel8.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             this.panel9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             this.panel10.SuspendLayout();
@@ -169,6 +171,26 @@
             this.panel1.Size = new System.Drawing.Size(1134, 79);
             this.panel1.TabIndex = 0;
             // 
+            // label84
+            // 
+            this.label84.AutoSize = true;
+            this.label84.Font = new System.Drawing.Font("Montserrat", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label84.Location = new System.Drawing.Point(875, 44);
+            this.label84.Name = "label84";
+            this.label84.Size = new System.Drawing.Size(135, 29);
+            this.label84.TabIndex = 3;
+            this.label84.Text = "Flowershop";
+            // 
+            // label83
+            // 
+            this.label83.AutoSize = true;
+            this.label83.Font = new System.Drawing.Font("Montserrat", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label83.Location = new System.Drawing.Point(837, 7);
+            this.label83.Name = "label83";
+            this.label83.Size = new System.Drawing.Size(241, 37);
+            this.label83.TabIndex = 2;
+            this.label83.Text = "Roger Acierda\'s";
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -187,13 +209,6 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1134, 710);
             this.panel3.TabIndex = 2;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(12, 96);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(322, 20);
-            this.textBox1.TabIndex = 0;
             // 
             // flowLayoutPanel1
             // 
@@ -566,6 +581,124 @@
             this.pictureBox2.TabIndex = 0;
             this.pictureBox2.TabStop = false;
             // 
+            // panel8
+            // 
+            this.panel8.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            this.panel8.Controls.Add(this.label47);
+            this.panel8.Controls.Add(this.label48);
+            this.panel8.Controls.Add(this.label49);
+            this.panel8.Controls.Add(this.label50);
+            this.panel8.Controls.Add(this.label51);
+            this.panel8.Controls.Add(this.label52);
+            this.panel8.Controls.Add(this.label53);
+            this.panel8.Controls.Add(this.label54);
+            this.panel8.Controls.Add(this.label55);
+            this.panel8.Controls.Add(this.pictureBox6);
+            this.panel8.Location = new System.Drawing.Point(3, 234);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(359, 225);
+            this.panel8.TabIndex = 11;
+            // 
+            // label47
+            // 
+            this.label47.AutoSize = true;
+            this.label47.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label47.Location = new System.Drawing.Point(176, 188);
+            this.label47.Name = "label47";
+            this.label47.Size = new System.Drawing.Size(45, 15);
+            this.label47.TabIndex = 9;
+            this.label47.Text = "Flower";
+            // 
+            // label48
+            // 
+            this.label48.AutoSize = true;
+            this.label48.Font = new System.Drawing.Font("Montserrat SemiBold", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label48.Location = new System.Drawing.Point(173, 173);
+            this.label48.Name = "label48";
+            this.label48.Size = new System.Drawing.Size(92, 15);
+            this.label48.TabIndex = 8;
+            this.label48.Text = " Supplier Type:";
+            // 
+            // label49
+            // 
+            this.label49.AutoSize = true;
+            this.label49.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label49.Location = new System.Drawing.Point(175, 152);
+            this.label49.Name = "label49";
+            this.label49.Size = new System.Drawing.Size(92, 15);
+            this.label49.TabIndex = 7;
+            this.label49.Text = "Rose,Sunflower";
+            // 
+            // label50
+            // 
+            this.label50.AutoSize = true;
+            this.label50.Font = new System.Drawing.Font("Montserrat SemiBold", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label50.Location = new System.Drawing.Point(176, 137);
+            this.label50.Name = "label50";
+            this.label50.Size = new System.Drawing.Size(44, 15);
+            this.label50.TabIndex = 6;
+            this.label50.Text = "Items:";
+            // 
+            // label51
+            // 
+            this.label51.AutoSize = true;
+            this.label51.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label51.Location = new System.Drawing.Point(176, 112);
+            this.label51.Name = "label51";
+            this.label51.Size = new System.Drawing.Size(119, 15);
+            this.label51.TabIndex = 5;
+            this.label51.Text = "21 Manila Philippines";
+            // 
+            // label52
+            // 
+            this.label52.AutoSize = true;
+            this.label52.Font = new System.Drawing.Font("Montserrat SemiBold", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label52.Location = new System.Drawing.Point(176, 97);
+            this.label52.Name = "label52";
+            this.label52.Size = new System.Drawing.Size(58, 15);
+            this.label52.TabIndex = 4;
+            this.label52.Text = "Address:";
+            // 
+            // label53
+            // 
+            this.label53.AutoSize = true;
+            this.label53.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label53.Location = new System.Drawing.Point(176, 72);
+            this.label53.Name = "label53";
+            this.label53.Size = new System.Drawing.Size(74, 15);
+            this.label53.TabIndex = 3;
+            this.label53.Text = "09333453212";
+            // 
+            // label54
+            // 
+            this.label54.AutoSize = true;
+            this.label54.Font = new System.Drawing.Font("Montserrat SemiBold", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label54.Location = new System.Drawing.Point(175, 57);
+            this.label54.Name = "label54";
+            this.label54.Size = new System.Drawing.Size(75, 15);
+            this.label54.TabIndex = 2;
+            this.label54.Text = "Contact No.";
+            // 
+            // label55
+            // 
+            this.label55.AutoSize = true;
+            this.label55.Font = new System.Drawing.Font("Montserrat", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label55.Location = new System.Drawing.Point(170, 13);
+            this.label55.Name = "label55";
+            this.label55.Size = new System.Drawing.Size(159, 44);
+            this.label55.TabIndex = 1;
+            this.label55.Text = "Dangwa";
+            // 
+            // pictureBox6
+            // 
+            this.pictureBox6.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox6.Image")));
+            this.pictureBox6.Location = new System.Drawing.Point(7, 10);
+            this.pictureBox6.Name = "pictureBox6";
+            this.pictureBox6.Size = new System.Drawing.Size(159, 204);
+            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox6.TabIndex = 0;
+            this.pictureBox6.TabStop = false;
+            // 
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.SystemColors.InactiveBorder;
@@ -801,124 +934,6 @@
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox5.TabIndex = 0;
             this.pictureBox5.TabStop = false;
-            // 
-            // panel8
-            // 
-            this.panel8.BackColor = System.Drawing.SystemColors.InactiveBorder;
-            this.panel8.Controls.Add(this.label47);
-            this.panel8.Controls.Add(this.label48);
-            this.panel8.Controls.Add(this.label49);
-            this.panel8.Controls.Add(this.label50);
-            this.panel8.Controls.Add(this.label51);
-            this.panel8.Controls.Add(this.label52);
-            this.panel8.Controls.Add(this.label53);
-            this.panel8.Controls.Add(this.label54);
-            this.panel8.Controls.Add(this.label55);
-            this.panel8.Controls.Add(this.pictureBox6);
-            this.panel8.Location = new System.Drawing.Point(3, 234);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(359, 225);
-            this.panel8.TabIndex = 11;
-            // 
-            // label47
-            // 
-            this.label47.AutoSize = true;
-            this.label47.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label47.Location = new System.Drawing.Point(176, 188);
-            this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(45, 15);
-            this.label47.TabIndex = 9;
-            this.label47.Text = "Flower";
-            // 
-            // label48
-            // 
-            this.label48.AutoSize = true;
-            this.label48.Font = new System.Drawing.Font("Montserrat SemiBold", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label48.Location = new System.Drawing.Point(173, 173);
-            this.label48.Name = "label48";
-            this.label48.Size = new System.Drawing.Size(92, 15);
-            this.label48.TabIndex = 8;
-            this.label48.Text = " Supplier Type:";
-            // 
-            // label49
-            // 
-            this.label49.AutoSize = true;
-            this.label49.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label49.Location = new System.Drawing.Point(175, 152);
-            this.label49.Name = "label49";
-            this.label49.Size = new System.Drawing.Size(92, 15);
-            this.label49.TabIndex = 7;
-            this.label49.Text = "Rose,Sunflower";
-            // 
-            // label50
-            // 
-            this.label50.AutoSize = true;
-            this.label50.Font = new System.Drawing.Font("Montserrat SemiBold", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label50.Location = new System.Drawing.Point(176, 137);
-            this.label50.Name = "label50";
-            this.label50.Size = new System.Drawing.Size(44, 15);
-            this.label50.TabIndex = 6;
-            this.label50.Text = "Items:";
-            // 
-            // label51
-            // 
-            this.label51.AutoSize = true;
-            this.label51.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label51.Location = new System.Drawing.Point(176, 112);
-            this.label51.Name = "label51";
-            this.label51.Size = new System.Drawing.Size(119, 15);
-            this.label51.TabIndex = 5;
-            this.label51.Text = "21 Manila Philippines";
-            // 
-            // label52
-            // 
-            this.label52.AutoSize = true;
-            this.label52.Font = new System.Drawing.Font("Montserrat SemiBold", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label52.Location = new System.Drawing.Point(176, 97);
-            this.label52.Name = "label52";
-            this.label52.Size = new System.Drawing.Size(58, 15);
-            this.label52.TabIndex = 4;
-            this.label52.Text = "Address:";
-            // 
-            // label53
-            // 
-            this.label53.AutoSize = true;
-            this.label53.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label53.Location = new System.Drawing.Point(176, 72);
-            this.label53.Name = "label53";
-            this.label53.Size = new System.Drawing.Size(74, 15);
-            this.label53.TabIndex = 3;
-            this.label53.Text = "09333453212";
-            // 
-            // label54
-            // 
-            this.label54.AutoSize = true;
-            this.label54.Font = new System.Drawing.Font("Montserrat SemiBold", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label54.Location = new System.Drawing.Point(175, 57);
-            this.label54.Name = "label54";
-            this.label54.Size = new System.Drawing.Size(75, 15);
-            this.label54.TabIndex = 2;
-            this.label54.Text = "Contact No.";
-            // 
-            // label55
-            // 
-            this.label55.AutoSize = true;
-            this.label55.Font = new System.Drawing.Font("Montserrat", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label55.Location = new System.Drawing.Point(170, 13);
-            this.label55.Name = "label55";
-            this.label55.Size = new System.Drawing.Size(159, 44);
-            this.label55.TabIndex = 1;
-            this.label55.Text = "Dangwa";
-            // 
-            // pictureBox6
-            // 
-            this.pictureBox6.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox6.Image")));
-            this.pictureBox6.Location = new System.Drawing.Point(7, 10);
-            this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(159, 204);
-            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox6.TabIndex = 0;
-            this.pictureBox6.TabStop = false;
             // 
             // panel9
             // 
@@ -1274,25 +1289,30 @@
             this.pictureBox9.TabIndex = 0;
             this.pictureBox9.TabStop = false;
             // 
-            // label83
+            // textBox1
             // 
-            this.label83.AutoSize = true;
-            this.label83.Font = new System.Drawing.Font("Montserrat", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label83.Location = new System.Drawing.Point(837, 7);
-            this.label83.Name = "label83";
-            this.label83.Size = new System.Drawing.Size(241, 37);
-            this.label83.TabIndex = 2;
-            this.label83.Text = "Roger Acierda\'s";
+            this.textBox1.Location = new System.Drawing.Point(12, 96);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(322, 20);
+            this.textBox1.TabIndex = 0;
             // 
-            // label84
+            // button1
             // 
-            this.label84.AutoSize = true;
-            this.label84.Font = new System.Drawing.Font("Montserrat", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label84.Location = new System.Drawing.Point(875, 44);
-            this.label84.Name = "label84";
-            this.label84.Size = new System.Drawing.Size(135, 29);
-            this.label84.TabIndex = 3;
-            this.label84.Text = "Flowershop";
+            this.button1.Location = new System.Drawing.Point(340, 94);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(94, 23);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "Flower";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(440, 93);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(94, 23);
+            this.button2.TabIndex = 4;
+            this.button2.Text = "Materials";
+            this.button2.UseVisualStyleBackColor = true;
             // 
             // SupplierFrm
             // 
@@ -1300,6 +1320,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.InactiveBorder;
             this.ClientSize = new System.Drawing.Size(1137, 833);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
@@ -1319,15 +1341,15 @@
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.panel8.ResumeLayout(false);
+            this.panel8.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
-            this.panel8.ResumeLayout(false);
-            this.panel8.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             this.panel9.ResumeLayout(false);
             this.panel9.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
@@ -1450,5 +1472,7 @@
         private System.Windows.Forms.PictureBox pictureBox9;
         private System.Windows.Forms.Label label83;
         private System.Windows.Forms.Label label84;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }

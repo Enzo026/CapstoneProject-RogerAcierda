@@ -31,6 +31,7 @@ namespace Flowershop_Thesis.OtherForms.AdvanceOrder.EditOrderItems
             radioButton1.Checked = true;
             label17.Visible = false;
             pictureBox1.Visible = false;
+
         }
         public void testConnection()
         {

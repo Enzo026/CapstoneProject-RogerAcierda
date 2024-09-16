@@ -12,6 +12,8 @@ namespace Capstone_Flowershop
     {
         public static string Empleyado { get; set; }
         public static string FullName { get; set; }
+
+        public static string AdminCode { get; set; }
     }
     public static class CreateAdvanceOrder
     {

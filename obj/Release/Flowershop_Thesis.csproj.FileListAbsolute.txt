@@ -584,3 +584,4 @@ D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.exe.manifest
 D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.application
 D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.exe
 D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.pdb
+D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.StockAdjustments.StockAdjustmentListItems.resources
