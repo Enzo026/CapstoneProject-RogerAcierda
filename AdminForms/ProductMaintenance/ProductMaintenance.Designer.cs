@@ -211,7 +211,6 @@
             // 
             this.panel2.AutoScroll = true;
             this.panel2.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.panel2.Controls.Add(this.panel13);
             this.panel2.Controls.Add(this.panel18);
             this.panel2.Controls.Add(this.panel17);
             this.panel2.Controls.Add(this.panel16);
@@ -1247,6 +1246,7 @@
             // 
             // panel18
             // 
+            this.panel18.Controls.Add(this.panel13);
             this.panel18.Controls.Add(this.label72);
             this.panel18.Controls.Add(this.label73);
             this.panel18.Controls.Add(this.label74);
@@ -1331,7 +1331,7 @@
             this.panel13.Controls.Add(this.label30);
             this.panel13.Controls.Add(this.label31);
             this.panel13.Controls.Add(this.pictureBox6);
-            this.panel13.Location = new System.Drawing.Point(871, 580);
+            this.panel13.Location = new System.Drawing.Point(8, 280);
             this.panel13.Name = "panel13";
             this.panel13.Size = new System.Drawing.Size(208, 272);
             this.panel13.TabIndex = 9;
