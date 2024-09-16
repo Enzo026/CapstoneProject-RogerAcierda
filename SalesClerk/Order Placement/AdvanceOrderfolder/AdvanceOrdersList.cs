@@ -32,7 +32,8 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement.AdvanceOrderfolder
         public Label CancelPeriod;
         public Label CustName;
         public Label OrderQty;
-
+        public Label todaycounter;
+        bool formload;
         public AdvanceOrdersList()
         {
             InitializeComponent();
@@ -44,8 +45,11 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement.AdvanceOrderfolder
             CancelPeriod = CancelDate;
             CustName = CustomerNameLbl;
             OrderQty = OrderItmQtyLbl;
+            todaycounter = label9;
             testConnection();
             getListOrder();
+            ordertoday();
+            
         }
         public void testConnection()
         {
@@ -437,47 +441,114 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement.AdvanceOrderfolder
         {
             try
             {
+
                 con.Open();
 
-                string countQuery = "SELECT COUNT(*) FROM AdvanceOrders where Status = 'Active' ";
+                string countQuery = "SELECT COUNT(*) FROM AdvanceOrders where Status = 'Active' AND Pickupdate = @Date";
                 using (SqlCommand countCommand = new SqlCommand(countQuery, con))
                 {
-                    int rowCount = (int)countCommand.ExecuteScalar();
-                    AdvanceOrderListContents[] inv = new AdvanceOrderListContents[rowCount];
+                    
+                    DateTime datetimetoday = DateTime.Now;
+                    int day = datetimetoday.Day;
+                    int month = datetimetoday.Month;
+                    int year = datetimetoday.Year;
 
-                    string sqlQuery = "SELECT * FROM AdvanceOrders where Status = 'Active' ";
-                    using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                    string sday = "00";
+                    string smonth = "00";
+                    string syear = "00";
+                    if(day < 10)
                     {
+                        sday = "0" + day;
+                    }
+                    else
+                    {
+                        sday = day.ToString();
+                    }
+                    if(month < 10)
+                    {
+                        smonth = "0" + month;
+                    }
+                    else { smonth = month.ToString(); }
+                    if (year < 10)
+                    {
+                        syear = "0" + year;
+                    }
+                    else
+                    {
+                        syear = year.ToString();
+                    }
+
+                    string today = syear+"-"+smonth+"-"+sday;
+
+                    countCommand.Parameters.AddWithValue("Date", today);
+                    int rowCount = (int)countCommand.ExecuteScalar();
+                    label9.Text = rowCount.ToString();
+                    OrdersTodayList[] inv = new OrdersTodayList[rowCount];
+
+                    string sqlQuery = "SELECT * FROM AdvanceOrders where Status = 'Active' AND Pickupdate =@Date";
+                    using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                    {   
+                        
+                        command.Parameters.AddWithValue("Date", today);
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
                             int index = 0;
                             while (reader.Read() && index < inv.Length)
                             {
-                                inv[index] = new AdvanceOrderListContents();
-                                inv[index].transID = int.Parse(reader["OrderID"].ToString());
+                                inv[index] = new OrdersTodayList();
+                                inv[index].transID = reader["OrderID"].ToString();
                                 inv[index].Name = reader["CustomerName"].ToString();
-                                inv[index].Type = reader["OrderType"].ToString();
-                                inv[index].OrderPickupDate = reader["PickupDate"].ToString();
-                                inv[index].Price = reader["TotalPrice"].ToString();
-                                inv[index].Downpayment = reader["Downpayment"].ToString();
-
-                                string id = inv[index].transID.ToString();
+                                inv[index].downpayment = reader["Downpayment"].ToString();
+                                inv[index].Total = reader["TotalPrice"].ToString();
+                                inv[index].discount = reader["Discount"].ToString();
 
 
 
-                                flowLayoutPanel1.Controls.Add(inv[index]);
+
+                                double price= double.Parse(reader["TotalPrice"].ToString());
+                                double downpayment = double.Parse(reader["Downpayment"].ToString());
+                                inv[index].Price = price - downpayment;
+
+
+
+
+                                flowLayoutPanel2.Controls.Add(inv[index]);
                                 index++;
                             }
                         }
                     }
 
                 }
-                con.Close();
+              con.Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex.Message);
             }
+        }
+
+        private void flowLayoutPanel2_ControlRemoved(object sender, ControlEventArgs e)
+        {
+           
+        }
+
+        private void label9_TextChanged(object sender, EventArgs e)
+        {   
+
+           if(formload == true)
+            {
+                flowLayoutPanel2.Controls.Clear();
+               flowLayoutPanel1.Controls.Clear();
+                ordertoday();
+                getListOrder();
+            }
+            
+
+        }
+
+        private void AdvanceOrdersList_Load(object sender, EventArgs e)
+        {
+            formload = true;
         }
     }
 }

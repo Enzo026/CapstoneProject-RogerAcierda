@@ -98,7 +98,7 @@ namespace Flowershop_Thesis.OtherForms.AdvanceOrder
 
                  if(type == "Events")
                 {
-                    DateTime cancelperiod = newdate.AddDays(-30);
+                    DateTime cancelperiod = newdate.AddDays(-7);
                     string cday = cancelperiod.Day.ToString();
                     string cmonth = cancelperiod.Month.ToString();
                     string cyear = cancelperiod.Year.ToString();

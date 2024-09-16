@@ -15,6 +15,16 @@ namespace Flowershop_Thesis.OtherForms.AdvanceOrder.EditOrderItems
         public EditPickupDate()
         {
             InitializeComponent();
+            setdate();
+            
+        }
+        public void setdate()
+        {
+            
+            DateTime today = DateTime.Today;
+            DateTime mindate  = today.AddDays(1);
+
+            dateTimePicker1.MinDate = mindate;
         }
     }
 }

@@ -55,6 +55,7 @@
             this.button5.Size = new System.Drawing.Size(65, 25);
             this.button5.TabIndex = 4;
             this.button5.UseVisualStyleBackColor = false;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // OrderPrice
             // 
@@ -73,6 +74,7 @@
             this.CustomerName.Size = new System.Drawing.Size(23, 13);
             this.CustomerName.TabIndex = 0;
             this.CustomerName.Text = "null";
+            this.CustomerName.TextChanged += new System.EventHandler(this.CustomerName_TextChanged);
             // 
             // OrdersTodayList
             // 
@@ -81,6 +83,7 @@
             this.Controls.Add(this.panel6);
             this.Name = "OrdersTodayList";
             this.Size = new System.Drawing.Size(255, 40);
+            this.Load += new System.EventHandler(this.OrdersTodayList_Load);
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
             this.ResumeLayout(false);

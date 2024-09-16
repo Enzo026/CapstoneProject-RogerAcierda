@@ -16,5 +16,10 @@ namespace Flowershop_Thesis.OtherForms.AdvanceOrder.EditOrderItems
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
