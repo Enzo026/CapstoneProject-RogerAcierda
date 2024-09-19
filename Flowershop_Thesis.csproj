@@ -395,6 +395,12 @@
     <Compile Include="OtherForms\StockAdjustments\StockAdjustmentListItems.Designer.cs">
       <DependentUpon>StockAdjustmentListItems.cs</DependentUpon>
     </Compile>
+    <Compile Include="OtherForms\Supplier\Inv_Supplier.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OtherForms\Supplier\Inv_Supplier.Designer.cs">
+      <DependentUpon>Inv_Supplier.cs</DependentUpon>
+    </Compile>
     <Compile Include="OtherForms\TimeDatefrm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -506,6 +512,12 @@
       <DependentUpon>Inventory.cs</DependentUpon>
     </Compile>
     <Compile Include="StorageUnit.cs" />
+    <Compile Include="Temporary Forms\Other_AddSupp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Temporary Forms\Other_AddSupp.Designer.cs">
+      <DependentUpon>Other_AddSupp.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AdminForms\AccountsMaintenance\AccountMaintenance.resx">
       <DependentUpon>AccountMaintenance.cs</DependentUpon>
     </EmbeddedResource>
@@ -665,6 +677,9 @@
     <EmbeddedResource Include="OtherForms\StockAdjustments\StockAdjustmentListItems.resx">
       <DependentUpon>StockAdjustmentListItems.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\Supplier\Inv_Supplier.resx">
+      <DependentUpon>Inv_Supplier.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="OtherForms\TimeDatefrm.resx">
       <DependentUpon>TimeDatefrm.cs</DependentUpon>
     </EmbeddedResource>
@@ -729,6 +744,9 @@
     <EmbeddedResource Include="Temporary Forms\Inventory.resx">
       <DependentUpon>Inventory.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Temporary Forms\Other_AddSupp.resx">
+      <DependentUpon>Other_AddSupp.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Flowershop_Thesis_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -748,6 +766,7 @@
     <None Include="Resources\cancel.png" />
     <None Include="Resources\check.jpg" />
     <None Include="Resources\undraw_New_entries_re_cffr.png" />
+    <None Include="Resources\flower.png" />
     <Content Include="try.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
