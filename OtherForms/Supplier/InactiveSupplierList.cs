@@ -105,7 +105,7 @@ namespace Flowershop_Thesis.OtherForms.Supplier
                         }
 
                         MessageBox.Show("User Activated!");
-                        Admin_Supplier.instance.inactiveCounter.Text = "0";
+                        Admin_Supplier.instance.inactiveCounter.Text = "Null";
                     }
                     else if (numId > 1)
                     {

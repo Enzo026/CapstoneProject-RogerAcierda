@@ -128,7 +128,7 @@ namespace Flowershop_Thesis.AdminForms.ProductMaintenance.Supplier
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error Individual: " + ex.Message);
+                //MessageBox.Show("Error Individual: " + ex.Message);
             }
         }
         public void DisplayDeactivated()
@@ -170,7 +170,7 @@ namespace Flowershop_Thesis.AdminForms.ProductMaintenance.Supplier
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error Displaying Inactivated User: " + ex.Message);
+                //MessageBox.Show("Error Displaying Inactivated User: " + ex.Message);
             }
         }
         public void DeactivateUser()
@@ -239,6 +239,7 @@ namespace Flowershop_Thesis.AdminForms.ProductMaintenance.Supplier
         private void button4_Click(object sender, EventArgs e)
         {
            DeactivateUser();
+            label3.Text = "Null";
         }
         #endregion
 
@@ -264,7 +265,6 @@ namespace Flowershop_Thesis.AdminForms.ProductMaintenance.Supplier
             if(label3.Text == "Null")
             {
                 DisplayList();
-                DisplayDeactivated();
                 pictureBox1.Image = null;
                 label5.Text = null;
                 label7.Text = null;
