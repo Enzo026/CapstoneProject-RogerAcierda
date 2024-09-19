@@ -11,6 +11,7 @@ namespace Capstone_Flowershop
     public static class UserInfo
     {
         public static string Empleyado { get; set; }
+        public static string EmpID { get; set; }
         public static string FullName { get; set; }
 
         public static string AdminCode { get; set; }
@@ -41,6 +42,13 @@ namespace Capstone_Flowershop
         public static bool InitializeDone { get; set; }
         public static bool InsertAdvanceOrder { get; set; }
         public static bool InsertAdvanceOrderItems { get; set; }
+    }
+    public static class ChangeIds
+    {
+        public static string SupplierId { get; set; }
+
+        public static string AccountID { get; set; }
+
     }
     public static class AdvanceOrderPaymentDetails
     {

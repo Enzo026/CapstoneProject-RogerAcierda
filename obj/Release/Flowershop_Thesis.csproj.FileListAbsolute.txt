@@ -587,3 +587,12 @@ D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.pdb
 D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.StockAdjustments.StockAdjustmentListItems.resources
 D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.Supplier.Inv_Supplier.resources
 D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.Temporary_Forms.Other_AddSupp.resources
+D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.AdminForms.ProductMaintenance.Supplier.Admin_Supplier.resources
+D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.Supplier.Admin_SupplierList.resources
+D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.Supplier.InactiveSupplierList.resources
+D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.Supplier.EditSupplier.resources
+D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.Accounts.AccountsList.resources
+D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.Accounts.EditAccount.resources
+D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.Accounts.EditAccountContents.AccountInfo.resources
+D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.Accounts.EditAccountContents.EditRole.resources
+D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.Accounts.EditAccountContents.EditUserInfo.resources

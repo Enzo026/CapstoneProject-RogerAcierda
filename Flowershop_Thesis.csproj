@@ -107,6 +107,12 @@
     <Compile Include="AdminForms\ProductMaintenance\ProductMaintenance.Designer.cs">
       <DependentUpon>ProductMaintenance.cs</DependentUpon>
     </Compile>
+    <Compile Include="AdminForms\ProductMaintenance\Supplier\Admin_Supplier.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminForms\ProductMaintenance\Supplier\Admin_Supplier.Designer.cs">
+      <DependentUpon>Admin_Supplier.cs</DependentUpon>
+    </Compile>
     <Compile Include="AdminForms\Reports\InventoryReport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -184,6 +190,36 @@
     </Compile>
     <Compile Include="MainForms\SalesClerk_BasePlatform.Designer.cs">
       <DependentUpon>SalesClerk_BasePlatform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\Accounts\AccountsList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OtherForms\Accounts\AccountsList.Designer.cs">
+      <DependentUpon>AccountsList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\Accounts\EditAccount.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForms\Accounts\EditAccount.Designer.cs">
+      <DependentUpon>EditAccount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\Accounts\EditAccountContents\AccountInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForms\Accounts\EditAccountContents\AccountInfo.Designer.cs">
+      <DependentUpon>AccountInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\Accounts\EditAccountContents\EditRole.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForms\Accounts\EditAccountContents\EditRole.Designer.cs">
+      <DependentUpon>EditRole.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\Accounts\EditAccountContents\EditUserInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForms\Accounts\EditAccountContents\EditUserInfo.Designer.cs">
+      <DependentUpon>EditUserInfo.cs</DependentUpon>
     </Compile>
     <Compile Include="OtherForms\Restocking\restockinglist.cs">
       <SubType>Form</SubType>
@@ -395,6 +431,24 @@
     <Compile Include="OtherForms\StockAdjustments\StockAdjustmentListItems.Designer.cs">
       <DependentUpon>StockAdjustmentListItems.cs</DependentUpon>
     </Compile>
+    <Compile Include="OtherForms\Supplier\Admin_SupplierList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OtherForms\Supplier\Admin_SupplierList.Designer.cs">
+      <DependentUpon>Admin_SupplierList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\Supplier\EditSupplier.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForms\Supplier\EditSupplier.Designer.cs">
+      <DependentUpon>EditSupplier.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\Supplier\InactiveSupplierList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OtherForms\Supplier\InactiveSupplierList.Designer.cs">
+      <DependentUpon>InactiveSupplierList.cs</DependentUpon>
+    </Compile>
     <Compile Include="OtherForms\Supplier\Inv_Supplier.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -533,6 +587,9 @@
     <EmbeddedResource Include="AdminForms\ProductMaintenance\ProductMaintenance.resx">
       <DependentUpon>ProductMaintenance.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AdminForms\ProductMaintenance\Supplier\Admin_Supplier.resx">
+      <DependentUpon>Admin_Supplier.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AdminForms\Reports\InventoryReport.resx">
       <DependentUpon>InventoryReport.cs</DependentUpon>
     </EmbeddedResource>
@@ -571,6 +628,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainForms\SalesClerk_BasePlatform.resx">
       <DependentUpon>SalesClerk_BasePlatform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\Accounts\AccountsList.resx">
+      <DependentUpon>AccountsList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\Accounts\EditAccount.resx">
+      <DependentUpon>EditAccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\Accounts\EditAccountContents\AccountInfo.resx">
+      <DependentUpon>AccountInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\Accounts\EditAccountContents\EditRole.resx">
+      <DependentUpon>EditRole.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\Accounts\EditAccountContents\EditUserInfo.resx">
+      <DependentUpon>EditUserInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OtherForms\Restocking\restockinglist.resx">
       <DependentUpon>restockinglist.cs</DependentUpon>
@@ -676,6 +748,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="OtherForms\StockAdjustments\StockAdjustmentListItems.resx">
       <DependentUpon>StockAdjustmentListItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\Supplier\Admin_SupplierList.resx">
+      <DependentUpon>Admin_SupplierList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\Supplier\EditSupplier.resx">
+      <DependentUpon>EditSupplier.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\Supplier\InactiveSupplierList.resx">
+      <DependentUpon>InactiveSupplierList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OtherForms\Supplier\Inv_Supplier.resx">
       <DependentUpon>Inv_Supplier.cs</DependentUpon>

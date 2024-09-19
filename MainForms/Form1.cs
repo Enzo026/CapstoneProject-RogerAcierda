@@ -87,7 +87,7 @@ namespace Capstone_Flowershop
                 string Position = sdr["Role"].ToString().Trim();
                 string FirstName = sdr["FirstName"].ToString().Trim();
                 string LastName = sdr["LastName"].ToString().Trim();
-
+                UserInfo.EmpID = iAccID;
 
 
 
@@ -97,6 +97,7 @@ namespace Capstone_Flowershop
                  //   admin.empName = FirstName;
                     UserInfo.Empleyado = FirstName;
                     UserInfo.FullName = FirstName + " " + LastName;
+                    
 
                     this.Hide();
                     admin.Show();
