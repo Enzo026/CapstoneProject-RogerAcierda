@@ -127,5 +127,11 @@ namespace Flowershop_Thesis.Temporary_Forms
                 MessageBox.Show("DeletingItem Failed!" + " : " + ex);
             }
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Other_AddSupp form = new Other_AddSupp();
+            form.Show();
+        }
     }
 }
