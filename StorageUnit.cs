@@ -42,6 +42,10 @@ namespace Capstone_Flowershop
         public static bool InsertAdvanceOrder { get; set; }
         public static bool InsertAdvanceOrderItems { get; set; }
     }
+    public static class ChangeIds
+    {
+        public static string SupplierId { get; set; }
+    }
     public static class AdvanceOrderPaymentDetails
     {
         public static string OrderID { get; set; }

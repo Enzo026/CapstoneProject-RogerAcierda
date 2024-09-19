@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Flowershop_Thesis.AdminForms.ProductMaintenance.Supplier;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,7 +20,8 @@ namespace Capstone_Flowershop.AdminForms.ProductMaintenance
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            Admin_Supplier form = new Admin_Supplier(); 
+            form.ShowDialog();
         }
     }
 }
