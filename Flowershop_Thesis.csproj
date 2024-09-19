@@ -191,6 +191,36 @@
     <Compile Include="MainForms\SalesClerk_BasePlatform.Designer.cs">
       <DependentUpon>SalesClerk_BasePlatform.cs</DependentUpon>
     </Compile>
+    <Compile Include="OtherForms\Accounts\AccountsList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OtherForms\Accounts\AccountsList.Designer.cs">
+      <DependentUpon>AccountsList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\Accounts\EditAccount.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForms\Accounts\EditAccount.Designer.cs">
+      <DependentUpon>EditAccount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\Accounts\EditAccountContents\AccountInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForms\Accounts\EditAccountContents\AccountInfo.Designer.cs">
+      <DependentUpon>AccountInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\Accounts\EditAccountContents\EditRole.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForms\Accounts\EditAccountContents\EditRole.Designer.cs">
+      <DependentUpon>EditRole.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\Accounts\EditAccountContents\EditUserInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForms\Accounts\EditAccountContents\EditUserInfo.Designer.cs">
+      <DependentUpon>EditUserInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="OtherForms\Restocking\restockinglist.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -598,6 +628,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainForms\SalesClerk_BasePlatform.resx">
       <DependentUpon>SalesClerk_BasePlatform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\Accounts\AccountsList.resx">
+      <DependentUpon>AccountsList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\Accounts\EditAccount.resx">
+      <DependentUpon>EditAccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\Accounts\EditAccountContents\AccountInfo.resx">
+      <DependentUpon>AccountInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\Accounts\EditAccountContents\EditRole.resx">
+      <DependentUpon>EditRole.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\Accounts\EditAccountContents\EditUserInfo.resx">
+      <DependentUpon>EditUserInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OtherForms\Restocking\restockinglist.resx">
       <DependentUpon>restockinglist.cs</DependentUpon>

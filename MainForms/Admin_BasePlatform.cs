@@ -20,17 +20,7 @@ namespace Capstone_Flowershop.MainForms
         public Admin_BasePlatform()
         {
             InitializeComponent();
-        }
-        private string EmployeeName;
-        public string empName
-        {
-            get { return EmployeeName; }
-            set
-            {
-                EmployeeName = value; EmpName.Text = value;
-                MessageBox.Show(value);
-            }
-
+           
         }
         private void label2_Click(object sender, EventArgs e)
         {
@@ -78,6 +68,7 @@ namespace Capstone_Flowershop.MainForms
             panel2.Controls.Add(SR);
             SR.BringToFront();
             SR.Show();
+            EmpName.Text = UserInfo.Empleyado;
         }
 
         private void button5_Click(object sender, EventArgs e)

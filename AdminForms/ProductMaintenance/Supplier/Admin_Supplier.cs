@@ -32,6 +32,9 @@ namespace Flowershop_Thesis.AdminForms.ProductMaintenance.Supplier
         public Label SuppType;
         public PictureBox SuppImg;
         public Label inactiveCounter;
+
+
+        bool formisload;
         public Admin_Supplier()
         {
             InitializeComponent();
@@ -49,6 +52,7 @@ namespace Flowershop_Thesis.AdminForms.ProductMaintenance.Supplier
             inactiveCounter = label15;
             button5.Enabled = false;
             button4.Enabled = false;
+
         }
         #region methods
         public void testConnection()
@@ -289,7 +293,7 @@ namespace Flowershop_Thesis.AdminForms.ProductMaintenance.Supplier
             }
 
         }
-        bool formisload;
+        
         private void Admin_Supplier_Load(object sender, EventArgs e)
         {
             formisload = true;
