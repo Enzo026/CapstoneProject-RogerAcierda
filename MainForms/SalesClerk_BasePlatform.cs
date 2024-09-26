@@ -47,9 +47,9 @@ namespace Flowershop_Thesis.MainForms
             string executableDirectory = AppDomain.CurrentDomain.BaseDirectory;
             string parentDirectory = Path.GetFullPath(Path.Combine(executableDirectory, @"..\..\"));
 
-            string databaseFilePath = Path.Combine(parentDirectory, "try.mdf");
+            string databaseFilePath = Path.Combine(parentDirectory, "FlowershopSystemDB.mdf");
 
-           // MessageBox.Show(databaseFilePath);
+            // MessageBox.Show(databaseFilePath);
             // Build the connection string
             string connectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={databaseFilePath};Initial Catalog=try;Integrated Security=True;";
 

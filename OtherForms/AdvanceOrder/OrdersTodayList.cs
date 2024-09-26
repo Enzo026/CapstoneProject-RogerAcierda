@@ -133,7 +133,7 @@ namespace Flowershop_Thesis.OtherForms.AdvanceOrder
             string executableDirectory = AppDomain.CurrentDomain.BaseDirectory;
             string parentDirectory = Path.GetFullPath(Path.Combine(executableDirectory, @"..\..\"));
 
-            string databaseFilePath = Path.Combine(parentDirectory, "try.mdf");
+            string databaseFilePath = Path.Combine(parentDirectory, "FlowershopSystemDB.mdf");
             string connectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={databaseFilePath};Initial Catalog=try;Integrated Security=True;";
 
             using (SqlConnection connection = new SqlConnection(connectionString))

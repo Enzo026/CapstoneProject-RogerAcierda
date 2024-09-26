@@ -48,6 +48,7 @@
             this.button2.TabIndex = 19;
             this.button2.Text = "Cancel";
             this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
@@ -60,6 +61,7 @@
             this.button1.TabIndex = 18;
             this.button1.Text = "Proceed Changes";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label1
             // 
@@ -82,6 +84,7 @@
             this.radioButton1.TabStop = true;
             this.radioButton1.Text = "Sales Clerk";
             this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
             // radioButton2
             // 
@@ -94,7 +97,7 @@
             this.radioButton2.TabStop = true;
             this.radioButton2.Text = "Inventory Clerk";
             this.radioButton2.UseVisualStyleBackColor = true;
-            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
+            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
             // radioButton3
             // 
@@ -107,6 +110,7 @@
             this.radioButton3.TabStop = true;
             this.radioButton3.Text = "Admin";
             this.radioButton3.UseVisualStyleBackColor = true;
+            this.radioButton3.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
             // label2
             // 
@@ -133,6 +137,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "EditRole";
             this.Text = "EditRole";
+            this.Load += new System.EventHandler(this.EditRole_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

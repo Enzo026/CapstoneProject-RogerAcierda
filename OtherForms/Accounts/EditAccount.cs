@@ -27,14 +27,11 @@ namespace Flowershop_Thesis.OtherForms.Accounts
         {
             string executableDirectory = AppDomain.CurrentDomain.BaseDirectory;
             string parentDirectory = Path.GetFullPath(Path.Combine(executableDirectory, @"..\..\"));
+            string databaseFilePath = Path.Combine(parentDirectory, "FlowershopSystemDB.mdf");
 
+            // Build the connection string with explicit pooling parameters
+            string connectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={databaseFilePath};Initial Catalog=try;Integrated Security=True;Pooling=true;Max Pool Size=100;Min Pool Size=5;Connection Lifetime=600;";
 
-            string databaseFilePath = Path.Combine(parentDirectory, "try.mdf");
-
-
-
-            // Build the connection string
-            string connectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={databaseFilePath};Initial Catalog=try;Integrated Security=True;";
 
             // Use the connection string to connect to the database
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -42,19 +39,25 @@ namespace Flowershop_Thesis.OtherForms.Accounts
                 try
                 {
                     connection.Open();
-                    //MessageBox.Show("Database connection opened successfully.");
-  
                     con = new SqlConnection(connectionString);
-                    //label6.Text = connectionString;
+
                     // Perform database operations here
 
                 }
+                catch (SqlException sqlEx)
+                {
+                    // Handle SQL exceptions
+                    MessageBox.Show("SQL error occurred: " + sqlEx.Message);
+                }
                 catch (Exception ex)
                 {
+                    // Handle other exceptions
                     MessageBox.Show("An error occurred: " + ex.Message);
                 }
-            }
+            } // Connection is automatically closed and returned to the pool here
         }
+        
+        
         public EditAccount()
         {
             InitializeComponent();
@@ -94,6 +97,7 @@ namespace Flowershop_Thesis.OtherForms.Accounts
 
         private void EditAccount_Load(object sender, EventArgs e)
         {
+            label3.Text = ChangeIds.AccountID;
             panel2.Controls.Clear();
             EditUserInfo frm = new EditUserInfo();
             frm.TopLevel = false;

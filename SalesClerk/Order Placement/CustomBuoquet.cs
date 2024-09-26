@@ -97,7 +97,7 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement
             string executableDirectory = AppDomain.CurrentDomain.BaseDirectory;
             string parentDirectory = Path.GetFullPath(Path.Combine(executableDirectory, @"..\..\"));
 
-            string databaseFilePath = Path.Combine(parentDirectory, "try.mdf");
+            string databaseFilePath = Path.Combine(parentDirectory, "FlowershopSystemDB.mdf");
 
             // MessageBox.Show(databaseFilePath);
             // Build the connection string
@@ -375,6 +375,7 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement
             try
             {
                 flowLayoutPanel1.Controls.Clear();
+
                 con.Open();
                 string countQuery = "select count(*) from ItemInventory where ItemQuantity > 0 AND ItemType = 'Individual';";
                 using (SqlCommand countCommand = new SqlCommand(countQuery, con))

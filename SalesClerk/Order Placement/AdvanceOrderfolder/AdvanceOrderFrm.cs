@@ -38,7 +38,7 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement.AdvanceOrderfolder
             string executableDirectory = AppDomain.CurrentDomain.BaseDirectory;
             string parentDirectory = Path.GetFullPath(Path.Combine(executableDirectory, @"..\..\"));
 
-            string databaseFilePath = Path.Combine(parentDirectory, "try.mdf");
+            string databaseFilePath = Path.Combine(parentDirectory, "FlowershopSystemDB.mdf");
 
             // MessageBox.Show(databaseFilePath);
             // Build the connection string

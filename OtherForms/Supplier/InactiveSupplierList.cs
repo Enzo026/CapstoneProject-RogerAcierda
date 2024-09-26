@@ -1,4 +1,5 @@
 ﻿using Capstone_Flowershop;
+using Capstone_Flowershop.AdminForms.AccountsMaintenance;
 using Flowershop_Thesis.AdminForms.ProductMaintenance.Supplier;
 using System;
 using System.Collections.Generic;
@@ -26,7 +27,7 @@ namespace Flowershop_Thesis.OtherForms.Supplier
             string executableDirectory = AppDomain.CurrentDomain.BaseDirectory;
             string parentDirectory = Path.GetFullPath(Path.Combine(executableDirectory, @"..\..\"));
 
-            string databaseFilePath = Path.Combine(parentDirectory, "try.mdf");
+            string databaseFilePath = Path.Combine(parentDirectory, "FlowershopSystemDB.mdf");
 
             // MessageBox.Show(databaseFilePath);
             // Build the connection string
