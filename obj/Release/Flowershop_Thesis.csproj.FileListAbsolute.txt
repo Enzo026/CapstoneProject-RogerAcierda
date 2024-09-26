@@ -498,8 +498,6 @@ F:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.Advance
 F:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.AdvanceOrder.EditOrderItems.SeeItems.resources
 F:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.AdvanceOrder.OrdersTodayList.resources
 F:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.AdvanceOrder.EditOrderItems.AdvanceOrderFinishPayment.resources
-D:\CapstoneProject-RogerAcierda\bin\Release\try.mdf
-D:\CapstoneProject-RogerAcierda\bin\Release\try_log.ldf
 D:\CapstoneProject-RogerAcierda\bin\Release\Flowershop_Thesis.exe.config
 D:\CapstoneProject-RogerAcierda\bin\Release\Flowershop_Thesis.exe.manifest
 D:\CapstoneProject-RogerAcierda\bin\Release\Flowershop_Thesis.application
@@ -596,3 +594,18 @@ D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.Account
 D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.Accounts.EditAccountContents.AccountInfo.resources
 D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.Accounts.EditAccountContents.EditRole.resources
 D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.Accounts.EditAccountContents.EditUserInfo.resources
+D:\CapstoneProject-RogerAcierda\bin\Release\FlowershopSystemDB.mdf
+D:\CapstoneProject-RogerAcierda\bin\Release\FlowershopSystemDB_log.ldf
+D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.ProductMaintenance.ProductMaintenanceListItem.resources
+D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.ProductMaintenance.AddProduct.resources
+D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.ProductMaintenance.AddMaterials.resources
+D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.ProductMaintenance.PickAddProduct.resources
+D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.Accounts.DeactivatedAccounts.resources
+D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.AdminDashboard.ReportTabContents.resources
+D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.ProductMaintenance.FlowerInformation.resources
+D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.ProductMaintenance.DeactivatedItemsFrm.resources
+D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.ProductMaintenance.DeactivatedListItems.resources
+D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.ProductMaintenance.MaterialInformation.resources
+D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.ProductMaintenance.EditMaterials.resources
+D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.ProductMaintenance.EditFlower.resources
+D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.Temporary_Forms.TryCamera.resources

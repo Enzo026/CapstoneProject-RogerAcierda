@@ -46,10 +46,14 @@ namespace Capstone_Flowershop
     public static class ChangeIds
     {
         public static string SupplierId { get; set; }
-
+        public static string ItemID { get; set; }
         public static string AccountID { get; set; }
+        public static string ItemType { get; set;}
+
+ 
 
     }
+
     public static class AdvanceOrderPaymentDetails
     {
         public static string OrderID { get; set; }

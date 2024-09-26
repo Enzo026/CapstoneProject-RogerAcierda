@@ -3,6 +3,7 @@ using Capstone_Flowershop.AdminForms.History_Logs;
 using Capstone_Flowershop.AdminForms.ProductMaintenance;
 using Capstone_Flowershop.AdminForms.Reports.SalesReports;
 using Capstone_Flowershop.AdminForms.System_Maintenance;
+using Flowershop_Thesis.OtherForms.AdminDashboard;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -62,13 +63,10 @@ namespace Capstone_Flowershop.MainForms
 
         private void Admin_BasePlatform_Load(object sender, EventArgs e)
         {
-            panel2.Controls.Clear();
-            Reports SR = new Reports();
-            SR.TopLevel = false;
-            panel2.Controls.Add(SR);
-            SR.BringToFront();
-            SR.Show();
-            EmpName.Text = UserInfo.Empleyado;
+            EmpName.Text = UserInfo.Empleyado + ", Administrator";
+            label8.Text = UserInfo.Empleyado + ", Administrator";
+            DateTime date = DateTime.Now;
+            label7.Text = date.ToString() ;
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -99,6 +97,12 @@ namespace Capstone_Flowershop.MainForms
             panel2.Controls.Add(SR);
             SR.BringToFront();
             SR.Show();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            ReportTabContents dropdown = new ReportTabContents();
+            dropdown.Show();
         }
     }
 }

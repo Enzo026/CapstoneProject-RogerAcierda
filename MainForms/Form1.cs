@@ -24,14 +24,52 @@ namespace Capstone_Flowershop
         SqlCommand cmd = new SqlCommand();
         SqlDataReader sdr;
         SqlDataAdapter sda;
+
+        string connectionString;
         public Form1()
         {
             InitializeComponent();
-            testConnection();
+            LocalDBConnection();
+            //oldconnection();
            
         }
+        public void LocalDBConnection()
+        {
+            string executableDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            string parentDirectory = Path.GetFullPath(Path.Combine(executableDirectory, @"..\..\"));
+            string databaseFilePath = Path.Combine(parentDirectory, "FlowershopSystemDB.mdf");
 
-        public void testConnection()
+            // Build the connection string with explicit pooling parameters
+             connectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={databaseFilePath};Initial Catalog=try;Integrated Security=True;Pooling=true;Max Pool Size=100;Min Pool Size=5;Connection Lifetime=600;";
+
+           
+            // Use the connection string to connect to the database
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    label6.Text = "Database Connected";
+                    label7.Text = databaseFilePath;
+                    con = new SqlConnection(connectionString);
+
+                    // Perform database operations here
+
+                }
+                catch (SqlException sqlEx)
+                {
+                    // Handle SQL exceptions
+                    MessageBox.Show("SQL error occurred: " + sqlEx.Message);
+                }
+                catch (Exception ex)
+                {
+                    // Handle other exceptions
+                    MessageBox.Show("An error occurred: " + ex.Message);
+                }
+            } // Connection is automatically closed and returned to the pool here
+        }
+
+        public void testConnections()
         {
             string executableDirectory = AppDomain.CurrentDomain.BaseDirectory;
             string parentDirectory = Path.GetFullPath(Path.Combine(executableDirectory, @"..\..\"));
@@ -64,73 +102,84 @@ namespace Capstone_Flowershop
                 }
             }
         }
+        //create a method name ewan to show a messagebox upon upon clicking button 1
 
+
+        public void oldconnection()
+        {
+            string conn = "Data Source=DESKTOP-IH4V487\\NEWMSSQL;Initial Catalog=try;Integrated Security=True";
+            //con = new SqlConnection(conn);
+        }
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }
 
         private void button1_Click(object sender, EventArgs e)
-        {
-            con.Open();
-
-            SqlCommand cmd = new SqlCommand("SELECT AccountID,Username,Password,Role,FirstName,LastName from UserAccounts where Username =@User", con);
-            cmd.Parameters.AddWithValue("User", textBox1.Text.Trim());
-            sdr = cmd.ExecuteReader();
-
-
-            if (sdr.Read())
+        {   
+            using(SqlConnection conn = new SqlConnection(connectionString))
             {
-                string iAccID = sdr["AccountID"].ToString().Trim();
-                string iUserName = sdr["Username"].ToString().Trim();
-                string iPassword = sdr["Password"].ToString().Trim();
-                string Position = sdr["Role"].ToString().Trim();
-                string FirstName = sdr["FirstName"].ToString().Trim();
-                string LastName = sdr["LastName"].ToString().Trim();
-                UserInfo.EmpID = iAccID;
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand("SELECT AccountID,Username,Password,Role,FirstName,LastName from UserAccounts where Username =@User", conn);
+                cmd.Parameters.AddWithValue("User", textBox1.Text.Trim());
+                sdr = cmd.ExecuteReader();
 
 
-
-                if (textBox1.Text == iUserName && textBox2.Text == iPassword && Position == "Admin")
+                if (sdr.Read())
                 {
-                    Admin_BasePlatform admin = new Admin_BasePlatform();
-                 //   admin.empName = FirstName;
-                    UserInfo.Empleyado = FirstName;
-                    UserInfo.FullName = FirstName + " " + LastName;
-                    
+                    string iAccID = sdr["AccountID"].ToString().Trim();
+                    string iUserName = sdr["Username"].ToString().Trim();
+                    string iPassword = sdr["Password"].ToString().Trim();
+                    string Position = sdr["Role"].ToString().Trim();
+                    string FirstName = sdr["FirstName"].ToString().Trim();
+                    string LastName = sdr["LastName"].ToString().Trim();
 
-                    this.Hide();
-                    admin.Show();
 
-                }
-                else if (textBox1.Text == iUserName && textBox2.Text == iPassword && Position == "SalesClerk")
-                {
-                    SalesClerk_BasePlatform admin = new SalesClerk_BasePlatform();
-                 //   admin.empName = FirstName;
 
-                    UserInfo.Empleyado = FirstName;
-                    this.Hide();
-                    admin.Show();
-                }
-                else if (textBox1.Text == iUserName && textBox2.Text == iPassword && Position == "InventoryClerk")
-                {
-                    InventoryClerk_BasePlatform admin = new InventoryClerk_BasePlatform();
-               //     admin.empName = FirstName;
-                    UserInfo.Empleyado = FirstName;
-                    this.Hide();
-                    admin.Show();
+
+                    if (textBox1.Text == iUserName && textBox2.Text == iPassword && Position == "Admin")
+                    {
+                        Admin_BasePlatform admin = new Admin_BasePlatform();
+                        //   admin.empName = FirstName;
+                        UserInfo.Empleyado = FirstName;
+                        UserInfo.FullName = FirstName + " " + LastName;
+                        UserInfo.EmpID = iAccID;
+
+                        this.Hide();
+                        admin.Show();
+
+                    }
+                    else if (textBox1.Text == iUserName && textBox2.Text == iPassword && Position == "SalesClerk")
+                    {
+                        SalesClerk_BasePlatform admin = new SalesClerk_BasePlatform();
+                        //   admin.empName = FirstName;
+
+                        UserInfo.Empleyado = FirstName;
+                        this.Hide();
+                        admin.Show();
+                    }
+                    else if (textBox1.Text == iUserName && textBox2.Text == iPassword && Position == "InventoryClerk")
+                    {
+                        InventoryClerk_BasePlatform admin = new InventoryClerk_BasePlatform();
+                        //     admin.empName = FirstName;
+                        UserInfo.Empleyado = FirstName;
+                        this.Hide();
+                        admin.Show();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Invalid account");
+                    }
+
                 }
                 else
                 {
-                    MessageBox.Show("Invalid account");
+                    MessageBox.Show("No account Found");
                 }
-
+               
             }
-            else
-            {
-                MessageBox.Show("No account Found");
-            }
-            con.Close();
+            
 
 
         }
@@ -144,8 +193,8 @@ namespace Capstone_Flowershop
 
         private void button3_Click(object sender, EventArgs e)
         {
-            AddInventorie inventory = new AddInventorie();
-            inventory.Show();
+            TryCamera frm = new TryCamera();
+            frm.Show();
             this.Hide();
         }
     }

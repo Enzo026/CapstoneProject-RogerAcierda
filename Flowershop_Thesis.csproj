@@ -197,6 +197,12 @@
     <Compile Include="OtherForms\Accounts\AccountsList.Designer.cs">
       <DependentUpon>AccountsList.cs</DependentUpon>
     </Compile>
+    <Compile Include="OtherForms\Accounts\DeactivatedAccounts.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OtherForms\Accounts\DeactivatedAccounts.Designer.cs">
+      <DependentUpon>DeactivatedAccounts.cs</DependentUpon>
+    </Compile>
     <Compile Include="OtherForms\Accounts\EditAccount.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -220,6 +226,72 @@
     </Compile>
     <Compile Include="OtherForms\Accounts\EditAccountContents\EditUserInfo.Designer.cs">
       <DependentUpon>EditUserInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\AdminDashboard\ReportTabContents.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForms\AdminDashboard\ReportTabContents.Designer.cs">
+      <DependentUpon>ReportTabContents.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\ProductMaintenance\AddMaterials.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForms\ProductMaintenance\AddMaterials.Designer.cs">
+      <DependentUpon>AddMaterials.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\ProductMaintenance\AddProduct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForms\ProductMaintenance\AddProduct.Designer.cs">
+      <DependentUpon>AddProduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\ProductMaintenance\DeactivatedItemsFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForms\ProductMaintenance\DeactivatedItemsFrm.Designer.cs">
+      <DependentUpon>DeactivatedItemsFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\ProductMaintenance\DeactivatedListItems.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OtherForms\ProductMaintenance\DeactivatedListItems.Designer.cs">
+      <DependentUpon>DeactivatedListItems.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\ProductMaintenance\EditFlower.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForms\ProductMaintenance\EditFlower.Designer.cs">
+      <DependentUpon>EditFlower.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\ProductMaintenance\EditMaterials.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForms\ProductMaintenance\EditMaterials.Designer.cs">
+      <DependentUpon>EditMaterials.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\ProductMaintenance\FlowerInformation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForms\ProductMaintenance\FlowerInformation.Designer.cs">
+      <DependentUpon>FlowerInformation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\ProductMaintenance\MaterialInformation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForms\ProductMaintenance\MaterialInformation.Designer.cs">
+      <DependentUpon>MaterialInformation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\ProductMaintenance\PickAddProduct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForms\ProductMaintenance\PickAddProduct.Designer.cs">
+      <DependentUpon>PickAddProduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\ProductMaintenance\ProductMaintenanceList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OtherForms\ProductMaintenance\ProductMaintenanceList.Designer.cs">
+      <DependentUpon>ProductMaintenanceList.cs</DependentUpon>
     </Compile>
     <Compile Include="OtherForms\Restocking\restockinglist.cs">
       <SubType>Form</SubType>
@@ -572,6 +644,12 @@
     <Compile Include="Temporary Forms\Other_AddSupp.Designer.cs">
       <DependentUpon>Other_AddSupp.cs</DependentUpon>
     </Compile>
+    <Compile Include="Temporary Forms\TryCamera.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Temporary Forms\TryCamera.Designer.cs">
+      <DependentUpon>TryCamera.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AdminForms\AccountsMaintenance\AccountMaintenance.resx">
       <DependentUpon>AccountMaintenance.cs</DependentUpon>
     </EmbeddedResource>
@@ -632,6 +710,9 @@
     <EmbeddedResource Include="OtherForms\Accounts\AccountsList.resx">
       <DependentUpon>AccountsList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\Accounts\DeactivatedAccounts.resx">
+      <DependentUpon>DeactivatedAccounts.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="OtherForms\Accounts\EditAccount.resx">
       <DependentUpon>EditAccount.cs</DependentUpon>
     </EmbeddedResource>
@@ -643,6 +724,39 @@
     </EmbeddedResource>
     <EmbeddedResource Include="OtherForms\Accounts\EditAccountContents\EditUserInfo.resx">
       <DependentUpon>EditUserInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\AdminDashboard\ReportTabContents.resx">
+      <DependentUpon>ReportTabContents.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\ProductMaintenance\AddMaterials.resx">
+      <DependentUpon>AddMaterials.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\ProductMaintenance\AddProduct.resx">
+      <DependentUpon>AddProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\ProductMaintenance\DeactivatedItemsFrm.resx">
+      <DependentUpon>DeactivatedItemsFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\ProductMaintenance\DeactivatedListItems.resx">
+      <DependentUpon>DeactivatedListItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\ProductMaintenance\EditFlower.resx">
+      <DependentUpon>EditFlower.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\ProductMaintenance\EditMaterials.resx">
+      <DependentUpon>EditMaterials.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\ProductMaintenance\FlowerInformation.resx">
+      <DependentUpon>FlowerInformation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\ProductMaintenance\MaterialInformation.resx">
+      <DependentUpon>MaterialInformation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\ProductMaintenance\PickAddProduct.resx">
+      <DependentUpon>PickAddProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\ProductMaintenance\ProductMaintenanceList.resx">
+      <DependentUpon>ProductMaintenanceList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OtherForms\Restocking\restockinglist.resx">
       <DependentUpon>restockinglist.cs</DependentUpon>
@@ -828,6 +942,9 @@
     <EmbeddedResource Include="Temporary Forms\Other_AddSupp.resx">
       <DependentUpon>Other_AddSupp.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Temporary Forms\TryCamera.resx">
+      <DependentUpon>TryCamera.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Flowershop_Thesis_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -848,12 +965,12 @@
     <None Include="Resources\check.jpg" />
     <None Include="Resources\undraw_New_entries_re_cffr.png" />
     <None Include="Resources\flower.png" />
-    <Content Include="try.mdf">
+    <Content Include="FlowershopSystemDB.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="try_log.ldf">
+    <Content Include="FlowershopSystemDB_log.ldf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>try.mdf</DependentUpon>
+      <DependentUpon>FlowershopSystemDB.mdf</DependentUpon>
     </Content>
     <None Include="Resources\basket1.png" />
     <None Include="Resources\b1_24x24.png" />
