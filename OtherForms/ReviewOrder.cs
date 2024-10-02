@@ -16,16 +16,15 @@ using System.Windows.Forms;
 using static System.Resources.ResXFileRef;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
+using Flowershop_Thesis;
+using Capstone_Flowershop;
 
 namespace Flowershop_Thesis.OtherForms
 {
     public partial class ReviewOrder : Form
     {
-        SqlConnection con = new SqlConnection("Data Source=DESKTOP-IH4V487\\SQLEXPRESS;Initial Catalog=CapstoneProject;Integrated Security=True");
-        SqlConnection con2 = new SqlConnection("Data Source=DESKTOP-IH4V487\\SQLEXPRESS;Initial Catalog=CapstoneProject;Integrated Security=True");
         SqlCommand cmd = new SqlCommand();
-        SqlDataReader sdr;
-        SqlDataAdapter sda;
+
         public static ReviewOrder instance;
         public System.Windows.Forms.Label counter;
         public System.Windows.Forms.Button Proceed;
@@ -35,7 +34,6 @@ namespace Flowershop_Thesis.OtherForms
         public ReviewOrder()
         {
             InitializeComponent();
-            testConnection();
             instance = this;
             counter = counterlbl;
             Proceed = ProceedBtn; 
@@ -49,88 +47,53 @@ namespace Flowershop_Thesis.OtherForms
            
         }
 
-        public void testConnection()
-        {
-            string executableDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            string parentDirectory = Path.GetFullPath(Path.Combine(executableDirectory, @"..\..\"));
-
-            string databaseFilePath = Path.Combine(parentDirectory, "FlowershopSystemDB.mdf");
-
-            // MessageBox.Show(databaseFilePath);
-            // Build the connection string
-            string connectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={databaseFilePath};Initial Catalog=try;Integrated Security=True;";
-
-            // Use the connection string to connect to the database
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                try
-                {
-                    connection.Open();
-                    con = new SqlConnection(connectionString);
-                    con2 = new SqlConnection(connectionString);
-
-                    // Perform database operations here
-
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("An error occurred: " + ex.Message);
-                }
-            }
-        }
         private void getlist()
         {
           
             try
             {   
                 flowLayoutPanel1.Controls.Clear();
-                con.Open();
-                string countQuery = "select count(*) from ServingCart;";
-                using (SqlCommand countCommand = new SqlCommand(countQuery, con))
+                using(SqlConnection con = new SqlConnection(Connect.connectionString))
                 {
-                    int rowCount = (int)countCommand.ExecuteScalar();
-                    int cartlbl = int.Parse(counterlbl.Text);
-                    if (rowCount != cartlbl)
+                    con.Open();
+                    string countQuery = "select count(*) from ServingCart;";
+                    using (SqlCommand countCommand = new SqlCommand(countQuery, con))
                     {
-                        counterlbl.Text = rowCount.ToString();
-                        OrderContents_lbl.Text = rowCount.ToString();
-                    }
-
-                    ReviewOrderList[] inv = new ReviewOrderList[rowCount];
-                    string sqlQuery = "SELECT * FROM ServingCart";
-                    using (SqlCommand command = new SqlCommand(sqlQuery, con))
-                    {
-                        using (SqlDataReader reader = command.ExecuteReader())
+                        int rowCount = (int)countCommand.ExecuteScalar();
+                        int cartlbl = int.Parse(counterlbl.Text);
+                        if (rowCount != cartlbl)
                         {
-                            int index = 0;
-                            while (reader.Read() && index < inv.Length)
+                            counterlbl.Text = rowCount.ToString();
+                            OrderContents_lbl.Text = rowCount.ToString();
+                        }
+
+                        ReviewOrderList[] inv = new ReviewOrderList[rowCount];
+                        string sqlQuery = "SELECT * FROM ServingCart";
+                        using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                        {
+                            using (SqlDataReader reader = command.ExecuteReader())
                             {
-                                inv[index] = new ReviewOrderList();
-                                inv[index].ItemID = reader["ItemID"].ToString();
-                                inv[index].Name = reader["ItemName"].ToString();
+                                int index = 0;
+                                while (reader.Read() && index < inv.Length)
+                                {
+                                    inv[index] = new ReviewOrderList();
+                                    inv[index].ItemID = reader["ItemID"].ToString();
+                                    inv[index].Name = reader["ItemName"].ToString();
 
-                                int priceIndex = reader.GetOrdinal("OrderPrice");
-                                inv[index].Price = reader.IsDBNull(priceIndex) ? 0 : reader.GetInt32(priceIndex);
-                                int CI = reader.GetOrdinal("CartID");
-                                inv[index].cartID = reader.IsDBNull(CI) ? 0 : reader.GetInt32(CI);
-                                int StockQuantity = reader.GetOrdinal("OrderQty");
-                                inv[index].qty = reader.IsDBNull(StockQuantity) ? 0 : reader.GetInt32(StockQuantity);
+                                    int priceIndex = reader.GetOrdinal("OrderPrice");
+                                    inv[index].Price = reader.IsDBNull(priceIndex) ? 0 : reader.GetInt32(priceIndex);
+                                    int CI = reader.GetOrdinal("CartID");
+                                    inv[index].cartID = reader.IsDBNull(CI) ? 0 : reader.GetInt32(CI);
+                                    int StockQuantity = reader.GetOrdinal("OrderQty");
+                                    inv[index].qty = reader.IsDBNull(StockQuantity) ? 0 : reader.GetInt32(StockQuantity);
 
-                                flowLayoutPanel1.Controls.Add(inv[index]);
-                                index++;
+                                    flowLayoutPanel1.Controls.Add(inv[index]);
+                                    index++;
+                                }
                             }
                         }
                     }
-
-
                 }
-
-
-
-
-                con.Close();
-
-
             }
             catch (Exception ex)
             {
@@ -301,29 +264,30 @@ namespace Flowershop_Thesis.OtherForms
         public void getPrice()
         {
             try
-            {
-                con.Open();
-                using (SqlCommand command = new SqlCommand("SELECT SUM(OrderPrice) AS TotalPrice FROM ServingCart", con))
+            {   
+                using(SqlConnection con = new SqlConnection(Connect.connectionString))
                 {
-                    
-                    using (SqlDataReader reader = command.ExecuteReader())
+                    con.Open();
+                    using (SqlCommand command = new SqlCommand("SELECT SUM(OrderPrice) AS TotalPrice FROM ServingCart", con))
                     {
 
-                        while (reader.Read())
+                        using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            Amount_lbl.Text = reader["TotalPrice"].ToString();
+
+                            while (reader.Read())
+                            {
+                                Amount_lbl.Text = reader["TotalPrice"].ToString();
+                            }
+                        }
+
+
+                        if (Discount_txtbox.Text.Length == 0)
+                        {
+                            Discount_lbl.Text = "0";
+                            TotalAmountlbl.Text = Amount_lbl.Text;
                         }
                     }
-                    
-
-                    if(Discount_txtbox.Text.Length == 0)
-                    {
-                        Discount_lbl.Text = "0";
-                        TotalAmountlbl.Text = Amount_lbl.Text;
-                    }
-
                 }
-                con.Close();
             }
             catch (Exception ex)
             {
@@ -403,64 +367,54 @@ namespace Flowershop_Thesis.OtherForms
             {
 
                 //deduction of items ordered in Cart
-                con.Open();
-                using (SqlCommand CartItems = new SqlCommand("Select Count(*) from ServingCart", con))
+                using (SqlConnection con = new SqlConnection(Connect.connectionString))
                 {
-                    int CartCounter = (int)CartItems.ExecuteScalar();
-
-                    int counter = int.Parse(counterlbl.Text);
-                    if (CartCounter != counter)
+                    con.Open();
+                    using (SqlCommand CartItems = new SqlCommand("Select Count(*) from ServingCart", con))
                     {
-                        label4.Text = CartCounter.ToString();
-                    }
+                        int CartCounter = (int)CartItems.ExecuteScalar();
 
-
-
-                    CartItems[] inv = new CartItems[CartCounter];
-                    string sqlQuery = "SELECT * FROM ServingCart";
-                    using (SqlCommand command = new SqlCommand(sqlQuery, con))
-                    {
-                        using (SqlDataReader reader = command.ExecuteReader())
+                        int counter = int.Parse(counterlbl.Text);
+                        if (CartCounter != counter)
                         {
-                            int index = 0;
-                            while (reader.Read() && index < inv.Length)
+                            label4.Text = CartCounter.ToString();
+                        }
+
+                        CartItems[] inv = new CartItems[CartCounter];
+                        string sqlQuery = "SELECT * FROM ServingCart";
+                        using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                        {
+                            using (SqlDataReader reader = command.ExecuteReader())
                             {
-                                int ID = reader.GetOrdinal("ItemID");
-                                int ItemID = reader.IsDBNull(ID) ? 0 : reader.GetInt32(ID);
-
-                                int StockQuantity = reader.GetOrdinal("OrderQty");
-                                int qty = reader.IsDBNull(StockQuantity) ? 0 : reader.GetInt32(StockQuantity);
-
-                                string updateQuery = "UPDATE ItemInventory SET ItemQuantity = ItemQuantity - @Quantity WHERE ItemID = @SID;";
-                                con2.Open();
-                                using (SqlCommand updateCommand = new SqlCommand(updateQuery, con2))
+                                int index = 0;
+                                while (reader.Read() && index < inv.Length)
                                 {
+                                    int ID = reader.GetOrdinal("ItemID");
+                                    int ItemID = reader.IsDBNull(ID) ? 0 : reader.GetInt32(ID);
 
-                                    updateCommand.Parameters.AddWithValue("@Quantity", qty);
-                                    updateCommand.Parameters.AddWithValue("@SID", ItemID);
+                                    int StockQuantity = reader.GetOrdinal("OrderQty");
+                                    int qty = reader.IsDBNull(StockQuantity) ? 0 : reader.GetInt32(StockQuantity);
 
-                                    updateCommand.ExecuteNonQuery();
+                                    string updateQuery = "UPDATE ItemInventory SET ItemQuantity = ItemQuantity - @Quantity WHERE ItemID = @SID;";
+                               
+                                    using (SqlCommand updateCommand = new SqlCommand(updateQuery, con))
+                                    {
 
+                                        updateCommand.Parameters.AddWithValue("@Quantity", qty);
+                                        updateCommand.Parameters.AddWithValue("@SID", ItemID);
+
+                                        updateCommand.ExecuteNonQuery();
+
+                                    }
+                                    index++;
                                 }
-                                con2.Close();
-
-                                index++;
                             }
                         }
                     }
-
+                    //deletion of cart items
+                    cmd = new SqlCommand("TRUNCATE TABLE ServingCart", con);
+                    cmd.ExecuteNonQuery();
                 }
-
-                con.Close();
-
-
-                con.Open();  //deletion of cart items
-                cmd = new SqlCommand("TRUNCATE TABLE ServingCart", con);
-                cmd.ExecuteNonQuery();
-                con.Close();
-
-
-
             }
             catch (Exception ex)
             {
@@ -470,88 +424,75 @@ namespace Flowershop_Thesis.OtherForms
         public void TransactionItemsInput()
         {
             try
-            {
-                int TransId;
-                con.Open();
-                using (SqlCommand TransactionID = new SqlCommand("Select TransactionID from transactionstbl where Status = 'Processing' and CustomerName = '" + CustName_txtbox.Text + "';", con))
+            {   
+                using(SqlConnection con = new SqlConnection(Connect.connectionString))
                 {
-                    TransId = (int)TransactionID.ExecuteScalar();
-                    MessageBox.Show(TransId.ToString());
-                }
-                con.Close();
-
-                //deduction of items ordered in Cart
-                con.Open();
-                using (SqlCommand CartItems = new SqlCommand("Select Count(*) from ServingCart", con))
-                {
-                    int CartCounter = (int)CartItems.ExecuteScalar();
-
-                    int counter = int.Parse(counterlbl.Text);
-                    if (CartCounter != counter)
+                    int TransId;
+                    con.Open();
+                    using (SqlCommand TransactionID = new SqlCommand("Select TransactionID from transactionstbl where Status = 'Processing' and CustomerName = '" + CustName_txtbox.Text + "';", con))
                     {
-                        label4.Text = CartCounter.ToString();
+                        TransId = (int)TransactionID.ExecuteScalar();
+                        MessageBox.Show(TransId.ToString());
                     }
 
 
+                    //deduction of items ordered in Cart
 
-                    CartItems[] inv = new CartItems[CartCounter];
-                    string sqlQuery = "SELECT * FROM ServingCart";
-                    using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                    using (SqlCommand CartItems = new SqlCommand("Select Count(*) from ServingCart", con))
                     {
-                        using (SqlDataReader reader = command.ExecuteReader())
+                        int CartCounter = (int)CartItems.ExecuteScalar();
+
+                        int counter = int.Parse(counterlbl.Text);
+                        if (CartCounter != counter)
                         {
-                            int index = 0;
-                            while (reader.Read() && index < inv.Length)
+                            label4.Text = CartCounter.ToString();
+                        }
+
+
+
+                        CartItems[] inv = new CartItems[CartCounter];
+                        string sqlQuery = "SELECT * FROM ServingCart";
+                        using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                        {
+                            using (SqlDataReader reader = command.ExecuteReader())
                             {
-                                int ID = reader.GetOrdinal("ItemID");
-                                int ItemID = reader.IsDBNull(ID) ? 0 : reader.GetInt32(ID);
+                                int index = 0;
+                                while (reader.Read() && index < inv.Length)
+                                {
+                                    int ID = reader.GetOrdinal("ItemID");
+                                    int ItemID = reader.IsDBNull(ID) ? 0 : reader.GetInt32(ID);
 
-                                String ItemName = reader["ItemName"].ToString();
-                                String OrderType = reader["OrderType"].ToString();
+                                    String ItemName = reader["ItemName"].ToString();
+                                    String OrderType = reader["OrderType"].ToString();
 
-                                int priceIndex = reader.GetOrdinal("OrderPrice");
-                                int Price = reader.IsDBNull(priceIndex) ? 0 : reader.GetInt32(priceIndex);
+                                    int priceIndex = reader.GetOrdinal("OrderPrice");
+                                    int Price = reader.IsDBNull(priceIndex) ? 0 : reader.GetInt32(priceIndex);
 
-                                int StockQuantity = reader.GetOrdinal("OrderQty");
-                                int qty = reader.IsDBNull(StockQuantity) ? 0 : reader.GetInt32(StockQuantity);
+                                    int StockQuantity = reader.GetOrdinal("OrderQty");
+                                    int qty = reader.IsDBNull(StockQuantity) ? 0 : reader.GetInt32(StockQuantity);
 
-                               
-                                con2.Open();
-                                cmd = new SqlCommand("INSERT INTO SalesItemTbl(ItemID,TransactionID,ItemName,ItemQuantity,ItemType,ItemPrice)Values" +
-                                            "(@ItemID,@TransID,@Name,@Qty,@Type,@Price);", con2);
+                                    cmd = new SqlCommand("INSERT INTO SalesItemTbl(ItemID,TransactionID,ItemName,ItemQuantity,ItemType,ItemPrice)Values" +
+                                                "(@ItemID,@TransID,@Name,@Qty,@Type,@Price);", con);
 
-                                cmd.Parameters.AddWithValue("@Name", ItemName);
-                                cmd.Parameters.AddWithValue("@Qty", qty);
-                                cmd.Parameters.AddWithValue("@Type", OrderType);
-                                cmd.Parameters.AddWithValue("@Price", Price);
-                                cmd.Parameters.AddWithValue("@ItemID", ItemID);
-                                cmd.Parameters.AddWithValue("@TransID", TransId);
-  
+                                    cmd.Parameters.AddWithValue("@Name", ItemName);
+                                    cmd.Parameters.AddWithValue("@Qty", qty);
+                                    cmd.Parameters.AddWithValue("@Type", OrderType);
+                                    cmd.Parameters.AddWithValue("@Price", Price);
+                                    cmd.Parameters.AddWithValue("@ItemID", ItemID);
+                                    cmd.Parameters.AddWithValue("@TransID", TransId);
 
-                                cmd.ExecuteNonQuery();
-                                con2.Close();
 
-                                //string updateQuery = "UPDATE ItemInventory SET ItemQuantity = ItemQuantity - @Quantity WHERE ItemID = @SID;";
-                                //con2.Open();
-                                //using (SqlCommand updateCommand = new SqlCommand(updateQuery, con2))
-                                //{
+                                    cmd.ExecuteNonQuery();
 
-                                //    updateCommand.Parameters.AddWithValue("@Quantity", qty);
-                                //    updateCommand.Parameters.AddWithValue("@SID", ItemID);
 
-                                //    updateCommand.ExecuteNonQuery();
-
-                                //}
-                                //con2.Close();
-
-                                index++;
+                                    index++;
+                                }
                             }
                         }
-                    }
 
+                    }
                 }
 
-                con.Close();
                 
 
             }
@@ -565,38 +506,41 @@ namespace Flowershop_Thesis.OtherForms
         {
             try
             {
-               
-                con.Open();
-                cmd = new SqlCommand("INSERT INTO TransactionsTbl(CustomerName,Discount,Price,Status,PaymentStatus,PaymentMethod,DateOfTransaction,Employee)Values" +
-                            "(@CustName,@Discount,@Price,@Status,@PaymentStatus,@PaymentMethod,getdate(),@Employee);", con);
-                cmd.Parameters.AddWithValue("@CustName", CustName_txtbox.Text);
-                cmd.Parameters.AddWithValue("@Discount", Convert.ToInt32(Discount_txtbox.Text));
-                cmd.Parameters.AddWithValue("@Price", TotalAmountlbl.Text);
-                cmd.Parameters.AddWithValue("@Status", "Processing");
-                cmd.Parameters.AddWithValue("@Employee", "Alexis Kent");
-
-                if(AdvancePayment_Checkbox.Checked )
-                {   
-                    cmd.Parameters.AddWithValue("@PaymentStatus", "Paid");
-
-
-                    if(CashOption.Checked)
-                    {
-                        cmd.Parameters.AddWithValue("@PaymentMethod", "Cash");
-                    }else if(GcashOption.Checked)
-                    {
-                        cmd.Parameters.AddWithValue("@PaymentMethod", "GCash");
-                    }
-                }
-                else
+               using(SqlConnection con = new SqlConnection(Connect.connectionString))
                 {
-                    cmd.Parameters.AddWithValue("@PaymentStatus", "Unpaid");
-                    cmd.Parameters.AddWithValue("@PaymentMethod", "Unknown");
-                }
-                cmd.ExecuteNonQuery();
-                con.Close();
+                    con.Open();
+                    cmd = new SqlCommand("INSERT INTO TransactionsTbl(CustomerName,Discount,Price,Status,PaymentStatus,PaymentMethod,DateOfTransaction,Employee)Values" +
+                                "(@CustName,@Discount,@Price,@Status,@PaymentStatus,@PaymentMethod,getdate(),@Employee);", con);
+                    cmd.Parameters.AddWithValue("@CustName", CustName_txtbox.Text);
+                    cmd.Parameters.AddWithValue("@Discount", Convert.ToInt32(Discount_txtbox.Text));
+                    cmd.Parameters.AddWithValue("@Price", TotalAmountlbl.Text);
+                    cmd.Parameters.AddWithValue("@Status", "Processing");
+                    cmd.Parameters.AddWithValue("@Employee", "Alexis Kent");
 
-                MessageBox.Show("Transaction Successful!");
+                    if (AdvancePayment_Checkbox.Checked)
+                    {
+                        cmd.Parameters.AddWithValue("@PaymentStatus", "Paid");
+
+
+                        if (CashOption.Checked)
+                        {
+                            cmd.Parameters.AddWithValue("@PaymentMethod", "Cash");
+                        }
+                        else if (GcashOption.Checked)
+                        {
+                            cmd.Parameters.AddWithValue("@PaymentMethod", "GCash");
+                        }
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@PaymentStatus", "Unpaid");
+                        cmd.Parameters.AddWithValue("@PaymentMethod", "Unknown");
+                    }
+                    cmd.ExecuteNonQuery();
+
+                    MessageBox.Show("Transaction Successful!");
+                }
+
                
             }
             catch (Exception ex)
@@ -611,28 +555,24 @@ namespace Flowershop_Thesis.OtherForms
         {
             try
             {   
-                con.Open();
-                string countQuery = "select count(*) from TransactionsTbl where CustomerName='"+CustName_txtbox.Text+"' AND Status != 'Completed' AND Status != 'Cancelled';";
-                using (SqlCommand countCommand = new SqlCommand(countQuery, con))
+                using(SqlConnection con = new SqlConnection(Connect.connectionString))
                 {
-                   // cmd.Parameters.AddWithValue("@CustName", CustName_txtbox.Text);
-                    int rowCount = (int)countCommand.ExecuteScalar();
-                    if (rowCount > 0)
+                    con.Open();
+                    string countQuery = "select count(*) from TransactionsTbl where CustomerName='" + CustName_txtbox.Text + "' AND Status != 'Completed' AND Status != 'Cancelled';";
+                    using (SqlCommand countCommand = new SqlCommand(countQuery, con))
                     {
-                        NameIndicator.Text = "Name Taken!";
+                        // cmd.Parameters.AddWithValue("@CustName", CustName_txtbox.Text);
+                        int rowCount = (int)countCommand.ExecuteScalar();
+                        if (rowCount > 0)
+                        {
+                            NameIndicator.Text = "Name Taken!";
+                        }
+                        else if (rowCount == 0)
+                        {
+                            NameIndicator.Text = "Name Available!";
+                        }
                     }
-                    else if(rowCount == 0)
-                    {
-                        NameIndicator.Text = "Name Available!";
-                    }
-
-
                 }
-
-
-
-
-                con.Close();
             }
             catch(Exception ex) 
             {

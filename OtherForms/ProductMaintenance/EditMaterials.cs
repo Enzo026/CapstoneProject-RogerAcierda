@@ -15,44 +15,8 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
 {
     public partial class EditMaterials : Form
     {
-        SqlConnection con;
-        SqlCommand cmd = new SqlCommand();
-        SqlDataReader sdr;
-        SqlDataAdapter sda;
-        string connectionString;
-        public void testConnection()
-        {
-            string executableDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            string parentDirectory = Path.GetFullPath(Path.Combine(executableDirectory, @"..\..\"));
-            string databaseFilePath = Path.Combine(parentDirectory, "FlowershopSystemDB.mdf");
-
-            // Build the connection string with explicit pooling parameters
-            connectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={databaseFilePath};Initial Catalog=try;Integrated Security=True;Pooling=true;Max Pool Size=100;Min Pool Size=5;Connection Lifetime=600;";
 
 
-            // Use the connection string to connect to the database
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                try
-                {
-                    connection.Open();
-                    con = new SqlConnection(connectionString);
-
-                    // Perform database operations here
-
-                }
-                catch (SqlException sqlEx)
-                {
-                    // Handle SQL exceptions
-                    MessageBox.Show("SQL error occurred: " + sqlEx.Message);
-                }
-                catch (Exception ex)
-                {
-                    // Handle other exceptions
-                    MessageBox.Show("An error occurred: " + ex.Message);
-                }
-            } // Connection is automatically closed and returned to the pool here
-        }
 
         //default item information
         Image oldImg;
@@ -66,7 +30,6 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
         public EditMaterials()
         {
             InitializeComponent();
-            testConnection();
             DisplayInfo();
             setup();
         }
@@ -196,13 +159,42 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
                     {
                         MessageBox.Show("Image is not changed please input another");
                     }
+                    //add to activity logs
+                    addActivityLog();
                     this.Close();
                 }
                 catch (Exception ex) {
-                    MessageBox.Show("Error on editing items :" + ex.Message);                
+                    MessageBox.Show("Error on editing items:" + ex.Message);                
                 }
                 
 
+            }
+        }
+        public void addActivityLog()
+        {
+            try
+            {   
+                using(SqlConnection con = new SqlConnection(Connect.connectionString))
+                {
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand("INSERT INTO HistoryLogs(Title,Definition,Employee,EmployeeID,Date,Type,ReferenceID,HeadLine)Values" +
+                                "(@Title,@Definition,@Employee,@EmployeeID,getdate(),@Type,@RefID,@HeadLine);", con);
+                    cmd.Parameters.AddWithValue("@Title", "Item Material Edited");
+                    cmd.Parameters.AddWithValue("@Definition", "NotGiven");
+                    cmd.Parameters.AddWithValue("@Employee", UserInfo.Empleyado);
+                    cmd.Parameters.AddWithValue("@EmployeeID", UserInfo.EmpID);
+                    cmd.Parameters.AddWithValue("@Type", "ActivityLog");
+                    cmd.Parameters.AddWithValue("@RefID", ChangeIds.ItemID);
+                    cmd.Parameters.AddWithValue("@HeadLine", UserInfo.Empleyado + " Edited Item Material Information on " + ItemName);
+
+
+                    cmd.ExecuteNonQuery();
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Adding Activity Failed!" + " : " + ex);
             }
         }
         public void DisplayInfo()
@@ -210,7 +202,7 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
             try
             {
                 int numId;
-                using (SqlConnection conn = new SqlConnection(connectionString))
+                using (SqlConnection conn = new SqlConnection(Connect.connectionString))
                 {
 
                     string countQuery = "Select count(*) from Materials where ItemID = @ID";
@@ -229,7 +221,7 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
 
                 if (numId == 1)
                 {
-                    using (SqlConnection conn = new SqlConnection(connectionString))
+                    using (SqlConnection conn = new SqlConnection(Connect.connectionString))
                     {
 
                         string updateQuery = " Select * from Materials where ItemID = @ID";
@@ -286,7 +278,7 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
             try
             {
                 int numId;
-                using (SqlConnection conn = new SqlConnection(connectionString))
+                using (SqlConnection conn = new SqlConnection(Connect.connectionString))
                 {
 
                     string countQuery = "Select count(*) from Materials where ItemID = @ID";
@@ -305,7 +297,7 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
 
                 if (numId == 1)
                 {
-                    using (SqlConnection conn = new SqlConnection(connectionString))
+                    using (SqlConnection conn = new SqlConnection(Connect.connectionString))
                     {
 
                         string updateQuery = "UPDATE Materials SET ItemName = @In WHERE ItemID = @ID;";
@@ -339,7 +331,7 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
             try
             {
                 int numId;
-                using (SqlConnection conn = new SqlConnection(connectionString))
+                using (SqlConnection conn = new SqlConnection(Connect.connectionString))
                 {
 
                     string countQuery = "Select count(*) from Materials where ItemID = @ID";
@@ -358,7 +350,7 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
 
                 if (numId == 1)
                 {
-                    using (SqlConnection conn = new SqlConnection(connectionString))
+                    using (SqlConnection conn = new SqlConnection(Connect.connectionString))
                     {
 
                         string updateQuery = "UPDATE Materials SET ItemType = @In WHERE ItemID = @ID;";
@@ -392,7 +384,7 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
             try
             {
                 int numId;
-                using (SqlConnection conn = new SqlConnection(connectionString))
+                using (SqlConnection conn = new SqlConnection(Connect.connectionString))
                 {
 
                     string countQuery = "Select count(*) from Materials where ItemID = @ID";
@@ -411,7 +403,7 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
 
                 if (numId == 1)
                 {
-                    using (SqlConnection conn = new SqlConnection(connectionString))
+                    using (SqlConnection conn = new SqlConnection(Connect.connectionString))
                     {
 
                         string updateQuery = "UPDATE Materials SET ItemColor = @In WHERE ItemID = @ID;";
@@ -445,7 +437,7 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
             try
             {
                 int numId;
-                using (SqlConnection conn = new SqlConnection(connectionString))
+                using (SqlConnection conn = new SqlConnection(Connect.connectionString))
                 {
 
                     string countQuery = "Select count(*) from Materials where ItemID = @ID";
@@ -464,7 +456,7 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
 
                 if (numId == 1)
                 {
-                    using (SqlConnection conn = new SqlConnection(connectionString))
+                    using (SqlConnection conn = new SqlConnection(Connect.connectionString))
                     {
 
                         string updateQuery = "UPDATE Materials SET Supplier = @In WHERE ItemID = @ID;";
@@ -498,7 +490,7 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
             try
             {
                 int numId;
-                using (SqlConnection conn = new SqlConnection(connectionString))
+                using (SqlConnection conn = new SqlConnection(Connect.connectionString))
                 {
 
                     string countQuery = "Select count(*) from Materials where ItemID = @ID";
@@ -517,7 +509,7 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
 
                 if (numId == 1)
                 {
-                    using (SqlConnection conn = new SqlConnection(connectionString))
+                    using (SqlConnection conn = new SqlConnection(Connect.connectionString))
                     {
 
                         string updateQuery = "UPDATE Materials SET Price = @In WHERE ItemID = @ID;";
@@ -551,7 +543,7 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
             try
             {
                 int numId;
-                using (SqlConnection conn = new SqlConnection(connectionString))
+                using (SqlConnection conn = new SqlConnection(Connect.connectionString))
                 {
 
                     string countQuery = "Select count(*) from Materials where ItemID = @ID";
@@ -570,8 +562,8 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
 
                 if (numId == 1)
                 {
-                    using (SqlConnection conn = new SqlConnection(connectionString))
-                    {
+                    using (SqlConnection conn = new SqlConnection(Connect.connectionString))
+                    {   
 
                         string updateQuery = "UPDATE Materials SET UnitPrice = @In WHERE ItemID = @ID;";
                         using (SqlCommand updateCommand = new SqlCommand(updateQuery, conn))
@@ -604,7 +596,7 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
             try
             {
                 int numId;
-                using (SqlConnection conn = new SqlConnection(connectionString))
+                using (SqlConnection conn = new SqlConnection(Connect.connectionString))
                 {
 
                     string countQuery = "Select count(*) from Materials where ItemID = @ID";
@@ -623,7 +615,7 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
 
                 if (numId == 1)
                 {
-                    using (SqlConnection conn = new SqlConnection(connectionString))
+                    using (SqlConnection conn = new SqlConnection(Connect.connectionString))
                     {
                         Image s_img = pictureBox1.Image;
                         ImageConverter converter = new ImageConverter();

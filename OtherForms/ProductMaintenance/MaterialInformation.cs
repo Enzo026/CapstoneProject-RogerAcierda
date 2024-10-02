@@ -16,44 +16,11 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
 {
     public partial class MaterialInformation : Form
     {
-        SqlConnection con;
-        SqlCommand cmd = new SqlCommand();
-        SqlDataReader sdr;
-        SqlDataAdapter sda;
-        string connectionString;
-        public void testConnection()
-        {
-            string executableDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            string parentDirectory = Path.GetFullPath(Path.Combine(executableDirectory, @"..\..\"));
 
-            string databaseFilePath = Path.Combine(parentDirectory, "FlowershopSystemDB.mdf");
-
-            // MessageBox.Show(databaseFilePath);
-            // Build the connection string
-            connectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={databaseFilePath};Initial Catalog=try;Integrated Security=True;";
-
-            // Use the connection string to connect to the database
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                try
-                {
-                    connection.Open();
-                    con = new SqlConnection(connectionString);
-
-
-                    // Perform database operations here
-
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("An error occurred: " + ex.Message);
-                }
-            }
-        }
         public MaterialInformation()
         {
             InitializeComponent();
-            testConnection();
+
             LoadFlower();
           
         }
@@ -67,7 +34,7 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
         {
             try
             {
-                using (con)
+                using (SqlConnection con = new SqlConnection(Connect.connectionString))
                 {
                     con.Open();
                     string countQuery = "SELECT COUNT(*) FROM Materials where ItemID = @ID ";
@@ -154,6 +121,32 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
         {
             deactMaterial();
         }
+        public void addActivityLog()
+        {
+            try
+            {   using(SqlConnection con = new SqlConnection(Connect.connectionString))
+                {
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand("INSERT INTO HistoryLogs(Title,Definition,Employee,EmployeeID,Date,Type,ReferenceID,HeadLine)Values" +
+                                "(@Title,@Definition,@Employee,@EmployeeID,getdate(),@Type,@RefID,@HeadLine);", con);
+                    cmd.Parameters.AddWithValue("@Title", "Item(Material) Deactivated");
+                    cmd.Parameters.AddWithValue("@Definition", "NotGiven");
+                    cmd.Parameters.AddWithValue("@Employee", UserInfo.Empleyado);
+                    cmd.Parameters.AddWithValue("@EmployeeID", UserInfo.EmpID);
+                    cmd.Parameters.AddWithValue("@Type", "ActivityLog");
+                    cmd.Parameters.AddWithValue("@RefID", ChangeIds.ItemID);
+                    cmd.Parameters.AddWithValue("@HeadLine", UserInfo.Empleyado + " Deactivated an Item(Material) named as " + label1.Text);
+
+
+                    cmd.ExecuteNonQuery();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Adding Activity Failed!" + " : " + ex);
+            }
+        }
         public void deactMaterial()
         {
             try
@@ -162,7 +155,7 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
                 if (result == DialogResult.Yes)
                 {
                     int numId;
-                    using (SqlConnection conn = new SqlConnection(connectionString))
+                    using (SqlConnection conn = new SqlConnection(Connect.connectionString))
                     {
 
                         string countQuery = "Select count(*) from Materials where ItemID = @ID";
@@ -175,7 +168,7 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
                     }
                     if (numId == 1)
                     {
-                        using (SqlConnection conn = new SqlConnection(connectionString))
+                        using (SqlConnection conn = new SqlConnection(Connect.connectionString))
                         {
                             string updateQuery = "UPDATE Materials SET ItemStatus = 'Unavailable' WHERE ItemID = @ID;";
                             using (SqlCommand updateCommand = new SqlCommand(updateQuery, conn))
@@ -186,6 +179,7 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
                             }
                         }
                         MessageBox.Show("Item Marked As Unavailable! Please refresh list to see changes");
+                        addActivityLog();
                         this.Close();
                     }
                     else if (numId > 1) { MessageBox.Show("There are multiple Users in this ID"); }

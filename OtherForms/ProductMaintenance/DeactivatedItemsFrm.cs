@@ -17,44 +17,11 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
 {
     public partial class DeactivatedItemsFrm : Form
     {
-      //  SqlConnection con;
-        SqlCommand cmd = new SqlCommand();
-        SqlDataReader sdr;
-        SqlDataAdapter sda;
-        string connectionString;
-        public void testConnection()
-        {
-            string executableDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            string parentDirectory = Path.GetFullPath(Path.Combine(executableDirectory, @"..\..\"));
 
-            string databaseFilePath = Path.Combine(parentDirectory, "FlowershopSystemDB.mdf");
-
-            // MessageBox.Show(databaseFilePath);
-            // Build the connection string
-             connectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={databaseFilePath};Initial Catalog=try;Integrated Security=True;";
-
-            // Use the connection string to connect to the database
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                try
-                {
-                    connection.Open();
-                    //con = new SqlConnection(connectionString);
-
-
-                    // Perform database operations here
-
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("An error occurred: " + ex.Message);
-                }
-            }
-        }
         public DeactivatedItemsFrm()
         {
             InitializeComponent();
-            testConnection();
+       
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -71,7 +38,7 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
             try
             {
 
-                using (SqlConnection con = new SqlConnection(connectionString))
+                using (SqlConnection con = new SqlConnection(Connect.connectionString))
                 {
                     con.Open();
                     string countQuery = "SELECT COUNT(*) FROM ItemInventory where ItemStatus = 'Unavailable' ";
@@ -118,7 +85,7 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
             try
             {
 
-                using (SqlConnection con =  new SqlConnection(connectionString))
+                using (SqlConnection con =  new SqlConnection(Connect.connectionString))
                 {
                     con.Open();
                     string countQuery = "SELECT COUNT(*) FROM Materials where ItemStatus = 'Unavailable' ";
@@ -190,5 +157,6 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
         {
             this.Close();
         }
+
     }
 }

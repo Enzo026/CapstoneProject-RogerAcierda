@@ -609,3 +609,4 @@ D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.Product
 D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.ProductMaintenance.EditMaterials.resources
 D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.ProductMaintenance.EditFlower.resources
 D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.Temporary_Forms.TryCamera.resources
+D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.HistoryLogs.ActivityLogsList.resources

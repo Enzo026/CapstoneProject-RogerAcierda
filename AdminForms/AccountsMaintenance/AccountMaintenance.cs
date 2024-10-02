@@ -9,48 +9,6 @@ namespace Capstone_Flowershop.AdminForms.AccountsMaintenance
 {
     public partial class AccountMaintenance : Form
     {
-        #region SQL Connection things?
-     //   SqlConnection con;
-        SqlConnection con2;
-        SqlCommand cmd = new SqlCommand();
-        SqlDataReader sdr;
-        SqlDataAdapter sda;
-        string connectionString;
-
-        public void testConnection()
-        {
-            string executableDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            string parentDirectory = Path.GetFullPath(Path.Combine(executableDirectory, @"..\..\"));
-            string databaseFilePath = Path.Combine(parentDirectory, "FlowershopSystemDB.mdf");
-
-            // Build the connection string with explicit pooling parameters
-             connectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={databaseFilePath};Initial Catalog=try;Integrated Security=True;Pooling=true;Max Pool Size=100;Min Pool Size=5;Connection Lifetime=600;";
-
-
-            // Use the connection string to connect to the database
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                try
-                {
-                    connection.Open();
-                   // con = new SqlConnection(connectionString);
-
-                    // Perform database operations here
-
-                }
-                catch (SqlException sqlEx)
-                {
-                    // Handle SQL exceptions
-                    MessageBox.Show("SQL error occurred: " + sqlEx.Message);
-                }
-                catch (Exception ex)
-                {
-                    // Handle other exceptions
-                    MessageBox.Show("An error occurred: " + ex.Message);
-                }
-            } // Connection is automatically closed and returned to the pool here
-        }
-        #endregion
 
         public static AccountMaintenance instance;
         public Label AccID;
@@ -67,7 +25,6 @@ namespace Capstone_Flowershop.AdminForms.AccountsMaintenance
         public AccountMaintenance()
         {
             InitializeComponent();
-            testConnection();
             LoadList();
 
             instance = this;
@@ -86,7 +43,7 @@ namespace Capstone_Flowershop.AdminForms.AccountsMaintenance
         {
             try
             {
-                using (SqlConnection conn = new SqlConnection(connectionString))
+                using (SqlConnection conn = new SqlConnection(Connect.connectionString))
                 {
                     conn.Open();
                     string countQuery = "SELECT COUNT(*) FROM UserAccounts where Status = 'Available' ";
@@ -145,7 +102,7 @@ namespace Capstone_Flowershop.AdminForms.AccountsMaintenance
             try
             {
                 
-                using (SqlConnection conn = new SqlConnection(connectionString))
+                using (SqlConnection conn = new SqlConnection(Connect.connectionString))
                 {
                     
                     string sqlQuery = "SELECT AccountID,FirstName ,  LastName,Username, ContactNumber, Role, Status, AccountImage FROM UserAccounts WHERE AccountID = @ID";
@@ -194,7 +151,7 @@ namespace Capstone_Flowershop.AdminForms.AccountsMaintenance
             try
             {
 
-                using (SqlConnection conn = new SqlConnection(connectionString))
+                using (SqlConnection conn = new SqlConnection(Connect.connectionString))
                 {
                     conn.Open();
                     string countQuery = "SELECT COUNT(*) FROM UserAccounts where Status = 'Deactivated' ";
@@ -252,7 +209,7 @@ namespace Capstone_Flowershop.AdminForms.AccountsMaintenance
                 if (result == DialogResult.Yes)
                 {
                     int numId;
-                    using (SqlConnection conn = new SqlConnection(connectionString))
+                    using (SqlConnection conn = new SqlConnection(Connect.connectionString))
                     {
                         
                         string countQuery = "Select count(*) from UserAccounts where AccountID = @ID";
@@ -271,7 +228,7 @@ namespace Capstone_Flowershop.AdminForms.AccountsMaintenance
                   
                     if (numId == 1)
                     {
-                        using (SqlConnection conn = new SqlConnection(connectionString))
+                        using (SqlConnection conn = new SqlConnection(Connect.connectionString))
                         {
                             
                             string updateQuery = "UPDATE UserAccounts SET Status = 'Deactivated' WHERE AccountID = @ID;";

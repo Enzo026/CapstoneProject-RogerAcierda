@@ -35,7 +35,12 @@ namespace Capstone_Flowershop.AdminForms.History_Logs
             SR.Show(); //para lumitaw
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
         {
             panel2.Controls.Clear(); //tatanggalin yung current na laman ng panel
             Transaction_History SR = new Transaction_History(); //tatawagin tapos papangalanan yung form na papalabasin
@@ -43,11 +48,6 @@ namespace Capstone_Flowershop.AdminForms.History_Logs
             panel2.Controls.Add(SR); //ilalagay na natin yung form
             SR.BringToFront(); //front yung form 
             SR.Show(); //para lumitaw
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

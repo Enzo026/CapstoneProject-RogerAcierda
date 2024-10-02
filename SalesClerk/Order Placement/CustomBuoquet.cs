@@ -1,4 +1,5 @@
-﻿using Flowershop_Thesis.OtherForms;
+﻿using Capstone_Flowershop;
+using Flowershop_Thesis.OtherForms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,11 +17,8 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement
 {
     public partial class CustomBuoquet : Form
     {
-        SqlConnection con;
-        SqlConnection con2;
         SqlCommand cmd = new SqlCommand();
-        SqlDataReader sdr;
-        SqlDataAdapter sda;
+ 
 
         public static CustomBuoquet instance;
 
@@ -60,7 +58,6 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement
         public CustomBuoquet()
         {
             InitializeComponent();
-            testConnection();
             Setup();
             instance = this;
          
@@ -92,35 +89,7 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement
             
         }
 
-        public void testConnection()
-        {
-            string executableDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            string parentDirectory = Path.GetFullPath(Path.Combine(executableDirectory, @"..\..\"));
 
-            string databaseFilePath = Path.Combine(parentDirectory, "FlowershopSystemDB.mdf");
-
-            // MessageBox.Show(databaseFilePath);
-            // Build the connection string
-            string connectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={databaseFilePath};Initial Catalog=try;Integrated Security=True;";
-
-            // Use the connection string to connect to the database
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                try
-                {
-                    connection.Open();
-                    con = new SqlConnection(connectionString);
-                    con2 = new SqlConnection(connectionString);
-
-                    // Perform database operations here
-
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("An error occurred: " + ex.Message);
-                }
-            }
-        }
 
         private void label27_Click(object sender, EventArgs e)
         {
@@ -375,57 +344,48 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement
             try
             {
                 flowLayoutPanel1.Controls.Clear();
-
-                con.Open();
-                string countQuery = "select count(*) from ItemInventory where ItemQuantity > 0 AND ItemType = 'Individual';";
-                using (SqlCommand countCommand = new SqlCommand(countQuery, con))
+                using(SqlConnection con = new SqlConnection(Connect.connectionString))
                 {
-                    //    countCommand.Parameters.AddWithValue("@Search", textBox1.Text);
-                    int rowCount = (int)countCommand.ExecuteScalar();
-
-
-                    // counter.Text = rowCount.ToString();
-
-
-
-                    CustomList[] inv = new CustomList[rowCount];
-
-                    string sqlQuery = "SELECT * FROM ItemInventory where ItemQuantity > 0 AND ItemType = 'Individual';";
-                    using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                    con.Open();
+                    string countQuery = "select count(*) from ItemInventory where ItemQuantity > 0 AND ItemType = 'Individual';";
+                    using (SqlCommand countCommand = new SqlCommand(countQuery, con))
                     {
-                        //  command.Parameters.AddWithValue("@Search", textBox1.Text);
-                        using (SqlDataReader reader = command.ExecuteReader())
+                        //    countCommand.Parameters.AddWithValue("@Search", textBox1.Text);
+                        int rowCount = (int)countCommand.ExecuteScalar();
+
+
+                        // counter.Text = rowCount.ToString();
+
+
+
+                        CustomList[] inv = new CustomList[rowCount];
+
+                        string sqlQuery = "SELECT * FROM ItemInventory where ItemQuantity > 0 AND ItemType = 'Individual';";
+                        using (SqlCommand command = new SqlCommand(sqlQuery, con))
                         {
-                            int index = 0;
-                            while (reader.Read() && index < inv.Length)
+                            //  command.Parameters.AddWithValue("@Search", textBox1.Text);
+                            using (SqlDataReader reader = command.ExecuteReader())
                             {
-                                inv[index] = new CustomList();
-                                inv[index].Name = reader["ItemName"].ToString();
-                                inv[index].selection = Selected;
-                                inv[index].Price = reader["Price"].ToString();
+                                int index = 0;
+                                while (reader.Read() && index < inv.Length)
+                                {
+                                    inv[index] = new CustomList();
+                                    inv[index].Name = reader["ItemName"].ToString();
+                                    inv[index].selection = Selected;
+                                    inv[index].Price = reader["Price"].ToString();
 
-                                int CI = reader.GetOrdinal("ItemID");
-                                inv[index].ItemID = reader.IsDBNull((int)CI) ? 0 : reader.GetInt32((int)CI);
-                                int IQ = reader.GetOrdinal("ItemQuantity");
-                                inv[index].Qty = reader.IsDBNull((int)IQ) ? 0 : reader.GetInt32((int)IQ);
+                                    int CI = reader.GetOrdinal("ItemID");
+                                    inv[index].ItemID = reader.IsDBNull((int)CI) ? 0 : reader.GetInt32((int)CI);
+                                    int IQ = reader.GetOrdinal("ItemQuantity");
+                                    inv[index].Qty = reader.IsDBNull((int)IQ) ? 0 : reader.GetInt32((int)IQ);
 
-                                flowLayoutPanel1.Controls.Add(inv[index]);
-                                index++;
+                                    flowLayoutPanel1.Controls.Add(inv[index]);
+                                    index++;
+                                }
                             }
                         }
                     }
-
-
-
                 }
-
-
-
-
-                con.Close();
-
-
-
             }
             catch (Exception ex)
             {
@@ -439,50 +399,48 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement
             try
             {
                 flowLayoutPanel1.Controls.Clear();
-                con.Open();
-                string countQuery = "select count(*) from Materials where ItemQuantity > 0 AND Usage > 1 AND ItemType = 'Cover';";
-                using (SqlCommand countCommand = new SqlCommand(countQuery, con))
+                using(SqlConnection con = new SqlConnection(Connect.connectionString))
                 {
-                    //    countCommand.Parameters.AddWithValue("@Search", textBox1.Text);
-                    int rowCount = (int)countCommand.ExecuteScalar();
-
-
-                    // counter.Text = rowCount.ToString();
-
-
-
-                    CustomList[] inv = new CustomList[rowCount];
-
-                    string sqlQuery = "SELECT * FROM Materials where ItemQuantity > 0 AND Usage > 1 AND ItemType = 'Cover';";
-                    using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                    con.Open();
+                    string countQuery = "select count(*) from Materials where ItemQuantity > 0 AND Usage > 1 AND ItemType = 'Cover';";
+                    using (SqlCommand countCommand = new SqlCommand(countQuery, con))
                     {
-                        //  command.Parameters.AddWithValue("@Search", textBox1.Text);
-                        using (SqlDataReader reader = command.ExecuteReader())
+                        //    countCommand.Parameters.AddWithValue("@Search", textBox1.Text);
+                        int rowCount = (int)countCommand.ExecuteScalar();
+
+
+                        // counter.Text = rowCount.ToString();
+
+
+
+                        CustomList[] inv = new CustomList[rowCount];
+
+                        string sqlQuery = "SELECT * FROM Materials where ItemQuantity > 0 AND Usage > 1 AND ItemType = 'Cover';";
+                        using (SqlCommand command = new SqlCommand(sqlQuery, con))
                         {
-                            int index = 0;
-                            while (reader.Read() && index < inv.Length)
+                            //  command.Parameters.AddWithValue("@Search", textBox1.Text);
+                            using (SqlDataReader reader = command.ExecuteReader())
                             {
-                                inv[index] = new CustomList();
-                                inv[index].Name = reader["ItemName"].ToString();
-                                inv[index].selection = Selected;
-                                inv[index].Price = reader["Price"].ToString();
+                                int index = 0;
+                                while (reader.Read() && index < inv.Length)
+                                {
+                                    inv[index] = new CustomList();
+                                    inv[index].Name = reader["ItemName"].ToString();
+                                    inv[index].selection = Selected;
+                                    inv[index].Price = reader["Price"].ToString();
 
-                                int CI = reader.GetOrdinal("ItemID");
-                                inv[index].ItemID = reader.IsDBNull((int)CI) ? 0 : reader.GetInt32((int)CI);
-                                int IQ = reader.GetOrdinal("Usage");
-                                inv[index].Qty = reader.IsDBNull((int)IQ) ? 0 : reader.GetInt32((int)IQ);
+                                    int CI = reader.GetOrdinal("ItemID");
+                                    inv[index].ItemID = reader.IsDBNull((int)CI) ? 0 : reader.GetInt32((int)CI);
+                                    int IQ = reader.GetOrdinal("Usage");
+                                    inv[index].Qty = reader.IsDBNull((int)IQ) ? 0 : reader.GetInt32((int)IQ);
 
-                                flowLayoutPanel1.Controls.Add(inv[index]);
-                                index++;
+                                    flowLayoutPanel1.Controls.Add(inv[index]);
+                                    index++;
+                                }
                             }
                         }
                     }
                 }
-
-                con.Close();
-
-
-
             }
             catch (Exception ex)
             {
@@ -496,56 +454,48 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement
             try
             {
                 flowLayoutPanel1.Controls.Clear();
-                con.Open();
-                string countQuery = "select count(*) from Materials where ItemQuantity > 0 AND Usage > 1 AND ItemType = 'Ribbon';";
-                using (SqlCommand countCommand = new SqlCommand(countQuery, con))
+                using(SqlConnection con = new SqlConnection (Connect.connectionString))
                 {
-                    //    countCommand.Parameters.AddWithValue("@Search", textBox1.Text);
-                    int rowCount = (int)countCommand.ExecuteScalar();
-
-
-                    // counter.Text = rowCount.ToString();
-
-
-
-                    CustomList[] inv = new CustomList[rowCount];
-
-                    string sqlQuery = "SELECT * FROM Materials where ItemQuantity > 0 AND Usage > 1 AND ItemType = 'Ribbon';";
-                    using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                    con.Open();
+                    string countQuery = "select count(*) from Materials where ItemQuantity > 0 AND Usage > 1 AND ItemType = 'Ribbon';";
+                    using (SqlCommand countCommand = new SqlCommand(countQuery, con))
                     {
-                        //  command.Parameters.AddWithValue("@Search", textBox1.Text);
-                        using (SqlDataReader reader = command.ExecuteReader())
+                        //    countCommand.Parameters.AddWithValue("@Search", textBox1.Text);
+                        int rowCount = (int)countCommand.ExecuteScalar();
+
+
+                        // counter.Text = rowCount.ToString();
+
+
+
+                        CustomList[] inv = new CustomList[rowCount];
+
+                        string sqlQuery = "SELECT * FROM Materials where ItemQuantity > 0 AND Usage > 1 AND ItemType = 'Ribbon';";
+                        using (SqlCommand command = new SqlCommand(sqlQuery, con))
                         {
-                            int index = 0;
-                            while (reader.Read() && index < inv.Length)
+                            //  command.Parameters.AddWithValue("@Search", textBox1.Text);
+                            using (SqlDataReader reader = command.ExecuteReader())
                             {
-                                inv[index] = new CustomList();
-                                inv[index].Name = reader["ItemName"].ToString();
-                                inv[index].selection = Selected;
-                                inv[index].Price = reader["Price"].ToString();
+                                int index = 0;
+                                while (reader.Read() && index < inv.Length)
+                                {
+                                    inv[index] = new CustomList();
+                                    inv[index].Name = reader["ItemName"].ToString();
+                                    inv[index].selection = Selected;
+                                    inv[index].Price = reader["Price"].ToString();
 
-                                int CI = reader.GetOrdinal("ItemID");
-                                inv[index].ItemID = reader.IsDBNull((int)CI) ? 0 : reader.GetInt32((int)CI);
-                                int IQ = reader.GetOrdinal("Usage");
-                                inv[index].Qty = reader.IsDBNull((int)IQ) ? 0 : reader.GetInt32((int)IQ);
+                                    int CI = reader.GetOrdinal("ItemID");
+                                    inv[index].ItemID = reader.IsDBNull((int)CI) ? 0 : reader.GetInt32((int)CI);
+                                    int IQ = reader.GetOrdinal("Usage");
+                                    inv[index].Qty = reader.IsDBNull((int)IQ) ? 0 : reader.GetInt32((int)IQ);
 
-                                flowLayoutPanel1.Controls.Add(inv[index]);
-                                index++;
+                                    flowLayoutPanel1.Controls.Add(inv[index]);
+                                    index++;
+                                }
                             }
                         }
                     }
-
-
-
                 }
-
-
-
-
-                con.Close();
-
-
-
             }
             catch (Exception ex)
             {
@@ -588,35 +538,29 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement
 
                 try
                 {
+                    using(SqlConnection con = new SqlConnection(Connect.connectionString)) 
+                    {
+                        con.Open();
+                        cmd = new SqlCommand("INSERT INTO ItemInventory(ItemName,ItemQuantity,ItemType,ItemColor,LifeSpan,SuppliedDate,Supplier,ItemDescription,Price,ItemStatus)Values" +
+                                    "(@Name,@Qty,@Type,@Color,@LifeSpan,getdate(),@Supplier,@Desc,@RSP,'Available');", con);
+                        cmd.Parameters.AddWithValue("@Name", BuoquetName.Text);
+                        cmd.Parameters.AddWithValue("@Qty", 1);
+                        cmd.Parameters.AddWithValue("@Type", "Custom");
+                        cmd.Parameters.AddWithValue("@Color", PrimaryColorTxtBox.Text);
+                        cmd.Parameters.AddWithValue("@LifeSpan", 3);
+                        cmd.Parameters.AddWithValue("@Supplier", "Instore");
+                        cmd.Parameters.AddWithValue("@Desc", desc);
+                        cmd.Parameters.AddWithValue("@RSP", Convert.ToDecimal(this.TotalPrc.Text));
 
-                    con.Open();
-                    cmd = new SqlCommand("INSERT INTO ItemInventory(ItemName,ItemQuantity,ItemType,ItemColor,LifeSpan,SuppliedDate,Supplier,ItemDescription,Price,ItemStatus)Values" +
-                                "(@Name,@Qty,@Type,@Color,@LifeSpan,getdate(),@Supplier,@Desc,@RSP,'Available');", con);
-                    cmd.Parameters.AddWithValue("@Name", BuoquetName.Text);
-                    cmd.Parameters.AddWithValue("@Qty", 1);
-                    cmd.Parameters.AddWithValue("@Type", "Custom");
-                    cmd.Parameters.AddWithValue("@Color", PrimaryColorTxtBox.Text);
-                    cmd.Parameters.AddWithValue("@LifeSpan", 3);
-                    cmd.Parameters.AddWithValue("@Supplier", "Instore");
-                    cmd.Parameters.AddWithValue("@Desc", desc);
-                    cmd.Parameters.AddWithValue("@RSP", Convert.ToDecimal(this.TotalPrc.Text));
-
-
-                    cmd.ExecuteNonQuery();
-                    con.Close();
-                    MessageBox.Show("Item Added Successfully!");
+                        cmd.ExecuteNonQuery();
+                        MessageBox.Show("Item Added Successfully!");
+                    }
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("AddingItem Failed!" + " : " + ex);
                 }
             }
-            else
-            {
-                //MessageBox.Show("Error on items please make sure all items needed are supplied");
-            }
-
-
         }
         string desc = "null";
         public void checker()
@@ -719,188 +663,190 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement
             int rowCount;
 
             //Check if theres more than 1 items in the inventory making sure it will be 
-            con.Open();
-            string countQuery = "select count(*) from ItemInventory where ItemName = @Name;";
-            using (SqlCommand countCommand = new SqlCommand(countQuery, con))
-            {
-                countCommand.Parameters.AddWithValue("@Name", ItemName);
-                rowCount = (int)countCommand.ExecuteScalar();
-
-            }
-            con.Close();
-            if(rowCount == 1)
+            using(SqlConnection con = new SqlConnection(Connect.connectionString))
             {
                 con.Open();
-                string invID = "0";
-                string sqlQuery = "SELECT * FROM ItemInventory where ItemName = @Name;";
-                using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                string countQuery = "select count(*) from ItemInventory where ItemName = @Name;";
+                using (SqlCommand countCommand = new SqlCommand(countQuery, con))
                 {
-                    command.Parameters.AddWithValue("@Name", ItemName);
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
+                    countCommand.Parameters.AddWithValue("@Name", ItemName);
+                    rowCount = (int)countCommand.ExecuteScalar();
 
-                        while (reader.Read())
+                }
+           
+                if (rowCount == 1)
+                {
+                   
+                    string invID = "0";
+                    string sqlQuery = "SELECT * FROM ItemInventory where ItemName = @Name;";
+                    using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                    {
+                        command.Parameters.AddWithValue("@Name", ItemName);
+                        using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            invID = reader["ItemID"].ToString();
+
+                            while (reader.Read())
+                            {
+                                invID = reader["ItemID"].ToString();
+                            }
                         }
                     }
-                }
-                con.Close();
+                 
 
-                string updateQuery = "UPDATE ItemInventory SET ItemQuantity = ItemQuantity - @Quantity WHERE ItemID = @ID;";
-                con2.Open();
-                using (SqlCommand updateCommand = new SqlCommand(updateQuery, con2))
+                    string updateQuery = "UPDATE ItemInventory SET ItemQuantity = ItemQuantity - @Quantity WHERE ItemID = @ID;";
+                 
+                    using (SqlCommand updateCommand = new SqlCommand(updateQuery, con))
+                    {
+
+                        updateCommand.Parameters.AddWithValue("@Quantity", quantitee);
+                        updateCommand.Parameters.AddWithValue("@ID", int.Parse(invID));
+
+                        updateCommand.ExecuteNonQuery();
+
+                    }
+                }
+                else
                 {
-
-                    updateCommand.Parameters.AddWithValue("@Quantity", quantitee);
-                    updateCommand.Parameters.AddWithValue("@ID", int.Parse(invID));
-
-                    updateCommand.ExecuteNonQuery();
-
+                    MessageBox.Show("Error on inventory name is duplicated!");
                 }
-                con2.Close();
             }
-            else
-            {
-                MessageBox.Show("Error on inventory name is duplicated!");
-            }
+
           
         }
 
         public void DeductBuoquet(string ItemName, int quantitee)
-        {
-            int rowCount;
-            con.Open();
-            string countQuery = "select count(*) from ItemInventory where ItemName = @Name AND ItemType = 'Custom';";
-            using (SqlCommand countCommand = new SqlCommand(countQuery, con))
+        {   
+            using(SqlConnection con = new SqlConnection(Connect.connectionString))
             {
-                countCommand.Parameters.AddWithValue("@Name", ItemName);
-                rowCount = (int)countCommand.ExecuteScalar();
-
-            }
-            con.Close();
-            if (rowCount == 1)
-            {
+                int rowCount;
                 con.Open();
-                string invID = "0";
-                string sqlQuery = "SELECT * FROM ItemInventory where ItemName = @Name AND ItemType = 'Custom';";
-                using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                string countQuery = "select count(*) from ItemInventory where ItemName = @Name AND ItemType = 'Custom';";
+                using (SqlCommand countCommand = new SqlCommand(countQuery, con))
                 {
-                    command.Parameters.AddWithValue("@Name", ItemName);
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
+                    countCommand.Parameters.AddWithValue("@Name", ItemName);
+                    rowCount = (int)countCommand.ExecuteScalar();
 
-                        while (reader.Read())
+                }
+                if (rowCount == 1)
+                {
+                    string invID = "0";
+                    string sqlQuery = "SELECT * FROM ItemInventory where ItemName = @Name AND ItemType = 'Custom';";
+                    using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                    {
+                        command.Parameters.AddWithValue("@Name", ItemName);
+                        using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            invID = reader["ItemID"].ToString();
+
+                            while (reader.Read())
+                            {
+                                invID = reader["ItemID"].ToString();
+                            }
                         }
                     }
-                }
-                con.Close();
 
-                string updateQuery = "UPDATE ItemInventory SET ItemQuantity = ItemQuantity - @Quantity WHERE ItemID = @ID;";
-                con2.Open();
-                using (SqlCommand updateCommand = new SqlCommand(updateQuery, con2))
+                    string updateQuery = "UPDATE ItemInventory SET ItemQuantity = ItemQuantity - @Quantity WHERE ItemID = @ID;";
+                    using (SqlCommand updateCommand = new SqlCommand(updateQuery, con))
+                    {
+
+                        updateCommand.Parameters.AddWithValue("@Quantity", quantitee);
+                        updateCommand.Parameters.AddWithValue("@ID", int.Parse(invID));
+
+                        updateCommand.ExecuteNonQuery();
+
+                    }
+                }
+                else
                 {
-
-                    updateCommand.Parameters.AddWithValue("@Quantity", quantitee);
-                    updateCommand.Parameters.AddWithValue("@ID", int.Parse(invID));
-
-                    updateCommand.ExecuteNonQuery();
-
+                    MessageBox.Show("Error on inventory name is duplicated!");
                 }
-                con2.Close();
             }
-            else
-            {
-                MessageBox.Show("Error on inventory name is duplicated!");
-            }
+
         }
 
         public void MaterialDeduct(string ItemName, int qty)
-        {
-            int rowCount;
-            con.Open();
-            string countQuery = "select count(*) from Materials where ItemName = @Name;";
-            using (SqlCommand countCommand = new SqlCommand(countQuery, con))
+        {   
+            using(SqlConnection con = new SqlConnection(Connect.connectionString))
             {
-                countCommand.Parameters.AddWithValue("@Name", ItemName);
-                rowCount = (int)countCommand.ExecuteScalar();
-
-            }
-            con.Close();
-            if (rowCount == 1)
-            {
+                int rowCount;
                 con.Open();
-                string invID = "0";
-                string usage = "0";
-                string UsageQuantity = "0";
-
-                string sqlQuery = "SELECT * FROM Materials where ItemName = @Name;";
-                using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                string countQuery = "select count(*) from Materials where ItemName = @Name;";
+                using (SqlCommand countCommand = new SqlCommand(countQuery, con))
                 {
-                    command.Parameters.AddWithValue("@Name", ItemName);
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            invID = reader["ItemID"].ToString();
-                            usage = reader["Usage"].ToString();
-                            UsageQuantity = reader["UsageQuantity"].ToString();
-                        }
-                    }
+                    countCommand.Parameters.AddWithValue("@Name", ItemName);
+                    rowCount = (int)countCommand.ExecuteScalar();
+
                 }
                 con.Close();
-                int quantityuse = int.Parse(usage) - qty;
-
-                if(quantityuse > 0) 
+                if (rowCount == 1)
                 {
-                    string updateUsage = "UPDATE Materials SET Usage=@Quantity WHERE ItemID = @ID;";
-                    con2.Open();
-                    using (SqlCommand updateCommand = new SqlCommand(updateUsage, con2))
+                    con.Open();
+                    string invID = "0";
+                    string usage = "0";
+                    string UsageQuantity = "0";
+
+                    string sqlQuery = "SELECT * FROM Materials where ItemName = @Name;";
+                    using (SqlCommand command = new SqlCommand(sqlQuery, con))
                     {
-
-                        updateCommand.Parameters.AddWithValue("@Quantity", quantityuse);
-                        updateCommand.Parameters.AddWithValue("@ID", int.Parse(invID));
-
-                        updateCommand.ExecuteNonQuery();
-
+                        command.Parameters.AddWithValue("@Name", ItemName);
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                invID = reader["ItemID"].ToString();
+                                usage = reader["Usage"].ToString();
+                                UsageQuantity = reader["UsageQuantity"].ToString();
+                            }
+                        }
                     }
-                    con2.Close();
+                    con.Close();
+                    int quantityuse = int.Parse(usage) - qty;
+
+                    if (quantityuse > 0)
+                    {
+                        string updateUsage = "UPDATE Materials SET Usage=@Quantity WHERE ItemID = @ID;";
+                    
+                        using (SqlCommand updateCommand = new SqlCommand(updateUsage, con))
+                        {
+
+                            updateCommand.Parameters.AddWithValue("@Quantity", quantityuse);
+                            updateCommand.Parameters.AddWithValue("@ID", int.Parse(invID));
+
+                            updateCommand.ExecuteNonQuery();
+
+                        }
+        
+                    }
+                    else if (quantityuse == 0)
+                    {
+                        string updateItemQuantity = "UPDATE Materials SET ItemQuantity=ItemQuantity - 1 WHERE ItemID = @ID";
+                     
+                        using (SqlCommand updateCommand = new SqlCommand(updateItemQuantity, con))
+                        {
+                            updateCommand.Parameters.AddWithValue("@ID", int.Parse(invID));
+
+                            updateCommand.ExecuteNonQuery();
+
+                        }
+
+
+                        string updateUsage = "UPDATE Materials SET Usage=@Quantity WHERE ItemID = @ID;";
+                        using (SqlCommand updateCommand = new SqlCommand(updateUsage, con))
+                        {
+
+                            updateCommand.Parameters.AddWithValue("@Quantity", int.Parse(UsageQuantity));
+                            updateCommand.Parameters.AddWithValue("@ID", int.Parse(invID));
+
+                            updateCommand.ExecuteNonQuery();
+
+                        }
+                    }
+
                 }
-                else if(quantityuse == 0)
+                else
                 {
-                    string updateItemQuantity = "UPDATE Materials SET ItemQuantity=ItemQuantity - 1 WHERE ItemID = @ID";
-                    con2.Open();
-                    using (SqlCommand updateCommand = new SqlCommand(updateItemQuantity, con2))
-                    {
-                        updateCommand.Parameters.AddWithValue("@ID", int.Parse(invID));
-
-                        updateCommand.ExecuteNonQuery();
-
-                    }
-                    con2.Close();
-
-                    string updateUsage = "UPDATE Materials SET Usage=@Quantity WHERE ItemID = @ID;";
-                    con2.Open();
-                    using (SqlCommand updateCommand = new SqlCommand(updateUsage, con2))
-                    {
-
-                        updateCommand.Parameters.AddWithValue("@Quantity", int.Parse(UsageQuantity));
-                        updateCommand.Parameters.AddWithValue("@ID", int.Parse(invID));
-
-                        updateCommand.ExecuteNonQuery();
-
-                    }
-                    con2.Close();
+                    MessageBox.Show("Error on inventory name is duplicated!");
                 }
-
             }
-            else
-            {
-                MessageBox.Show("Error on inventory name is duplicated!");
-            }
-
         }
 
   
@@ -908,51 +854,52 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement
         
         int ItemID;
         public void AddCart()
-        {
-            con.Open();
-            string invID = "0";
-            string sqlQuery = "SELECT * FROM ItemInventory where ItemName = @Name;";
-            using (SqlCommand command = new SqlCommand(sqlQuery, con))
+        {   
+            using(SqlConnection con = new SqlConnection(Connect.connectionString))
             {
-                command.Parameters.AddWithValue("@Name", BuoquetName.Text);
-                using (SqlDataReader reader = command.ExecuteReader())
+                con.Open();
+                string invID = "0";
+                string sqlQuery = "SELECT * FROM ItemInventory where ItemName = @Name;";
+                using (SqlCommand command = new SqlCommand(sqlQuery, con))
                 {
-                    
-                    while (reader.Read())
+                    command.Parameters.AddWithValue("@Name", BuoquetName.Text);
+                    using (SqlDataReader reader = command.ExecuteReader())
                     {
-                        invID = reader["ItemID"].ToString();
+
+                        while (reader.Read())
+                        {
+                            invID = reader["ItemID"].ToString();
+                        }
                     }
                 }
-            }
-            con.Close();
-            if(invID != "0") 
-            {
-                try
+                if (invID != "0")
                 {
-                    con.Open();
-                    cmd = new SqlCommand("INSERT INTO ServingCart(ItemID,ItemName,OrderQty,OrderPrice,OrderType)Values" +
-                                "(@ID,@Name,@Qty,@Price,@Type);", con);
-                    cmd.Parameters.AddWithValue("@ID", Convert.ToInt32(invID));
-                    cmd.Parameters.AddWithValue("@Name", BuoquetName.Text);
-                    cmd.Parameters.AddWithValue("@Qty", 1);
-                    cmd.Parameters.AddWithValue("@Price", int.Parse(TotalPrc.Text));
-                    cmd.Parameters.AddWithValue("@Type", "Custom");
+                    try
+                    {
+                        cmd = new SqlCommand("INSERT INTO ServingCart(ItemID,ItemName,OrderQty,OrderPrice,OrderType)Values" +
+                                    "(@ID,@Name,@Qty,@Price,@Type);", con);
+                        cmd.Parameters.AddWithValue("@ID", Convert.ToInt32(invID));
+                        cmd.Parameters.AddWithValue("@Name", BuoquetName.Text);
+                        cmd.Parameters.AddWithValue("@Qty", 1);
+                        cmd.Parameters.AddWithValue("@Price", int.Parse(TotalPrc.Text));
+                        cmd.Parameters.AddWithValue("@Type", "Custom");
 
-                    cmd.ExecuteNonQuery();
-                    con.Close();
+                        cmd.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("AddingItem Failed!" + " : " + ex);
+                    }
+
+
+                    //activation of textchange event to refresh the item list in main panel
+                    int cart = int.Parse(OrderPlacement.instance.lbl.Text);
+                    cart++;
+                    MessageBox.Show("Item Successfully Added Cart Items: " + cart.ToString());
+                    OrderPlacement.instance.lbl.Text = cart.ToString();
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("AddingItem Failed!" + " : " + ex);
-                }
-
-
-                //activation of textchange event to refresh the item list in main panel
-                int cart = int.Parse(OrderPlacement.instance.lbl.Text);
-                cart++;
-                MessageBox.Show("Item Successfully Added Cart Items: " + cart.ToString());
-                OrderPlacement.instance.lbl.Text = cart.ToString();
             }
+
 
         }
     }

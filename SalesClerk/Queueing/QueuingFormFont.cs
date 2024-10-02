@@ -10,48 +10,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Flowershop_Thesis;
+using Capstone_Flowershop;
 
 namespace Flowershop_Thesis.SalesClerk.Queueing
 {
     public partial class QueuingFormFont : Form
     {
-        SqlConnection con;
-        SqlCommand cmd = new SqlCommand();
-        SqlDataReader sdr;
-        SqlDataAdapter sda;
+
         public QueuingFormFont()
         {
             InitializeComponent();
-            testConnection();
+
         }
-        public void testConnection()
-        {
-            string executableDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            string parentDirectory = Path.GetFullPath(Path.Combine(executableDirectory, @"..\..\"));
 
-            string databaseFilePath = Path.Combine(parentDirectory, "FlowershopSystemDB.mdf");
-
-            // MessageBox.Show(databaseFilePath);
-            // Build the connection string
-            string connectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={databaseFilePath};Initial Catalog=try;Integrated Security=True;";
-
-            // Use the connection string to connect to the database
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                try
-                {
-                    connection.Open();
-                    con = new SqlConnection(connectionString);
-
-                    // Perform database operations here
-
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("An error occurred: " + ex.Message);
-                }
-            }
-        }
 
         private void label11_Click(object sender, EventArgs e)
         {
@@ -88,34 +60,32 @@ namespace Flowershop_Thesis.SalesClerk.Queueing
             try
             {
                 flowLayoutPanel1.Controls.Clear();
-                con.Open();
-                string countQuery = "select count(*) from TransactionsTbl where Status = 'Processing';";
-                using (SqlCommand countCommand = new SqlCommand(countQuery, con))
+                using(SqlConnection con = new SqlConnection(Connect.connectionString))
                 {
-                    int rowCount = (int)countCommand.ExecuteScalar();
-        
-
-
-
-                    QueueBoardContent[] inv = new QueueBoardContent[rowCount];
-
-                    string sqlQuery = "SELECT * FROM TransactionsTbl where Status = 'Processing' ;";
-                    using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                    con.Open();
+                    string countQuery = "select count(*) from TransactionsTbl where Status = 'Processing';";
+                    using (SqlCommand countCommand = new SqlCommand(countQuery, con))
                     {
-                        using (SqlDataReader reader = command.ExecuteReader())
+                        int rowCount = (int)countCommand.ExecuteScalar();
+                        QueueBoardContent[] inv = new QueueBoardContent[rowCount];
+
+                        string sqlQuery = "SELECT * FROM TransactionsTbl where Status = 'Processing' ;";
+                        using (SqlCommand command = new SqlCommand(sqlQuery, con))
                         {
-                            int index = 0;
-                            while (reader.Read() && index < inv.Length)
+                            using (SqlDataReader reader = command.ExecuteReader())
                             {
-                                inv[index] = new QueueBoardContent();
-                                inv[index].Name = reader["CustomerName"].ToString();
-                                flowLayoutPanel1.Controls.Add(inv[index]);
-                                index++;
+                                int index = 0;
+                                while (reader.Read() && index < inv.Length)
+                                {
+                                    inv[index] = new QueueBoardContent();
+                                    inv[index].Name = reader["CustomerName"].ToString();
+                                    flowLayoutPanel1.Controls.Add(inv[index]);
+                                    index++;
+                                }
                             }
                         }
                     }
                 }
-                con.Close();
             }
             catch (Exception ex)
             {
@@ -128,34 +98,32 @@ namespace Flowershop_Thesis.SalesClerk.Queueing
             try
             {
                 flowLayoutPanel2.Controls.Clear();
-                con.Open();
-                string countQuery = "select count(*) from TransactionsTbl where Status = 'Payment';";
-                using (SqlCommand countCommand = new SqlCommand(countQuery, con))
+                using(SqlConnection con = new SqlConnection(Connect.connectionString))
                 {
-                    int rowCount = (int)countCommand.ExecuteScalar();
-
-
-
-
-                    QueueBoardContent[] inv = new QueueBoardContent[rowCount];
-
-                    string sqlQuery = "SELECT * FROM TransactionsTbl where Status = 'Payment' ;";
-                    using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                    con.Open();
+                    string countQuery = "select count(*) from TransactionsTbl where Status = 'Payment';";
+                    using (SqlCommand countCommand = new SqlCommand(countQuery, con))
                     {
-                        using (SqlDataReader reader = command.ExecuteReader())
+                        int rowCount = (int)countCommand.ExecuteScalar();
+                        QueueBoardContent[] inv = new QueueBoardContent[rowCount];
+
+                        string sqlQuery = "SELECT * FROM TransactionsTbl where Status = 'Payment' ;";
+                        using (SqlCommand command = new SqlCommand(sqlQuery, con))
                         {
-                            int index = 0;
-                            while (reader.Read() && index < inv.Length)
+                            using (SqlDataReader reader = command.ExecuteReader())
                             {
-                                inv[index] = new QueueBoardContent();
-                                inv[index].Name = reader["CustomerName"].ToString();
-                                flowLayoutPanel2.Controls.Add(inv[index]);
-                                index++;
+                                int index = 0;
+                                while (reader.Read() && index < inv.Length)
+                                {
+                                    inv[index] = new QueueBoardContent();
+                                    inv[index].Name = reader["CustomerName"].ToString();
+                                    flowLayoutPanel2.Controls.Add(inv[index]);
+                                    index++;
+                                }
                             }
                         }
                     }
                 }
-                con.Close();
             }
             catch (Exception ex)
             {

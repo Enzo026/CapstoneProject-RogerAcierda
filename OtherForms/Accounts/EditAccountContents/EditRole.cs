@@ -16,53 +16,12 @@ namespace Flowershop_Thesis.OtherForms.Accounts.EditAccountContents
 {
     public partial class EditRole : Form
     {
-        string connectionString;
-        public void testConnection()
-        {
-            string executableDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            string parentDirectory = Path.GetFullPath(Path.Combine(executableDirectory, @"..\..\"));
-            string databaseFilePath = Path.Combine(parentDirectory, "FlowershopSystemDB.mdf");
-
-            // Build the connection string with explicit pooling parameters
-            connectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={databaseFilePath};Initial Catalog=try;Integrated Security=True;Pooling=true;Max Pool Size=100;Min Pool Size=5;Connection Lifetime=600;";
-
-
-            // Use the connection string to connect to the database
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                try
-                {
-                    connection.Open();
-                    // con = new SqlConnection(connectionString);
-
-                    // Perform database operations here
-
-                }
-                catch (SqlException sqlEx)
-                {
-                    // Handle SQL exceptions
-                    MessageBox.Show("SQL error occurred: " + sqlEx.Message);
-                }
-                catch (Exception ex)
-                {
-                    // Handle other exceptions
-                    MessageBox.Show("An error occurred: " + ex.Message);
-                }
-            } // Connection is automatically closed and returned to the pool here
-        }
         string initRole;
         string SelectedRole;
         bool FrmLoad;
         public EditRole()
         {
             InitializeComponent();
-            testConnection();
-           
-        }
-
-        private void radioButton2_CheckedChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void EditRole_Load(object sender, EventArgs e)
@@ -75,7 +34,7 @@ namespace Flowershop_Thesis.OtherForms.Accounts.EditAccountContents
             try
             {
                 int numId;
-                using (SqlConnection conn = new SqlConnection(connectionString))
+                using (SqlConnection conn = new SqlConnection(Connect.connectionString))
                 {
 
                     string countQuery = "Select count(*) from UserAccounts where AccountID = @ID";
@@ -94,7 +53,7 @@ namespace Flowershop_Thesis.OtherForms.Accounts.EditAccountContents
 
                 if (numId == 1)
                 {
-                    using (SqlConnection conn = new SqlConnection(connectionString))
+                    using (SqlConnection conn = new SqlConnection(Connect.connectionString))
                     {
                        
                         string updateQuery = " Select Role from UserAccounts where AccountID = @ID";
@@ -147,7 +106,7 @@ namespace Flowershop_Thesis.OtherForms.Accounts.EditAccountContents
             try
             {
                 int numId;
-                using (SqlConnection conn = new SqlConnection(connectionString))
+                using (SqlConnection conn = new SqlConnection(Connect.connectionString))
                 {
 
                     string countQuery = "Select count(*) from UserAccounts where AccountID = @ID";
@@ -174,7 +133,7 @@ namespace Flowershop_Thesis.OtherForms.Accounts.EditAccountContents
                     {
                         try
                         {
-                            using (SqlConnection conn = new SqlConnection(connectionString))
+                            using (SqlConnection conn = new SqlConnection(Connect.connectionString))
                             {
 
 

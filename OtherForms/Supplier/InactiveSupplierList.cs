@@ -17,43 +17,10 @@ namespace Flowershop_Thesis.OtherForms.Supplier
 {
     public partial class InactiveSupplierList : UserControl
     {
-        SqlConnection con;
-        SqlCommand cmd = new SqlCommand();
-        SqlDataReader sdr;
-        SqlDataAdapter sda;
 
-        public void testConnection()
-        {
-            string executableDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            string parentDirectory = Path.GetFullPath(Path.Combine(executableDirectory, @"..\..\"));
-
-            string databaseFilePath = Path.Combine(parentDirectory, "FlowershopSystemDB.mdf");
-
-            // MessageBox.Show(databaseFilePath);
-            // Build the connection string
-            string connectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={databaseFilePath};Initial Catalog=try;Integrated Security=True;";
-
-            // Use the connection string to connect to the database
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                try
-                {
-                    connection.Open();
-                    con = new SqlConnection(connectionString);
-
-                    // Perform database operations here
-
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("An error occurred: " + ex.Message);
-                }
-            }
-        }
         public InactiveSupplierList()
         {
             InitializeComponent();
-            testConnection();
         }
         #region Myregion
         private string SupplierID;
@@ -82,47 +49,43 @@ namespace Flowershop_Thesis.OtherForms.Supplier
             {
                 DialogResult result = MessageBox.Show("You are about to make this supplier Active?", "Mark as Inactive Confirmation", MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
-                {
-                    int numId;
-                    con.Open();
-                    string countQuery = "Select count(*) from Supplier where SupplierID = @ID";
-                    using (SqlCommand countCommand = new SqlCommand(countQuery, con))
+                {   
+                    using(SqlConnection con = new SqlConnection(Connect.connectionString))
                     {
-                        countCommand.Parameters.AddWithValue("@ID", SupplierID);
-                        numId = (int)countCommand.ExecuteScalar();
-
-                    }
-                    string updateQuery = "UPDATE Supplier SET Status = 'Active' WHERE SupplierID = @ID;";
-                    if (numId == 1)
-                    {
-                        using (SqlCommand updateCommand = new SqlCommand(updateQuery, con))
+                        int numId;
+                        con.Open();
+                        string countQuery = "Select count(*) from Supplier where SupplierID = @ID";
+                        using (SqlCommand countCommand = new SqlCommand(countQuery, con))
                         {
-
-                            updateCommand.Parameters.AddWithValue("@ID", SupplierID);
-
-                            updateCommand.ExecuteNonQuery();
-
+                            countCommand.Parameters.AddWithValue("@ID", SupplierID);
+                            numId = (int)countCommand.ExecuteScalar();
 
                         }
+                        string updateQuery = "UPDATE Supplier SET Status = 'Active' WHERE SupplierID = @ID;";
+                        if (numId == 1)
+                        {
+                            using (SqlCommand updateCommand = new SqlCommand(updateQuery, con))
+                            {
 
-                        MessageBox.Show("User Activated!");
-                        Admin_Supplier.instance.inactiveCounter.Text = "Null";
-                    }
-                    else if (numId > 1)
-                    {
-                        MessageBox.Show("There are multiple Users in this ID");
-                    }
-                    else
-                    {
-                        MessageBox.Show("No Account Found!");
-                    }
-                    con.Close();
+                                updateCommand.Parameters.AddWithValue("@ID", SupplierID);
+
+                                updateCommand.ExecuteNonQuery();
 
 
-                }
-                else
-                {
-                    //none
+                            }
+
+                            MessageBox.Show("User Activated!");
+                            Admin_Supplier.instance.inactiveCounter.Text = "Null";
+                        }
+                        else if (numId > 1)
+                        {
+                            MessageBox.Show("There are multiple Users in this ID");
+                        }
+                        else
+                        {
+                            MessageBox.Show("No Account Found!");
+                        }
+                    }
                 }
             }
             catch (Exception ex)

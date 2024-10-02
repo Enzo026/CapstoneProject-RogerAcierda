@@ -1,4 +1,5 @@
-﻿using Flowershop_Thesis.SalesClerk.Queueing;
+﻿using Capstone_Flowershop;
+using Flowershop_Thesis.SalesClerk.Queueing;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,42 +17,10 @@ namespace Flowershop_Thesis.OtherForms
 {
     public partial class CancelledOrderList : UserControl
     {
-        SqlConnection con;
-        SqlCommand cmd = new SqlCommand();
-        SqlDataReader sdr;
-        SqlDataAdapter sda;
         public CancelledOrderList()
         {
             InitializeComponent();
-            testConnection();
-        }
-        public void testConnection()
-        {
-            string executableDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            string parentDirectory = Path.GetFullPath(Path.Combine(executableDirectory, @"..\..\"));
-
-            string databaseFilePath = Path.Combine(parentDirectory, "FlowershopSystemDB.mdf");
-
-            // MessageBox.Show(databaseFilePath);
-            // Build the connection string
-            string connectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={databaseFilePath};Initial Catalog=try;Integrated Security=True;";
-
-            // Use the connection string to connect to the database
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                try
-                {
-                    connection.Open();
-                    con = new SqlConnection(connectionString);
-
-                    // Perform database operations here
-
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("An error occurred: " + ex.Message);
-                }
-            }
+ 
         }
         #region FinishedQueue
         private string name;
@@ -86,30 +55,25 @@ namespace Flowershop_Thesis.OtherForms
         {
             DialogResult result = MessageBox.Show("Do you want this order to be Reverted back to processing?", "Revert Order", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
-            {
-                string updateQuery = "UPDATE TransactionsTbl SET Status = 'Processing' WHERE TransactionID = @ID;";
-                con.Open();
-                using (SqlCommand updateCommand = new SqlCommand(updateQuery, con))
+            {   
+                using(SqlConnection con = new SqlConnection(Connect.connectionString))
                 {
+                    string updateQuery = "UPDATE TransactionsTbl SET Status = 'Processing' WHERE TransactionID = @ID;";
+                    con.Open();
+                    using (SqlCommand updateCommand = new SqlCommand(updateQuery, con))
+                    {
 
-                    updateCommand.Parameters.AddWithValue("@ID", transactionID);
+                        updateCommand.Parameters.AddWithValue("@ID", transactionID);
 
-                    updateCommand.ExecuteNonQuery();
+                        updateCommand.ExecuteNonQuery();
 
-                    int queue = int.Parse(QueuingFormBack.instance.lblcounter.Text);
-                    int addqueue = queue + 1;
-                    QueuingFormBack.instance.lblcounter.Text = addqueue.ToString();
+                        int queue = int.Parse(QueuingFormBack.instance.lblcounter.Text);
+                        int addqueue = queue + 1;
+                        QueuingFormBack.instance.lblcounter.Text = addqueue.ToString();
 
+                    }
+                    MessageBox.Show("Order Reverted");
                 }
-                con.Close();
-                MessageBox.Show("Order Reverted");
-
-
-
-            }
-            else
-            {
-                //none
             }
         }
     }

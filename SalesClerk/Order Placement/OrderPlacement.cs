@@ -4,15 +4,15 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using Flowershop_Thesis;
+using Capstone_Flowershop;
 
 namespace Flowershop_Thesis.SalesClerk.Order_Placement
+
 {
     public partial class OrderPlacement : Form
     {
-        SqlConnection con;
         SqlCommand cmd = new SqlCommand();
-        SqlDataReader sdr;
-        SqlDataAdapter sda;
         public static OrderPlacement instance;
         public Label lbl;
         public FlowLayoutPanel cartlist;
@@ -20,7 +20,6 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement
         public OrderPlacement()
         {
             InitializeComponent();
-            testConnection();
            DisplayIndividual();
             instance = this;
             lbl = label4;
@@ -29,34 +28,7 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement
             getPrice();
 
         }
-        public void testConnection()
-        {
-            string executableDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            string parentDirectory = Path.GetFullPath(Path.Combine(executableDirectory, @"..\..\"));
 
-            string databaseFilePath = Path.Combine(parentDirectory, "FlowershopSystemDB.mdf");
-
-            // MessageBox.Show(databaseFilePath);
-            // Build the connection string
-            string connectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={databaseFilePath};Initial Catalog=try;Integrated Security=True;";
-
-            // Use the connection string to connect to the database
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                try
-                {
-                    connection.Open();
-                    con = new SqlConnection(connectionString);
-
-                    // Perform database operations here
-
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("An error occurred: " + ex.Message);
-                }
-            }
-        }
         private void button1_Click(object sender, EventArgs e)
         {
             flowLayoutPanel1.Controls.Clear();
@@ -127,50 +99,51 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement
         public void DisplayIndividual()
         {
             try
-            {
-                con.Open();
-
-                string countQuery = "SELECT COUNT(*) FROM ItemInventory where ItemStatus = 'Available' AND ItemType = 'Individual' ";
-                using (SqlCommand countCommand = new SqlCommand(countQuery, con))
+            {   
+                using(SqlConnection con = new SqlConnection(Connect.connectionString))
                 {
-                    int rowCount = (int)countCommand.ExecuteScalar();
-                    TransactionItemList[] inv = new TransactionItemList[rowCount];
+                    con.Open();
 
-                    string sqlQuery = "SELECT * FROM ItemInventory where ItemStatus = 'Available' AND ItemType = 'Individual'";
-                    using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                    string countQuery = "SELECT COUNT(*) FROM ItemInventory where ItemStatus = 'Available' AND ItemType = 'Individual' ";
+                    using (SqlCommand countCommand = new SqlCommand(countQuery, con))
                     {
-                        using (SqlDataReader reader = command.ExecuteReader())
+                        int rowCount = (int)countCommand.ExecuteScalar();
+                        TransactionItemList[] inv = new TransactionItemList[rowCount];
+
+                        string sqlQuery = "SELECT * FROM ItemInventory where ItemStatus = 'Available' AND ItemType = 'Individual'";
+                        using (SqlCommand command = new SqlCommand(sqlQuery, con))
                         {
-                            int index = 0;
-                            while (reader.Read() && index < inv.Length)
+                            using (SqlDataReader reader = command.ExecuteReader())
                             {
-                                inv[index] = new TransactionItemList();
-                                inv[index].ItemID = reader["ItemID"].ToString();
-                                inv[index].Name = reader["ItemName"].ToString();
-                                inv[index].Type = "Individual";
-                                inv[index].Color = reader["ItemColor"].ToString();
-                                decimal priceIndex = reader.GetOrdinal("Price");
-                                inv[index].Price = reader.IsDBNull((int)priceIndex) ? 0 : reader.GetDecimal((int)priceIndex);
-                                int StockQuantity = reader.GetOrdinal("ItemQuantity");
-                                inv[index].Stock = reader.IsDBNull(StockQuantity) ? 0 : reader.GetInt32(StockQuantity);
-
-                                if (reader["ItemImage"] != DBNull.Value)
+                                int index = 0;
+                                while (reader.Read() && index < inv.Length)
                                 {
-                                    byte[] imageData = (byte[])reader["ItemImage"];
-                                    using (MemoryStream ms = new MemoryStream(imageData))
-                                    {
-                                        inv[index].img = Image.FromStream(ms);
-                                    }
-                                }
+                                    inv[index] = new TransactionItemList();
+                                    inv[index].ItemID = reader["ItemID"].ToString();
+                                    inv[index].Name = reader["ItemName"].ToString();
+                                    inv[index].Type = "Individual";
+                                    inv[index].Color = reader["ItemColor"].ToString();
+                                    decimal priceIndex = reader.GetOrdinal("Price");
+                                    inv[index].Price = reader.IsDBNull((int)priceIndex) ? 0 : reader.GetDecimal((int)priceIndex);
+                                    int StockQuantity = reader.GetOrdinal("ItemQuantity");
+                                    inv[index].Stock = reader.IsDBNull(StockQuantity) ? 0 : reader.GetInt32(StockQuantity);
 
-                                flowLayoutPanel1.Controls.Add(inv[index]);
-                                index++;
+                                    if (reader["ItemImage"] != DBNull.Value)
+                                    {
+                                        byte[] imageData = (byte[])reader["ItemImage"];
+                                        using (MemoryStream ms = new MemoryStream(imageData))
+                                        {
+                                            inv[index].img = Image.FromStream(ms);
+                                        }
+                                    }
+
+                                    flowLayoutPanel1.Controls.Add(inv[index]);
+                                    index++;
+                                }
                             }
                         }
                     }
-
                 }
-                con.Close();
             }
             catch (Exception ex)
             {
@@ -181,50 +154,51 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement
         {
             try
             {
-
-                con.Open();
-
-                string countQuery = "SELECT COUNT(*) FROM ItemInventory where ItemStatus = 'Available' AND ItemType = 'Bouquet' OR ItemType = 'Custom'";
-                using (SqlCommand countCommand = new SqlCommand(countQuery, con))
+                using(SqlConnection con = new SqlConnection(Connect.connectionString))
                 {
-                    int rowCount = (int)countCommand.ExecuteScalar();
-                    TransactionItemList[] inv = new TransactionItemList[rowCount];
+                    con.Open();
 
-                    string sqlQuery = "SELECT * FROM ItemInventory where ItemStatus = 'Available' AND ItemType = 'Bouquet' OR ItemType = 'Custom' ";
-                    using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                    string countQuery = "SELECT COUNT(*) FROM ItemInventory where ItemStatus = 'Available' AND ItemType = 'Bouquet' OR ItemType = 'Custom'";
+                    using (SqlCommand countCommand = new SqlCommand(countQuery, con))
                     {
-                        using (SqlDataReader reader = command.ExecuteReader())
+                        int rowCount = (int)countCommand.ExecuteScalar();
+                        TransactionItemList[] inv = new TransactionItemList[rowCount];
+
+                        string sqlQuery = "SELECT * FROM ItemInventory where ItemStatus = 'Available' AND ItemType = 'Bouquet' OR ItemType = 'Custom' ";
+                        using (SqlCommand command = new SqlCommand(sqlQuery, con))
                         {
-                            int index = 0;
-                            while (reader.Read() && index < inv.Length)
+                            using (SqlDataReader reader = command.ExecuteReader())
                             {
-                                inv[index] = new TransactionItemList();
-                                inv[index].ItemID = reader["ItemID"].ToString();
-                                inv[index].Name = reader["ItemName"].ToString();
-                                inv[index].Type = "Premade";
-                                inv[index].Color = reader["ItemColor"].ToString();
-                                decimal priceIndex = reader.GetOrdinal("Price");
-                                inv[index].Price = reader.IsDBNull((int)priceIndex) ? 0 : reader.GetDecimal((int)priceIndex);
-                                int StockQuantity = reader.GetOrdinal("ItemQuantity");
-                                inv[index].Stock = reader.IsDBNull(StockQuantity) ? 0 : reader.GetInt32(StockQuantity);
-
-                                if (reader["ItemImage"] != DBNull.Value)
+                                int index = 0;
+                                while (reader.Read() && index < inv.Length)
                                 {
-                                    byte[] imageData = (byte[])reader["ItemImage"];
-                                    using (MemoryStream ms = new MemoryStream(imageData))
-                                    {
-                                        inv[index].img = Image.FromStream(ms);
-                                    }
-                                }
+                                    inv[index] = new TransactionItemList();
+                                    inv[index].ItemID = reader["ItemID"].ToString();
+                                    inv[index].Name = reader["ItemName"].ToString();
+                                    inv[index].Type = "Premade";
+                                    inv[index].Color = reader["ItemColor"].ToString();
+                                    decimal priceIndex = reader.GetOrdinal("Price");
+                                    inv[index].Price = reader.IsDBNull((int)priceIndex) ? 0 : reader.GetDecimal((int)priceIndex);
+                                    int StockQuantity = reader.GetOrdinal("ItemQuantity");
+                                    inv[index].Stock = reader.IsDBNull(StockQuantity) ? 0 : reader.GetInt32(StockQuantity);
 
-                                flowLayoutPanel1.Controls.Add(inv[index]);
-                                index++;
+                                    if (reader["ItemImage"] != DBNull.Value)
+                                    {
+                                        byte[] imageData = (byte[])reader["ItemImage"];
+                                        using (MemoryStream ms = new MemoryStream(imageData))
+                                        {
+                                            inv[index].img = Image.FromStream(ms);
+                                        }
+                                    }
+
+                                    flowLayoutPanel1.Controls.Add(inv[index]);
+                                    index++;
+                                }
                             }
                         }
-                    }
 
+                    }
                 }
-                con.Close();
             }
             catch (Exception ex)
             {
@@ -252,54 +226,47 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement
             try
             {
                 flowLayoutPanel2.Controls.Clear();
-                con.Open();
-                string countQuery = "select count(*) from ServingCart;";
-                using (SqlCommand countCommand = new SqlCommand(countQuery, con))
+                using(SqlConnection con = new SqlConnection(Connect.connectionString))
                 {
-                    int rowCount = (int)countCommand.ExecuteScalar();
-                    int cartlbl = int.Parse(label4.Text);
-                    if (rowCount != cartlbl)
+                    con.Open();
+                    string countQuery = "select count(*) from ServingCart;";
+                    using (SqlCommand countCommand = new SqlCommand(countQuery, con))
                     {
-                        label4.Text = rowCount.ToString();
-                    }
-
-
-                    CartItems[] inv = new CartItems[rowCount];
-                    string sqlQuery = "SELECT * FROM ServingCart";
-                    using (SqlCommand command = new SqlCommand(sqlQuery, con))
-                    {
-                        using (SqlDataReader reader = command.ExecuteReader())
+                        int rowCount = (int)countCommand.ExecuteScalar();
+                        int cartlbl = int.Parse(label4.Text);
+                        if (rowCount != cartlbl)
                         {
-                            int index = 0;
-                            while (reader.Read() && index < inv.Length)
+                            label4.Text = rowCount.ToString();
+                        }
+
+
+                        CartItems[] inv = new CartItems[rowCount];
+                        string sqlQuery = "SELECT * FROM ServingCart";
+                        using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                        {
+                            using (SqlDataReader reader = command.ExecuteReader())
                             {
-                                inv[index] = new CartItems();
-                                inv[index].ItemID = reader["ItemID"].ToString();
-                                inv[index].Name = reader["ItemName"].ToString();
+                                int index = 0;
+                                while (reader.Read() && index < inv.Length)
+                                {
+                                    inv[index] = new CartItems();
+                                    inv[index].ItemID = reader["ItemID"].ToString();
+                                    inv[index].Name = reader["ItemName"].ToString();
 
-                                int priceIndex = reader.GetOrdinal("OrderPrice");
-                                inv[index].Price = reader.IsDBNull(priceIndex) ? 0 : reader.GetInt32(priceIndex);
-                                int CI = reader.GetOrdinal("CartID");
-                                inv[index].cartID = reader.IsDBNull(CI) ? 0 : reader.GetInt32(CI);
-                                int StockQuantity = reader.GetOrdinal("OrderQty");
-                                inv[index].qty = reader.IsDBNull(StockQuantity) ? 0 : reader.GetInt32(StockQuantity);
+                                    int priceIndex = reader.GetOrdinal("OrderPrice");
+                                    inv[index].Price = reader.IsDBNull(priceIndex) ? 0 : reader.GetInt32(priceIndex);
+                                    int CI = reader.GetOrdinal("CartID");
+                                    inv[index].cartID = reader.IsDBNull(CI) ? 0 : reader.GetInt32(CI);
+                                    int StockQuantity = reader.GetOrdinal("OrderQty");
+                                    inv[index].qty = reader.IsDBNull(StockQuantity) ? 0 : reader.GetInt32(StockQuantity);
 
-                                flowLayoutPanel2.Controls.Add(inv[index]);
-                                index++;
+                                    flowLayoutPanel2.Controls.Add(inv[index]);
+                                    index++;
+                                }
                             }
                         }
                     }
-
-
                 }
-
-
-
-
-                con.Close();
-
-
-
             }
             catch (Exception ex)
             {
@@ -320,13 +287,16 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement
             {
                 DialogResult result = MessageBox.Show("Do you want to Cancel all orders in cart?", "Cancel Cart Items", MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
-                {
-                    con.Open();
-                    cmd = new SqlCommand("TRUNCATE TABLE ServingCart", con);
-                    cmd.ExecuteNonQuery();
-                    con.Close();
-                    label4.Text = "0";
-                    MessageBox.Show("Items in the cart are now cancelled!");
+                {   
+                    using(SqlConnection con = new SqlConnection(Connect.connectionString))
+                    {
+                        con.Open();
+                        cmd = new SqlCommand("TRUNCATE TABLE ServingCart", con);
+                        cmd.ExecuteNonQuery();
+                        label4.Text = "0";
+                        MessageBox.Show("Items in the cart are now cancelled!");
+                    }
+
                 }
                 else
                 {
@@ -351,23 +321,25 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement
         public void getPrice()
         {
             try
-            {
-                con.Open();
-
-                using (SqlCommand command = new SqlCommand("SELECT SUM(OrderPrice) AS TotalPrice FROM ServingCart", con))
+            {   
+                using(SqlConnection con = new SqlConnection(Connect.connectionString))
                 {
-                    
-                    using (SqlDataReader reader = command.ExecuteReader())
+                    con.Open();
+
+                    using (SqlCommand command = new SqlCommand("SELECT SUM(OrderPrice) AS TotalPrice FROM ServingCart", con))
                     {
 
-                        while (reader.Read())
+                        using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            label13.Text = reader["TotalPrice"].ToString();
+
+                            while (reader.Read())
+                            {
+                                label13.Text = reader["TotalPrice"].ToString();
+                            }
                         }
                     }
                 }
-                con.Close();
-                con.Close();
+
             }
             catch (Exception ex)
             {

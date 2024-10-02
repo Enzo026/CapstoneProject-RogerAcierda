@@ -20,10 +20,7 @@ namespace Flowershop_Thesis.MainForms
 {
     public partial class SalesClerk_BasePlatform : Form
     {
-        SqlConnection con;
-        SqlCommand cmd = new SqlCommand();
-        SqlDataReader sdr;
-        SqlDataAdapter sda;
+
 
 
         public SalesClerk_BasePlatform()
@@ -31,7 +28,6 @@ namespace Flowershop_Thesis.MainForms
             
             InitializeComponent();
             EmpName.Text = UserInfo.Empleyado;
-            testConnection();
             
             
             panel2.Controls.Clear(); //tatanggalin yung current na laman ng panel
@@ -42,44 +38,19 @@ namespace Flowershop_Thesis.MainForms
             TF.Show(); //para lumitaw
         }
 
-        public void testConnection()
-        {
-            string executableDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            string parentDirectory = Path.GetFullPath(Path.Combine(executableDirectory, @"..\..\"));
-
-            string databaseFilePath = Path.Combine(parentDirectory, "FlowershopSystemDB.mdf");
-
-            // MessageBox.Show(databaseFilePath);
-            // Build the connection string
-            string connectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={databaseFilePath};Initial Catalog=try;Integrated Security=True;";
-
-            // Use the connection string to connect to the database
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                try
-                {
-                    connection.Open();
-                    con = new SqlConnection(connectionString);
-
-                    // Perform database operations here
-
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("An error occurred: " + ex.Message);
-                }
-            }
-        }
         private void label2_Click(object sender, EventArgs e)
         {
             try
-            {
-                con.Open();
-                cmd = new SqlCommand("TRUNCATE TABLE ServingCart",con);
-                cmd.ExecuteNonQuery();
-                con.Close();    
-                
-                Application.Exit();
+            {   
+                using(SqlConnection con = new SqlConnection(Connect.connectionString))
+                {
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand("TRUNCATE TABLE ServingCart", con);
+                    cmd.ExecuteNonQuery();
+
+                    Application.Exit();
+                }
+
             }
             catch (Exception ex)
             {

@@ -18,10 +18,6 @@ namespace Flowershop_Thesis.InventoryClerk.StockAdjustment
 {
     public partial class StockAdjustmentFrmcs : Form
     {
-        SqlConnection con;
-        SqlCommand cmd = new SqlCommand();
-        SqlDataReader sdr;
-        SqlDataAdapter sda;
 
         public static StockAdjustmentFrmcs Instance;
         public Label Idhandler;
@@ -30,7 +26,6 @@ namespace Flowershop_Thesis.InventoryClerk.StockAdjustment
         public StockAdjustmentFrmcs()
         {
             InitializeComponent();
-            testConnection();
             loadTableData();
             Instance = this;
             Idhandler = label55;
@@ -40,69 +35,43 @@ namespace Flowershop_Thesis.InventoryClerk.StockAdjustment
             label29.Visible = false;
         }
 
-        public void testConnection()
-        {
-            string executableDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            string parentDirectory = Path.GetFullPath(Path.Combine(executableDirectory, @"..\..\"));
-
-            string databaseFilePath = Path.Combine(parentDirectory, "FlowershopSystemDB.mdf");
-
-            // MessageBox.Show(databaseFilePath);
-            // Build the connection string
-            string connectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={databaseFilePath};Initial Catalog=try;Integrated Security=True;";
-
-            // Use the connection string to connect to the database
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                try
-                {
-                    connection.Open();
-                    con = new SqlConnection(connectionString);
-
-                    // Perform database operations here
-
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("An error occurred: " + ex.Message);
-                }
-            }
-        }
         public void loadTableData()
         {
             try
             {
                 flowLayoutPanel1.Controls.Clear();
-                con.Open();
-                string countQuery = "select count(*) from ItemInventory where ItemQuantity > 20 ;";
-                using (SqlCommand countCommand = new SqlCommand(countQuery, con))
+                using(SqlConnection con = new SqlConnection (Connect.connectionString))
                 {
-                    int rowCount = (int)countCommand.ExecuteScalar();
-                    StockAdjustmentListItems[] itemList = new StockAdjustmentListItems[rowCount];
-
-                    string sqlQuery = "SELECT * FROM ItemInventory where ItemQuantity > 20";
-                    using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                    con.Open();
+                    string countQuery = "select count(*) from ItemInventory where ItemQuantity > 20 ;";
+                    using (SqlCommand countCommand = new SqlCommand(countQuery, con))
                     {
-                        using (SqlDataReader reader = command.ExecuteReader())
-                        {
-                            int index = 0;
-                            while (reader.Read() && index < itemList.Length)
-                            {
-                                itemList[index] = new StockAdjustmentListItems();
-                                itemList[index].itemidData = int.Parse(reader["ItemID"].ToString());
-                                itemList[index].itemnameData = reader["ItemName"].ToString();
-                                int qty = reader.GetOrdinal("ItemQuantity");
-                                int demo = reader.IsDBNull((int)qty) ? 0 : reader.GetInt32((int)qty);
-                                itemList[index].itemquantityData = demo;
-                                flowLayoutPanel1.Controls.Add(itemList[index]);
-                                index++;
+                        int rowCount = (int)countCommand.ExecuteScalar();
+                        StockAdjustmentListItems[] itemList = new StockAdjustmentListItems[rowCount];
 
+                        string sqlQuery = "SELECT * FROM ItemInventory where ItemQuantity > 20";
+                        using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                        {
+                            using (SqlDataReader reader = command.ExecuteReader())
+                            {
+                                int index = 0;
+                                while (reader.Read() && index < itemList.Length)
+                                {
+                                    itemList[index] = new StockAdjustmentListItems();
+                                    itemList[index].itemidData = int.Parse(reader["ItemID"].ToString());
+                                    itemList[index].itemnameData = reader["ItemName"].ToString();
+                                    int qty = reader.GetOrdinal("ItemQuantity");
+                                    int demo = reader.IsDBNull((int)qty) ? 0 : reader.GetInt32((int)qty);
+                                    itemList[index].itemquantityData = demo;
+                                    flowLayoutPanel1.Controls.Add(itemList[index]);
+                                    index++;
+
+                                }
                             }
                         }
-                    }
 
+                    }
                 }
-                con.Close();
             }
             catch (Exception e)
             {
@@ -115,36 +84,38 @@ namespace Flowershop_Thesis.InventoryClerk.StockAdjustment
             try
             {
                 flowLayoutPanel1.Controls.Clear();
-                con.Open();
-                string countQuery = "select count(*) from ItemInventory where ItemQuantity > 20 ;";
-                using (SqlCommand countCommand = new SqlCommand(countQuery, con))
+                using(SqlConnection con = new SqlConnection(Connect.connectionString))
                 {
-                    int rowCount = (int)countCommand.ExecuteScalar();
-                    StockAdjustmentListItems[] itemList = new StockAdjustmentListItems[rowCount];
-
-                    string sqlQuery = "SELECT * FROM ItemInventory where ItemQuantity > 20 order by itemQuantity desc";
-                    using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                    con.Open();
+                    string countQuery = "select count(*) from ItemInventory where ItemQuantity > 20 ;";
+                    using (SqlCommand countCommand = new SqlCommand(countQuery, con))
                     {
-                        using (SqlDataReader reader = command.ExecuteReader())
-                        {
-                            int index = 0;
-                            while (reader.Read() && index < itemList.Length)
-                            {
-                                itemList[index] = new StockAdjustmentListItems();
-                                itemList[index].itemidData = int.Parse(reader["ItemID"].ToString());
-                                itemList[index].itemnameData = reader["ItemName"].ToString();
-                                int qty = reader.GetOrdinal("ItemQuantity");
-                                int demo = reader.IsDBNull((int)qty) ? 0 : reader.GetInt32((int)qty);
-                                itemList[index].itemquantityData = demo;
-                                flowLayoutPanel1.Controls.Add(itemList[index]);
-                                index++;
+                        int rowCount = (int)countCommand.ExecuteScalar();
+                        StockAdjustmentListItems[] itemList = new StockAdjustmentListItems[rowCount];
 
+                        string sqlQuery = "SELECT * FROM ItemInventory where ItemQuantity > 20 order by itemQuantity desc";
+                        using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                        {
+                            using (SqlDataReader reader = command.ExecuteReader())
+                            {
+                                int index = 0;
+                                while (reader.Read() && index < itemList.Length)
+                                {
+                                    itemList[index] = new StockAdjustmentListItems();
+                                    itemList[index].itemidData = int.Parse(reader["ItemID"].ToString());
+                                    itemList[index].itemnameData = reader["ItemName"].ToString();
+                                    int qty = reader.GetOrdinal("ItemQuantity");
+                                    int demo = reader.IsDBNull((int)qty) ? 0 : reader.GetInt32((int)qty);
+                                    itemList[index].itemquantityData = demo;
+                                    flowLayoutPanel1.Controls.Add(itemList[index]);
+                                    index++;
+
+                                }
                             }
                         }
-                    }
 
+                    }
                 }
-                con.Close();
             }
             catch (Exception e)
             {
@@ -156,36 +127,38 @@ namespace Flowershop_Thesis.InventoryClerk.StockAdjustment
             try
             {
                 flowLayoutPanel1.Controls.Clear();
-                con.Open();
-                string countQuery = "select count(*) from ItemInventory where ItemQuantity > 20 ;";
-                using (SqlCommand countCommand = new SqlCommand(countQuery, con))
+                using (SqlConnection con = new SqlConnection(Connect.connectionString))
                 {
-                    int rowCount = (int)countCommand.ExecuteScalar();
-                    StockAdjustmentListItems[] itemList = new StockAdjustmentListItems[rowCount];
-
-                    string sqlQuery = "SELECT * FROM ItemInventory where ItemQuantity > 20 order by SuppliedDate desc;";
-                    using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                    con.Open();
+                    string countQuery = "select count(*) from ItemInventory where ItemQuantity > 20 ;";
+                    using (SqlCommand countCommand = new SqlCommand(countQuery, con))
                     {
-                        using (SqlDataReader reader = command.ExecuteReader())
-                        {
-                            int index = 0;
-                            while (reader.Read() && index < itemList.Length)
-                            {
-                                itemList[index] = new StockAdjustmentListItems();
-                                itemList[index].itemidData = int.Parse(reader["ItemID"].ToString());
-                                itemList[index].itemnameData = reader["ItemName"].ToString();
-                                int qty = reader.GetOrdinal("ItemQuantity");
-                                int demo = reader.IsDBNull((int)qty) ? 0 : reader.GetInt32((int)qty);
-                                itemList[index].itemquantityData = demo;
-                                flowLayoutPanel1.Controls.Add(itemList[index]);
-                                index++;
+                        int rowCount = (int)countCommand.ExecuteScalar();
+                        StockAdjustmentListItems[] itemList = new StockAdjustmentListItems[rowCount];
 
+                        string sqlQuery = "SELECT * FROM ItemInventory where ItemQuantity > 20 order by SuppliedDate desc;";
+                        using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                        {
+                            using (SqlDataReader reader = command.ExecuteReader())
+                            {
+                                int index = 0;
+                                while (reader.Read() && index < itemList.Length)
+                                {
+                                    itemList[index] = new StockAdjustmentListItems();
+                                    itemList[index].itemidData = int.Parse(reader["ItemID"].ToString());
+                                    itemList[index].itemnameData = reader["ItemName"].ToString();
+                                    int qty = reader.GetOrdinal("ItemQuantity");
+                                    int demo = reader.IsDBNull((int)qty) ? 0 : reader.GetInt32((int)qty);
+                                    itemList[index].itemquantityData = demo;
+                                    flowLayoutPanel1.Controls.Add(itemList[index]);
+                                    index++;
+
+                                }
                             }
                         }
-                    }
 
+                    }
                 }
-                con.Close();
             }
             catch (Exception e)
             {
@@ -198,38 +171,40 @@ namespace Flowershop_Thesis.InventoryClerk.StockAdjustment
             try
             {
                 flowLayoutPanel1.Controls.Clear();
-                con.Open();
-                string countQuery = "select count(*) from ItemInventory where ItemQuantity >20 AND  ItemName like @ItemName;";
-                using (SqlCommand countCommand = new SqlCommand(countQuery, con))
+                using(SqlConnection con = new SqlConnection(Connect.connectionString))
                 {
-                    countCommand.Parameters.AddWithValue("@ItemName", "%" + textBox1.Text.Trim() + "%");
-                    int rowCount = (int)countCommand.ExecuteScalar();
-                    StockAdjustmentListItems[] itemList = new StockAdjustmentListItems[rowCount];
-
-                    string sqlQuery = "SELECT * FROM ItemInventory where ItemQuantity > 20 AND  ItemName like @ItemName;";
-                    using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                    con.Open();
+                    string countQuery = "select count(*) from ItemInventory where ItemQuantity >20 AND  ItemName like @ItemName;";
+                    using (SqlCommand countCommand = new SqlCommand(countQuery, con))
                     {
-                        command.Parameters.AddWithValue("@ItemName", "%" + textBox1.Text.Trim() + "%");
-                        using (SqlDataReader reader = command.ExecuteReader())
-                        {
-                            int index = 0;
-                            while (reader.Read() && index < itemList.Length)
-                            {
-                                itemList[index] = new StockAdjustmentListItems();
-                                itemList[index].itemidData = int.Parse(reader["ItemID"].ToString());
-                                itemList[index].itemnameData = reader["ItemName"].ToString();
-                                int qty = reader.GetOrdinal("ItemQuantity");
-                                int demo = reader.IsDBNull((int)qty) ? 0 : reader.GetInt32((int)qty);
-                                itemList[index].itemquantityData = demo;
-                                flowLayoutPanel1.Controls.Add(itemList[index]);
-                                index++;
+                        countCommand.Parameters.AddWithValue("@ItemName", "%" + textBox1.Text.Trim() + "%");
+                        int rowCount = (int)countCommand.ExecuteScalar();
+                        StockAdjustmentListItems[] itemList = new StockAdjustmentListItems[rowCount];
 
+                        string sqlQuery = "SELECT * FROM ItemInventory where ItemQuantity > 20 AND  ItemName like @ItemName;";
+                        using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                        {
+                            command.Parameters.AddWithValue("@ItemName", "%" + textBox1.Text.Trim() + "%");
+                            using (SqlDataReader reader = command.ExecuteReader())
+                            {
+                                int index = 0;
+                                while (reader.Read() && index < itemList.Length)
+                                {
+                                    itemList[index] = new StockAdjustmentListItems();
+                                    itemList[index].itemidData = int.Parse(reader["ItemID"].ToString());
+                                    itemList[index].itemnameData = reader["ItemName"].ToString();
+                                    int qty = reader.GetOrdinal("ItemQuantity");
+                                    int demo = reader.IsDBNull((int)qty) ? 0 : reader.GetInt32((int)qty);
+                                    itemList[index].itemquantityData = demo;
+                                    flowLayoutPanel1.Controls.Add(itemList[index]);
+                                    index++;
+
+                                }
                             }
                         }
-                    }
 
+                    }
                 }
-                con.Close();
             }
             catch (Exception e)
             {
@@ -306,21 +281,24 @@ namespace Flowershop_Thesis.InventoryClerk.StockAdjustment
                     {
                         label29.Visible = false;
                         try
-                        {
-                            string updateQuery = "UPDATE ItemInventory SET ItemQuantity = ItemQuantity - @qty, SuppliedDate = GETDATE() WHERE ItemID = @ID;";
-                            con.Open();
-                            using (SqlCommand updateCommand = new SqlCommand(updateQuery, con))
+                        {   
+                            using(SqlConnection con  = new SqlConnection(Connect.connectionString)) 
                             {
+                                string updateQuery = "UPDATE ItemInventory SET ItemQuantity = ItemQuantity - @qty, SuppliedDate = GETDATE() WHERE ItemID = @ID;";
+                                con.Open();
+                                using (SqlCommand updateCommand = new SqlCommand(updateQuery, con))
+                                {
 
-                                updateCommand.Parameters.AddWithValue("@ID", label55.Text);
-                                updateCommand.Parameters.AddWithValue("@qty", textBox2.Text);
+                                    updateCommand.Parameters.AddWithValue("@ID", label55.Text);
+                                    updateCommand.Parameters.AddWithValue("@qty", textBox2.Text);
 
-                                int rows = updateCommand.ExecuteNonQuery();
+                                    int rows = updateCommand.ExecuteNonQuery();
 
-                                MessageBox.Show("Quantity Adjusted!");
+                                    MessageBox.Show("Quantity Adjusted!");
 
+                                }
                             }
-                            con.Close();
+                          
                         }
                         catch (Exception ex)
                         {
