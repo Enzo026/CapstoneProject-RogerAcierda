@@ -25,91 +25,88 @@ namespace Capstone_Flowershop
         SqlDataReader sdr;
         SqlDataAdapter sda;
 
-        string connectionString;
         public Form1()
         {
             InitializeComponent();
-            LocalDBConnection();
-            //oldconnection();
-           
         }
-        public void LocalDBConnection()
-        {
-            string executableDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            string parentDirectory = Path.GetFullPath(Path.Combine(executableDirectory, @"..\..\"));
-            string databaseFilePath = Path.Combine(parentDirectory, "FlowershopSystemDB.mdf");
+        //#region olddb-ToBeRemoved
+        //public void LocalDBConnection()
+        //{
+        //    string executableDirectory = AppDomain.CurrentDomain.BaseDirectory;
+        //    string parentDirectory = Path.GetFullPath(Path.Combine(executableDirectory, @"..\..\"));
+        //    string databaseFilePath = Path.Combine(parentDirectory, "FlowershopSystemDB.mdf");
 
-            // Build the connection string with explicit pooling parameters
-             connectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={databaseFilePath};Initial Catalog=try;Integrated Security=True;Pooling=true;Max Pool Size=100;Min Pool Size=5;Connection Lifetime=600;";
+        //    // Build the connection string with explicit pooling parameters
+        //     //connectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={databaseFilePath};Initial Catalog=try;Integrated Security=True;Pooling=true;Max Pool Size=100;Min Pool Size=5;Connection Lifetime=600;";
 
            
-            // Use the connection string to connect to the database
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                try
-                {
-                    connection.Open();
-                    label6.Text = "Database Connected";
-                    label7.Text = databaseFilePath;
-                    con = new SqlConnection(connectionString);
+        //    // Use the connection string to connect to the database
+        //    using (SqlConnection connection = new SqlConnection(connectionString))
+        //    {
+        //        try
+        //        {
+        //            connection.Open();
+        //            label6.Text = "Database Connected";
+        //            label7.Text = databaseFilePath;
+        //            con = new SqlConnection(connectionString);
 
-                    // Perform database operations here
+        //            // Perform database operations here
 
-                }
-                catch (SqlException sqlEx)
-                {
-                    // Handle SQL exceptions
-                    MessageBox.Show("SQL error occurred: " + sqlEx.Message);
-                }
-                catch (Exception ex)
-                {
-                    // Handle other exceptions
-                    MessageBox.Show("An error occurred: " + ex.Message);
-                }
-            } // Connection is automatically closed and returned to the pool here
-        }
+        //        }
+        //        catch (SqlException sqlEx)
+        //        {
+        //            // Handle SQL exceptions
+        //            MessageBox.Show("SQL error occurred: " + sqlEx.Message);
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            // Handle other exceptions
+        //            MessageBox.Show("An error occurred: " + ex.Message);
+        //        }
+        //    } // Connection is automatically closed and returned to the pool here
+        //}
 
-        public void testConnections()
-        {
-            string executableDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            string parentDirectory = Path.GetFullPath(Path.Combine(executableDirectory, @"..\..\"));
+        //public void testConnections()
+        //{
+        //    string executableDirectory = AppDomain.CurrentDomain.BaseDirectory;
+        //    string parentDirectory = Path.GetFullPath(Path.Combine(executableDirectory, @"..\..\"));
             
           
-            string databaseFilePath = Path.Combine(parentDirectory, "try.mdf");
+        //    string databaseFilePath = Path.Combine(parentDirectory, "try.mdf");
 
             
 
-            // Build the connection string
-            string connectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={databaseFilePath};Initial Catalog=try;Integrated Security=True;";
+        //    // Build the connection string
+        //    string connectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={databaseFilePath};Initial Catalog=try;Integrated Security=True;";
 
-            // Use the connection string to connect to the database
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                try
-                {
-                    connection.Open();
-                    //MessageBox.Show("Database connection opened successfully.");
-                    label6.Text = "Database Connected";
-                    label7.Text = databaseFilePath;
-                    con = new SqlConnection(connectionString);
-                    //label6.Text = connectionString;
-                    // Perform database operations here
+        //    // Use the connection string to connect to the database
+        //    using (SqlConnection connection = new SqlConnection(connectionString))
+        //    {
+        //        try
+        //        {
+        //            connection.Open();
+        //            //MessageBox.Show("Database connection opened successfully.");
+        //            label6.Text = "Database Connected";
+        //            label7.Text = databaseFilePath;
+        //            con = new SqlConnection(connectionString);
+        //            //label6.Text = connectionString;
+        //            // Perform database operations here
 
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("An error occurred: " + ex.Message);
-                }
-            }
-        }
-        //create a method name ewan to show a messagebox upon upon clicking button 1
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            MessageBox.Show("An error occurred: " + ex.Message);
+        //        }
+        //    }
+        //}
+        ////create a method name ewan to show a messagebox upon upon clicking button 1
 
 
-        public void oldconnection()
-        {
-            string conn = "Data Source=DESKTOP-IH4V487\\NEWMSSQL;Initial Catalog=try;Integrated Security=True";
-            //con = new SqlConnection(conn);
-        }
+        //public void oldconnection()
+        //{
+        //    string conn = "Data Source=DESKTOP-IH4V487\\NEWMSSQL;Initial Catalog=try;Integrated Security=True";
+        //}
+        //#endregion
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
@@ -117,7 +114,7 @@ namespace Capstone_Flowershop
 
         private void button1_Click(object sender, EventArgs e)
         {   
-            using(SqlConnection conn = new SqlConnection(connectionString))
+            using(SqlConnection conn = new SqlConnection(Connect.connectionString))
             {
                 conn.Open();
 

@@ -17,47 +17,10 @@ namespace Capstone_Flowershop.AdminForms.ProductMaintenance
 {
     public partial class ProductMaintenance : Form
     {
-        #region SQL Connection things?
-        SqlConnection con;
-        SqlConnection con2;
-        SqlCommand cmd = new SqlCommand();
-        SqlDataReader sdr;
-        SqlDataAdapter sda;
 
-        public void testConnection()
-        {
-            string executableDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            string parentDirectory = Path.GetFullPath(Path.Combine(executableDirectory, @"..\..\"));
-
-            string databaseFilePath = Path.Combine(parentDirectory, "FlowershopSystemDB.mdf");
-
-            // MessageBox.Show(databaseFilePath);
-            // Build the connection string
-            string connectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={databaseFilePath};Initial Catalog=try;Integrated Security=True;";
-
-            // Use the connection string to connect to the database
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                try
-                {
-                    connection.Open();
-                    con = new SqlConnection(connectionString);
-                    con2 = new SqlConnection(connectionString);
-
-                    // Perform database operations here
-
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("An error occurred: " + ex.Message);
-                }
-            }
-        }
-        #endregion
         public ProductMaintenance()
         {
             InitializeComponent();
-            testConnection();
             DisplayFlowers();
             ChangeIds.ItemType = "ItemInventory";
         }
@@ -66,47 +29,47 @@ namespace Capstone_Flowershop.AdminForms.ProductMaintenance
             try
             {
                 flowLayoutPanel1.Controls.Clear();
-
-                con.Open();
-                string countQuery = "SELECT COUNT(*) FROM ItemInventory where ItemStatus = 'Available' ";
-                using (SqlCommand countCommand = new SqlCommand(countQuery, con))
+                using(SqlConnection con =  new SqlConnection(Connect.connectionString))
                 {
-                    int rowCount = (int)countCommand.ExecuteScalar();
-                    ProductMaintenanceListItem[] inv = new ProductMaintenanceListItem[rowCount];
-
-                    string sqlQuery = "SELECT * FROM ItemInventory where ItemStatus = 'Available'";
-                    using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                    con.Open();
+                    string countQuery = "SELECT COUNT(*) FROM ItemInventory where ItemStatus = 'Available' ";
+                    using (SqlCommand countCommand = new SqlCommand(countQuery, con))
                     {
+                        int rowCount = (int)countCommand.ExecuteScalar();
+                        ProductMaintenanceListItem[] inv = new ProductMaintenanceListItem[rowCount];
 
-                        using (SqlDataReader reader = command.ExecuteReader())
+                        string sqlQuery = "SELECT * FROM ItemInventory where ItemStatus = 'Available'";
+                        using (SqlCommand command = new SqlCommand(sqlQuery, con))
                         {
-                            int index = 0;
-                            while (reader.Read() && index < inv.Length)
+
+                            using (SqlDataReader reader = command.ExecuteReader())
                             {
-                                inv[index] = new ProductMaintenanceListItem();
-                                inv[index].ItmID = reader["ItemID"].ToString().Trim();
-                                inv[index].ItmName = reader["ItemName"].ToString().Trim();
-                                inv[index].ItmQty = reader["ItemQuantity"].ToString().Trim();
-                                inv[index].ItmPrice = reader["Price"].ToString().Trim();
-
-                                if (reader["ItemImage"] != DBNull.Value)
+                                int index = 0;
+                                while (reader.Read() && index < inv.Length)
                                 {
-                                    byte[] imageData = (byte[])reader["ItemImage"];
-                                    using (MemoryStream ms = new MemoryStream(imageData))
-                                    {
-                                        inv[index].img = Image.FromStream(ms);
-                                    }
-                                }
+                                    inv[index] = new ProductMaintenanceListItem();
+                                    inv[index].ItmID = reader["ItemID"].ToString().Trim();
+                                    inv[index].ItmName = reader["ItemName"].ToString().Trim();
+                                    inv[index].ItmQty = reader["ItemQuantity"].ToString().Trim();
+                                    inv[index].ItmPrice = reader["Price"].ToString().Trim();
 
-                                flowLayoutPanel1.Controls.Add(inv[index]);
-                                index++;
+                                    if (reader["ItemImage"] != DBNull.Value)
+                                    {
+                                        byte[] imageData = (byte[])reader["ItemImage"];
+                                        using (MemoryStream ms = new MemoryStream(imageData))
+                                        {
+                                            inv[index].img = Image.FromStream(ms);
+                                        }
+                                    }
+
+                                    flowLayoutPanel1.Controls.Add(inv[index]);
+                                    index++;
+                                }
                             }
                         }
+
                     }
-
                 }
-
-                con.Close();
             }
             catch (Exception ex)
             {
@@ -118,47 +81,46 @@ namespace Capstone_Flowershop.AdminForms.ProductMaintenance
             try
             {
                 flowLayoutPanel1.Controls.Clear();
-
-                con.Open();
-                string countQuery = "SELECT COUNT(*) FROM Materials where ItemStatus = 'Available' ";
-                using (SqlCommand countCommand = new SqlCommand(countQuery, con))
+                using(SqlConnection con = new SqlConnection(Connect.connectionString))
                 {
-                    int rowCount = (int)countCommand.ExecuteScalar();
-                    ProductMaintenanceListItem[] inv = new ProductMaintenanceListItem[rowCount];
-
-                    string sqlQuery = "SELECT * FROM Materials where ItemStatus = 'Available'";
-                    using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                    con.Open();
+                    string countQuery = "SELECT COUNT(*) FROM Materials where ItemStatus = 'Available' ";
+                    using (SqlCommand countCommand = new SqlCommand(countQuery, con))
                     {
+                        int rowCount = (int)countCommand.ExecuteScalar();
+                        ProductMaintenanceListItem[] inv = new ProductMaintenanceListItem[rowCount];
 
-                        using (SqlDataReader reader = command.ExecuteReader())
+                        string sqlQuery = "SELECT * FROM Materials where ItemStatus = 'Available'";
+                        using (SqlCommand command = new SqlCommand(sqlQuery, con))
                         {
-                            int index = 0;
-                            while (reader.Read() && index < inv.Length)
+
+                            using (SqlDataReader reader = command.ExecuteReader())
                             {
-                                inv[index] = new ProductMaintenanceListItem();
-                                inv[index].ItmID = reader["ItemID"].ToString().Trim();
-                                inv[index].ItmName = reader["ItemName"].ToString().Trim();
-                                inv[index].ItmQty = reader["ItemQuantity"].ToString().Trim();
-                                inv[index].ItmPrice = reader["Price"].ToString().Trim();
-
-                                if (reader["Image"] != DBNull.Value)
+                                int index = 0;
+                                while (reader.Read() && index < inv.Length)
                                 {
-                                    byte[] imageData = (byte[])reader["Image"];
-                                    using (MemoryStream ms = new MemoryStream(imageData))
-                                    {
-                                        inv[index].img = Image.FromStream(ms);
-                                    }
-                                }
+                                    inv[index] = new ProductMaintenanceListItem();
+                                    inv[index].ItmID = reader["ItemID"].ToString().Trim();
+                                    inv[index].ItmName = reader["ItemName"].ToString().Trim();
+                                    inv[index].ItmQty = reader["ItemQuantity"].ToString().Trim();
+                                    inv[index].ItmPrice = reader["Price"].ToString().Trim();
 
-                                flowLayoutPanel1.Controls.Add(inv[index]);
-                                index++;
+                                    if (reader["Image"] != DBNull.Value)
+                                    {
+                                        byte[] imageData = (byte[])reader["Image"];
+                                        using (MemoryStream ms = new MemoryStream(imageData))
+                                        {
+                                            inv[index].img = Image.FromStream(ms);
+                                        }
+                                    }
+
+                                    flowLayoutPanel1.Controls.Add(inv[index]);
+                                    index++;
+                                }
                             }
                         }
                     }
-
                 }
-
-                con.Close();
             }
             catch (Exception ex)
             {

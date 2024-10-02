@@ -13,16 +13,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using Flowershop_Thesis;
+using Capstone_Flowershop;
 
 namespace Flowershop_Thesis.SalesClerk.Order_Placement.AdvanceOrderfolder
 {
     public partial class AdvanceOrdersList : Form
     {
-        SqlConnection con;
-        SqlConnection con2;
-        SqlCommand cmd = new SqlCommand();
-        SqlDataReader sdr;
-        SqlDataAdapter sda;
 
         public static AdvanceOrdersList instance;
         public Label OId;
@@ -46,32 +43,9 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement.AdvanceOrderfolder
             CustName = CustomerNameLbl;
             OrderQty = OrderItmQtyLbl;
             todaycounter = label9;
-            testConnection();
             getListOrder();
             ordertoday();
             
-        }
-        public void testConnection()
-        {
-            string executableDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            string parentDirectory = Path.GetFullPath(Path.Combine(executableDirectory, @"..\..\"));
-
-            string databaseFilePath = Path.Combine(parentDirectory, "FlowershopSystemDB.mdf");
-            string connectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={databaseFilePath};Initial Catalog=try;Integrated Security=True;";
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                try
-                {
-                    connection.Open();
-                    con = new SqlConnection(connectionString);
-
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("An error occurred: " + ex.Message);
-                }
-            }
         }
         private void label12_Click(object sender, EventArgs e)
         {
@@ -96,43 +70,43 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement.AdvanceOrderfolder
         public void getListOrder()
         {
             try
-            {
-                con.Open();
-
-                string countQuery = "SELECT COUNT(*) FROM AdvanceOrders where Status = 'Active' ";
-                using (SqlCommand countCommand = new SqlCommand(countQuery, con))
+            {   
+                using(SqlConnection con = new SqlConnection(Connect.connectionString))
                 {
-                    int rowCount = (int)countCommand.ExecuteScalar();
-                    AdvanceOrderListContents[] inv = new AdvanceOrderListContents[rowCount];
-
-                    string sqlQuery = "SELECT * FROM AdvanceOrders where Status = 'Active' ";
-                    using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                    con.Open();
+                    string countQuery = "SELECT COUNT(*) FROM AdvanceOrders where Status = 'Active' ";
+                    using (SqlCommand countCommand = new SqlCommand(countQuery, con))
                     {
-                        using (SqlDataReader reader = command.ExecuteReader())
+                        int rowCount = (int)countCommand.ExecuteScalar();
+                        AdvanceOrderListContents[] inv = new AdvanceOrderListContents[rowCount];
+
+                        string sqlQuery = "SELECT * FROM AdvanceOrders where Status = 'Active' ";
+                        using (SqlCommand command = new SqlCommand(sqlQuery, con))
                         {
-                            int index = 0;
-                            while (reader.Read() && index < inv.Length)
+                            using (SqlDataReader reader = command.ExecuteReader())
                             {
-                                inv[index] = new AdvanceOrderListContents();
-                                inv[index].transID = int.Parse(reader["OrderID"].ToString());
-                                inv[index].Name = reader["CustomerName"].ToString();
-                                inv[index].Type = reader["OrderType"].ToString();
-                                inv[index].OrderPickupDate = reader["PickupDate"].ToString();
-                                inv[index].Price = reader["TotalPrice"].ToString();
-                                inv[index].Downpayment = reader["Downpayment"].ToString();
+                                int index = 0;
+                                while (reader.Read() && index < inv.Length)
+                                {
+                                    inv[index] = new AdvanceOrderListContents();
+                                    inv[index].transID = int.Parse(reader["OrderID"].ToString());
+                                    inv[index].Name = reader["CustomerName"].ToString();
+                                    inv[index].Type = reader["OrderType"].ToString();
+                                    inv[index].OrderPickupDate = reader["PickupDate"].ToString();
+                                    inv[index].Price = reader["TotalPrice"].ToString();
+                                    inv[index].Downpayment = reader["Downpayment"].ToString();
 
-                                string id = inv[index].transID.ToString();
+                                    string id = inv[index].transID.ToString();
 
 
 
-                                flowLayoutPanel1.Controls.Add(inv[index]);
-                                index++;
+                                    flowLayoutPanel1.Controls.Add(inv[index]);
+                                    index++;
+                                }
                             }
                         }
                     }
-
                 }
-                con.Close();
             }
             catch (Exception ex)
             {
@@ -144,42 +118,39 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement.AdvanceOrderfolder
             try
             {   
                 flowLayoutPanel1.Controls.Clear();
-                con.Open();
-
-                string countQuery = "SELECT COUNT(*) FROM AdvanceOrders where Status = 'Active' ";
-                using (SqlCommand countCommand = new SqlCommand(countQuery, con))
+                using(SqlConnection con = new SqlConnection(Connect.connectionString))
                 {
-                    int rowCount = (int)countCommand.ExecuteScalar();
-                    AdvanceOrderListContents[] inv = new AdvanceOrderListContents[rowCount];
-
-                    string sqlQuery = "SELECT * FROM AdvanceOrders where Status = 'Active' order by PickupDate ASC ";
-                    using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                    con.Open();
+                    string countQuery = "SELECT COUNT(*) FROM AdvanceOrders where Status = 'Active' ";
+                    using (SqlCommand countCommand = new SqlCommand(countQuery, con))
                     {
-                        using (SqlDataReader reader = command.ExecuteReader())
+                        int rowCount = (int)countCommand.ExecuteScalar();
+                        AdvanceOrderListContents[] inv = new AdvanceOrderListContents[rowCount];
+
+                        string sqlQuery = "SELECT * FROM AdvanceOrders where Status = 'Active' order by PickupDate ASC ";
+                        using (SqlCommand command = new SqlCommand(sqlQuery, con))
                         {
-                            int index = 0;
-                            while (reader.Read() && index < inv.Length)
+                            using (SqlDataReader reader = command.ExecuteReader())
                             {
-                                inv[index] = new AdvanceOrderListContents();
-                                inv[index].transID = int.Parse(reader["OrderID"].ToString());
-                                inv[index].Name = reader["CustomerName"].ToString();
-                                inv[index].Type = reader["OrderType"].ToString();
-                                inv[index].OrderPickupDate = reader["PickupDate"].ToString();
-                                inv[index].Price = reader["TotalPrice"].ToString();
-                                inv[index].Downpayment = reader["Downpayment"].ToString();
-
-                                string id = inv[index].transID.ToString();
-
-
-
-                                flowLayoutPanel1.Controls.Add(inv[index]);
-                                index++;
+                                int index = 0;
+                                while (reader.Read() && index < inv.Length)
+                                {
+                                    inv[index] = new AdvanceOrderListContents();
+                                    inv[index].transID = int.Parse(reader["OrderID"].ToString());
+                                    inv[index].Name = reader["CustomerName"].ToString();
+                                    inv[index].Type = reader["OrderType"].ToString();
+                                    inv[index].OrderPickupDate = reader["PickupDate"].ToString();
+                                    inv[index].Price = reader["TotalPrice"].ToString();
+                                    inv[index].Downpayment = reader["Downpayment"].ToString();
+                                    string id = inv[index].transID.ToString();
+                                    flowLayoutPanel1.Controls.Add(inv[index]);
+                                    index++;
+                                }
                             }
                         }
-                    }
 
+                    }
                 }
-                con.Close();
             }
             catch (Exception ex)
             {
@@ -191,42 +162,38 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement.AdvanceOrderfolder
             try
             {
                 flowLayoutPanel1.Controls.Clear();
-                con.Open();
-
-                string countQuery = "SELECT COUNT(*) FROM AdvanceOrders where Status = 'Active' ";
-                using (SqlCommand countCommand = new SqlCommand(countQuery, con))
+                using(SqlConnection con = new SqlConnection(Connect.connectionString))
                 {
-                    int rowCount = (int)countCommand.ExecuteScalar();
-                    AdvanceOrderListContents[] inv = new AdvanceOrderListContents[rowCount];
-
-                    string sqlQuery = "SELECT * FROM AdvanceOrders where Status = 'Active' order by CustomerName ";
-                    using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                    con.Open();
+                    string countQuery = "SELECT COUNT(*) FROM AdvanceOrders where Status = 'Active' ";
+                    using (SqlCommand countCommand = new SqlCommand(countQuery, con))
                     {
-                        using (SqlDataReader reader = command.ExecuteReader())
+                        int rowCount = (int)countCommand.ExecuteScalar();
+                        AdvanceOrderListContents[] inv = new AdvanceOrderListContents[rowCount];
+
+                        string sqlQuery = "SELECT * FROM AdvanceOrders where Status = 'Active' order by CustomerName ";
+                        using (SqlCommand command = new SqlCommand(sqlQuery, con))
                         {
-                            int index = 0;
-                            while (reader.Read() && index < inv.Length)
+                            using (SqlDataReader reader = command.ExecuteReader())
                             {
-                                inv[index] = new AdvanceOrderListContents();
-                                inv[index].transID = int.Parse(reader["OrderID"].ToString());
-                                inv[index].Name = reader["CustomerName"].ToString();
-                                inv[index].Type = reader["OrderType"].ToString();
-                                inv[index].OrderPickupDate = reader["PickupDate"].ToString();
-                                inv[index].Price = reader["TotalPrice"].ToString();
-                                inv[index].Downpayment = reader["Downpayment"].ToString();
-
-                                string id = inv[index].transID.ToString();
-
-
-
-                                flowLayoutPanel1.Controls.Add(inv[index]);
-                                index++;
+                                int index = 0;
+                                while (reader.Read() && index < inv.Length)
+                                {
+                                    inv[index] = new AdvanceOrderListContents();
+                                    inv[index].transID = int.Parse(reader["OrderID"].ToString());
+                                    inv[index].Name = reader["CustomerName"].ToString();
+                                    inv[index].Type = reader["OrderType"].ToString();
+                                    inv[index].OrderPickupDate = reader["PickupDate"].ToString();
+                                    inv[index].Price = reader["TotalPrice"].ToString();
+                                    inv[index].Downpayment = reader["Downpayment"].ToString();
+                                    string id = inv[index].transID.ToString();
+                                    flowLayoutPanel1.Controls.Add(inv[index]);
+                                    index++;
+                                }
                             }
                         }
                     }
-
                 }
-                con.Close();
             }
             catch (Exception ex)
             {
@@ -238,42 +205,38 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement.AdvanceOrderfolder
             try
             {
                 flowLayoutPanel1.Controls.Clear();
-                con.Open();
-
-                string countQuery = "SELECT COUNT(*) FROM AdvanceOrders where Status = 'Active' ";
-                using (SqlCommand countCommand = new SqlCommand(countQuery, con))
+                using(SqlConnection con = new SqlConnection(Connect.connectionString))
                 {
-                    int rowCount = (int)countCommand.ExecuteScalar();
-                    AdvanceOrderListContents[] inv = new AdvanceOrderListContents[rowCount];
-
-                    string sqlQuery = "SELECT * FROM AdvanceOrders where Status = 'Active' order by TotalPrice ASC ";
-                    using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                    con.Open();
+                    string countQuery = "SELECT COUNT(*) FROM AdvanceOrders where Status = 'Active' ";
+                    using (SqlCommand countCommand = new SqlCommand(countQuery, con))
                     {
-                        using (SqlDataReader reader = command.ExecuteReader())
+                        int rowCount = (int)countCommand.ExecuteScalar();
+                        AdvanceOrderListContents[] inv = new AdvanceOrderListContents[rowCount];
+
+                        string sqlQuery = "SELECT * FROM AdvanceOrders where Status = 'Active' order by TotalPrice ASC ";
+                        using (SqlCommand command = new SqlCommand(sqlQuery, con))
                         {
-                            int index = 0;
-                            while (reader.Read() && index < inv.Length)
+                            using (SqlDataReader reader = command.ExecuteReader())
                             {
-                                inv[index] = new AdvanceOrderListContents();
-                                inv[index].transID = int.Parse(reader["OrderID"].ToString());
-                                inv[index].Name = reader["CustomerName"].ToString();
-                                inv[index].Type = reader["OrderType"].ToString();
-                                inv[index].OrderPickupDate = reader["PickupDate"].ToString();
-                                inv[index].Price = reader["TotalPrice"].ToString();
-                                inv[index].Downpayment = reader["Downpayment"].ToString();
-
-                                string id = inv[index].transID.ToString();
-
-
-
-                                flowLayoutPanel1.Controls.Add(inv[index]);
-                                index++;
+                                int index = 0;
+                                while (reader.Read() && index < inv.Length)
+                                {
+                                    inv[index] = new AdvanceOrderListContents();
+                                    inv[index].transID = int.Parse(reader["OrderID"].ToString());
+                                    inv[index].Name = reader["CustomerName"].ToString();
+                                    inv[index].Type = reader["OrderType"].ToString();
+                                    inv[index].OrderPickupDate = reader["PickupDate"].ToString();
+                                    inv[index].Price = reader["TotalPrice"].ToString();
+                                    inv[index].Downpayment = reader["Downpayment"].ToString();
+                                    string id = inv[index].transID.ToString();
+                                    flowLayoutPanel1.Controls.Add(inv[index]);
+                                    index++;
+                                }
                             }
                         }
                     }
-
                 }
-                con.Close();
             }
             catch (Exception ex)
             {
@@ -285,42 +248,39 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement.AdvanceOrderfolder
             try
             {
                 flowLayoutPanel1.Controls.Clear();
-                con.Open();
-
-                string countQuery = "SELECT COUNT(*) FROM AdvanceOrders where Status = 'Active' ";
-                using (SqlCommand countCommand = new SqlCommand(countQuery, con))
+                using(SqlConnection con = new SqlConnection(Connect.connectionString))
                 {
-                    int rowCount = (int)countCommand.ExecuteScalar();
-                    AdvanceOrderListContents[] inv = new AdvanceOrderListContents[rowCount];
-
-                    string sqlQuery = "SELECT * FROM AdvanceOrders where Status = 'Active' order by OrderType ASC ";
-                    using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                    con.Open();
+                    string countQuery = "SELECT COUNT(*) FROM AdvanceOrders where Status = 'Active' ";
+                    using (SqlCommand countCommand = new SqlCommand(countQuery, con))
                     {
-                        using (SqlDataReader reader = command.ExecuteReader())
+                        int rowCount = (int)countCommand.ExecuteScalar();
+                        AdvanceOrderListContents[] inv = new AdvanceOrderListContents[rowCount];
+
+                        string sqlQuery = "SELECT * FROM AdvanceOrders where Status = 'Active' order by OrderType ASC ";
+                        using (SqlCommand command = new SqlCommand(sqlQuery, con))
                         {
-                            int index = 0;
-                            while (reader.Read() && index < inv.Length)
+                            using (SqlDataReader reader = command.ExecuteReader())
                             {
-                                inv[index] = new AdvanceOrderListContents();
-                                inv[index].transID = int.Parse(reader["OrderID"].ToString());
-                                inv[index].Name = reader["CustomerName"].ToString();
-                                inv[index].Type = reader["OrderType"].ToString();
-                                inv[index].OrderPickupDate = reader["PickupDate"].ToString();
-                                inv[index].Price = reader["TotalPrice"].ToString();
-                                inv[index].Downpayment = reader["Downpayment"].ToString();
+                                int index = 0;
+                                while (reader.Read() && index < inv.Length)
+                                {
+                                    inv[index] = new AdvanceOrderListContents();
+                                    inv[index].transID = int.Parse(reader["OrderID"].ToString());
+                                    inv[index].Name = reader["CustomerName"].ToString();
+                                    inv[index].Type = reader["OrderType"].ToString();
+                                    inv[index].OrderPickupDate = reader["PickupDate"].ToString();
+                                    inv[index].Price = reader["TotalPrice"].ToString();
+                                    inv[index].Downpayment = reader["Downpayment"].ToString();
 
-                                string id = inv[index].transID.ToString();
-
-
-
-                                flowLayoutPanel1.Controls.Add(inv[index]);
-                                index++;
+                                    string id = inv[index].transID.ToString();
+                                    flowLayoutPanel1.Controls.Add(inv[index]);
+                                    index++;
+                                }
                             }
                         }
                     }
-
                 }
-                con.Close();
             }
             catch (Exception ex)
             {
@@ -332,52 +292,42 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement.AdvanceOrderfolder
             try
             {
                 flowLayoutPanel1.Controls.Clear();
-                con.Open();
-
-                string countQuery = "SELECT COUNT(*) FROM AdvanceOrders where Status = 'Active' ";
-                using (SqlCommand countCommand = new SqlCommand(countQuery, con))
+                using(SqlConnection con = new SqlConnection(Connect.connectionString))
                 {
-                    int rowCount = (int)countCommand.ExecuteScalar();
-                    AdvanceOrderListContents[] inv = new AdvanceOrderListContents[rowCount];
+                    con.Open();
 
-
-
-
-                    string sqlQuery = "SELECT * FROM AdvanceOrders WHERE Status = @Status AND CustomerName LIKE @CustomerName";
-
-                    using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                    string countQuery = "SELECT COUNT(*) FROM AdvanceOrders where Status = 'Active' ";
+                    using (SqlCommand countCommand = new SqlCommand(countQuery, con))
                     {
-                        command.Parameters.AddWithValue("@Status", "Active");
-                        command.Parameters.AddWithValue("@CustomerName", "%" + textBox1.Text.Trim() + "%");
-
-                        
-
-                        using (SqlDataReader reader = command.ExecuteReader())
+                        int rowCount = (int)countCommand.ExecuteScalar();
+                        AdvanceOrderListContents[] inv = new AdvanceOrderListContents[rowCount];
+                        string sqlQuery = "SELECT * FROM AdvanceOrders WHERE Status = @Status AND CustomerName LIKE @CustomerName";
+                        using (SqlCommand command = new SqlCommand(sqlQuery, con))
                         {
-                            int index = 0;
-                            while (reader.Read() && index < inv.Length)
+                            command.Parameters.AddWithValue("@Status", "Active");
+                            command.Parameters.AddWithValue("@CustomerName", "%" + textBox1.Text.Trim() + "%");
+                            using (SqlDataReader reader = command.ExecuteReader())
                             {
-                                inv[index] = new AdvanceOrderListContents();
-                                inv[index].transID = int.Parse(reader["OrderID"].ToString());
-                                inv[index].Name = reader["CustomerName"].ToString();
-                                inv[index].Type = reader["OrderType"].ToString();
-                                inv[index].OrderPickupDate = reader["PickupDate"].ToString();
-                                inv[index].Price = reader["TotalPrice"].ToString();
-                                inv[index].Downpayment = reader["Downpayment"].ToString();
-
-                                string id = inv[index].transID.ToString();
-
-
-
-                                flowLayoutPanel1.Controls.Add(inv[index]);
-                                index++;
+                                int index = 0;
+                                while (reader.Read() && index < inv.Length)
+                                {
+                                    inv[index] = new AdvanceOrderListContents();
+                                    inv[index].transID = int.Parse(reader["OrderID"].ToString());
+                                    inv[index].Name = reader["CustomerName"].ToString();
+                                    inv[index].Type = reader["OrderType"].ToString();
+                                    inv[index].OrderPickupDate = reader["PickupDate"].ToString();
+                                    inv[index].Price = reader["TotalPrice"].ToString();
+                                    inv[index].Downpayment = reader["Downpayment"].ToString();
+                                    string id = inv[index].transID.ToString();
+                                    flowLayoutPanel1.Controls.Add(inv[index]);
+                                    index++;
+                                }
                             }
-                        }
-                        
-                    }
 
+                        }
+
+                    }
                 }
-                con.Close();
             }
             catch (Exception ex)
             {
@@ -420,17 +370,17 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement.AdvanceOrderfolder
         private void label33_TextChanged(object sender, EventArgs e)
         {
             try
-            {
-                con.Open();
-                string sqlQty = "SELECT COUNT(*) AS Orders FROM AdvanceOrderItems WHERE OrderID = @ID";
-                using (SqlCommand comd = new SqlCommand(sqlQty, con))
+            {   
+                using(SqlConnection con = new SqlConnection(Connect.connectionString))
                 {
-                    comd.Parameters.AddWithValue("@ID", label33.Text);
-
-                    OrderItmQtyLbl.Text = comd.ExecuteScalar().ToString();
-                     
+                    con.Open();
+                    string sqlQty = "SELECT COUNT(*) AS Orders FROM AdvanceOrderItems WHERE OrderID = @ID";
+                    using (SqlCommand comd = new SqlCommand(sqlQty, con))
+                    {
+                        comd.Parameters.AddWithValue("@ID", label33.Text);
+                        OrderItmQtyLbl.Text = comd.ExecuteScalar().ToString();
+                    }
                 }
-                con.Close();
             }
             catch (Exception ex)
             {
@@ -441,85 +391,86 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement.AdvanceOrderfolder
         {
             try
             {
-
-                con.Open();
-
-                string countQuery = "SELECT COUNT(*) FROM AdvanceOrders where Status = 'Active' AND Pickupdate = @Date";
-                using (SqlCommand countCommand = new SqlCommand(countQuery, con))
+                using(SqlConnection con = new SqlConnection(Connect.connectionString))
                 {
-                    
-                    DateTime datetimetoday = DateTime.Now;
-                    int day = datetimetoday.Day;
-                    int month = datetimetoday.Month;
-                    int year = datetimetoday.Year;
+                    con.Open();
 
-                    string sday = "00";
-                    string smonth = "00";
-                    string syear = "00";
-                    if(day < 10)
+                    string countQuery = "SELECT COUNT(*) FROM AdvanceOrders where Status = 'Active' AND Pickupdate = @Date";
+                    using (SqlCommand countCommand = new SqlCommand(countQuery, con))
                     {
-                        sday = "0" + day;
-                    }
-                    else
-                    {
-                        sday = day.ToString();
-                    }
-                    if(month < 10)
-                    {
-                        smonth = "0" + month;
-                    }
-                    else { smonth = month.ToString(); }
-                    if (year < 10)
-                    {
-                        syear = "0" + year;
-                    }
-                    else
-                    {
-                        syear = year.ToString();
-                    }
 
-                    string today = syear+"-"+smonth+"-"+sday;
+                        DateTime datetimetoday = DateTime.Now;
+                        int day = datetimetoday.Day;
+                        int month = datetimetoday.Month;
+                        int year = datetimetoday.Year;
 
-                    countCommand.Parameters.AddWithValue("Date", today);
-                    int rowCount = (int)countCommand.ExecuteScalar();
-                    label9.Text = rowCount.ToString();
-                    OrdersTodayList[] inv = new OrdersTodayList[rowCount];
-
-                    string sqlQuery = "SELECT * FROM AdvanceOrders where Status = 'Active' AND Pickupdate =@Date";
-                    using (SqlCommand command = new SqlCommand(sqlQuery, con))
-                    {   
-                        
-                        command.Parameters.AddWithValue("Date", today);
-                        using (SqlDataReader reader = command.ExecuteReader())
+                        string sday = "00";
+                        string smonth = "00";
+                        string syear = "00";
+                        if (day < 10)
                         {
-                            int index = 0;
-                            while (reader.Read() && index < inv.Length)
+                            sday = "0" + day;
+                        }
+                        else
+                        {
+                            sday = day.ToString();
+                        }
+                        if (month < 10)
+                        {
+                            smonth = "0" + month;
+                        }
+                        else { smonth = month.ToString(); }
+                        if (year < 10)
+                        {
+                            syear = "0" + year;
+                        }
+                        else
+                        {
+                            syear = year.ToString();
+                        }
+
+                        string today = syear + "-" + smonth + "-" + sday;
+
+                        countCommand.Parameters.AddWithValue("Date", today);
+                        int rowCount = (int)countCommand.ExecuteScalar();
+                        label9.Text = rowCount.ToString();
+                        OrdersTodayList[] inv = new OrdersTodayList[rowCount];
+
+                        string sqlQuery = "SELECT * FROM AdvanceOrders where Status = 'Active' AND Pickupdate =@Date";
+                        using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                        {
+
+                            command.Parameters.AddWithValue("Date", today);
+                            using (SqlDataReader reader = command.ExecuteReader())
                             {
-                                inv[index] = new OrdersTodayList();
-                                inv[index].transID = reader["OrderID"].ToString();
-                                inv[index].Name = reader["CustomerName"].ToString();
-                                inv[index].downpayment = reader["Downpayment"].ToString();
-                                inv[index].Total = reader["TotalPrice"].ToString();
-                                inv[index].discount = reader["Discount"].ToString();
+                                int index = 0;
+                                while (reader.Read() && index < inv.Length)
+                                {
+                                    inv[index] = new OrdersTodayList();
+                                    inv[index].transID = reader["OrderID"].ToString();
+                                    inv[index].Name = reader["CustomerName"].ToString();
+                                    inv[index].downpayment = reader["Downpayment"].ToString();
+                                    inv[index].Total = reader["TotalPrice"].ToString();
+                                    inv[index].discount = reader["Discount"].ToString();
 
 
 
 
-                                double price= double.Parse(reader["TotalPrice"].ToString());
-                                double downpayment = double.Parse(reader["Downpayment"].ToString());
-                                inv[index].Price = price - downpayment;
+                                    double price = double.Parse(reader["TotalPrice"].ToString());
+                                    double downpayment = double.Parse(reader["Downpayment"].ToString());
+                                    inv[index].Price = price - downpayment;
 
 
 
 
-                                flowLayoutPanel2.Controls.Add(inv[index]);
-                                index++;
+                                    flowLayoutPanel2.Controls.Add(inv[index]);
+                                    index++;
+                                }
                             }
                         }
-                    }
 
+                    }
                 }
-              con.Close();
             }
             catch (Exception ex)
             {

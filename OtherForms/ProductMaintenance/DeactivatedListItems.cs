@@ -1,4 +1,5 @@
-﻿using Flowershop_Thesis.AdminForms.ProductMaintenance.Supplier;
+﻿using Capstone_Flowershop;
+using Flowershop_Thesis.AdminForms.ProductMaintenance.Supplier;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,43 +17,11 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
 {
     public partial class DeactivatedListItems : UserControl
     {
-        SqlConnection con;
-        SqlCommand cmd = new SqlCommand();
-        SqlDataReader sdr;
-        SqlDataAdapter sda;
-        public void testConnection()
-        {
-            string executableDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            string parentDirectory = Path.GetFullPath(Path.Combine(executableDirectory, @"..\..\"));
 
-            string databaseFilePath = Path.Combine(parentDirectory, "FlowershopSystemDB.mdf");
-
-            // MessageBox.Show(databaseFilePath);
-            // Build the connection string
-            string connectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={databaseFilePath};Initial Catalog=try;Integrated Security=True;";
-
-            // Use the connection string to connect to the database
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                try
-                {
-                    connection.Open();
-                    con = new SqlConnection(connectionString);
-
-
-                    // Perform database operations here
-
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("An error occurred: " + ex.Message);
-                }
-            }
-        }
         public DeactivatedListItems()
         {
             InitializeComponent();
-            testConnection();
+
         }
         #region Myregion
         private string ItemID;
@@ -90,76 +59,85 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
                 if (result == DialogResult.Yes)
                 {   
                     if(ItemType == "Flower")
-                    {
-                        int numId;
-                        con.Open();
-                        string countQuery = "Select count(*) from ItemInventory where ItemID = @ID";
-                        using (SqlCommand countCommand = new SqlCommand(countQuery, con))
+                    {   
+                        using(SqlConnection con = new SqlConnection(Connect.connectionString))
                         {
-                            countCommand.Parameters.AddWithValue("@ID", ItemID);
-                            numId = (int)countCommand.ExecuteScalar();
-
-                        }
-                        string updateQuery = "UPDATE ItemInventory SET ItemStatus = 'Available' WHERE ItemID = @ID;";
-                        if (numId == 1)
-                        {
-                            using (SqlCommand updateCommand = new SqlCommand(updateQuery, con))
+                            int numId;
+                            con.Open();
+                            string countQuery = "Select count(*) from ItemInventory where ItemID = @ID";
+                            using (SqlCommand countCommand = new SqlCommand(countQuery, con))
                             {
-
-                                updateCommand.Parameters.AddWithValue("@ID", ItemID);
-
-                                updateCommand.ExecuteNonQuery();
-
+                                countCommand.Parameters.AddWithValue("@ID", ItemID);
+                                numId = (int)countCommand.ExecuteScalar();
 
                             }
+                            string updateQuery = "UPDATE ItemInventory SET ItemStatus = 'Available' WHERE ItemID = @ID;";
+                            if (numId == 1)
+                            {
+                                using (SqlCommand updateCommand = new SqlCommand(updateQuery, con))
+                                {
 
-                            MessageBox.Show("Item Marked as Available! Please Refresh List to view Changes");
+                                    updateCommand.Parameters.AddWithValue("@ID", ItemID);
+
+                                    updateCommand.ExecuteNonQuery();
+
+
+                                }
+                 
+                                addActivityLog();
+                                MessageBox.Show("Item Marked as Available! Please Refresh List to view Changes");
+                            }
+                            else if (numId > 1)
+                            {
+                                MessageBox.Show("There are multiple Users in this ID");
+                            }
+                            else
+                            {
+                                MessageBox.Show("No Account Found!");
+                            }
                         }
-                        else if (numId > 1)
-                        {
-                            MessageBox.Show("There are multiple Users in this ID");
-                        }
-                        else
-                        {
-                            MessageBox.Show("No Account Found!");
-                        }
-                        con.Close();
+                     
+                      
                     }
                     else if(ItemType == "Materials")
-                    {
-                        int numId;
-                        con.Open();
-                        string countQuery = "Select count(*) from Materials where ItemID = @ID";
-                        using (SqlCommand countCommand = new SqlCommand(countQuery, con))
+                    {   
+                        using(SqlConnection con = new SqlConnection(Connect.connectionString))
                         {
-                            countCommand.Parameters.AddWithValue("@ID", ItemID);
-                            numId = (int)countCommand.ExecuteScalar();
-
-                        }
-                        string updateQuery = "UPDATE Materials SET ItemStatus = 'Available' WHERE ItemID = @ID;";
-                        if (numId == 1)
-                        {
-                            using (SqlCommand updateCommand = new SqlCommand(updateQuery, con))
+                            int numId;
+                            con.Open();
+                            string countQuery = "Select count(*) from Materials where ItemID = @ID";
+                            using (SqlCommand countCommand = new SqlCommand(countQuery, con))
                             {
-
-                                updateCommand.Parameters.AddWithValue("@ID", ItemID);
-
-                                updateCommand.ExecuteNonQuery();
-
+                                countCommand.Parameters.AddWithValue("@ID", ItemID);
+                                numId = (int)countCommand.ExecuteScalar();
 
                             }
+                            string updateQuery = "UPDATE Materials SET ItemStatus = 'Available' WHERE ItemID = @ID;";
+                            if (numId == 1)
+                            {
+                                using (SqlCommand updateCommand = new SqlCommand(updateQuery, con))
+                                {
 
-                            MessageBox.Show("Item Marked as Available! Please Refresh List to view Changes");
+                                    updateCommand.Parameters.AddWithValue("@ID", ItemID);
+
+                                    updateCommand.ExecuteNonQuery();
+
+
+                                }
+                                addActivityLog();
+                                MessageBox.Show("Item Marked as Available! Please Refresh List to view Changes");
+                            }
+                            else if (numId > 1)
+                            {
+                                MessageBox.Show("There are multiple Users in this ID");
+                            }
+                            else
+                            {
+                                MessageBox.Show("No Account Found!");
+                            }
+
                         }
-                        else if (numId > 1)
-                        {
-                            MessageBox.Show("There are multiple Users in this ID");
-                        }
-                        else
-                        {
-                            MessageBox.Show("No Account Found!");
-                        }
-                        con.Close();
+
                     }
 
 
@@ -173,6 +151,32 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
             catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
+            }
+        }
+        public void addActivityLog()
+        {
+            try
+            {   using(SqlConnection con = new SqlConnection(Connect.connectionString))
+                {
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand("INSERT INTO HistoryLogs(Title,Definition,Employee,EmployeeID,Date,Type,ReferenceID,HeadLine)Values" +
+                                "(@Title,@Definition,@Employee,@EmployeeID,getdate(),@Type,@RefID,@HeadLine);", con);
+                    cmd.Parameters.AddWithValue("@Title", "Item changed Status");
+                    cmd.Parameters.AddWithValue("@Definition", "NotGiven");
+                    cmd.Parameters.AddWithValue("@Employee", UserInfo.Empleyado);
+                    cmd.Parameters.AddWithValue("@EmployeeID", UserInfo.EmpID);
+                    cmd.Parameters.AddWithValue("@Type", "ActivityLog");
+                    cmd.Parameters.AddWithValue("@RefID", ItemID);
+                    cmd.Parameters.AddWithValue("@HeadLine", UserInfo.Empleyado + " Marked " + ItemName + " as available item");
+
+
+                    cmd.ExecuteNonQuery();
+                }
+            
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Adding Activity Failed!" + " : " + ex);
             }
         }
 

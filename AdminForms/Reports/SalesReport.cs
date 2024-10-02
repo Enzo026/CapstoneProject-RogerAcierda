@@ -15,40 +15,7 @@ namespace Capstone_Flowershop.AdminForms.Reports.SalesReports
 {   
     public partial class SalesReport : Form
     {
-        string connectionString;
-        public void testConnection()
-        {
-            string executableDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            string parentDirectory = Path.GetFullPath(Path.Combine(executableDirectory, @"..\..\"));
-            string databaseFilePath = Path.Combine(parentDirectory, "FlowershopSystemDB.mdf");
 
-            // Build the connection string with explicit pooling parameters
-            connectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={databaseFilePath};Initial Catalog=try;Integrated Security=True;Pooling=true;Max Pool Size=100;Min Pool Size=5;Connection Lifetime=600;";
-
-
-            // Use the connection string to connect to the database
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                try
-                {
-                    connection.Open();
-                    // con = new SqlConnection(connectionString);
-
-                    // Perform database operations here
-
-                }
-                catch (SqlException sqlEx)
-                {
-                    // Handle SQL exceptions
-                    MessageBox.Show("SQL error occurred: " + sqlEx.Message);
-                }
-                catch (Exception ex)
-                {
-                    // Handle other exceptions
-                    MessageBox.Show("An error occurred: " + ex.Message);
-                }
-            } // Connection is automatically closed and returned to the pool here
-        }
         public static SalesReport instance;
         public Label uid;
         public SalesReport()
@@ -56,7 +23,6 @@ namespace Capstone_Flowershop.AdminForms.Reports.SalesReports
    
 
             InitializeComponent();
-            testConnection();
         
             instance = this;
             uid = label2;
@@ -75,7 +41,7 @@ namespace Capstone_Flowershop.AdminForms.Reports.SalesReports
         }
         public void getDaily()
         {
-            using (SqlConnection con = new SqlConnection(connectionString))
+            using (SqlConnection con = new SqlConnection(Connect.connectionString))
             {
                 DateTime date = DateTime.Now;
                 string day = date.Day.ToString();
@@ -102,7 +68,7 @@ namespace Capstone_Flowershop.AdminForms.Reports.SalesReports
         }
         public void getYearly()
         {
-            using (SqlConnection con = new SqlConnection(connectionString))
+            using (SqlConnection con = new SqlConnection(Connect.connectionString))
             {
                 DateTime date = DateTime.Now;
                 string day = date.Year.ToString();
@@ -129,7 +95,7 @@ namespace Capstone_Flowershop.AdminForms.Reports.SalesReports
         }
         public void getMonthly()
         {
-            using (SqlConnection con = new SqlConnection(connectionString))
+            using (SqlConnection con = new SqlConnection(Connect.connectionString))
             {
                 DateTime date = DateTime.Now;
                 string day = date.Month.ToString();

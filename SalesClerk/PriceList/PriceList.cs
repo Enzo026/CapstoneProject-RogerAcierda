@@ -16,54 +16,23 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Net.Mime.MediaTypeNames;
 using Image = System.Drawing.Image;
+using Flowershop_Thesis;
+using Capstone_Flowershop;
 
 namespace Flowershop_Thesis.SalesClerk.PriceList
 {
     public partial class PriceList : Form
     {
-        SqlConnection con;
-        SqlCommand cmd = new SqlCommand();
-        SqlDataReader sdr;
-        SqlDataAdapter sda;
 
         public static PriceList instance;
         public Label ID;
         public PriceList()
         {
             InitializeComponent();
-            testConnection();
             instance = this;
             ID = IDTrigger;
             GetListQueue();
             ItmName.Checked = true;
-        }
-        public void testConnection()
-        {
-            string executableDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            string parentDirectory = Path.GetFullPath(Path.Combine(executableDirectory, @"..\..\"));
-
-            string databaseFilePath = Path.Combine(parentDirectory, "FlowershopSystemDB.mdf");
-
-            // MessageBox.Show(databaseFilePath);
-            // Build the connection string
-            string connectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={databaseFilePath};Initial Catalog=try;Integrated Security=True;";
-
-            // Use the connection string to connect to the database
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                try
-                {
-                    connection.Open();
-                    con = new SqlConnection(connectionString);
-
-                    // Perform database operations here
-
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("An error occurred: " + ex.Message);
-                }
-            }
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -128,58 +97,50 @@ namespace Flowershop_Thesis.SalesClerk.PriceList
             try
             {
                 flowLayoutPanel1.Controls.Clear();
-                con.Open();
-                string countQuery = "select count(*) from ItemInventory where ItemStatus = 'Available' AND ItemType != 'Custom';";
-                using (SqlCommand countCommand = new SqlCommand(countQuery, con))
+                using(SqlConnection con = new SqlConnection(Connect.connectionString))
                 {
-                    int rowCount = (int)countCommand.ExecuteScalar();
-
-
-                   // counter.Text = rowCount.ToString();
-
-
-
-                    PriceListContents[] inv = new PriceListContents[rowCount];
-
-                    string sqlQuery = "SELECT * FROM ItemInventory where ItemStatus = 'Available' AND ItemType != 'Custom';";
-                    using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                    con.Open();
+                    string countQuery = "select count(*) from ItemInventory where ItemStatus = 'Available' AND ItemType != 'Custom';";
+                    using (SqlCommand countCommand = new SqlCommand(countQuery, con))
                     {
-                        using (SqlDataReader reader = command.ExecuteReader())
+                        int rowCount = (int)countCommand.ExecuteScalar();
+
+
+                        // counter.Text = rowCount.ToString();
+
+
+
+                        PriceListContents[] inv = new PriceListContents[rowCount];
+
+                        string sqlQuery = "SELECT * FROM ItemInventory where ItemStatus = 'Available' AND ItemType != 'Custom';";
+                        using (SqlCommand command = new SqlCommand(sqlQuery, con))
                         {
-                            int index = 0;
-                            while (reader.Read() && index < inv.Length)
+                            using (SqlDataReader reader = command.ExecuteReader())
                             {
-                                inv[index] = new PriceListContents();
-                                inv[index].Name = reader["ItemName"].ToString();
-                                inv[index].Type = reader["ItemStatus"].ToString();
-                                int qty = reader.GetOrdinal("ItemQuantity");
-                                inv[index].Quantity = reader.IsDBNull((int)qty) ? 0 : reader.GetInt32((int)qty);
+                                int index = 0;
+                                while (reader.Read() && index < inv.Length)
+                                {
+                                    inv[index] = new PriceListContents();
+                                    inv[index].Name = reader["ItemName"].ToString();
+                                    inv[index].Type = reader["ItemStatus"].ToString();
+                                    int qty = reader.GetOrdinal("ItemQuantity");
+                                    inv[index].Quantity = reader.IsDBNull((int)qty) ? 0 : reader.GetInt32((int)qty);
 
-                                inv[index].Price = reader["Price"].ToString();
-                                int CI = reader.GetOrdinal("ItemID");
-                                inv[index].ItemID = reader.IsDBNull((int)CI) ? 0 : reader.GetInt32((int)CI);
+                                    inv[index].Price = reader["Price"].ToString();
+                                    int CI = reader.GetOrdinal("ItemID");
+                                    inv[index].ItemID = reader.IsDBNull((int)CI) ? 0 : reader.GetInt32((int)CI);
 
 
 
 
 
-                                flowLayoutPanel1.Controls.Add(inv[index]);
-                                index++;
+                                    flowLayoutPanel1.Controls.Add(inv[index]);
+                                    index++;
+                                }
                             }
                         }
                     }
-
-
-
                 }
-
-
-
-
-                con.Close();
-
-
-
             }
             catch (Exception ex)
             {
@@ -193,62 +154,40 @@ namespace Flowershop_Thesis.SalesClerk.PriceList
             try
             {
                 flowLayoutPanel1.Controls.Clear();
-                
-                con.Open();
-                string countQuery = "select count(*) from ItemInventory where ItemStatus = 'Available' AND ItemType Like '" + textBox1.Text + "%' AND ItemType != 'Custom';";
-                using (SqlCommand countCommand = new SqlCommand(countQuery, con))
-                {   
-                    countCommand.Parameters.AddWithValue("@Search", textBox1.Text);
-                    int rowCount = (int)countCommand.ExecuteScalar();
+                using(SqlConnection con = new SqlConnection(Connect.connectionString))
+                {
+                    con.Open();
+                    string countQuery = "select count(*) from ItemInventory where ItemStatus = 'Available' AND ItemType Like '" + textBox1.Text + "%' AND ItemType != 'Custom';";
+                    using (SqlCommand countCommand = new SqlCommand(countQuery, con))
+                    {
+                        countCommand.Parameters.AddWithValue("@Search", textBox1.Text);
+                        int rowCount = (int)countCommand.ExecuteScalar();
+                        PriceListContents[] inv = new PriceListContents[rowCount];
 
-
-                    // counter.Text = rowCount.ToString();
-
-
-
-                    PriceListContents[] inv = new PriceListContents[rowCount];
-
-                    string sqlQuery = "SELECT * FROM ItemInventory where ItemStatus = 'Available' AND ItemType Like '" + textBox1.Text + "%' AND ItemType != 'Custom';";
-                    using (SqlCommand command = new SqlCommand(sqlQuery, con))
-                    {   
-                        command.Parameters.AddWithValue("@Search", textBox1.Text);
-                        using (SqlDataReader reader = command.ExecuteReader())
+                        string sqlQuery = "SELECT * FROM ItemInventory where ItemStatus = 'Available' AND ItemType Like '" + textBox1.Text + "%' AND ItemType != 'Custom';";
+                        using (SqlCommand command = new SqlCommand(sqlQuery, con))
                         {
-                            int index = 0;
-                            while (reader.Read() && index < inv.Length)
+                            command.Parameters.AddWithValue("@Search", textBox1.Text);
+                            using (SqlDataReader reader = command.ExecuteReader())
                             {
-                                inv[index] = new PriceListContents();
-                                inv[index].Name = reader["ItemName"].ToString();
-                                inv[index].Type = reader["ItemStatus"].ToString();
-                                int qty = reader.GetOrdinal("ItemQuantity");
-                                inv[index].Quantity = reader.IsDBNull((int)qty) ? 0 : reader.GetInt32((int)qty);
-
-
-                                inv[index].Price = reader["Price"].ToString();
-                                int CI = reader.GetOrdinal("ItemID");
-                                inv[index].ItemID = reader.IsDBNull((int)CI) ? 0 : reader.GetInt32((int)CI);
-
-
-
-
-
-                                flowLayoutPanel1.Controls.Add(inv[index]);
-                                index++;
+                                int index = 0;
+                                while (reader.Read() && index < inv.Length)
+                                {
+                                    inv[index] = new PriceListContents();
+                                    inv[index].Name = reader["ItemName"].ToString();
+                                    inv[index].Type = reader["ItemStatus"].ToString();
+                                    int qty = reader.GetOrdinal("ItemQuantity");
+                                    inv[index].Quantity = reader.IsDBNull((int)qty) ? 0 : reader.GetInt32((int)qty);
+                                    inv[index].Price = reader["Price"].ToString();
+                                    int CI = reader.GetOrdinal("ItemID");
+                                    inv[index].ItemID = reader.IsDBNull((int)CI) ? 0 : reader.GetInt32((int)CI);
+                                    flowLayoutPanel1.Controls.Add(inv[index]);
+                                    index++;
+                                }
                             }
                         }
                     }
-
-
-
                 }
-
-
-
-
-                con.Close();
-
-
-
             }
             catch (Exception ex)
             {
@@ -261,61 +200,44 @@ namespace Flowershop_Thesis.SalesClerk.PriceList
             try
             {
                 flowLayoutPanel1.Controls.Clear();
-                con.Open();
-                string countQuery = "select count(*) from ItemInventory where ItemStatus = 'Available' AND ItemColor Like '" + textBox1.Text + "%' AND ItemType != 'Custom';";
-                using (SqlCommand countCommand = new SqlCommand(countQuery, con))
+                using(SqlConnection con = new SqlConnection(Connect.connectionString))
                 {
-                //    countCommand.Parameters.AddWithValue("@Search", textBox1.Text);
-                    int rowCount = (int)countCommand.ExecuteScalar();
-
-
-                    // counter.Text = rowCount.ToString();
-
-
-
-                    PriceListContents[] inv = new PriceListContents[rowCount];
-
-                    string sqlQuery = "SELECT * FROM ItemInventory where ItemStatus = 'Available' AND ItemColor Like '" + textBox1.Text + "%' AND ItemType != 'Custom';";
-                    using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                    con.Open();
+                    string countQuery = "select count(*) from ItemInventory where ItemStatus = 'Available' AND ItemColor Like '" + textBox1.Text + "%' AND ItemType != 'Custom';";
+                    using (SqlCommand countCommand = new SqlCommand(countQuery, con))
                     {
-                      //  command.Parameters.AddWithValue("@Search", textBox1.Text);
-                        using (SqlDataReader reader = command.ExecuteReader())
+                        //    countCommand.Parameters.AddWithValue("@Search", textBox1.Text);
+                        int rowCount = (int)countCommand.ExecuteScalar();
+
+                        PriceListContents[] inv = new PriceListContents[rowCount];
+
+                        string sqlQuery = "SELECT * FROM ItemInventory where ItemStatus = 'Available' AND ItemColor Like '" + textBox1.Text + "%' AND ItemType != 'Custom';";
+                        using (SqlCommand command = new SqlCommand(sqlQuery, con))
                         {
-                            int index = 0;
-                            while (reader.Read() && index < inv.Length)
+                            //  command.Parameters.AddWithValue("@Search", textBox1.Text);
+                            using (SqlDataReader reader = command.ExecuteReader())
                             {
-                                inv[index] = new PriceListContents();
-                                inv[index].Name = reader["ItemName"].ToString();
-                                inv[index].Type = reader["ItemStatus"].ToString();
-                                int qty = reader.GetOrdinal("ItemQuantity");
-                                inv[index].Quantity = reader.IsDBNull((int)qty) ? 0 : reader.GetInt32((int)qty);
+                                int index = 0;
+                                while (reader.Read() && index < inv.Length)
+                                {
+                                    inv[index] = new PriceListContents();
+                                    inv[index].Name = reader["ItemName"].ToString();
+                                    inv[index].Type = reader["ItemStatus"].ToString();
+                                    int qty = reader.GetOrdinal("ItemQuantity");
+                                    inv[index].Quantity = reader.IsDBNull((int)qty) ? 0 : reader.GetInt32((int)qty);
 
 
-                                inv[index].Price = reader["Price"].ToString();
-                                int CI = reader.GetOrdinal("ItemID");
-                                inv[index].ItemID = reader.IsDBNull((int)CI) ? 0 : reader.GetInt32((int)CI);
+                                    inv[index].Price = reader["Price"].ToString();
+                                    int CI = reader.GetOrdinal("ItemID");
+                                    inv[index].ItemID = reader.IsDBNull((int)CI) ? 0 : reader.GetInt32((int)CI);
 
-
-
-
-
-                                flowLayoutPanel1.Controls.Add(inv[index]);
-                                index++;
+                                    flowLayoutPanel1.Controls.Add(inv[index]);
+                                    index++;
+                                }
                             }
                         }
                     }
-
-
-
                 }
-
-
-
-
-                con.Close();
-
-
-
             }
             catch (Exception ex)
             {
@@ -329,62 +251,43 @@ namespace Flowershop_Thesis.SalesClerk.PriceList
             {
                 string search = "'" + textBox1.Text + "%'";
                 flowLayoutPanel1.Controls.Clear();
-                con.Open();
-                string countQuery = "select count(*) from ItemInventory where ItemStatus = 'Available' AND ItemName Like '"+textBox1.Text+ "%' AND ItemType != 'Custom';";
-                using (SqlCommand countCommand = new SqlCommand(countQuery, con))
+                using(SqlConnection con = new SqlConnection(Connect.connectionString))
                 {
-                  //  countCommand.Parameters.AddWithValue("@Search", search);
-                    int rowCount = (int)countCommand.ExecuteScalar();
-
-
-                    // counter.Text = rowCount.ToString();
-
-
-
-                    PriceListContents[] inv = new PriceListContents[rowCount];
-
-                    string sqlQuery = "SELECT * FROM ItemInventory where ItemStatus = 'Available' AND ItemName Like '" + textBox1.Text + "%' AND ItemType != 'Custom';";
-                    using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                    con.Open();
+                    string countQuery = "select count(*) from ItemInventory where ItemStatus = 'Available' AND ItemName Like '" + textBox1.Text + "%' AND ItemType != 'Custom';";
+                    using (SqlCommand countCommand = new SqlCommand(countQuery, con))
                     {
-                     //   command.Parameters.AddWithValue("@Search", search);
-                        using (SqlDataReader reader = command.ExecuteReader())
+                        //  countCommand.Parameters.AddWithValue("@Search", search);
+                        int rowCount = (int)countCommand.ExecuteScalar();
+
+                        PriceListContents[] inv = new PriceListContents[rowCount];
+
+                        string sqlQuery = "SELECT * FROM ItemInventory where ItemStatus = 'Available' AND ItemName Like '" + textBox1.Text + "%' AND ItemType != 'Custom';";
+                        using (SqlCommand command = new SqlCommand(sqlQuery, con))
                         {
-                            int index = 0;
-                            while (reader.Read() && index < inv.Length)
+                            //   command.Parameters.AddWithValue("@Search", search);
+                            using (SqlDataReader reader = command.ExecuteReader())
                             {
-                                inv[index] = new PriceListContents();
-                                inv[index].Name = reader["ItemName"].ToString();
-                                inv[index].Type = reader["ItemStatus"].ToString();
-                                int qty = reader.GetOrdinal("ItemQuantity");
-                                inv[index].Quantity = reader.IsDBNull((int)qty) ? 0 : reader.GetInt32((int)qty);
+                                int index = 0;
+                                while (reader.Read() && index < inv.Length)
+                                {
+                                    inv[index] = new PriceListContents();
+                                    inv[index].Name = reader["ItemName"].ToString();
+                                    inv[index].Type = reader["ItemStatus"].ToString();
+                                    int qty = reader.GetOrdinal("ItemQuantity");
+                                    inv[index].Quantity = reader.IsDBNull((int)qty) ? 0 : reader.GetInt32((int)qty);
 
+                                    inv[index].Price = reader["Price"].ToString();
+                                    int CI = reader.GetOrdinal("ItemID");
+                                    inv[index].ItemID = reader.IsDBNull((int)CI) ? 0 : reader.GetInt32((int)CI);
 
-                               
-                                inv[index].Price = reader["Price"].ToString();
-                                int CI = reader.GetOrdinal("ItemID");
-                                inv[index].ItemID = reader.IsDBNull((int)CI) ? 0 : reader.GetInt32((int)CI);
-
-
-
-
-
-                                flowLayoutPanel1.Controls.Add(inv[index]);
-                                index++;
+                                    flowLayoutPanel1.Controls.Add(inv[index]);
+                                    index++;
+                                }
                             }
                         }
                     }
-
-
-
                 }
-
-
-
-
-                con.Close();
-
-
-
             }
             catch (Exception ex)
             {
@@ -398,61 +301,41 @@ namespace Flowershop_Thesis.SalesClerk.PriceList
             try
             {
                 flowLayoutPanel1.Controls.Clear();
-                con.Open();
-                string countQuery = "select count(*) from ItemInventory where ItemStatus = 'Available' AND Price Like '" + textBox1.Text + "%' AND ItemType != 'Custom';";
-                using (SqlCommand countCommand = new SqlCommand(countQuery, con))
+                using(SqlConnection con = new SqlConnection(Connect.connectionString))
                 {
-                    countCommand.Parameters.AddWithValue("@Search", textBox1.Text);
-                    int rowCount = (int)countCommand.ExecuteScalar();
-
-
-                    // counter.Text = rowCount.ToString();
-
-
-
-                    PriceListContents[] inv = new PriceListContents[rowCount];
-
-                    string sqlQuery = "SELECT * FROM ItemInventory where ItemStatus = 'Available' AND Price Like '" + textBox1.Text + "%' AND ItemType != 'Custom';";
-                    using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                    con.Open();
+                    string countQuery = "select count(*) from ItemInventory where ItemStatus = 'Available' AND Price Like '" + textBox1.Text + "%' AND ItemType != 'Custom';";
+                    using (SqlCommand countCommand = new SqlCommand(countQuery, con))
                     {
-                        command.Parameters.AddWithValue("@Search", textBox1.Text);
-                        using (SqlDataReader reader = command.ExecuteReader())
+                        countCommand.Parameters.AddWithValue("@Search", textBox1.Text);
+                        int rowCount = (int)countCommand.ExecuteScalar();
+
+                        PriceListContents[] inv = new PriceListContents[rowCount];
+
+                        string sqlQuery = "SELECT * FROM ItemInventory where ItemStatus = 'Available' AND Price Like '" + textBox1.Text + "%' AND ItemType != 'Custom';";
+                        using (SqlCommand command = new SqlCommand(sqlQuery, con))
                         {
-                            int index = 0;
-                            while (reader.Read() && index < inv.Length)
+                            command.Parameters.AddWithValue("@Search", textBox1.Text);
+                            using (SqlDataReader reader = command.ExecuteReader())
                             {
-                                inv[index] = new PriceListContents();
-                                inv[index].Name = reader["ItemName"].ToString();
-                                inv[index].Type = reader["ItemStatus"].ToString();
-                                int qty = reader.GetOrdinal("ItemQuantity");
-                                inv[index].Quantity = reader.IsDBNull((int)qty) ? 0 : reader.GetInt32((int)qty);
-
-
-                                inv[index].Price = reader["Price"].ToString();
-                                int CI = reader.GetOrdinal("ItemID");
-                                inv[index].ItemID = reader.IsDBNull((int)CI) ? 0 : reader.GetInt32((int)CI);
-
-
-
-
-
-                                flowLayoutPanel1.Controls.Add(inv[index]);
-                                index++;
+                                int index = 0;
+                                while (reader.Read() && index < inv.Length)
+                                {
+                                    inv[index] = new PriceListContents();
+                                    inv[index].Name = reader["ItemName"].ToString();
+                                    inv[index].Type = reader["ItemStatus"].ToString();
+                                    int qty = reader.GetOrdinal("ItemQuantity");
+                                    inv[index].Quantity = reader.IsDBNull((int)qty) ? 0 : reader.GetInt32((int)qty);
+                                    inv[index].Price = reader["Price"].ToString();
+                                    int CI = reader.GetOrdinal("ItemID");
+                                    inv[index].ItemID = reader.IsDBNull((int)CI) ? 0 : reader.GetInt32((int)CI);
+                                    flowLayoutPanel1.Controls.Add(inv[index]);
+                                    index++;
+                                }
                             }
                         }
                     }
-
-
-
                 }
-
-
-
-
-                con.Close();
-
-
-
             }
             catch (Exception ex)
             {
@@ -466,57 +349,40 @@ namespace Flowershop_Thesis.SalesClerk.PriceList
             try
             {
                 flowLayoutPanel1.Controls.Clear();
-                con.Open();
-                string countQuery = "select count(*) from ItemInventory where ItemStatus = 'Available' AND ItemID Like '" + textBox1.Text + "%' AND ItemType != 'Custom';";
-                using (SqlCommand countCommand = new SqlCommand(countQuery, con))
+                using(SqlConnection con = new SqlConnection(Connect.connectionString))
                 {
-                    int rowCount = (int)countCommand.ExecuteScalar();
-
-
-                    // counter.Text = rowCount.ToString();
-
-
-
-                    PriceListContents[] inv = new PriceListContents[rowCount];
-
-                    string sqlQuery = "SELECT * FROM ItemInventory where ItemStatus = 'Available' AND ItemID Like '" + textBox1.Text + "%' AND ItemType != 'Custom';";
-                    using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                    con.Open();
+                    string countQuery = "select count(*) from ItemInventory where ItemStatus = 'Available' AND ItemID Like '" + textBox1.Text + "%' AND ItemType != 'Custom';";
+                    using (SqlCommand countCommand = new SqlCommand(countQuery, con))
                     {
-                        using (SqlDataReader reader = command.ExecuteReader())
+                        int rowCount = (int)countCommand.ExecuteScalar();
+                        PriceListContents[] inv = new PriceListContents[rowCount];
+
+                        string sqlQuery = "SELECT * FROM ItemInventory where ItemStatus = 'Available' AND ItemID Like '" + textBox1.Text + "%' AND ItemType != 'Custom';";
+                        using (SqlCommand command = new SqlCommand(sqlQuery, con))
                         {
-                            int index = 0;
-                            while (reader.Read() && index < inv.Length)
+                            using (SqlDataReader reader = command.ExecuteReader())
                             {
-                                inv[index] = new PriceListContents();
-                                inv[index].Name = reader["ItemName"].ToString();
-                                inv[index].Type = reader["ItemStatus"].ToString();
-                                int qty = reader.GetOrdinal("ItemQuantity");
-                                inv[index].Quantity = reader.IsDBNull((int)qty) ? 0 : reader.GetInt32((int)qty);
-                                inv[index].Price = reader["Price"].ToString();
-                                int CI = reader.GetOrdinal("ItemID");
-                                inv[index].ItemID = reader.IsDBNull((int)CI) ? 0 : reader.GetInt32((int)CI);
+                                int index = 0;
+                                while (reader.Read() && index < inv.Length)
+                                {
+                                    inv[index] = new PriceListContents();
+                                    inv[index].Name = reader["ItemName"].ToString();
+                                    inv[index].Type = reader["ItemStatus"].ToString();
+                                    int qty = reader.GetOrdinal("ItemQuantity");
+                                    inv[index].Quantity = reader.IsDBNull((int)qty) ? 0 : reader.GetInt32((int)qty);
+                                    inv[index].Price = reader["Price"].ToString();
+                                    int CI = reader.GetOrdinal("ItemID");
+                                    inv[index].ItemID = reader.IsDBNull((int)CI) ? 0 : reader.GetInt32((int)CI);
 
-
-
-
-
-                                flowLayoutPanel1.Controls.Add(inv[index]);
-                                index++;
+                                    flowLayoutPanel1.Controls.Add(inv[index]);
+                                    index++;
+                                }
                             }
                         }
                     }
-
-
-
                 }
-
-
-
-
-                con.Close();
-
-
-
+             
             }
             catch (Exception ex)
             {
@@ -534,36 +400,36 @@ namespace Flowershop_Thesis.SalesClerk.PriceList
             try
             {
                 string id = IDTrigger.Text;
-                MessageBox.Show(id);
-                con.Open();
-                string sqlQuery = "SELECT * FROM ItemInventory where ItemID = "+id+" ;";
-                using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                using(SqlConnection con = new SqlConnection(Connect.connectionString))
                 {
-
-                    using (SqlDataReader reader = command.ExecuteReader())
+                    con.Open();
+                    string sqlQuery = "SELECT * FROM ItemInventory where ItemID = " + id + " ;";
+                    using (SqlCommand command = new SqlCommand(sqlQuery, con))
                     {
-                        while (reader.Read())
+
+                        using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            NameLbl.Text = reader["ItemName"].ToString();
-                            TypeLbl.Text = reader["ItemType"].ToString();
-                            QtyLbl.Text = reader["ItemQuantity"].ToString();
-                            PriceLbl.Text = reader["Price"].ToString();
-                            SuppDateLbl.Text = reader["SuppliedDate"].ToString();
-                            DescLbl.Text = reader["ItemDescription"].ToString();
-                            SuppLbl.Text = reader["Supplier"].ToString();
-                            if (reader["ItemImage"] != DBNull.Value)
+                            while (reader.Read())
                             {
-                                byte[] imageData = (byte[])reader["ItemImage"];
-                                using (MemoryStream ms = new MemoryStream(imageData))
+                                NameLbl.Text = reader["ItemName"].ToString();
+                                TypeLbl.Text = reader["ItemType"].ToString();
+                                QtyLbl.Text = reader["ItemQuantity"].ToString();
+                                PriceLbl.Text = reader["Price"].ToString();
+                                SuppDateLbl.Text = reader["SuppliedDate"].ToString();
+                                DescLbl.Text = reader["ItemDescription"].ToString();
+                                SuppLbl.Text = reader["Supplier"].ToString();
+                                if (reader["ItemImage"] != DBNull.Value)
                                 {
-                                    ImgBox.Image = Image.FromStream(ms);
+                                    byte[] imageData = (byte[])reader["ItemImage"];
+                                    using (MemoryStream ms = new MemoryStream(imageData))
+                                    {
+                                        ImgBox.Image = Image.FromStream(ms);
+                                    }
                                 }
                             }
                         }
-
                     }
                 }
-                con.Close();
             }
             catch (Exception ex)
             {

@@ -18,43 +18,14 @@ namespace Flowershop_Thesis.OtherForms.AdvanceOrder.EditOrderItems
 {
     public partial class AdvanceOrderFinishPayment : Form
     {
-        SqlConnection con;
-        SqlConnection con2;
-        SqlCommand cmd = new SqlCommand();
-        SqlDataReader sdr;
-        SqlDataAdapter sda;
         public AdvanceOrderFinishPayment()
         {
             InitializeComponent();
-            testConnection();
             setup();
             radioButton1.Checked = true;
             label17.Visible = false;
             pictureBox1.Visible = false;
 
-        }
-        public void testConnection()
-        {
-            string executableDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            string parentDirectory = Path.GetFullPath(Path.Combine(executableDirectory, @"..\..\"));
-
-            string databaseFilePath = Path.Combine(parentDirectory, "FlowershopSystemDB.mdf");
-
-            string connectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={databaseFilePath};Initial Catalog=try;Integrated Security=True;";
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                try
-                {
-                    connection.Open();
-                    con = new SqlConnection(connectionString);
-
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("An error occurred: " + ex.Message);
-                }
-            }
         }
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
@@ -187,19 +158,22 @@ namespace Flowershop_Thesis.OtherForms.AdvanceOrder.EditOrderItems
                 {
                     DialogResult result = MessageBox.Show("Proceed Payment?", "Payment Confirmation", MessageBoxButtons.YesNo);
                     if (result == DialogResult.Yes)
-                    { 
-                        string updateQuery = "UPDATE AdvanceOrders SET PaymentStatus = 'Paid', ModeOfPayment = 'Cash',Status='Complete' WHERE OrderID = @ID;";
-                        con.Open();
-                        using (SqlCommand updateCommand = new SqlCommand(updateQuery, con))
+                    {   
+                        using(SqlConnection con = new SqlConnection(Connect.connectionString))
                         {
+                            string updateQuery = "UPDATE AdvanceOrders SET PaymentStatus = 'Paid', ModeOfPayment = 'Cash',Status='Complete' WHERE OrderID = @ID;";
+                            con.Open();
+                            using (SqlCommand updateCommand = new SqlCommand(updateQuery, con))
+                            {
 
-                            updateCommand.Parameters.AddWithValue("@ID", label5.Text);
+                                updateCommand.Parameters.AddWithValue("@ID", label5.Text);
 
-                            updateCommand.ExecuteNonQuery();
+                                updateCommand.ExecuteNonQuery();
 
 
+                            }
                         }
-                        con.Close();
+                       
                         MessageBox.Show("Order Paid!");
                         int counter = int.Parse(AdvanceOrdersList.instance.todaycounter.Text);
                         counter--;
@@ -226,25 +200,29 @@ namespace Flowershop_Thesis.OtherForms.AdvanceOrder.EditOrderItems
                     DialogResult result = MessageBox.Show("Proceed Payment?", "Payment Confirmation", MessageBoxButtons.YesNo);
                     if (result == DialogResult.Yes)
                     {   
-                        string updateQuery = "UPDATE AdvanceOrders SET PaymentStatus = 'Paid', ModeOfPayment = 'GCash',Status='Complete', Image = @Image WHERE OrderID = @ID;";
-                        
-                        using (SqlCommand updateCommand = new SqlCommand(updateQuery, con))
+                        using(SqlConnection con = new SqlConnection(Connect.connectionString))
                         {
-                            con.Open();
-                            var ImageConvert = converter.ConvertTo(s_img, typeof(byte[]));
-                            updateCommand.Parameters.AddWithValue("@Image", ImageConvert);
-                            updateCommand.Parameters.AddWithValue("@ID", label5.Text);
+                            string updateQuery = "UPDATE AdvanceOrders SET PaymentStatus = 'Paid', ModeOfPayment = 'GCash',Status='Complete', Image = @Image WHERE OrderID = @ID;";
 
-                            updateCommand.ExecuteNonQuery();
+                            using (SqlCommand updateCommand = new SqlCommand(updateQuery, con))
+                            {
+                                con.Open();
+                                var ImageConvert = converter.ConvertTo(s_img, typeof(byte[]));
+                                updateCommand.Parameters.AddWithValue("@Image", ImageConvert);
+                                updateCommand.Parameters.AddWithValue("@ID", label5.Text);
+
+                                updateCommand.ExecuteNonQuery();
 
 
+                            }
+
+                            MessageBox.Show("Order Paid!");
+                            int counter = int.Parse(AdvanceOrdersList.instance.todaycounter.Text);
+                            counter--;
+                            AdvanceOrdersList.instance.todaycounter.Text = counter.ToString();
+                            this.Close();
                         }
-                       
-                        MessageBox.Show("Order Paid!");
-                        int counter = int.Parse(AdvanceOrdersList.instance.todaycounter.Text);
-                        counter--;
-                        AdvanceOrdersList.instance.todaycounter.Text = counter.ToString();
-                        this.Close();
+
 
                     }
                     else

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -7,7 +8,11 @@ using System.Threading.Tasks;
 
 namespace Capstone_Flowershop
 {
-
+    public static class Connect
+    {
+        public static string sqlServer = "DESKTOP-IH4V487\\NEWMSSQL"; // Replace with your SQL server name
+        public static string connectionString = $"Server={sqlServer};Database=try;Integrated Security=True;";
+    }
     public static class UserInfo
     {
         public static string Empleyado { get; set; }

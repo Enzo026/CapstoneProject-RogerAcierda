@@ -15,44 +15,6 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
 {
     public partial class EditFlower : Form
     {
-        SqlConnection con;
-        SqlCommand cmd = new SqlCommand();
-        SqlDataReader sdr;
-        SqlDataAdapter sda;
-        string connectionString;
-        public void testConnection()
-        {
-            string executableDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            string parentDirectory = Path.GetFullPath(Path.Combine(executableDirectory, @"..\..\"));
-            string databaseFilePath = Path.Combine(parentDirectory, "FlowershopSystemDB.mdf");
-
-            // Build the connection string with explicit pooling parameters
-            connectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={databaseFilePath};Initial Catalog=try;Integrated Security=True;Pooling=true;Max Pool Size=100;Min Pool Size=5;Connection Lifetime=600;";
-
-
-            // Use the connection string to connect to the database
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                try
-                {
-                    connection.Open();
-                    con = new SqlConnection(connectionString);
-
-                    // Perform database operations here
-
-                }
-                catch (SqlException sqlEx)
-                {
-                    // Handle SQL exceptions
-                    MessageBox.Show("SQL error occurred: " + sqlEx.Message);
-                }
-                catch (Exception ex)
-                {
-                    // Handle other exceptions
-                    MessageBox.Show("An error occurred: " + ex.Message);
-                }
-            } // Connection is automatically closed and returned to the pool here
-        }
 
         //default item information
         Image oldImg;
@@ -63,10 +25,10 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
         string Price;
         string lifespan;
         string desc;
+        string logdesc;
         public EditFlower()
         {
             InitializeComponent();
-            testConnection();
             DisplayInfo();
             setup();
         }
@@ -113,8 +75,36 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
         private void button2_Click(object sender, EventArgs e)
         {
             changeItems();
+            addActivityLog();
         }
+
         #region methods
+        public void addActivityLog()
+        {
+            try
+            {   
+                using(SqlConnection con = new SqlConnection(Connect.connectionString))
+                {
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand("INSERT INTO HistoryLogs(Title,Definition,Employee,EmployeeID,Date,Type,ReferenceID,HeadLine)Values" +
+                                "(@Title,@Definition,@Employee,@EmployeeID,getdate(),@Type,@RefID,@HeadLine);", con);
+                    cmd.Parameters.AddWithValue("@Title", "Item Edited");
+                    cmd.Parameters.AddWithValue("@Definition", logdesc);
+                    cmd.Parameters.AddWithValue("@Employee", UserInfo.Empleyado);
+                    cmd.Parameters.AddWithValue("@EmployeeID", UserInfo.EmpID);
+                    cmd.Parameters.AddWithValue("@Type", "ActivityLog");
+                    cmd.Parameters.AddWithValue("@RefID", ChangeIds.ItemID);
+                    cmd.Parameters.AddWithValue("@HeadLine", UserInfo.Empleyado + " Edited Item Flower " + ItemName);
+
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Adding Activity Failed!" + " : " + ex);
+            }
+        }
         void setup()
         {
             textBox1.Enabled = false;
@@ -151,6 +141,7 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
                     if (checkBox1.Checked && textBox1.Text.Length > 0)
                     {
                         ChangeItemName();
+                        logdesc = logdesc + "ItemName";
                     }
                     else if (checkBox1.Checked && textBox1.Text.Length <= 0)
                     {
@@ -160,6 +151,7 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
                     if (checkBox2.Checked && comboBox1.Text.Length > 0)
                     {
                         ChangeItemType();
+                        logdesc += ", ItemType";
                     }
                     else if (checkBox2.Checked && comboBox1.Text == "Select Item Type   >>")
 
@@ -170,6 +162,7 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
                     if (checkBox3.Checked && textBox2.Text.Length > 0)
                     {
                         ChangeItemColor();
+                        logdesc+= ", Item Color" ;
                     }
                     else if (checkBox3.Checked && textBox2.Text.Length <= 0)
                     {
@@ -180,6 +173,7 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
                     if (checkBox5.Checked && textBox4.Text.Length > 0)
                     {
                         ChangeSupplier();
+                        logdesc += ", Item Supplier";
                     }
                     else if (checkBox5.Checked && textBox4.Text.Length <= 0)
                     {
@@ -190,6 +184,7 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
                     if (checkBox6.Checked && textBox5.Text.Length > 0)
                     {
                         ChangePrice();
+                        logdesc += ", Item Price";
                     }
                     else if (checkBox6.Checked && textBox5.Text.Length <= 0)
                     {
@@ -199,6 +194,7 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
                     if (checkBox4.Checked && textBox3.Text.Length > 0)
                     {
                         Changelifespan();
+                        logdesc += ", LifeSpan";
                     }
                     else if (checkBox4.Checked && textBox3.Text.Length <= 0)
                     {
@@ -208,6 +204,7 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
                     if (checkBox7.Checked && pictureBox1.Image != oldImg)
                     {
                         ChangeImage();
+                        logdesc += ", Item Image";
                     }
                     else if (checkBox7.Checked && pictureBox1.Image != oldImg)
                     {
@@ -217,6 +214,7 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
                     if (checkBox8.Checked && textBox6.Text.Length > 0)
                     {
                         ChangeDesc();
+                        logdesc += ", Description";
                     }
                     else if (checkBox8.Checked && textBox6.Text.Length <= 0)
                     {
@@ -237,7 +235,7 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
             try
             {
                 int numId;
-                using (SqlConnection conn = new SqlConnection(connectionString))
+                using (SqlConnection conn = new SqlConnection(Connect.connectionString))
                 {
 
                     string countQuery = "Select count(*) from ItemInventory where ItemID = @ID";
@@ -256,7 +254,7 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
 
                 if (numId == 1)
                 {
-                    using (SqlConnection conn = new SqlConnection(connectionString))
+                    using (SqlConnection conn = new SqlConnection(Connect.connectionString))
                     {
 
                         string updateQuery = " Select * from ItemInventory where ItemID = @ID";
@@ -315,7 +313,7 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
             try
             {
                 int numId;
-                using (SqlConnection conn = new SqlConnection(connectionString))
+                using (SqlConnection conn = new SqlConnection(Connect.connectionString))
                 {
                     string countQuery = "Select count(*) from ItemInventory where ItemID = @ID";
                     using (SqlCommand countCommand = new SqlCommand(countQuery, conn))
@@ -327,7 +325,7 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
                 }
                 if (numId == 1)
                 {
-                    using (SqlConnection conn = new SqlConnection(connectionString))
+                    using (SqlConnection conn = new SqlConnection(Connect.connectionString))
                     {
                         string updateQuery = "UPDATE ItemInventory SET ItemName = @In WHERE ItemID = @ID;";
                         using (SqlCommand updateCommand = new SqlCommand(updateQuery, conn))
@@ -359,7 +357,7 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
             try
             {
                 int numId;
-                using (SqlConnection conn = new SqlConnection(connectionString))
+                using (SqlConnection conn = new SqlConnection(Connect.connectionString))
                 {
                     string countQuery = "Select count(*) from ItemInventory where ItemID = @ID";
                     using (SqlCommand countCommand = new SqlCommand(countQuery, conn))
@@ -371,7 +369,7 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
                 }
                 if (numId == 1)
                 {
-                    using (SqlConnection conn = new SqlConnection(connectionString))
+                    using (SqlConnection conn = new SqlConnection(Connect.connectionString))
                     {
                         string updateQuery = "UPDATE ItemInventory SET ItemType = @In WHERE ItemID = @ID;";
                         using (SqlCommand updateCommand = new SqlCommand(updateQuery, conn))
@@ -403,7 +401,7 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
             try
             {
                 int numId;
-                using (SqlConnection conn = new SqlConnection(connectionString))
+                using (SqlConnection conn = new SqlConnection(Connect.connectionString))
                 {
                     string countQuery = "Select count(*) from ItemInventory where ItemID = @ID";
                     using (SqlCommand countCommand = new SqlCommand(countQuery, conn))
@@ -415,7 +413,7 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
                 }
                 if (numId == 1)
                 {
-                    using (SqlConnection conn = new SqlConnection(connectionString))
+                    using (SqlConnection conn = new SqlConnection(Connect.connectionString))
                     {
                         string updateQuery = "UPDATE ItemInventory SET ItemColor = @In WHERE ItemID = @ID;";
                         using (SqlCommand updateCommand = new SqlCommand(updateQuery, conn))
@@ -447,7 +445,7 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
             try
             {
                 int numId;
-                using (SqlConnection conn = new SqlConnection(connectionString))
+                using (SqlConnection conn = new SqlConnection(Connect.connectionString))
                 {
                     string countQuery = "Select count(*) from ItemInventory where ItemID = @ID";
                     using (SqlCommand countCommand = new SqlCommand(countQuery, conn))
@@ -459,7 +457,7 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
                 }
                 if (numId == 1)
                 {
-                    using (SqlConnection conn = new SqlConnection(connectionString))
+                    using (SqlConnection conn = new SqlConnection(Connect.connectionString))
                     {
                         string updateQuery = "UPDATE ItemInventory SET LifeSpan = @In WHERE ItemID = @ID;";
                         using (SqlCommand updateCommand = new SqlCommand(updateQuery, conn))
@@ -491,7 +489,7 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
             try
             {
                 int numId;
-                using (SqlConnection conn = new SqlConnection(connectionString))
+                using (SqlConnection conn = new SqlConnection(Connect.connectionString))
                 {
                     string countQuery = "Select count(*) from ItemInventory where ItemID = @ID";
                     using (SqlCommand countCommand = new SqlCommand(countQuery, conn))
@@ -503,7 +501,7 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
                 }
                 if (numId == 1)
                 {
-                    using (SqlConnection conn = new SqlConnection(connectionString))
+                    using (SqlConnection conn = new SqlConnection(Connect.connectionString))
                     {
                         string updateQuery = "UPDATE ItemInventory SET Price = @In WHERE ItemID = @ID;";
                         using (SqlCommand updateCommand = new SqlCommand(updateQuery, conn))
@@ -535,7 +533,7 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
             try
             {
                 int numId;
-                using (SqlConnection conn = new SqlConnection(connectionString))
+                using (SqlConnection conn = new SqlConnection(Connect.connectionString))
                 {
                     string countQuery = "Select count(*) from ItemInventory where ItemID = @ID";
                     using (SqlCommand countCommand = new SqlCommand(countQuery, conn))
@@ -547,7 +545,7 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
                 }
                 if (numId == 1)
                 {
-                    using (SqlConnection conn = new SqlConnection(connectionString))
+                    using (SqlConnection conn = new SqlConnection(Connect.connectionString))
                     {
                         string updateQuery = "UPDATE ItemInventory SET ItemDescription = @In WHERE ItemID = @ID;";
                         using (SqlCommand updateCommand = new SqlCommand(updateQuery, conn))
@@ -579,7 +577,7 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
             try
             {
                 int numId;
-                using (SqlConnection conn = new SqlConnection(connectionString))
+                using (SqlConnection conn = new SqlConnection(Connect.connectionString))
                 {
                     string countQuery = "Select count(*) from ItemInventory where ItemID = @ID";
                     using (SqlCommand countCommand = new SqlCommand(countQuery, conn))
@@ -591,7 +589,7 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
                 }
                 if (numId == 1)
                 {
-                    using (SqlConnection conn = new SqlConnection(connectionString))
+                    using (SqlConnection conn = new SqlConnection(Connect.connectionString))
                     {
                         string updateQuery = "UPDATE ItemInventory SET Supplier = @In WHERE ItemID = @ID;";
                         using (SqlCommand updateCommand = new SqlCommand(updateQuery, conn))
@@ -623,7 +621,7 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
             try
             {
                 int numId;
-                using (SqlConnection conn = new SqlConnection(connectionString))
+                using (SqlConnection conn = new SqlConnection(Connect.connectionString))
                 {
 
                     string countQuery = "Select count(*) from ItemInventory where ItemID = @ID";
@@ -642,7 +640,7 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
 
                 if (numId == 1)
                 {
-                    using (SqlConnection conn = new SqlConnection(connectionString))
+                    using (SqlConnection conn = new SqlConnection(Connect.connectionString))
                     {
                         Image s_img = pictureBox1.Image;
                         ImageConverter converter = new ImageConverter();

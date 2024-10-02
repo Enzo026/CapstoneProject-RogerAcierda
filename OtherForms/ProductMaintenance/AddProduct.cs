@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Capstone_Flowershop;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,76 +15,44 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
 {
     public partial class AddProduct : Form
     {
-        SqlConnection con;
-        SqlCommand cmd = new SqlCommand();
-        SqlDataReader sdr;
-        SqlDataAdapter sda;
-
-        public void testConnection()
-        {
-            string executableDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            string parentDirectory = Path.GetFullPath(Path.Combine(executableDirectory, @"..\..\"));
-
-            string databaseFilePath = Path.Combine(parentDirectory, "FlowershopSystemDB.mdf");
-
-            // MessageBox.Show(databaseFilePath);
-            // Build the connection string
-            string connectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={databaseFilePath};Initial Catalog=try;Integrated Security=True;";
-
-            // Use the connection string to connect to the database
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                try
-                {
-                    connection.Open();
-                    con = new SqlConnection(connectionString);
-
-                    // Perform database operations here
-
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("An error occurred: " + ex.Message);
-                }
-            }
-        }
-
         public AddProduct()
         {
             InitializeComponent();
-            testConnection();
         }
         public void addflower()
-        {
-            string date = DateTime.Now.ToString("MM-dd-yyyy");
-
-            Image s_img = Image.Image;
-            ImageConverter converter = new ImageConverter();
-            try
+        {   
+            using(SqlConnection con =  new SqlConnection(Connect.connectionString))
             {
-                var ImageConvert = converter.ConvertTo(s_img, typeof(byte[]));
-                con.Open();
-                cmd = new SqlCommand("INSERT INTO ItemInventory(ItemName,ItemQuantity,ItemType,ItemColor,LifeSpan,SuppliedDate,Supplier,ItemDescription,Price,ItemImage,ItemStatus)Values" +
-                            "(@Name,@Qty,@Type,@Color,@LifeSpan,getdate(),@Supplier,@Desc,@RSP,@ItemImage,'Available');", con);
-                cmd.Parameters.AddWithValue("@Name", Name.Text);
-                cmd.Parameters.AddWithValue("@Qty", Convert.ToInt32(this.Qty.Text));
-                cmd.Parameters.AddWithValue("@Type", Type.Text);
-                cmd.Parameters.AddWithValue("@Color", Color.Text);
-                cmd.Parameters.AddWithValue("@LifeSpan", Convert.ToInt32(this.UsageQty.Text));
-                //  cmd.Parameters.AddWithValue("@Date", DateTime.Now.ToString());
-                cmd.Parameters.AddWithValue("@Supplier", Supplier.Text);
-                cmd.Parameters.AddWithValue("@Desc", UnitPrice.Text);
-                cmd.Parameters.AddWithValue("@RSP", Convert.ToDecimal(this.Price.Text));
-                cmd.Parameters.AddWithValue("@ItemImage", ImageConvert);
+                string date = DateTime.Now.ToString("MM-dd-yyyy");
 
-                cmd.ExecuteNonQuery();
-                con.Close();
-                MessageBox.Show("Item Added Successfully!");
+                Image s_img = Image.Image;
+                ImageConverter converter = new ImageConverter();
+                try
+                {
+                    var ImageConvert = converter.ConvertTo(s_img, typeof(byte[]));
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand("INSERT INTO ItemInventory(ItemName,ItemQuantity,ItemType,ItemColor,LifeSpan,SuppliedDate,Supplier,ItemDescription,Price,ItemImage,ItemStatus)Values" +
+                                "(@Name,@Qty,@Type,@Color,@LifeSpan,getdate(),@Supplier,@Desc,@RSP,@ItemImage,'Available');", con);
+                    cmd.Parameters.AddWithValue("@Name", Name.Text);
+                    cmd.Parameters.AddWithValue("@Qty", Convert.ToInt32(this.Qty.Text));
+                    cmd.Parameters.AddWithValue("@Type", Type.Text);
+                    cmd.Parameters.AddWithValue("@Color", Color.Text);
+                    cmd.Parameters.AddWithValue("@LifeSpan", Convert.ToInt32(this.UsageQty.Text));
+                    cmd.Parameters.AddWithValue("@Supplier", Supplier.Text);
+                    cmd.Parameters.AddWithValue("@Desc", UnitPrice.Text);
+                    cmd.Parameters.AddWithValue("@RSP", Convert.ToDecimal(this.Price.Text));
+                    cmd.Parameters.AddWithValue("@ItemImage", ImageConvert);
+
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Item Added Successfully!");
+                    addActivityLog();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("AddingItem Failed!" + " : " + ex);
+                }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("AddingItem Failed!" + " : " + ex);
-            }
+            
         }
 
         private void label9_Click(object sender, EventArgs e)
@@ -95,7 +64,32 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
         {
             addflower();
         }
+        public void addActivityLog()
+        {
+            try
+            {   using(SqlConnection con  =  new SqlConnection(Connect.connectionString))
+                {
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand("INSERT INTO HistoryLogs(Title,Definition,Employee,EmployeeID,Date,Type,ReferenceID,HeadLine)Values" +
+                                "(@Title,@Definition,@Employee,@EmployeeID,getdate(),@Type,@RefID,@HeadLine);", con);
+                    cmd.Parameters.AddWithValue("@Title", "Added New Item(Flower)");
+                    cmd.Parameters.AddWithValue("@Definition", "NotGiven");
+                    cmd.Parameters.AddWithValue("@Employee", UserInfo.Empleyado);
+                    cmd.Parameters.AddWithValue("@EmployeeID", UserInfo.EmpID);
+                    cmd.Parameters.AddWithValue("@Type", "ActivityLog");
+                    cmd.Parameters.AddWithValue("@RefID", "0");
+                    cmd.Parameters.AddWithValue("@HeadLine", UserInfo.Empleyado + " Add New Item Flower to Inventory named as " + Name.Text);
 
+
+                    cmd.ExecuteNonQuery();
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Adding Activity Failed!" + " : " + ex);
+            }
+        }
         private void button2_Click(object sender, EventArgs e)
         {
             OpenFileDialog open = new OpenFileDialog();

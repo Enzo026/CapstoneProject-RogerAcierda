@@ -13,51 +13,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Resources.ResXFileRef;
+using Flowershop_Thesis;
+using Capstone_Flowershop;
 
 namespace Flowershop_Thesis.OtherForms
 {
     public partial class AddToCart : Form
     {
-        SqlConnection con;
-        SqlCommand cmd = new SqlCommand();
-        SqlDataReader sdr;
-        SqlDataAdapter sda;
         public static AddToCart instance;
         public AddToCart()
         {
             InitializeComponent();
             instance = this;
-            testConnection();
         }
 
-        public void testConnection()
-        {
-            string executableDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            string parentDirectory = Path.GetFullPath(Path.Combine(executableDirectory, @"..\..\"));
 
-            string databaseFilePath = Path.Combine(parentDirectory, "FlowershopSystemDB.mdf");
-
-            // MessageBox.Show(databaseFilePath);
-            // Build the connection string
-            string connectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={databaseFilePath};Initial Catalog=try;Integrated Security=True;";
-
-            // Use the connection string to connect to the database
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                try
-                {
-                    connection.Open();
-                    con = new SqlConnection(connectionString);
-
-                    // Perform database operations here
-
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("An error occurred: " + ex.Message);
-                }
-            }
-        }
         #region Myregion
         private string name;
         private string itemID;
@@ -118,19 +88,23 @@ namespace Flowershop_Thesis.OtherForms
                 {
                     //Insert to cart database
                     try
-                    {
-                        con.Open();
-                        cmd = new SqlCommand("INSERT INTO ServingCart(ItemID,ItemName,OrderQty,OrderPrice,OrderType)Values" +
-                                    "(@ID,@Name,@Qty,@Price,@Type);", con);
-                        cmd.Parameters.AddWithValue("@ID", Convert.ToInt32(this.ItemID));
-                        cmd.Parameters.AddWithValue("@Name", this.label2.Text);
-                        cmd.Parameters.AddWithValue("@Qty", Convert.ToInt32(this.textBox1.Text));
-                        int cprice = (int)decimal.Parse(label6.Text);
-                        cmd.Parameters.AddWithValue("@Price", cprice);
-                        cmd.Parameters.AddWithValue("@Type", this.OrderType);
+                    {   
+                        using(SqlConnection con =  new SqlConnection(Connect.connectionString))
+                        {
+                            con.Open();
+                            SqlCommand cmd = new SqlCommand("INSERT INTO ServingCart(ItemID,ItemName,OrderQty,OrderPrice,OrderType)Values" +
+                                        "(@ID,@Name,@Qty,@Price,@Type);", con);
+                            cmd.Parameters.AddWithValue("@ID", Convert.ToInt32(this.ItemID));
+                            cmd.Parameters.AddWithValue("@Name", this.label2.Text);
+                            cmd.Parameters.AddWithValue("@Qty", Convert.ToInt32(this.textBox1.Text));
+                            int cprice = (int)decimal.Parse(label6.Text);
+                            cmd.Parameters.AddWithValue("@Price", cprice);
+                            cmd.Parameters.AddWithValue("@Type", this.OrderType);
 
-                        cmd.ExecuteNonQuery();
-                        con.Close();
+                            cmd.ExecuteNonQuery();
+
+                        }
+
                     }
                     catch (Exception ex)
                     {
@@ -144,20 +118,6 @@ namespace Flowershop_Thesis.OtherForms
                     MessageBox.Show("Item Successfully Added Cart Items: " + cart.ToString());
                     OrderPlacement.instance.lbl.Text = cart.ToString();
 
-
-
-                    //CartItems[] CI = new CartItems[cart];
-                    //int index = 0;
-                    //while(index < cart)
-                    //{
-                    //    CI[index] = new CartItems();
-                    //    CI[index].Name = name;
-                    //    CI[index].ItemID = itemID;
-                    //    CI[index].Price = int.Parse(label6.Text);
-                    //    CI[index].qty = int.Parse(textBox1.Text);
-                        
-                    //}
-
                     this.Close();
                 }
             }
@@ -165,21 +125,6 @@ namespace Flowershop_Thesis.OtherForms
             {
                 MessageBox.Show("Please input a quantity");
             }
-           
-
-            //if(OrderQty >1 && OrderQty <= stocks)
-            //{
-            //    CartItems CI = new CartItems();
-            //    CI.Name = name;
-            //    CI.ItemID = itemID;
-            //    CI.Price = int.Parse(label6.Text);
-            //    CI.qty = int.Parse(textBox1.Text);
-            //    this.Close();
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Invalid Quantity input");
-            //}
         }
 
         private void label11_Click(object sender, EventArgs e)

@@ -11,48 +11,18 @@ using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Flowershop_Thesis;
+using Capstone_Flowershop;
 
 namespace Flowershop_Thesis.OtherForms
 {
 
     public partial class QueuingListItems : UserControl
     {
-        SqlConnection con;
-        SqlCommand cmd = new SqlCommand();
-        SqlDataReader sdr;
-        SqlDataAdapter sda;
         public QueuingListItems()
         {
             InitializeComponent();
-            testConnection();
-        }
-        public void testConnection()
-        {
-            string executableDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            string parentDirectory = Path.GetFullPath(Path.Combine(executableDirectory, @"..\..\"));
-
-            string databaseFilePath = Path.Combine(parentDirectory, "FlowershopSystemDB.mdf");
-
-            // MessageBox.Show(databaseFilePath);
-            // Build the connection string
-            string connectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={databaseFilePath};Initial Catalog=try;Integrated Security=True;";
-
-            // Use the connection string to connect to the database
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                try
-                {
-                    connection.Open();
-                    con = new SqlConnection(connectionString);
-
-                    // Perform database operations here
-
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("An error occurred: " + ex.Message);
-                }
-            }
+       
         }
 
         #region OrderQueue
@@ -95,29 +65,21 @@ namespace Flowershop_Thesis.OtherForms
         {
             DialogResult result = MessageBox.Show("Do you want this order to be Canceled?", "Cancel Order", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
-            {
-                string updateQuery = "UPDATE TransactionsTbl SET Status = 'Cancelled' WHERE TransactionID = @ID;";
-                con.Open();
-                using (SqlCommand updateCommand = new SqlCommand(updateQuery, con))
+            {   
+                using(SqlConnection con = new SqlConnection(Connect.connectionString))
                 {
-
-                    updateCommand.Parameters.AddWithValue("@ID", transactionID);
-
-                    updateCommand.ExecuteNonQuery();
-
-                    int queue = int.Parse(QueuingFormBack.instance.lblcounter.Text);
-                    int addqueue = queue - 1;
-                    QueuingFormBack.instance.lblcounter.Text = addqueue.ToString();
-
+                    string updateQuery = "UPDATE TransactionsTbl SET Status = 'Cancelled' WHERE TransactionID = @ID;";
+                    con.Open();
+                    using (SqlCommand updateCommand = new SqlCommand(updateQuery, con))
+                    {
+                        updateCommand.Parameters.AddWithValue("@ID", transactionID);
+                        updateCommand.ExecuteNonQuery();
+                        int queue = int.Parse(QueuingFormBack.instance.lblcounter.Text);
+                        int addqueue = queue - 1;
+                        QueuingFormBack.instance.lblcounter.Text = addqueue.ToString();
+                    }
+                    MessageBox.Show("Order cancelled!");
                 }
-                con.Close();
-                MessageBox.Show("Order cancelled!");
-
-
-            }
-            else
-            {
-                //none
             }
         }
 

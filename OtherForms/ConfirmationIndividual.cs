@@ -13,48 +13,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using Flowershop_Thesis;
+using Capstone_Flowershop;
 
 namespace Flowershop_Thesis.OtherForms
 {
     public partial class ConfirmationIndividual : Form
     {
-        SqlConnection con;
         SqlCommand cmd = new SqlCommand();
-        SqlDataReader sdr;
-        SqlDataAdapter sda;
         public ConfirmationIndividual()
         {
             InitializeComponent();
-            testConnection();
         }
-        public void testConnection()
-        {
-            string executableDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            string parentDirectory = Path.GetFullPath(Path.Combine(executableDirectory, @"..\..\"));
 
-            string databaseFilePath = Path.Combine(parentDirectory, "FlowershopSystemDB.mdf");
-
-            // MessageBox.Show(databaseFilePath);
-            // Build the connection string
-            string connectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={databaseFilePath};Initial Catalog=try;Integrated Security=True;";
-
-            // Use the connection string to connect to the database
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                try
-                {
-                    connection.Open();
-                    con = new SqlConnection(connectionString);
-
-                    // Perform database operations here
-
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("An error occurred: " + ex.Message);
-                }
-            }
-        }
         #region Myregion
         private string name;
         private string itemID;
@@ -199,19 +170,22 @@ namespace Flowershop_Thesis.OtherForms
                 {
                     //Insert to cart database
                     try
-                    {
-                        con.Open();
-                        cmd = new SqlCommand("INSERT INTO Advance_ServingCart(ItemID,ItemName,OrderQty,OrderPrice,OrderType)Values" +
-                                    "(@ID,@Name,@Qty,@Price,@Type);", con);
-                        cmd.Parameters.AddWithValue("@ID", Convert.ToInt32(this.ItemID));
-                        cmd.Parameters.AddWithValue("@Name", this.label3.Text);
-                        cmd.Parameters.AddWithValue("@Qty", Convert.ToInt32(this.textBox2.Text));
-                        int cprice = (int)decimal.Parse(label11.Text);
-                        cmd.Parameters.AddWithValue("@Price", cprice);
-                        cmd.Parameters.AddWithValue("@Type", type);
+                    {   
+                        using(SqlConnection con = new SqlConnection(Connect.connectionString))
+                        {
+                            con.Open();
+                            cmd = new SqlCommand("INSERT INTO Advance_ServingCart(ItemID,ItemName,OrderQty,OrderPrice,OrderType)Values" +
+                                        "(@ID,@Name,@Qty,@Price,@Type);", con);
+                            cmd.Parameters.AddWithValue("@ID", Convert.ToInt32(this.ItemID));
+                            cmd.Parameters.AddWithValue("@Name", this.label3.Text);
+                            cmd.Parameters.AddWithValue("@Qty", Convert.ToInt32(this.textBox2.Text));
+                            int cprice = (int)decimal.Parse(label11.Text);
+                            cmd.Parameters.AddWithValue("@Price", cprice);
+                            cmd.Parameters.AddWithValue("@Type", type);
 
-                        cmd.ExecuteNonQuery();
-                        con.Close();
+                            cmd.ExecuteNonQuery();
+                        }
+
                     }
                     catch (Exception ex)
                     {
@@ -238,21 +212,6 @@ namespace Flowershop_Thesis.OtherForms
                         }
                     }
                     
-
-
-
-                    //CartItems[] CI = new CartItems[cart];
-                    //int index = 0;
-                    //while(index < cart)
-                    //{
-                    //    CI[index] = new CartItems();
-                    //    CI[index].Name = name;
-                    //    CI[index].ItemID = itemID;
-                    //    CI[index].Price = int.Parse(label6.Text);
-                    //    CI[index].qty = int.Parse(textBox1.Text);
-
-                    //}
-
                     this.Close();
                 }
             }

@@ -17,15 +17,11 @@ namespace Flowershop_Thesis.OtherForms.AdvanceOrder
 {
     public partial class OrdersTodayList : UserControl
     {
-        SqlConnection con;
-        SqlConnection con2;
-        SqlCommand cmd = new SqlCommand();
-        SqlDataReader sdr;
-        SqlDataAdapter sda;
+
         public OrdersTodayList()
         {
             InitializeComponent();
-            testConnection();
+      
           
        //     MessageBox.Show(transactionID);
         }
@@ -102,52 +98,32 @@ namespace Flowershop_Thesis.OtherForms.AdvanceOrder
         public void getTotalItems()
         {
             try
-            {
-                con.Open();
-                string sqlQty = "SELECT COUNT(*) AS Orders FROM AdvanceOrderItems WHERE OrderID = @ID;";
-                using (SqlCommand comd = new SqlCommand(sqlQty, con))
+            {   using(SqlConnection con = new SqlConnection(Connect.connectionString))
                 {
-
-                     comd.Parameters.AddWithValue("@ID", transactionID);
-                    if(int.Parse(comd.ExecuteScalar().ToString()) > 0)
+                    con.Open();
+                    string sqlQty = "SELECT COUNT(*) AS Orders FROM AdvanceOrderItems WHERE OrderID = @ID;";
+                    using (SqlCommand comd = new SqlCommand(sqlQty, con))
                     {
-                        OrderItems = comd.ExecuteScalar().ToString();
-                    }
-                    else
-                    {
-                        OrderItems = "0";
-                    }
-                    
-           
 
+                        comd.Parameters.AddWithValue("@ID", transactionID);
+                        if (int.Parse(comd.ExecuteScalar().ToString()) > 0)
+                        {
+                            OrderItems = comd.ExecuteScalar().ToString();
+                        }
+                        else
+                        {
+                            OrderItems = "0";
+                        }
+
+
+
+                    }
                 }
-                con.Close();
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error on fetching order qty :" + ex.Message);
-            }
-        }
-        public void testConnection()
-        {
-            string executableDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            string parentDirectory = Path.GetFullPath(Path.Combine(executableDirectory, @"..\..\"));
-
-            string databaseFilePath = Path.Combine(parentDirectory, "FlowershopSystemDB.mdf");
-            string connectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={databaseFilePath};Initial Catalog=try;Integrated Security=True;";
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                try
-                {
-                    connection.Open();
-                    con = new SqlConnection(connectionString);
-
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("An error occurred: " + ex.Message);
-                }
             }
         }
 

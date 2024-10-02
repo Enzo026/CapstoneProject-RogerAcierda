@@ -25,7 +25,7 @@ namespace Flowershop_Thesis.Temporary_Forms
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Process.Start("microsoft.windows.camera:");
+            Process.Start(new ProcessStartInfo("microsoft.windows.camera:") { UseShellExecute = true });
         }
 
         private void button2_Click(object sender, EventArgs e)

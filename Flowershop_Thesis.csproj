@@ -233,6 +233,12 @@
     <Compile Include="OtherForms\AdminDashboard\ReportTabContents.Designer.cs">
       <DependentUpon>ReportTabContents.cs</DependentUpon>
     </Compile>
+    <Compile Include="OtherForms\HistoryLogs\ActivityLogsList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OtherForms\HistoryLogs\ActivityLogsList.Designer.cs">
+      <DependentUpon>ActivityLogsList.cs</DependentUpon>
+    </Compile>
     <Compile Include="OtherForms\ProductMaintenance\AddMaterials.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -727,6 +733,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="OtherForms\AdminDashboard\ReportTabContents.resx">
       <DependentUpon>ReportTabContents.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\HistoryLogs\ActivityLogsList.resx">
+      <DependentUpon>ActivityLogsList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OtherForms\ProductMaintenance\AddMaterials.resx">
       <DependentUpon>AddMaterials.cs</DependentUpon>

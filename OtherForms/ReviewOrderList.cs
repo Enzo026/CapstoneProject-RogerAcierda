@@ -11,50 +11,21 @@ using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Flowershop_Thesis;
+using Capstone_Flowershop;
 
 namespace Flowershop_Thesis.OtherForms
 {
     public partial class ReviewOrderList : UserControl
     {
-        SqlConnection con;
         SqlCommand cmd = new SqlCommand();
-        SqlDataReader sdr;
-        SqlDataAdapter sda;
+
 
         public ReviewOrderList()
         {
             InitializeComponent();
-            testConnection();
         }
 
-        public void testConnection()
-        {
-            string executableDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            string parentDirectory = Path.GetFullPath(Path.Combine(executableDirectory, @"..\..\"));
-
-            string databaseFilePath = Path.Combine(parentDirectory, "FlowershopSystemDB.mdf");
-
-            // MessageBox.Show(databaseFilePath);
-            // Build the connection string
-            string connectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={databaseFilePath};Initial Catalog=try;Integrated Security=True;";
-
-            // Use the connection string to connect to the database
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                try
-                {
-                    connection.Open();
-                    con = new SqlConnection(connectionString);
-
-                    // Perform database operations here
-
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("An error occurred: " + ex.Message);
-                }
-            }
-        }
         #region CartOrderDetails
         private string name;
         private string itemID;
@@ -112,30 +83,28 @@ namespace Flowershop_Thesis.OtherForms
             else
             {
                 try
-                {
-                    con.Open();
-                    cmd = new SqlCommand("Delete from ServingCart where CartID = " + CartID + " ;", con);
-                    cmd.ExecuteNonQuery();
-                    con.Close();
-                    int cart = cartqty - 1;
-                    if (cart == 0)
+                {   
+                    using(SqlConnection con = new SqlConnection(Connect.connectionString))
                     {
-                        ReviewOrder.instance.counter.Text = cart.ToString();
+                        con.Open();
+                        cmd = new SqlCommand("Delete from ServingCart where CartID = " + CartID + " ;", con);
+                        cmd.ExecuteNonQuery();
+                        int cart = cartqty - 1;
+                        if (cart == 0)
+                        {
+                            ReviewOrder.instance.counter.Text = cart.ToString();
+                        }
+                        else if (cart > 0)
+                        {
+                            this.Parent.Controls.Remove(this);
+                            ReviewOrder.instance.counter.Text = cart.ToString();
+                        }
                     }
-                    else if (cart > 0)
-                    {
-                        this.Parent.Controls.Remove(this);
-                        ReviewOrder.instance.counter.Text = cart.ToString();
-                    }
-
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("Error : " + ex.Message);
                 }
-
-
-
             }
         }
     }

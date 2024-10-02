@@ -11,48 +11,19 @@ using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Flowershop_Thesis;
+using Capstone_Flowershop;
 
 namespace Flowershop_Thesis.OtherForms.Supplier
 {
     public partial class EditSupplier : Form
     {
-        SqlConnection con;
-        SqlCommand cmd = new SqlCommand();
-        SqlDataReader sdr;
-        SqlDataAdapter sda;
 
-        public void testConnection()
-        {
-            string executableDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            string parentDirectory = Path.GetFullPath(Path.Combine(executableDirectory, @"..\..\"));
 
-            string databaseFilePath = Path.Combine(parentDirectory, "FlowershopSystemDB.mdf");
-
-            // MessageBox.Show(databaseFilePath);
-            // Build the connection string
-            string connectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={databaseFilePath};Initial Catalog=try;Integrated Security=True;";
-
-            // Use the connection string to connect to the database
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                try
-                {
-                    connection.Open();
-                    con = new SqlConnection(connectionString);
-
-                    // Perform database operations here
-
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("An error occurred: " + ex.Message);
-                }
-            }
-        }
+ 
         public EditSupplier()
         {
             InitializeComponent();
-            testConnection();
             
         }
         #region Myregion
@@ -135,46 +106,40 @@ namespace Flowershop_Thesis.OtherForms.Supplier
                 DialogResult result = MessageBox.Show("You are about to proceed Changes on this supplier", "Proceed Edit Information", MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
                 {
-                    
-                    int numId;
-
-                    string countQuery = "Select count(*) from Supplier where SupplierID = @ID";
-                    using (SqlCommand countCommand = new SqlCommand(countQuery, con))
+                    using (SqlConnection con = new SqlConnection(Connect.connectionString))
                     {
-                        con.Open();
-                        countCommand.Parameters.AddWithValue("@ID", SupplierID);
-                        numId = (int)countCommand.ExecuteScalar();
-                        con.Close();
-                    }
+                        int numId;
 
-                    if (numId == 1)
-                    {   
-                        if(Image.Image != SupplierImage)
+                        string countQuery = "Select count(*) from Supplier where SupplierID = @ID";
+                        using (SqlCommand countCommand = new SqlCommand(countQuery, con))
                         {
-                            editinfowithImage();
+                            con.Open();
+                            countCommand.Parameters.AddWithValue("@ID", SupplierID);
+                            numId = (int)countCommand.ExecuteScalar();
+                            con.Close();
+                        }
+
+                        if (numId == 1)
+                        {
+                            if (Image.Image != SupplierImage)
+                            {
+                                editinfowithImage();
+                            }
+                            else
+                            {
+                                editinfo();
+                            }
+                        }
+                        else if (numId > 1)
+                        {
+                            MessageBox.Show("There are multiple Users in this ID");
                         }
                         else
                         {
-                            editinfo();
+                            MessageBox.Show("No Account Found!");
                         }
                     }
-                    else if (numId > 1)
-                    {
-                        MessageBox.Show("There are multiple Users in this ID");
-                    }
-                    else
-                    {
-                        MessageBox.Show("No Account Found!");
-                    }
-
-                    
-                  
                 }
-                else
-                {
-                    //none
-                }
-                
             }
             catch (Exception ex)
             {
@@ -183,50 +148,55 @@ namespace Flowershop_Thesis.OtherForms.Supplier
         }
         public void editinfowithImage()
         {
-           
-            string updateQuery = "UPDATE Supplier SET SupplierName = @SuppName , ContactNumber = @Num , SupplierType = @Type, SupplierAddress = @add, Image = @Img WHERE SupplierID = @ID;";
-            using (SqlCommand updateCommand = new SqlCommand(updateQuery, con))
+           using(SqlConnection con  = new SqlConnection(Connect.connectionString))
             {
-                 con.Open();
-                updateCommand.Parameters.AddWithValue("@ID", SupplierID);
-                updateCommand.Parameters.AddWithValue("@SuppName", SuppNameTxtBox.Text);
-                updateCommand.Parameters.AddWithValue("@Num", ContactNumTxtBox.Text);
-                updateCommand.Parameters.AddWithValue("@Type", SuppTypeInput.Text);
-                updateCommand.Parameters.AddWithValue("@add", AddressTxtBox.Text);
+                string updateQuery = "UPDATE Supplier SET SupplierName = @SuppName , ContactNumber = @Num , SupplierType = @Type, SupplierAddress = @add, Image = @Img WHERE SupplierID = @ID;";
+                using (SqlCommand updateCommand = new SqlCommand(updateQuery, con))
+                {
+                    con.Open();
+                    updateCommand.Parameters.AddWithValue("@ID", SupplierID);
+                    updateCommand.Parameters.AddWithValue("@SuppName", SuppNameTxtBox.Text);
+                    updateCommand.Parameters.AddWithValue("@Num", ContactNumTxtBox.Text);
+                    updateCommand.Parameters.AddWithValue("@Type", SuppTypeInput.Text);
+                    updateCommand.Parameters.AddWithValue("@add", AddressTxtBox.Text);
 
 
-                //Image s_img = Image.Image;
-                ImageConverter converter = new ImageConverter();
-                var ImageConvert = converter.ConvertTo(Image.Image, typeof(byte[]));
-                updateCommand.Parameters.AddWithValue("@Img", ImageConvert);
+                    //Image s_img = Image.Image;
+                    ImageConverter converter = new ImageConverter();
+                    var ImageConvert = converter.ConvertTo(Image.Image, typeof(byte[]));
+                    updateCommand.Parameters.AddWithValue("@Img", ImageConvert);
 
-                updateCommand.ExecuteNonQuery();
-                con.Close();
-                MessageBox.Show("Supplier Info Edited!");
-                Admin_Supplier.instance.SuppName.Text = "Null";
-                this.Close();
+                    updateCommand.ExecuteNonQuery();
+
+                    MessageBox.Show("Supplier Info Edited!");
+                    Admin_Supplier.instance.SuppName.Text = "Null";
+                    this.Close();
+                }
             }
+
         
         }
         public void editinfo()
-        {   
-            string updateQuery = "UPDATE Supplier SET SupplierName = @SuppName , ContactNumber = @Num , SupplierType = @Type, SupplierAddress = @add WHERE SupplierID = @ID;";
-            using (SqlCommand updateCommand = new SqlCommand(updateQuery, con))
+        {   using(SqlConnection con = new SqlConnection(Connect.connectionString))
             {
-                con.Open();
-                updateCommand.Parameters.AddWithValue("@ID", SupplierID);
-                updateCommand.Parameters.AddWithValue("@SuppName", SuppNameTxtBox.Text);
-                updateCommand.Parameters.AddWithValue("@Num", ContactNumTxtBox.Text);
-                updateCommand.Parameters.AddWithValue("@Type", SuppTypeInput.Text);
-                updateCommand.Parameters.AddWithValue("@add", AddressTxtBox.Text);
+                string updateQuery = "UPDATE Supplier SET SupplierName = @SuppName , ContactNumber = @Num , SupplierType = @Type, SupplierAddress = @add WHERE SupplierID = @ID;";
+                using (SqlCommand updateCommand = new SqlCommand(updateQuery, con))
+                {
+                    con.Open();
+                    updateCommand.Parameters.AddWithValue("@ID", SupplierID);
+                    updateCommand.Parameters.AddWithValue("@SuppName", SuppNameTxtBox.Text);
+                    updateCommand.Parameters.AddWithValue("@Num", ContactNumTxtBox.Text);
+                    updateCommand.Parameters.AddWithValue("@Type", SuppTypeInput.Text);
+                    updateCommand.Parameters.AddWithValue("@add", AddressTxtBox.Text);
 
-                updateCommand.ExecuteNonQuery();
+                    updateCommand.ExecuteNonQuery();
 
-                MessageBox.Show("Supplier Info Edited!");
-                con.Close();
-                Admin_Supplier.instance.SuppName.Text = "Null";
-                this.Close();
+                    MessageBox.Show("Supplier Info Edited!");
+                    Admin_Supplier.instance.SuppName.Text = "Null";
+                    this.Close();
+                }
             }
+
           
         }
     }

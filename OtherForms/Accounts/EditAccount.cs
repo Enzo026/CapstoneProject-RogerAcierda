@@ -19,49 +19,9 @@ namespace Flowershop_Thesis.OtherForms.Accounts
     public partial class EditAccount : Form
     {
 
-        SqlConnection con;
-        SqlCommand cmd = new SqlCommand();
-        SqlDataReader sdr;
-        SqlDataAdapter sda;
-        public void testConnection()
-        {
-            string executableDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            string parentDirectory = Path.GetFullPath(Path.Combine(executableDirectory, @"..\..\"));
-            string databaseFilePath = Path.Combine(parentDirectory, "FlowershopSystemDB.mdf");
-
-            // Build the connection string with explicit pooling parameters
-            string connectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={databaseFilePath};Initial Catalog=try;Integrated Security=True;Pooling=true;Max Pool Size=100;Min Pool Size=5;Connection Lifetime=600;";
-
-
-            // Use the connection string to connect to the database
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                try
-                {
-                    connection.Open();
-                    con = new SqlConnection(connectionString);
-
-                    // Perform database operations here
-
-                }
-                catch (SqlException sqlEx)
-                {
-                    // Handle SQL exceptions
-                    MessageBox.Show("SQL error occurred: " + sqlEx.Message);
-                }
-                catch (Exception ex)
-                {
-                    // Handle other exceptions
-                    MessageBox.Show("An error occurred: " + ex.Message);
-                }
-            } // Connection is automatically closed and returned to the pool here
-        }
-        
-        
         public EditAccount()
         {
             InitializeComponent();
-            testConnection();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -121,44 +81,43 @@ namespace Flowershop_Thesis.OtherForms.Accounts
                     if (result == DialogResult.Yes)
                     {
                         int numId;
-
-                        string countQuery = "Select count(*) from Supplier where SupplierID = @ID";
-                        using (SqlCommand countCommand = new SqlCommand(countQuery, con))
+                        using(SqlConnection con = new SqlConnection(Connect.connectionString))
                         {
-                            con.Open();
-                            countCommand.Parameters.AddWithValue("@ID", ChangeIds.SupplierId);
-                            numId = (int)countCommand.ExecuteScalar();
-                            con.Close();
-                        }
-                        string updateQuery = "UPDATE Supplier SET Status = 'Inactive' WHERE SupplierID = @ID;";
-                        if (numId == 1)
-                        {
-                            using (SqlCommand updateCommand = new SqlCommand(updateQuery, con))
+                            string countQuery = "Select count(*) from Supplier where SupplierID = @ID";
+                            using (SqlCommand countCommand = new SqlCommand(countQuery, con))
                             {
                                 con.Open();
-                                updateCommand.Parameters.AddWithValue("@ID", ChangeIds.SupplierId);
-
-                                updateCommand.ExecuteNonQuery();
+                                countCommand.Parameters.AddWithValue("@ID", ChangeIds.SupplierId);
+                                numId = (int)countCommand.ExecuteScalar();
                                 con.Close();
                             }
+                            string updateQuery = "UPDATE Supplier SET Status = 'Inactive' WHERE SupplierID = @ID;";
+                            if (numId == 1)
+                            {
+                                using (SqlCommand updateCommand = new SqlCommand(updateQuery, con))
+                                {
+                                    con.Open();
+                                    updateCommand.Parameters.AddWithValue("@ID", ChangeIds.SupplierId);
 
-                            MessageBox.Show("User Deactivated!");
-                            Form1 frm = new Form1();
-                            frm.Show();
-                            this.Close();
+                                    updateCommand.ExecuteNonQuery();
+                                    con.Close();
+                                }
 
+                                MessageBox.Show("User Deactivated!");
+                                Form1 frm = new Form1();
+                                frm.Show();
+                                this.Close();
+
+                            }
+                            else if (numId > 1)
+                            {
+                                MessageBox.Show("There are multiple Users in this ID");
+                            }
+                            else
+                            {
+                                MessageBox.Show("No Account Found!");
+                            }
                         }
-                        else if (numId > 1)
-                        {
-                            MessageBox.Show("There are multiple Users in this ID");
-                        }
-                        else
-                        {
-                            MessageBox.Show("No Account Found!");
-                        }
-
-
-
                     }
                     else
                     {
@@ -178,39 +137,42 @@ namespace Flowershop_Thesis.OtherForms.Accounts
                     if (result == DialogResult.Yes)
                     {
                         int numId;
-
-                        string countQuery = "Select count(*) from Supplier where SupplierID = @ID";
-                        using (SqlCommand countCommand = new SqlCommand(countQuery, con))
+                        using(SqlConnection con =  new SqlConnection(Connect.connectionString))
                         {
-                            con.Open();
-                            countCommand.Parameters.AddWithValue("@ID", ChangeIds.SupplierId);
-                            numId = (int)countCommand.ExecuteScalar();
-                            con.Close();
-                        }
-                        string updateQuery = "UPDATE Supplier SET Status = 'Inactive' WHERE SupplierID = @ID;";
-                        if (numId == 1)
-                        {
-                            using (SqlCommand updateCommand = new SqlCommand(updateQuery, con))
+                            string countQuery = "Select count(*) from Supplier where SupplierID = @ID";
+                            using (SqlCommand countCommand = new SqlCommand(countQuery, con))
                             {
                                 con.Open();
-                                updateCommand.Parameters.AddWithValue("@ID", ChangeIds.SupplierId);
-
-                                updateCommand.ExecuteNonQuery();
+                                countCommand.Parameters.AddWithValue("@ID", ChangeIds.SupplierId);
+                                numId = (int)countCommand.ExecuteScalar();
                                 con.Close();
                             }
+                            string updateQuery = "UPDATE Supplier SET Status = 'Inactive' WHERE SupplierID = @ID;";
+                            if (numId == 1)
+                            {
+                                using (SqlCommand updateCommand = new SqlCommand(updateQuery, con))
+                                {
+                                    con.Open();
+                                    updateCommand.Parameters.AddWithValue("@ID", ChangeIds.SupplierId);
 
-                            MessageBox.Show("User Deactivated!");
+                                    updateCommand.ExecuteNonQuery();
+                                    con.Close();
+                                }
+
+                                MessageBox.Show("User Deactivated!");
+
+                            }
+                            else if (numId > 1)
+                            {
+                                MessageBox.Show("There are multiple Users in this ID");
+                            }
+                            else
+                            {
+                                MessageBox.Show("No Account Found!");
+                            }
+
 
                         }
-                        else if (numId > 1)
-                        {
-                            MessageBox.Show("There are multiple Users in this ID");
-                        }
-                        else
-                        {
-                            MessageBox.Show("No Account Found!");
-                        }
-
 
 
                     }

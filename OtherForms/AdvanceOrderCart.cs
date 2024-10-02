@@ -24,18 +24,13 @@ namespace Flowershop_Thesis.OtherForms
 {
     public partial class AdvanceOrderCart : Form
     {
-        SqlConnection con;
-        SqlConnection con2;
-
         SqlCommand cmd = new SqlCommand();
-        SqlDataReader sdr;
-        SqlDataAdapter sda;
+
         public AdvanceOrderCart()
         {
             InitializeComponent();
 
             EmployeeName.Text = UserInfo.Empleyado;
-            testConnection();
             // getcounter();
             getCartList();
             getPrice();
@@ -55,37 +50,6 @@ namespace Flowershop_Thesis.OtherForms
             computetotal();
         }
 
-
-        public void testConnection()
-        {
-            string executableDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            string parentDirectory = Path.GetFullPath(Path.Combine(executableDirectory, @"..\..\"));
-
-            string databaseFilePath = Path.Combine(parentDirectory, "FlowershopSystemDB.mdf");
-
-            // MessageBox.Show(databaseFilePath);
-            // Build the connection string
-            string connectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={databaseFilePath};Initial Catalog=try;Integrated Security=True;";
-
-            // Use the connection string to connect to the database
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                try
-                {
-                    connection.Open();
-                    con = new SqlConnection(connectionString);
-                    con2 = new SqlConnection(connectionString);
-
-                    // Perform database operations here
-
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("An error occurred: " + ex.Message);
-                }
-            }
-        }
-
         private void label2_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -102,54 +66,47 @@ namespace Flowershop_Thesis.OtherForms
             try
             {
                 flowLayoutPanel1.Controls.Clear();
-                con.Open();
-                string countQuery = "select count(*) from Advance_ServingCart;";
-                using (SqlCommand countCommand = new SqlCommand(countQuery, con))
+                using(SqlConnection con =  new SqlConnection(Connect.connectionString))
                 {
-                    int rowCount = (int)countCommand.ExecuteScalar();
-                    int cartlbl = int.Parse(CounterLbl.Text);
-                    if (rowCount != cartlbl)
+                    con.Open();
+                    string countQuery = "select count(*) from Advance_ServingCart;";
+                    using (SqlCommand countCommand = new SqlCommand(countQuery, con))
                     {
-                        CounterLbl.Text = rowCount.ToString();
-                    }
-
-
-                    Adv_CartItems[] inv = new Adv_CartItems[rowCount];
-                    string sqlQuery = "SELECT * FROM Advance_ServingCart;";
-                    using (SqlCommand command = new SqlCommand(sqlQuery, con))
-                    {
-                        using (SqlDataReader reader = command.ExecuteReader())
+                        int rowCount = (int)countCommand.ExecuteScalar();
+                        int cartlbl = int.Parse(CounterLbl.Text);
+                        if (rowCount != cartlbl)
                         {
-                            int index = 0;
-                            while (reader.Read() && index < inv.Length)
+                            CounterLbl.Text = rowCount.ToString();
+                        }
+
+
+                        Adv_CartItems[] inv = new Adv_CartItems[rowCount];
+                        string sqlQuery = "SELECT * FROM Advance_ServingCart;";
+                        using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                        {
+                            using (SqlDataReader reader = command.ExecuteReader())
                             {
-                                inv[index] = new Adv_CartItems();
-                                inv[index].ItemID = reader["ItemID"].ToString();
-                                inv[index].Name = reader["ItemName"].ToString();
+                                int index = 0;
+                                while (reader.Read() && index < inv.Length)
+                                {
+                                    inv[index] = new Adv_CartItems();
+                                    inv[index].ItemID = reader["ItemID"].ToString();
+                                    inv[index].Name = reader["ItemName"].ToString();
 
-                                int priceIndex = reader.GetOrdinal("OrderPrice");
-                                inv[index].Price = reader.IsDBNull(priceIndex) ? 0 : reader.GetInt32(priceIndex);
-                                int CI = reader.GetOrdinal("CartID");
-                                inv[index].cartID = reader.IsDBNull(CI) ? 0 : reader.GetInt32(CI);
-                                int StockQuantity = reader.GetOrdinal("OrderQty");
-                                inv[index].qty = reader.IsDBNull(StockQuantity) ? 0 : reader.GetInt32(StockQuantity);
+                                    int priceIndex = reader.GetOrdinal("OrderPrice");
+                                    inv[index].Price = reader.IsDBNull(priceIndex) ? 0 : reader.GetInt32(priceIndex);
+                                    int CI = reader.GetOrdinal("CartID");
+                                    inv[index].cartID = reader.IsDBNull(CI) ? 0 : reader.GetInt32(CI);
+                                    int StockQuantity = reader.GetOrdinal("OrderQty");
+                                    inv[index].qty = reader.IsDBNull(StockQuantity) ? 0 : reader.GetInt32(StockQuantity);
 
-                                flowLayoutPanel1.Controls.Add(inv[index]);
-                                index++;
+                                    flowLayoutPanel1.Controls.Add(inv[index]);
+                                    index++;
+                                }
                             }
                         }
                     }
-
-
                 }
-
-
-
-
-                con.Close();
-
-
-
             }
             catch (Exception ex)
             {
@@ -162,32 +119,20 @@ namespace Flowershop_Thesis.OtherForms
 
             try
             {
-
-                string countQuery = "select count(*) from Advance_ServingCart;";
-                using (SqlCommand countCommand = new SqlCommand(countQuery, con))
+                using(SqlConnection con =  new SqlConnection(Connect.connectionString))
                 {
-                    con.Open();
-                    int rowCount = (int)countCommand.ExecuteScalar();
-                    int cartlbl = int.Parse(CounterLbl.Text);
-                    if (rowCount != cartlbl)
+                    string countQuery = "select count(*) from Advance_ServingCart;";
+                    using (SqlCommand countCommand = new SqlCommand(countQuery, con))
                     {
-                        CounterLbl.Text = rowCount.ToString();
+                        con.Open();
+                        int rowCount = (int)countCommand.ExecuteScalar();
+                        int cartlbl = int.Parse(CounterLbl.Text);
+                        if (rowCount != cartlbl)
+                        {
+                            CounterLbl.Text = rowCount.ToString();
+                        }
                     }
-
-
-
-
-
-
-                    con.Close();
                 }
-
-
-
-
-
-
-
             }
             catch (Exception ex)
             {
@@ -202,16 +147,18 @@ namespace Flowershop_Thesis.OtherForms
 
 
             try
-            {
-                string countQuery = "SELECT SUM(OrderPrice) AS Total FROM Advance_ServingCart;";
-                using (SqlCommand countCommand = new SqlCommand(countQuery, con))
+            {   
+                using(SqlConnection con = new SqlConnection(Connect.connectionString))
                 {
-                    con.Open();
-                    int amount = (int)countCommand.ExecuteScalar();
-                    TotalLbl.Text = amount.ToString();
-
-                    con.Close();
+                    string countQuery = "SELECT SUM(OrderPrice) AS Total FROM Advance_ServingCart;";
+                    using (SqlCommand countCommand = new SqlCommand(countQuery, con))
+                    {
+                        con.Open();
+                        int amount = (int)countCommand.ExecuteScalar();
+                        TotalLbl.Text = amount.ToString();
+                    }
                 }
+
             }
             catch (Exception ex)
             {
@@ -368,14 +315,6 @@ namespace Flowershop_Thesis.OtherForms
             {
                 MessageBox.Show("Compiling Order Failed! :" + ex.Message);
             }
-
-
-
-
-
-
-
-            //MessageBox.Show("Order Placed \n" + "Customer Name :" + CustNameTxtbox.Text + "\n" +"Contact Number :" + textBox1.Text +"\n"+ "Total Amount of :" + TotalAmountLbl.Text + "\n" + "DownPayment of (30%) :" + DownpaymentLbl.Text + "\n" + "Paid with" + paymentmethod + "\n" + "---------------------" + "\n" + "Pickup Date : " + PickupDate.Text + "\n"  + "Employee Name : " + EmployeeName.Text);
         }
         int discount = 0;
         string paymentmethod;
@@ -525,11 +464,14 @@ namespace Flowershop_Thesis.OtherForms
         public void DeductionOfItemInventory()
         {
             try
-            {
-                con.Open();  //deletion of cart items
-                cmd = new SqlCommand("TRUNCATE TABLE Advance_ServingCart", con);
-                cmd.ExecuteNonQuery();
-                con.Close();
+            {   
+                using(SqlConnection con = new SqlConnection(Connect.connectionString))
+                {
+                    con.Open();  //deletion of cart items
+                    cmd = new SqlCommand("TRUNCATE TABLE Advance_ServingCart", con);
+                    cmd.ExecuteNonQuery();
+                }
+
             }
             catch (Exception ex)
             {
@@ -539,87 +481,83 @@ namespace Flowershop_Thesis.OtherForms
         public void TransactionItemsInput()
         {
             try
-            {
-                int TransId;
-                con.Open();
-                using (SqlCommand TransactionID = new SqlCommand("Select OrderID from AdvanceOrders where Status = 'Active' and CustomerName = '" + CustNameTxtbox.Text.Trim() + "';", con))
+            {   
+                using(SqlConnection con =  new SqlConnection(Connect.connectionString))
                 {
-                    TransId = (int)TransactionID.ExecuteScalar();
-
-                }
-                con.Close();
-
-                if (TransId != 0)
-                {
-                    //deduction of items ordered in Cart
+                    int TransId;
                     con.Open();
-                    using (SqlCommand CartItems = new SqlCommand("Select Count(*) from Advance_ServingCart", con))
+                    using (SqlCommand TransactionID = new SqlCommand("Select OrderID from AdvanceOrders where Status = 'Active' and CustomerName = '" + CustNameTxtbox.Text.Trim() + "';", con))
                     {
-                        int CartCounter = (int)CartItems.ExecuteScalar();
-
-                        int counter = int.Parse(CounterLbl.Text);
-                        if (CartCounter != counter)
-                        {
-                            label4.Text = CartCounter.ToString();
-                        }
-
-
-
-                        CartItems[] inv = new CartItems[CartCounter];
-                        string sqlQuery = "SELECT * FROM Advance_ServingCart";
-                        using (SqlCommand command = new SqlCommand(sqlQuery, con))
-                        {
-                            using (SqlDataReader reader = command.ExecuteReader())
-                            {
-                                int index = 0;
-                                while (reader.Read() && index < inv.Length)
-                                {
-                                    int ID = reader.GetOrdinal("ItemID");
-                                    int ItemID = reader.IsDBNull(ID) ? 0 : reader.GetInt32(ID);
-
-
-                                    String ItemName = reader["ItemName"].ToString();
-                                    String OrderType = reader["OrderType"].ToString();
-
-                                    int priceIndex = reader.GetOrdinal("OrderPrice");
-                                    int Price = reader.IsDBNull(priceIndex) ? 0 : reader.GetInt32(priceIndex);
-
-                                    int StockQuantity = reader.GetOrdinal("OrderQty");
-                                    int qty = reader.IsDBNull(StockQuantity) ? 0 : reader.GetInt32(StockQuantity);
-
-
-                                    con2.Open();
-                                    cmd = new SqlCommand("INSERT INTO AdvanceOrderItems(OrderID,ItemID,Name,Price,Quantity,Type)Values" +
-                                                "(@OrderID,@ItemID,@Name,@Price,@Qty,@Type);", con2);
-
-                                    cmd.Parameters.AddWithValue("@Name", ItemName);
-                                    cmd.Parameters.AddWithValue("@Qty", qty);
-                                    cmd.Parameters.AddWithValue("@Type", OrderType);
-                                    cmd.Parameters.AddWithValue("@Price", Price);
-                                    cmd.Parameters.AddWithValue("@ItemID", ItemID);
-                                    cmd.Parameters.AddWithValue("@OrderID", TransId);
-
-
-                                    cmd.ExecuteNonQuery();
-                                    con2.Close();
-
-
-                                    index++;
-                                }
-                            }
-                        }
+                        TransId = (int)TransactionID.ExecuteScalar();
 
                     }
 
-                    con.Close();
+                    if (TransId != 0)
+                    {
+                        //deduction of items ordered in Cart
+                        using (SqlCommand CartItems = new SqlCommand("Select Count(*) from Advance_ServingCart", con))
+                        {
+                            int CartCounter = (int)CartItems.ExecuteScalar();
 
-                    AdvanceOrderPlacement.InsertAdvanceOrderItems = true;
-                }
-                else
-                {
-                    MessageBox.Show("OrderIDNotFetched");
-                }
+                            int counter = int.Parse(CounterLbl.Text);
+                            if (CartCounter != counter)
+                            {
+                                label4.Text = CartCounter.ToString();
+                            }
 
+
+
+                            CartItems[] inv = new CartItems[CartCounter];
+                            string sqlQuery = "SELECT * FROM Advance_ServingCart";
+                            using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                            {
+                                using (SqlDataReader reader = command.ExecuteReader())
+                                {
+                                    int index = 0;
+                                    while (reader.Read() && index < inv.Length)
+                                    {
+                                        int ID = reader.GetOrdinal("ItemID");
+                                        int ItemID = reader.IsDBNull(ID) ? 0 : reader.GetInt32(ID);
+
+
+                                        String ItemName = reader["ItemName"].ToString();
+                                        String OrderType = reader["OrderType"].ToString();
+
+                                        int priceIndex = reader.GetOrdinal("OrderPrice");
+                                        int Price = reader.IsDBNull(priceIndex) ? 0 : reader.GetInt32(priceIndex);
+
+                                        int StockQuantity = reader.GetOrdinal("OrderQty");
+                                        int qty = reader.IsDBNull(StockQuantity) ? 0 : reader.GetInt32(StockQuantity);
+
+
+                                        cmd = new SqlCommand("INSERT INTO AdvanceOrderItems(OrderID,ItemID,Name,Price,Quantity,Type)Values" +
+                                                    "(@OrderID,@ItemID,@Name,@Price,@Qty,@Type);", con);
+
+                                        cmd.Parameters.AddWithValue("@Name", ItemName);
+                                        cmd.Parameters.AddWithValue("@Qty", qty);
+                                        cmd.Parameters.AddWithValue("@Type", OrderType);
+                                        cmd.Parameters.AddWithValue("@Price", Price);
+                                        cmd.Parameters.AddWithValue("@ItemID", ItemID);
+                                        cmd.Parameters.AddWithValue("@OrderID", TransId);
+
+
+                                        cmd.ExecuteNonQuery();
+
+
+                                        index++;
+                                    }
+                                }
+                            }
+
+                        }
+
+                        AdvanceOrderPlacement.InsertAdvanceOrderItems = true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("OrderIDNotFetched");
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -630,33 +568,34 @@ namespace Flowershop_Thesis.OtherForms
         public void TransactionTableInput()
         {
             try
-            {
-                Image s_img = CreateAdvanceOrder.ProofOfPayment;
-                ImageConverter converter = new ImageConverter();
-                var ImageConvert = converter.ConvertTo(s_img, typeof(byte[]));
+            {   using(SqlConnection con = new SqlConnection(Connect.connectionString))
+                {
+                    Image s_img = CreateAdvanceOrder.ProofOfPayment;
+                    ImageConverter converter = new ImageConverter();
+                    var ImageConvert = converter.ConvertTo(s_img, typeof(byte[]));
+                    con.Open();
+                    cmd = new SqlCommand("INSERT INTO AdvanceOrders(CustomerName,TotalPrice,ModeOfPayment,DateOfReservation,Downpayment,Discount,OrderType,PickupDate,ContactNo,EmployeeName,Status,Image)Values" +
+                     "(@CustomerName,@TotalPrice,@MOP,getdate(),@Downpayment,@Discount,@OrderType,@PickupDate,@ContactNo,@EmployeeName,'Active',@Image);", con);
+                    cmd.Parameters.AddWithValue("@CustomerName", CreateAdvanceOrder.CustomerName);
+                    cmd.Parameters.AddWithValue("@TotalPrice", Convert.ToDecimal(CreateAdvanceOrder.TotalAmount));
+                    cmd.Parameters.AddWithValue("@MOP", CreateAdvanceOrder.ModeOfPayment);
+                    cmd.Parameters.AddWithValue("@Downpayment", Convert.ToDecimal(CreateAdvanceOrder.Downpayment));
+                    cmd.Parameters.AddWithValue("@Discount", Convert.ToInt32(DiscountTxtbox.Text));
+                    cmd.Parameters.AddWithValue("@OrderType", CreateAdvanceOrder.OrderType);
+                    DateTime date = PickupDate.Value;
+                    cmd.Parameters.AddWithValue("@PickupDate", date);//here
+                    cmd.Parameters.AddWithValue("@ContactNo", CreateAdvanceOrder.ContactNumber);
+                    cmd.Parameters.AddWithValue("@EmployeeName", UserInfo.Empleyado);
+                    cmd.Parameters.AddWithValue("@Image", ImageConvert);
 
-                con.Open();
-                cmd = new SqlCommand("INSERT INTO AdvanceOrders(CustomerName,TotalPrice,ModeOfPayment,DateOfReservation,Downpayment,Discount,OrderType,PickupDate,ContactNo,EmployeeName,Status,Image)Values" +
-                 "(@CustomerName,@TotalPrice,@MOP,getdate(),@Downpayment,@Discount,@OrderType,@PickupDate,@ContactNo,@EmployeeName,'Active',@Image);", con);
-                cmd.Parameters.AddWithValue("@CustomerName", CreateAdvanceOrder.CustomerName);
-                cmd.Parameters.AddWithValue("@TotalPrice", Convert.ToDecimal(CreateAdvanceOrder.TotalAmount));
-                cmd.Parameters.AddWithValue("@MOP", CreateAdvanceOrder.ModeOfPayment);
-                cmd.Parameters.AddWithValue("@Downpayment", Convert.ToDecimal(CreateAdvanceOrder.Downpayment));
-                cmd.Parameters.AddWithValue("@Discount", Convert.ToInt32(DiscountTxtbox.Text));
-                cmd.Parameters.AddWithValue("@OrderType", CreateAdvanceOrder.OrderType);
-                DateTime date = PickupDate.Value;
-                cmd.Parameters.AddWithValue("@PickupDate", date);//here
-                cmd.Parameters.AddWithValue("@ContactNo", CreateAdvanceOrder.ContactNumber);
-                cmd.Parameters.AddWithValue("@EmployeeName", UserInfo.Empleyado);
-                cmd.Parameters.AddWithValue("@Image", ImageConvert);
 
 
+                    cmd.ExecuteNonQuery();
 
-                cmd.ExecuteNonQuery();
-                con.Close();
-
-                MessageBox.Show("Transaction Successful!");
-                AdvanceOrderPlacement.InsertAdvanceOrder = true;
+                    MessageBox.Show("Transaction Successful!");
+                    AdvanceOrderPlacement.InsertAdvanceOrder = true;
+                }
+             
             }
             catch (Exception ex)
             {
@@ -669,29 +608,26 @@ namespace Flowershop_Thesis.OtherForms
         public void CheckCustomerName()
         {
             try
-            {
-                con.Open();
-                string countQuery = "select count(*) from AdvanceOrders where CustomerName='" + CustNameTxtbox.Text + "' AND Status != 'Completed' AND Status != 'Cancelled';";
-                using (SqlCommand countCommand = new SqlCommand(countQuery, con))
+            {   using(SqlConnection con = new SqlConnection(Connect.connectionString))
                 {
-                    // cmd.Parameters.AddWithValue("@CustName", CustName_txtbox.Text);
-                    int rowCount = (int)countCommand.ExecuteScalar();
-                    if (rowCount > 0)
+                    con.Open();
+                    string countQuery = "select count(*) from AdvanceOrders where CustomerName='" + CustNameTxtbox.Text + "' AND Status != 'Completed' AND Status != 'Cancelled';";
+                    using (SqlCommand countCommand = new SqlCommand(countQuery, con))
                     {
-                        NameIndicator.Text = "Name Taken!";
-                    }
-                    else if (rowCount == 0)
-                    {
-                        NameIndicator.Text = "Available";
-                    }
+                        // cmd.Parameters.AddWithValue("@CustName", CustName_txtbox.Text);
+                        int rowCount = (int)countCommand.ExecuteScalar();
+                        if (rowCount > 0)
+                        {
+                            NameIndicator.Text = "Name Taken!";
+                        }
+                        else if (rowCount == 0)
+                        {
+                            NameIndicator.Text = "Available";
+                        }
 
 
+                    }
                 }
-
-
-
-
-                con.Close();
             }
             catch (Exception ex)
             {
@@ -928,18 +864,15 @@ namespace Flowershop_Thesis.OtherForms
             {
                 DialogResult result = MessageBox.Show("Do you want to Cancel all orders in cart?", "Cancel Cart Items", MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
-                {
-                    con.Open();
-                    cmd = new SqlCommand("TRUNCATE TABLE Advance_ServingCart", con);
-                    cmd.ExecuteNonQuery();
-                    con.Close();
-                    CounterLbl.Text = "0";
-                    MessageBox.Show("Items in the cart are now cancelled!");
-                    this.Close();
-                }
-                else
-                {
-                    //none
+                {   using(SqlConnection con = new SqlConnection(Connect.connectionString))
+                    {
+                        con.Open();
+                        cmd = new SqlCommand("TRUNCATE TABLE Advance_ServingCart", con);
+                        cmd.ExecuteNonQuery();
+                        CounterLbl.Text = "0";
+                        MessageBox.Show("Items in the cart are now cancelled!");
+                        this.Close();
+                    }
                 }
             }
         }

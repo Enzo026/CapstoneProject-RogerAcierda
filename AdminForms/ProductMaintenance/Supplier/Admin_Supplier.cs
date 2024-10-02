@@ -18,12 +18,6 @@ namespace Flowershop_Thesis.AdminForms.ProductMaintenance.Supplier
 {
     public partial class Admin_Supplier : Form
     {
-        #region SQL Connection things?
-        SqlConnection con;
-        SqlCommand cmd = new SqlCommand();
-        SqlDataReader sdr;
-        SqlDataAdapter sda;
-        #endregion
 
         public static Admin_Supplier instance;
         public Label SuppName;
@@ -39,7 +33,6 @@ namespace Flowershop_Thesis.AdminForms.ProductMaintenance.Supplier
         {
             InitializeComponent();
             instance = this;
-            testConnection();
             DisplayList();
             DisplayDeactivated();
 
@@ -55,80 +48,54 @@ namespace Flowershop_Thesis.AdminForms.ProductMaintenance.Supplier
 
         }
         #region methods
-        public void testConnection()
-        {
-            string executableDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            string parentDirectory = Path.GetFullPath(Path.Combine(executableDirectory, @"..\..\"));
 
-            string databaseFilePath = Path.Combine(parentDirectory, "FlowershopSystemDB.mdf");
-
-            // MessageBox.Show(databaseFilePath);
-            // Build the connection string
-            string connectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={databaseFilePath};Initial Catalog=try;Integrated Security=True;";
-
-            // Use the connection string to connect to the database
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                try
-                {
-                    connection.Open();
-                    con = new SqlConnection(connectionString);
-
-                    // Perform database operations here
-
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("An error occurred: " + ex.Message);
-                }
-            }
-        }
         public void DisplayList()
         {
             try
             {   flowLayoutPanel1.Controls.Clear();
-
-                con.Open();
-                string countQuery = "SELECT COUNT(*) FROM Supplier where Status = 'Active' ";
-                using (SqlCommand countCommand = new SqlCommand(countQuery, con))
-                {     
-                    int rowCount = (int)countCommand.ExecuteScalar();
-                    Admin_SupplierList[] inv = new Admin_SupplierList[rowCount];
-                   
-                    string sqlQuery = "SELECT * FROM Supplier where Status = 'Active'";
-                    using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                using(SqlConnection con = new SqlConnection(Connect.connectionString))
+                {
+                    con.Open();
+                    string countQuery = "SELECT COUNT(*) FROM Supplier where Status = 'Active' ";
+                    using (SqlCommand countCommand = new SqlCommand(countQuery, con))
                     {
-                        
-                        using (SqlDataReader reader = command.ExecuteReader())
-                        {
-                            int index = 0;
-                            while (reader.Read() && index < inv.Length)
-                            {
-                                inv[index] = new Admin_SupplierList();
-                                inv[index].SuppID = reader["SupplierID"].ToString();
-                                inv[index].Suppname = reader["SupplierName"].ToString();
-                                inv[index].SuppType = reader["SupplierType"].ToString();
-                                inv[index].SuppContact = reader["ContactNumber"].ToString();
-                                inv[index].SuppAdd = reader["SupplierAddress"].ToString();
-                                
-                                if (reader["Image"] != DBNull.Value)
-                                {
-                                    byte[] imageData = (byte[])reader["Image"];
-                                    using (MemoryStream ms = new MemoryStream(imageData))
-                                    {
-                                        inv[index].img = Image.FromStream(ms);
-                                    }
-                                }
+                        int rowCount = (int)countCommand.ExecuteScalar();
+                        Admin_SupplierList[] inv = new Admin_SupplierList[rowCount];
 
-                                flowLayoutPanel1.Controls.Add(inv[index]);
-                                index++;
+                        string sqlQuery = "SELECT * FROM Supplier where Status = 'Active'";
+                        using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                        {
+
+                            using (SqlDataReader reader = command.ExecuteReader())
+                            {
+                                int index = 0;
+                                while (reader.Read() && index < inv.Length)
+                                {
+                                    inv[index] = new Admin_SupplierList();
+                                    inv[index].SuppID = reader["SupplierID"].ToString();
+                                    inv[index].Suppname = reader["SupplierName"].ToString();
+                                    inv[index].SuppType = reader["SupplierType"].ToString();
+                                    inv[index].SuppContact = reader["ContactNumber"].ToString();
+                                    inv[index].SuppAdd = reader["SupplierAddress"].ToString();
+
+                                    if (reader["Image"] != DBNull.Value)
+                                    {
+                                        byte[] imageData = (byte[])reader["Image"];
+                                        using (MemoryStream ms = new MemoryStream(imageData))
+                                        {
+                                            inv[index].img = Image.FromStream(ms);
+                                        }
+                                    }
+
+                                    flowLayoutPanel1.Controls.Add(inv[index]);
+                                    index++;
+                                }
                             }
                         }
+
                     }
-                   
                 }
 
-                con.Close();
             }
             catch (Exception ex)
             {
@@ -140,41 +107,43 @@ namespace Flowershop_Thesis.AdminForms.ProductMaintenance.Supplier
             try
             {   
                 flowLayoutPanel2.Controls.Clear();
-
-                con.Open();
-                string countQuery = "SELECT COUNT(*) FROM Supplier where Status = 'Inactive' ";
-                using (SqlCommand countCommand = new SqlCommand(countQuery, con))
+                using(SqlConnection con = new SqlConnection(Connect.connectionString))
                 {
-                    
-                    int rowCount = (int)countCommand.ExecuteScalar();
-                    InactiveSupplierList[] inv = new InactiveSupplierList[rowCount];
-                    label15.Text = rowCount.ToString();
-                  
-                    string sqlQuery = "SELECT * FROM Supplier where Status = 'Inactive'";
-                    using (SqlCommand command = new SqlCommand(sqlQuery, con))
-                    {   
-                        using (SqlDataReader reader = command.ExecuteReader())
+                    con.Open();
+                    string countQuery = "SELECT COUNT(*) FROM Supplier where Status = 'Inactive' ";
+                    using (SqlCommand countCommand = new SqlCommand(countQuery, con))
+                    {
+
+                        int rowCount = (int)countCommand.ExecuteScalar();
+                        InactiveSupplierList[] inv = new InactiveSupplierList[rowCount];
+                        label15.Text = rowCount.ToString();
+
+                        string sqlQuery = "SELECT * FROM Supplier where Status = 'Inactive'";
+                        using (SqlCommand command = new SqlCommand(sqlQuery, con))
                         {
-                            int index = 0;
-                            while (reader.Read() && index < inv.Length)
+                            using (SqlDataReader reader = command.ExecuteReader())
                             {
-                                inv[index] = new InactiveSupplierList();
-                                inv[index].SuppID = reader["SupplierID"].ToString();
-                                inv[index].Suppname = reader["SupplierName"].ToString();
-                               
-                                flowLayoutPanel2.Controls.Add(inv[index]);
-                                index++;
+                                int index = 0;
+                                while (reader.Read() && index < inv.Length)
+                                {
+                                    inv[index] = new InactiveSupplierList();
+                                    inv[index].SuppID = reader["SupplierID"].ToString();
+                                    inv[index].Suppname = reader["SupplierName"].ToString();
+
+                                    flowLayoutPanel2.Controls.Add(inv[index]);
+                                    index++;
+                                }
                             }
+
                         }
-                  
+
                     }
-                    
                 }
-                con.Close();
+
             }
             catch (Exception ex)
             {
-                //MessageBox.Show("Error Displaying Inactivated User: " + ex.Message);
+                MessageBox.Show("Error Displaying Inactivated User: " + ex.Message);
             }
         }
         public void DeactivateUser()
@@ -185,47 +154,46 @@ namespace Flowershop_Thesis.AdminForms.ProductMaintenance.Supplier
                 if (result == DialogResult.Yes)
                 {
                     int numId;
-                    
-                    string countQuery = "Select count(*) from Supplier where SupplierID = @ID";
-                    using (SqlCommand countCommand = new SqlCommand(countQuery, con))
+                    using (SqlConnection con = new SqlConnection(Connect.connectionString))
                     {
-                        con.Open();
-                        countCommand.Parameters.AddWithValue("@ID", ChangeIds.SupplierId);
-                        numId = (int)countCommand.ExecuteScalar();
-                        con.Close();
-                    }
-                    string updateQuery = "UPDATE Supplier SET Status = 'Inactive' WHERE SupplierID = @ID;";
-                    if (numId == 1)
-                    {
-                        using (SqlCommand updateCommand = new SqlCommand(updateQuery, con))
+                        string countQuery = "Select count(*) from Supplier where SupplierID = @ID";
+                        using (SqlCommand countCommand = new SqlCommand(countQuery, con))
                         {
                             con.Open();
-                            updateCommand.Parameters.AddWithValue("@ID", ChangeIds.SupplierId);
-
-                            updateCommand.ExecuteNonQuery();
+                            countCommand.Parameters.AddWithValue("@ID", ChangeIds.SupplierId);
+                            numId = (int)countCommand.ExecuteScalar();
                             con.Close();
+                        }
+                        string updateQuery = "UPDATE Supplier SET Status = 'Inactive' WHERE SupplierID = @ID;";
+                        if (numId == 1)
+                        {
+                            using (SqlCommand updateCommand = new SqlCommand(updateQuery, con))
+                            {
+                                con.Open();
+                                updateCommand.Parameters.AddWithValue("@ID", ChangeIds.SupplierId);
 
+                                updateCommand.ExecuteNonQuery();
+                                con.Close();
+
+                            }
+
+                            MessageBox.Show("User Deactivated!");
+                            label15.Text = "null";
+                        }
+                        else if (numId > 1)
+                        {
+                            MessageBox.Show("There are multiple Users in this ID");
+                        }
+                        else
+                        {
+                            MessageBox.Show("No Account Found!");
                         }
 
-                        MessageBox.Show("User Deactivated!");
-                        label15.Text = "null";
-                    }
-                    else if (numId > 1)
-                    {
-                        MessageBox.Show("There are multiple Users in this ID");
-                    }
-                    else
-                    {
-                        MessageBox.Show("No Account Found!");
-                    }
-                  
 
 
+                    }
                 }
-                else
-                {
-                    //none
-                }
+ 
             }
             catch (Exception ex)
             {

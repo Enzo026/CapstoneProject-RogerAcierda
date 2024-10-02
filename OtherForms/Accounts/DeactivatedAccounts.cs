@@ -18,47 +18,11 @@ namespace Flowershop_Thesis.OtherForms.Accounts
 {
     public partial class DeactivatedAccounts : UserControl
     {
-        #region SQL Connection things?
-        SqlConnection con;
-        SqlConnection con2;
-        SqlCommand cmd = new SqlCommand();
-        SqlDataReader sdr;
-        SqlDataAdapter sda;
 
-        public void testConnection()
-        {
-            string executableDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            string parentDirectory = Path.GetFullPath(Path.Combine(executableDirectory, @"..\..\"));
-
-            string databaseFilePath = Path.Combine(parentDirectory, "FlowershopSystemDB.mdf");
-
-            // MessageBox.Show(databaseFilePath);
-            // Build the connection string
-            string connectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={databaseFilePath};Initial Catalog=try;Integrated Security=True;";
-
-            // Use the connection string to connect to the database
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                try
-                {
-                    connection.Open();
-                    con = new SqlConnection(connectionString);
-                    con2 = new SqlConnection(connectionString);
-
-                    // Perform database operations here
-
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("An error occurred: " + ex.Message);
-                }
-            }
-        }
-        #endregion
         public DeactivatedAccounts()
         {
             InitializeComponent();
-            testConnection();
+  
         }
 
         #region Myregion
@@ -101,43 +65,43 @@ namespace Flowershop_Thesis.OtherForms.Accounts
                 if (result == DialogResult.Yes)
                 {
                     int numId;
-                    con.Open();
-                    string countQuery = "Select count(*) from UserAccounts where AccountID = @ID";
-                    using (SqlCommand countCommand = new SqlCommand(countQuery, con))
+                    using(SqlConnection con = new SqlConnection(Connect.connectionString))
                     {
-                        countCommand.Parameters.AddWithValue("@ID", AccountID);
-                        numId = (int)countCommand.ExecuteScalar();
-
-                    }
-                    string updateQuery = "UPDATE UserAccounts SET Status = 'Available' WHERE AccountID = @ID;";
-                    if (numId == 1)
-                    {
-                        using (SqlCommand updateCommand = new SqlCommand(updateQuery, con))
+                        con.Open();
+                        string countQuery = "Select count(*) from UserAccounts where AccountID = @ID";
+                        using (SqlCommand countCommand = new SqlCommand(countQuery, con))
                         {
-
-                            updateCommand.Parameters.AddWithValue("@ID", AccountID);
-
-                            updateCommand.ExecuteNonQuery();
-
+                            countCommand.Parameters.AddWithValue("@ID", AccountID);
+                            numId = (int)countCommand.ExecuteScalar();
 
                         }
+                        string updateQuery = "UPDATE UserAccounts SET Status = 'Available' WHERE AccountID = @ID;";
+                        if (numId == 1)
+                        {
+                            using (SqlCommand updateCommand = new SqlCommand(updateQuery, con))
+                            {
 
-                        MessageBox.Show("User Activated!");
-                        //AccountMaintenance.instance.AccList.ControlRemoved();
-                        AccountMaintenance.instance.DeactCounter.Text = "0";
- 
-                    }
-                    else if (numId > 1)
-                    {
-                        MessageBox.Show("There are multiple Users in this ID");
-                    }
-                    else
-                    {
-                        MessageBox.Show("No Account Found!");
-                    }
-                    con.Close();
+                                updateCommand.Parameters.AddWithValue("@ID", AccountID);
+
+                                updateCommand.ExecuteNonQuery();
 
 
+                            }
+
+                            MessageBox.Show("User Activated!");
+                            //AccountMaintenance.instance.AccList.ControlRemoved();
+                            AccountMaintenance.instance.DeactCounter.Text = "0";
+
+                        }
+                        else if (numId > 1)
+                        {
+                            MessageBox.Show("There are multiple Users in this ID");
+                        }
+                        else
+                        {
+                            MessageBox.Show("No Account Found!");
+                        }
+                    }
                 }
                 else
                 {
