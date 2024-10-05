@@ -239,6 +239,18 @@
     <Compile Include="OtherForms\HistoryLogs\ActivityLogsList.Designer.cs">
       <DependentUpon>ActivityLogsList.cs</DependentUpon>
     </Compile>
+    <Compile Include="OtherForms\HistoryLogs\LogInformation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForms\HistoryLogs\LogInformation.Designer.cs">
+      <DependentUpon>LogInformation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\HistoryLogs\TransactionLogsList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OtherForms\HistoryLogs\TransactionLogsList.Designer.cs">
+      <DependentUpon>TransactionLogsList.cs</DependentUpon>
+    </Compile>
     <Compile Include="OtherForms\ProductMaintenance\AddMaterials.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -298,6 +310,30 @@
     </Compile>
     <Compile Include="OtherForms\ProductMaintenance\ProductMaintenanceList.Designer.cs">
       <DependentUpon>ProductMaintenanceList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\Reports\Calendar\CalBlank.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OtherForms\Reports\Calendar\CalBlank.Designer.cs">
+      <DependentUpon>CalBlank.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\Reports\Calendar\CalDays.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OtherForms\Reports\Calendar\CalDays.Designer.cs">
+      <DependentUpon>CalDays.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\Reports\SalesTransactionListItems.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OtherForms\Reports\SalesTransactionListItems.Designer.cs">
+      <DependentUpon>SalesTransactionListItems.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\Reports\TransactionsList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OtherForms\Reports\TransactionsList.Designer.cs">
+      <DependentUpon>TransactionsList.cs</DependentUpon>
     </Compile>
     <Compile Include="OtherForms\Restocking\restockinglist.cs">
       <SubType>Form</SubType>
@@ -737,6 +773,12 @@
     <EmbeddedResource Include="OtherForms\HistoryLogs\ActivityLogsList.resx">
       <DependentUpon>ActivityLogsList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\HistoryLogs\LogInformation.resx">
+      <DependentUpon>LogInformation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\HistoryLogs\TransactionLogsList.resx">
+      <DependentUpon>TransactionLogsList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="OtherForms\ProductMaintenance\AddMaterials.resx">
       <DependentUpon>AddMaterials.cs</DependentUpon>
     </EmbeddedResource>
@@ -766,6 +808,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="OtherForms\ProductMaintenance\ProductMaintenanceList.resx">
       <DependentUpon>ProductMaintenanceList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\Reports\Calendar\CalBlank.resx">
+      <DependentUpon>CalBlank.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\Reports\Calendar\CalDays.resx">
+      <DependentUpon>CalDays.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\Reports\SalesTransactionListItems.resx">
+      <DependentUpon>SalesTransactionListItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\Reports\TransactionsList.resx">
+      <DependentUpon>TransactionsList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OtherForms\Restocking\restockinglist.resx">
       <DependentUpon>restockinglist.cs</DependentUpon>
