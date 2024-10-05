@@ -20,10 +20,8 @@ namespace Capstone_Flowershop
 
     public partial class Form1 : Form
     {
-        SqlConnection con;
-        SqlCommand cmd = new SqlCommand();
         SqlDataReader sdr;
-        SqlDataAdapter sda;
+
 
         public Form1()
         {
@@ -151,8 +149,9 @@ namespace Capstone_Flowershop
                     {
                         SalesClerk_BasePlatform admin = new SalesClerk_BasePlatform();
                         //   admin.empName = FirstName;
-
                         UserInfo.Empleyado = FirstName;
+                        UserInfo.FullName = FirstName + " " + LastName;
+                        UserInfo.EmpID = iAccID;
                         this.Hide();
                         admin.Show();
                     }
@@ -161,6 +160,8 @@ namespace Capstone_Flowershop
                         InventoryClerk_BasePlatform admin = new InventoryClerk_BasePlatform();
                         //     admin.empName = FirstName;
                         UserInfo.Empleyado = FirstName;
+                        UserInfo.FullName = FirstName + " " + LastName;
+                        UserInfo.EmpID = iAccID;
                         this.Hide();
                         admin.Show();
                     }

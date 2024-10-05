@@ -12,6 +12,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Flowershop_Thesis;
 using Capstone_Flowershop;
+using System.Reflection;
+using System.Diagnostics;
 
 namespace Flowershop_Thesis.OtherForms
 {
@@ -21,6 +23,9 @@ namespace Flowershop_Thesis.OtherForms
         public UpdateStatus()
         {
             InitializeComponent();
+           
+            
+            
         }
 
         #region UpdateStatus
@@ -87,16 +92,63 @@ namespace Flowershop_Thesis.OtherForms
             else if(radioButton2.Checked)
             {
                 Payment();
+               
             }
             else if (radioButton3.Checked)
             {
-                Complete();
-
+                if(PaymentStatus == "Paid")
+                {
+                    Complete();
+                }
+                else
+                {
+                    tabControl1.SelectedIndex = 1;
+                    MessageBox.Show("Please Settle The Payment First");
+                }
             }
           
 
         }
+        string TotalPrice, PaymentStatus, OrderStatus, CustomerName;
+        public void GetInfo()
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(Connect.connectionString))
+                {
+                    con.Open();
+                    string countQuery = "select count(*) from TransactionsTbl where Status != 'Completed' AND Status != 'Cancelled' AND TransactionID = @ID;";
+                    using (SqlCommand countCommand = new SqlCommand(countQuery, con))
+                    {   
+                        countCommand.Parameters.AddWithValue("@ID", transactionID);
+                        int rowCount = (int)countCommand.ExecuteScalar();
 
+
+                        string sqlQuery = "SELECT * FROM TransactionsTbl where Status != 'Completed' AND Status != 'Cancelled' AND TransactionID = @ID;";
+                        using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                        {
+                            command.Parameters.AddWithValue("@ID", transactionID);
+                            using (SqlDataReader reader = command.ExecuteReader())
+                            {
+                                while (reader.Read())
+                                {
+                                    CustomerName = reader["CustomerName"].ToString();
+                                    TotalPrice = reader["Price"].ToString();
+                                    OrderStatus = reader["Status"].ToString();
+                                    PaymentStatus = reader["PaymentStatus"].ToString();
+                                    label7.Text = reader["Price"].ToString();
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Error on Fetching Information | GetInfo() : " + ex.Message);
+            }
+        }
         public void Processing()
         {
             try
@@ -115,6 +167,8 @@ namespace Flowershop_Thesis.OtherForms
                             QueuingFormBack.instance.lblcounter.Text = " ";
                         }
                         MessageBox.Show("Status Updated!");
+                        string def = UserInfo.Empleyado + " Updated the order("+transactionID+") status to Processing ";
+                        addTransactionLog(CustomerName, TotalPrice, transactionID.ToString(), def);
                         this.Close();
                     }
                 }
@@ -142,6 +196,8 @@ namespace Flowershop_Thesis.OtherForms
                             QueuingFormBack.instance.lblcounter.Text = " ";
                         }
                         MessageBox.Show("Status Updated!");
+                        string def = UserInfo.Empleyado + " Updated the order (" + transactionID + ") Order Status to Payment/Recieving ";
+                        addTransactionLog(CustomerName, TotalPrice, transactionID.ToString(), def);
                         this.Close();
                     }
                 }
@@ -159,7 +215,7 @@ namespace Flowershop_Thesis.OtherForms
         {
             try
             {
-                DialogResult result = MessageBox.Show("Proceed with changes?", "Update Status", MessageBoxButtons.YesNo);
+                DialogResult result = MessageBox.Show("Proceed Completion?", "Update Status", MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
                 {   
                     using(SqlConnection con = new SqlConnection(Connect.connectionString))
@@ -175,6 +231,8 @@ namespace Flowershop_Thesis.OtherForms
                             QueuingFormBack.instance.lblcounter.Text = addqueue.ToString();
                         }
                         MessageBox.Show("Status Updated!");
+                        string def = UserInfo.Empleyado + " Updated the order (" + transactionID + ") Order Status to Complete ";
+                        addTransactionLog(CustomerName, TotalPrice, transactionID.ToString(), def);
                         this.Close();
                     }
                 }
@@ -186,6 +244,237 @@ namespace Flowershop_Thesis.OtherForms
             catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
+            }
+        }
+
+        private void tabPage3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void UpdateStatus_Load(object sender, EventArgs e)
+        {   
+            GetInfo();
+            if (PaymentStatus == "Paid")
+            {
+                label10.Text = "Order Paid";
+            }
+            if (OrderStatus == "Processing")
+            {
+                tabControl1.SelectedIndex = 0;
+                radioButton1.Checked = true;
+            }
+            else if (OrderStatus == "Payment")
+            {
+                tabControl1.SelectedIndex = 1;
+                radioButton2.Checked = true;
+            }
+            else
+            {
+                MessageBox.Show("Error fetching the order status");
+            }
+        }
+
+        private void radioButton4_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton4.Checked)
+            {
+                textBox1.Enabled = true;
+                textBox1.Text = string.Empty;
+
+                label5.Visible = false;
+                button4.Visible = false;
+                button5.Visible = false;
+                pictureBox2.Visible = false;
+            }
+            else if (radioButton5.Checked)
+            {   
+                textBox1.Text = label7.Text;
+                textBox1.Enabled= false;
+
+                label5.Visible = true;
+                button4.Visible = true;
+                button5.Visible = true;
+                pictureBox2.Visible = true;
+
+
+            }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            if(textBox1.Text.Length > 0)
+            {
+                double price = double.Parse(label7.Text);
+                double payment = double.Parse(textBox1.Text.Trim());
+
+                double change =  payment - price;
+                if(change < 0)
+                {
+                    label9.Text = "Insufficient Payment";
+                }
+                else
+                {
+                    label9.Text = change.ToString();
+                }
+          
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Process.Start(new ProcessStartInfo("microsoft.windows.camera:") { UseShellExecute = true });
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (radioButton4.Checked)
+            {
+                CashOption();
+            }
+            else if (radioButton5.Checked)
+            {
+                GCashOption();
+            }
+            else
+            {
+                MessageBox.Show("Please Select Payment Option");
+            }
+        }
+        public void CashOption()
+        {   
+            if(label9.Text != "Insufficient Payment" && textBox1.Text.Length > 0)
+            {
+                try
+                {
+                    DialogResult result = MessageBox.Show("Proceed Payment?", "Payment", MessageBoxButtons.YesNo);
+                    if (result == DialogResult.Yes)
+                    {
+                        using (SqlConnection con = new SqlConnection(Connect.connectionString))
+                        {
+                            string updateQuery = "UPDATE TransactionsTbl SET Status = 'Paid' AND PaymentMethod = 'Cash' WHERE TransactionID = @ID;";
+                            con.Open();
+                            using (SqlCommand updateCommand = new SqlCommand(updateQuery, con))
+                            {
+                                updateCommand.Parameters.AddWithValue("@ID", transactionID);
+                                updateCommand.ExecuteNonQuery();
+                                QueuingFormBack.instance.lblcounter.Text = " ";
+                            }
+                            MessageBox.Show("Payment Updated!");
+                            this.Close();
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                }
+            }
+
+        }
+        private byte[] ImageToByteArray(Image image)
+        {
+            using (MemoryStream ms = new MemoryStream())
+            {
+                image.Save(ms, image.RawFormat);
+                return ms.ToArray();
+            }
+        }
+        public void GCashOption()
+        {
+            if (pictureBox2.Image != null)
+            {
+                try
+                {
+                    DialogResult result = MessageBox.Show("Proceed Payment?", "Payment", MessageBoxButtons.YesNo);
+                    if (result == DialogResult.Yes)
+                    {
+                        using (SqlConnection con = new SqlConnection(Connect.connectionString))
+                        {
+                            string updateQuery = "UPDATE TransactionsTbl SET Status = 'Paid', PaymentMethod = 'Cash', PaymentImage = @Image WHERE TransactionID = @ID;";
+
+                            con.Open();
+                            using (SqlCommand updateCommand = new SqlCommand(updateQuery, con))
+                            {
+                                // Convert image to byte array
+                                byte[] imageBytes = ImageToByteArray(pictureBox2.Image);
+                                // Add parameters to SQL command
+                                updateCommand.Parameters.AddWithValue("@ID", transactionID);
+                                updateCommand.Parameters.AddWithValue("@Image", imageBytes);
+
+                                updateCommand.ExecuteNonQuery();
+                                QueuingFormBack.instance.lblcounter.Text = " ";
+                            }
+                            MessageBox.Show("Payment Updated!");
+                            this.Close();
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please Insert Proof of Payment");
+            }
+
+
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog open = new OpenFileDialog();
+
+            // Set the filter for image files
+            open.Filter = "Image Files(*.jpg; *.jpeg; *.png)|*.jpg; *.jpeg; *.png";
+
+            // Set the initial directory to a specific folder (e.g., "C:\\Users\\YourUserName\\Pictures")
+            open.InitialDirectory = @"C:\Users\ENZO\OneDrive\Pictures\Camera Roll";
+
+            if (open.ShowDialog() == DialogResult.OK)
+            {
+                // Load the selected image into the PictureBox
+                pictureBox2.Image = new Bitmap(open.FileName);
+            }
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            tabControl1.SelectedIndex = 1;
+            if (radioButton2.Checked && PaymentStatus != "Paid")
+            {   
+            
+                GetInfo();
+            }
+        }
+        public void addTransactionLog(string CustomerName, string Price, string TId,string definition)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(Connect.connectionString))
+                {
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand("INSERT INTO HistoryLogs(Title,Definition,Employee,EmployeeID,Date,Type,ReferenceID,HeadLine)Values" +
+                                "(@Title,@Definition,@Employee,@EmployeeID,getdate(),@Type,@RefID,@HeadLine);", con);
+                    cmd.Parameters.AddWithValue("@Title", CustomerName);
+                    cmd.Parameters.AddWithValue("@Definition", Price);
+                    cmd.Parameters.AddWithValue("@Employee", UserInfo.Empleyado);
+                    cmd.Parameters.AddWithValue("@EmployeeID", UserInfo.EmpID);
+                    cmd.Parameters.AddWithValue("@Type", "TransactionLog");
+                    cmd.Parameters.AddWithValue("@RefID", TId.Trim());
+                    cmd.Parameters.AddWithValue("@HeadLine", definition);
+
+
+                    cmd.ExecuteNonQuery();
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Adding Activity Failed!" + " : " + ex);
             }
         }
     }

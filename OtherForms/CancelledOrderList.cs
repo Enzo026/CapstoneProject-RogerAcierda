@@ -72,8 +72,39 @@ namespace Flowershop_Thesis.OtherForms
                         QueuingFormBack.instance.lblcounter.Text = addqueue.ToString();
 
                     }
+                    string def = UserInfo.Empleyado + " Re-List the order (" + transactionID + "). Order is now Available Again";
+                    addTransactionLog(name, price.ToString(), transactionID.ToString(), def);
                     MessageBox.Show("Order Reverted");
                 }
+            }
+        }
+        public void addTransactionLog(string CustomerName, string Price, string TId, string definition)
+        {
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(Connect.connectionString))
+                {
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand("INSERT INTO HistoryLogs(Title,Definition,Employee,EmployeeID,Date,Type,ReferenceID,HeadLine)Values" +
+                                "(@Title,@Definition,@Employee,@EmployeeID,getdate(),@Type,@RefID,@HeadLine);", con);
+                    cmd.Parameters.AddWithValue("@Title", CustomerName);
+                    cmd.Parameters.AddWithValue("@Definition", Price);
+                    cmd.Parameters.AddWithValue("@Employee", UserInfo.Empleyado);
+                    cmd.Parameters.AddWithValue("@EmployeeID", UserInfo.EmpID);
+                    cmd.Parameters.AddWithValue("@Type", "TransactionLog");
+                    cmd.Parameters.AddWithValue("@RefID", TId.Trim());
+                    cmd.Parameters.AddWithValue("@HeadLine", definition);
+
+
+                    cmd.ExecuteNonQuery();
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Adding Activity Failed!" + " : " + ex);
             }
         }
     }
