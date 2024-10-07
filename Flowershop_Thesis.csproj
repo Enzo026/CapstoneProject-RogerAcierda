@@ -251,6 +251,12 @@
     <Compile Include="OtherForms\HistoryLogs\TransactionLogsList.Designer.cs">
       <DependentUpon>TransactionLogsList.cs</DependentUpon>
     </Compile>
+    <Compile Include="OtherForms\InventoryReports\DisposalListItems.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OtherForms\InventoryReports\DisposalListItems.Designer.cs">
+      <DependentUpon>DisposalListItems.cs</DependentUpon>
+    </Compile>
     <Compile Include="OtherForms\ProductMaintenance\AddMaterials.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -778,6 +784,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="OtherForms\HistoryLogs\TransactionLogsList.resx">
       <DependentUpon>TransactionLogsList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\InventoryReports\DisposalListItems.resx">
+      <DependentUpon>DisposalListItems.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OtherForms\ProductMaintenance\AddMaterials.resx">
       <DependentUpon>AddMaterials.cs</DependentUpon>
