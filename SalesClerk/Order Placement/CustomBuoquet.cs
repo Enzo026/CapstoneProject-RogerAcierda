@@ -764,94 +764,101 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement
         }
 
         public void MaterialDeduct(string ItemName, int qty)
-        {   
-            using(SqlConnection con = new SqlConnection(Connect.connectionString))
+        {
+            using (SqlConnection con = new SqlConnection(Connect.connectionString))
             {
-                int rowCount;
-                con.Open();
-                string countQuery = "select count(*) from Materials where ItemName = @Name;";
-                using (SqlCommand countCommand = new SqlCommand(countQuery, con))
+                try
                 {
-                    countCommand.Parameters.AddWithValue("@Name", ItemName);
-                    rowCount = (int)countCommand.ExecuteScalar();
-
-                }
-                con.Close();
-                if (rowCount == 1)
-                {
+                    // Open the connection before executing any command
                     con.Open();
-                    string invID = "0";
-                    string usage = "0";
-                    string UsageQuantity = "0";
 
-                    string sqlQuery = "SELECT * FROM Materials where ItemName = @Name;";
-                    using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                    int rowCount;
+
+                    // Count query to check if item exists
+                    string countQuery = "SELECT COUNT(*) FROM Materials WHERE ItemName = @Name;";
+                    using (SqlCommand countCommand = new SqlCommand(countQuery, con))
                     {
-                        command.Parameters.AddWithValue("@Name", ItemName);
-                        using (SqlDataReader reader = command.ExecuteReader())
+                        countCommand.Parameters.AddWithValue("@Name", ItemName);
+                        rowCount = (int)countCommand.ExecuteScalar();
+                    }
+
+                    if (rowCount == 1)
+                    {
+                        // Variables to store values retrieved from the database
+                        string invID = "0";
+                        string usage = "0";
+                        string UsageQuantity = "0";
+
+                        // Retrieve data for the item
+                        string sqlQuery = "SELECT * FROM Materials WHERE ItemName = @Name;";
+                        using (SqlCommand command = new SqlCommand(sqlQuery, con))
                         {
-                            while (reader.Read())
+                            command.Parameters.AddWithValue("@Name", ItemName);
+                            using (SqlDataReader reader = command.ExecuteReader())
                             {
-                                invID = reader["ItemID"].ToString();
-                                usage = reader["Usage"].ToString();
-                                UsageQuantity = reader["UsageQuantity"].ToString();
+                                while (reader.Read())
+                                {
+                                    invID = reader["ItemID"].ToString();
+                                    usage = reader["Usage"].ToString();
+                                    UsageQuantity = reader["UsageQuantity"].ToString();
+                                }
+                            }
+                        }
+
+                        // Calculate new usage quantity
+                        int quantityUse = int.Parse(usage) - qty;
+
+                        // Update the Usage or ItemQuantity depending on the result of quantityUse
+                        if (quantityUse > 0)
+                        {
+                            // Update the Usage value in Materials
+                            string updateUsage = "UPDATE Materials SET Usage = @Quantity WHERE ItemID = @ID;";
+                            using (SqlCommand updateCommand = new SqlCommand(updateUsage, con))
+                            {
+                                updateCommand.Parameters.AddWithValue("@Quantity", quantityUse);
+                                updateCommand.Parameters.AddWithValue("@ID", int.Parse(invID));
+
+                                updateCommand.ExecuteNonQuery();
+                            }
+                        }
+                        else if (quantityUse == 0)
+                        {
+                            // Decrease the ItemQuantity by 1
+                            string updateItemQuantity = "UPDATE Materials SET ItemQuantity = ItemQuantity - 1 WHERE ItemID = @ID;";
+                            using (SqlCommand updateCommand = new SqlCommand(updateItemQuantity, con))
+                            {
+                                updateCommand.Parameters.AddWithValue("@ID", int.Parse(invID));
+
+                                updateCommand.ExecuteNonQuery();
+                            }
+
+                            // Reset the Usage value to the original usage quantity
+                            string updateUsage = "UPDATE Materials SET Usage = @Quantity WHERE ItemID = @ID;";
+                            using (SqlCommand updateCommand = new SqlCommand(updateUsage, con))
+                            {
+                                updateCommand.Parameters.AddWithValue("@Quantity", int.Parse(UsageQuantity));
+                                updateCommand.Parameters.AddWithValue("@ID", int.Parse(invID));
+
+                                updateCommand.ExecuteNonQuery();
                             }
                         }
                     }
-                    con.Close();
-                    int quantityuse = int.Parse(usage) - qty;
-
-                    if (quantityuse > 0)
+                    else
                     {
-                        string updateUsage = "UPDATE Materials SET Usage=@Quantity WHERE ItemID = @ID;";
-                    
-                        using (SqlCommand updateCommand = new SqlCommand(updateUsage, con))
-                        {
-
-                            updateCommand.Parameters.AddWithValue("@Quantity", quantityuse);
-                            updateCommand.Parameters.AddWithValue("@ID", int.Parse(invID));
-
-                            updateCommand.ExecuteNonQuery();
-
-                        }
-        
+                        MessageBox.Show("Error: Inventory name is duplicated!");
                     }
-                    else if (quantityuse == 0)
-                    {
-                        string updateItemQuantity = "UPDATE Materials SET ItemQuantity=ItemQuantity - 1 WHERE ItemID = @ID";
-                     
-                        using (SqlCommand updateCommand = new SqlCommand(updateItemQuantity, con))
-                        {
-                            updateCommand.Parameters.AddWithValue("@ID", int.Parse(invID));
-
-                            updateCommand.ExecuteNonQuery();
-
-                        }
-
-
-                        string updateUsage = "UPDATE Materials SET Usage=@Quantity WHERE ItemID = @ID;";
-                        using (SqlCommand updateCommand = new SqlCommand(updateUsage, con))
-                        {
-
-                            updateCommand.Parameters.AddWithValue("@Quantity", int.Parse(UsageQuantity));
-                            updateCommand.Parameters.AddWithValue("@ID", int.Parse(invID));
-
-                            updateCommand.ExecuteNonQuery();
-
-                        }
-                    }
-
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Error on inventory name is duplicated!");
+                    MessageBox.Show("Error: " + ex.Message);
                 }
             }
+
         }
 
-  
 
-        
+
+
         int ItemID;
         public void AddCart()
         {   

@@ -31,10 +31,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.NameIndicator = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.AdvancePayment_Checkbox = new System.Windows.Forms.CheckBox();
-            this.GcashOption = new System.Windows.Forms.RadioButton();
-            this.CashOption = new System.Windows.Forms.RadioButton();
             this.Discount_txtbox = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.OrderContents_lbl = new System.Windows.Forms.Label();
@@ -43,9 +41,6 @@
             this.Amount_lbl = new System.Windows.Forms.Label();
             this.CustName_txtbox = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.Change_lbl = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.Payment_txtbox = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -57,7 +52,6 @@
             this.CancelBtn = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.NameIndicator = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -88,9 +82,6 @@
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.NameIndicator);
             this.panel2.Controls.Add(this.label8);
-            this.panel2.Controls.Add(this.AdvancePayment_Checkbox);
-            this.panel2.Controls.Add(this.GcashOption);
-            this.panel2.Controls.Add(this.CashOption);
             this.panel2.Controls.Add(this.Discount_txtbox);
             this.panel2.Controls.Add(this.label16);
             this.panel2.Controls.Add(this.OrderContents_lbl);
@@ -99,9 +90,6 @@
             this.panel2.Controls.Add(this.Amount_lbl);
             this.panel2.Controls.Add(this.CustName_txtbox);
             this.panel2.Controls.Add(this.label11);
-            this.panel2.Controls.Add(this.Change_lbl);
-            this.panel2.Controls.Add(this.label9);
-            this.panel2.Controls.Add(this.Payment_txtbox);
             this.panel2.Controls.Add(this.label7);
             this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.label5);
@@ -112,6 +100,16 @@
             this.panel2.Size = new System.Drawing.Size(314, 470);
             this.panel2.TabIndex = 2;
             // 
+            // NameIndicator
+            // 
+            this.NameIndicator.AutoSize = true;
+            this.NameIndicator.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NameIndicator.Location = new System.Drawing.Point(195, 312);
+            this.NameIndicator.Name = "NameIndicator";
+            this.NameIndicator.Size = new System.Drawing.Size(29, 15);
+            this.NameIndicator.TabIndex = 23;
+            this.NameIndicator.Text = "Null";
+            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -121,42 +119,6 @@
             this.label8.Size = new System.Drawing.Size(106, 15);
             this.label8.TabIndex = 22;
             this.label8.Text = "Max Discount 50%";
-            // 
-            // AdvancePayment_Checkbox
-            // 
-            this.AdvancePayment_Checkbox.AutoSize = true;
-            this.AdvancePayment_Checkbox.Font = new System.Drawing.Font("Montserrat SemiBold", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AdvancePayment_Checkbox.Location = new System.Drawing.Point(15, 345);
-            this.AdvancePayment_Checkbox.Name = "AdvancePayment_Checkbox";
-            this.AdvancePayment_Checkbox.Size = new System.Drawing.Size(153, 22);
-            this.AdvancePayment_Checkbox.TabIndex = 21;
-            this.AdvancePayment_Checkbox.Text = "Advance Payment";
-            this.AdvancePayment_Checkbox.UseVisualStyleBackColor = true;
-            this.AdvancePayment_Checkbox.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
-            // 
-            // GcashOption
-            // 
-            this.GcashOption.AutoSize = true;
-            this.GcashOption.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GcashOption.Location = new System.Drawing.Point(175, 440);
-            this.GcashOption.Name = "GcashOption";
-            this.GcashOption.Size = new System.Drawing.Size(58, 19);
-            this.GcashOption.TabIndex = 20;
-            this.GcashOption.TabStop = true;
-            this.GcashOption.Text = "Gcash";
-            this.GcashOption.UseVisualStyleBackColor = true;
-            // 
-            // CashOption
-            // 
-            this.CashOption.AutoSize = true;
-            this.CashOption.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CashOption.Location = new System.Drawing.Point(175, 415);
-            this.CashOption.Name = "CashOption";
-            this.CashOption.Size = new System.Drawing.Size(51, 19);
-            this.CashOption.TabIndex = 19;
-            this.CashOption.TabStop = true;
-            this.CashOption.Text = "Cash";
-            this.CashOption.UseVisualStyleBackColor = true;
             // 
             // Discount_txtbox
             // 
@@ -237,37 +199,6 @@
             this.label11.Size = new System.Drawing.Size(124, 18);
             this.label11.TabIndex = 9;
             this.label11.Text = "Customer name :";
-            // 
-            // Change_lbl
-            // 
-            this.Change_lbl.AutoSize = true;
-            this.Change_lbl.Font = new System.Drawing.Font("Montserrat SemiBold", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Change_lbl.Location = new System.Drawing.Point(15, 440);
-            this.Change_lbl.Name = "Change_lbl";
-            this.Change_lbl.Size = new System.Drawing.Size(93, 18);
-            this.Change_lbl.TabIndex = 8;
-            this.Change_lbl.Text = "No Payment";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Montserrat SemiBold", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(12, 414);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(67, 18);
-            this.label9.TabIndex = 7;
-            this.label9.Text = "Change :";
-            // 
-            // Payment_txtbox
-            // 
-            this.Payment_txtbox.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Payment_txtbox.Location = new System.Drawing.Point(15, 373);
-            this.Payment_txtbox.Name = "Payment_txtbox";
-            this.Payment_txtbox.Size = new System.Drawing.Size(289, 23);
-            this.Payment_txtbox.TabIndex = 6;
-            this.Payment_txtbox.Text = "0";
-            this.Payment_txtbox.TextChanged += new System.EventHandler(this.Payment_txtbox_TextChanged);
-            this.Payment_txtbox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
             // label7
             // 
@@ -385,16 +316,6 @@
             this.flowLayoutPanel1.Size = new System.Drawing.Size(511, 561);
             this.flowLayoutPanel1.TabIndex = 4;
             // 
-            // NameIndicator
-            // 
-            this.NameIndicator.AutoSize = true;
-            this.NameIndicator.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NameIndicator.Location = new System.Drawing.Point(195, 312);
-            this.NameIndicator.Name = "NameIndicator";
-            this.NameIndicator.Size = new System.Drawing.Size(106, 15);
-            this.NameIndicator.TabIndex = 23;
-            this.NameIndicator.Text = "Max Discount 50%";
-            // 
             // ReviewOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -406,6 +327,7 @@
             this.Name = "ReviewOrder";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ReviewOrder";
+            this.Load += new System.EventHandler(this.ReviewOrder_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -426,9 +348,6 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.TextBox CustName_txtbox;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label Change_lbl;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox Payment_txtbox;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
@@ -442,9 +361,6 @@
         private System.Windows.Forms.Label TotalAmountlbl;
         private System.Windows.Forms.Label Amount_lbl;
         private System.Windows.Forms.Button CancelBtn;
-        private System.Windows.Forms.RadioButton GcashOption;
-        private System.Windows.Forms.RadioButton CashOption;
-        private System.Windows.Forms.CheckBox AdvancePayment_Checkbox;
         private System.Windows.Forms.Label counterlbl;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label NameIndicator;

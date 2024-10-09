@@ -20,12 +20,13 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement
         public OrderPlacement()
         {
             InitializeComponent();
-           DisplayIndividual();
+            DisplayIndividual();
             instance = this;
             lbl = label4;
             cartlist = flowLayoutPanel2;
             getCartList();
             getPrice();
+            FormIsReady = true;
 
         }
 
@@ -39,48 +40,6 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement
         {
 
         }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label8_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel4_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label19_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel5_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void label5_Click(object sender, EventArgs e)
         {
 
@@ -153,18 +112,18 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement
         public void DisplayBuoquet()
         {
             try
-            {
+            {   
                 using(SqlConnection con = new SqlConnection(Connect.connectionString))
                 {
                     con.Open();
 
-                    string countQuery = "SELECT COUNT(*) FROM ItemInventory where ItemStatus = 'Available' AND ItemType = 'Bouquet' OR ItemType = 'Custom'";
+                    string countQuery = "SELECT COUNT(*) FROM ItemInventory where ItemStatus = 'Available' AND ItemType = 'Bouquet'";
                     using (SqlCommand countCommand = new SqlCommand(countQuery, con))
                     {
                         int rowCount = (int)countCommand.ExecuteScalar();
                         TransactionItemList[] inv = new TransactionItemList[rowCount];
 
-                        string sqlQuery = "SELECT * FROM ItemInventory where ItemStatus = 'Available' AND ItemType = 'Bouquet' OR ItemType = 'Custom' ";
+                        string sqlQuery = "SELECT * FROM ItemInventory where ItemStatus = 'Available' AND ItemType = 'Bouquet'";
                         using (SqlCommand command = new SqlCommand(sqlQuery, con))
                         {
                             using (SqlDataReader reader = command.ExecuteReader())
@@ -212,12 +171,16 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement
             flowLayoutPanel1.Controls.Clear();
             DisplayBuoquet();
         }
-
+        bool FormIsReady = false;
         private void label4_TextChanged(object sender, EventArgs e)
         {
-           
-            getCartList();
-            getPrice();
+            if (FormIsReady)
+            {   
+                flowLayoutPanel2.Controls.Clear();
+                getCartList();
+                getPrice();
+            }
+
             
 
         }
@@ -271,7 +234,7 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement
             catch (Exception ex)
             {
   
-                Console.WriteLine("Error on CartLsit() : " + ex.Message);
+                MessageBox.Show("Error on CartList() : " + ex.Message);
             }
         }
         public void refresh()
@@ -343,7 +306,7 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error on GetPrice() : " + ex.Message);
+                MessageBox.Show("Error on GetPrice() : " + ex.Message);
             }
 
         }
@@ -392,6 +355,16 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement
                 getCartList();
                 getPrice();
             }
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void OrderPlacement_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
