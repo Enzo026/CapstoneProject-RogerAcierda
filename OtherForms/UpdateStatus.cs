@@ -164,7 +164,7 @@ namespace Flowershop_Thesis.OtherForms
                         {
                             updateCommand.Parameters.AddWithValue("@ID", transactionID);
                             updateCommand.ExecuteNonQuery();
-                            QueuingFormBack.instance.lblcounter.Text = " ";
+                            QueuingFormBack.instance.lblcounter.Text = "0";
                         }
                         MessageBox.Show("Status Updated!");
                         string def = UserInfo.Empleyado + " Updated the order("+transactionID+") status to Processing ";
@@ -193,7 +193,7 @@ namespace Flowershop_Thesis.OtherForms
                         {
                             updateCommand.Parameters.AddWithValue("@ID", transactionID);
                             updateCommand.ExecuteNonQuery();
-                            QueuingFormBack.instance.lblcounter.Text = " ";
+                            QueuingFormBack.instance.lblcounter.Text = "0";
                         }
                         MessageBox.Show("Status Updated!");
                         string def = UserInfo.Empleyado + " Updated the order (" + transactionID + ") Order Status to Payment/Recieving ";

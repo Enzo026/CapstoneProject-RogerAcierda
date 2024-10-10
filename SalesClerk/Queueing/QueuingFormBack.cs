@@ -62,20 +62,23 @@ namespace Flowershop_Thesis.SalesClerk.Queueing
         }
         public void GetListQueue()
         {
+            
+            flowLayoutPanel1.Controls.Clear();
             try
             {
-                flowLayoutPanel1.Controls.Clear();
-                using(SqlConnection con = new SqlConnection(Connect.connectionString))
+                FormIsReady = false;
+                using (SqlConnection con = new SqlConnection(Connect.connectionString))
                 {
                     con.Open();
                     string countQuery = "select count(*) from TransactionsTbl where Status != 'Completed' AND Status != 'Cancelled';";
                     using (SqlCommand countCommand = new SqlCommand(countQuery, con))
                     {
                         int rowCount = (int)countCommand.ExecuteScalar();
-
-
-                        counter.Text = rowCount.ToString();
-
+                        if(int.Parse(counter.Text) != rowCount)
+                        {
+                            counter.Text = rowCount.ToString();
+                        }
+                        
 
 
                         QueuingListItems[] inv = new QueuingListItems[rowCount];
@@ -90,7 +93,7 @@ namespace Flowershop_Thesis.SalesClerk.Queueing
                                 {
                                     inv[index] = new QueuingListItems();
                                     inv[index].Name = reader["CustomerName"].ToString();
-                                    inv[index].Status = reader["Status"].ToString();
+                                  //  inv[index].Status = reader["Status"].ToString();
                                     decimal priceIndex = reader.GetOrdinal("Price");
                                     inv[index].Price = 100;
                                     int CI = reader.GetOrdinal("TransactionID");
@@ -103,6 +106,7 @@ namespace Flowershop_Thesis.SalesClerk.Queueing
                         }
                     }
                 }
+                FormIsReady = true;
             }
             catch (Exception ex)
             {
@@ -220,7 +224,6 @@ namespace Flowershop_Thesis.SalesClerk.Queueing
         {
             if (FormIsReady)
             {   
-                flowLayoutPanel1.Controls.Clear();
                 GetListQueue();
                 GetCancelled();
                 GetFinished();

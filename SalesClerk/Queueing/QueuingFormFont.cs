@@ -54,6 +54,7 @@ namespace Flowershop_Thesis.SalesClerk.Queueing
         {
             ProcessingArea();
             PaymentArea();
+            RecievingArea();
         }
         public void ProcessingArea()
         {
@@ -118,6 +119,44 @@ namespace Flowershop_Thesis.SalesClerk.Queueing
                                     inv[index] = new QueueBoardContent();
                                     inv[index].Name = reader["CustomerName"].ToString();
                                     flowLayoutPanel2.Controls.Add(inv[index]);
+                                    index++;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine("Error on CartLsit() : " + ex.Message);
+            }
+        }
+        public void RecievingArea()
+        {
+            try
+            {
+                flowLayoutPanel3.Controls.Clear();
+                using (SqlConnection con = new SqlConnection(Connect.connectionString))
+                {
+                    con.Open();
+                    string countQuery = "select count(*) from TransactionsTbl where Status = 'Recieving';";
+                    using (SqlCommand countCommand = new SqlCommand(countQuery, con))
+                    {
+                        int rowCount = (int)countCommand.ExecuteScalar();
+                        QueueBoardContent[] inv = new QueueBoardContent[rowCount];
+
+                        string sqlQuery = "SELECT * FROM TransactionsTbl where Status = 'Recieving' ;";
+                        using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                        {
+                            using (SqlDataReader reader = command.ExecuteReader())
+                            {
+                                int index = 0;
+                                while (reader.Read() && index < inv.Length)
+                                {
+                                    inv[index] = new QueueBoardContent();
+                                    inv[index].Name = reader["CustomerName"].ToString();
+                                    flowLayoutPanel1.Controls.Add(inv[index]);
                                     index++;
                                 }
                             }

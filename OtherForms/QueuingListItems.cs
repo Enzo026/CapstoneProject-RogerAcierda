@@ -43,14 +43,7 @@ namespace Flowershop_Thesis.OtherForms
         public double Price
         {
             get { return price; }
-            set { price = value; PriceLbl.Text = value.ToString(); }
-        }
-
-        [Category("QueueList")]
-        public string Status
-        {
-            get { return status; }
-            set { status = value; StatusLbl.Text = value.ToString(); }
+            set { price = value; PriceLbl.Text = value.ToString() + " php"; }
         }
 
         [Category("QueueList")]
