@@ -219,7 +219,8 @@ namespace Flowershop_Thesis.SalesClerk.Queueing
         private void counter_TextChanged(object sender, EventArgs e)
         {
             if (FormIsReady)
-            {
+            {   
+                flowLayoutPanel1.Controls.Clear();
                 GetListQueue();
                 GetCancelled();
                 GetFinished();

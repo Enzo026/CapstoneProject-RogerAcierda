@@ -329,6 +329,12 @@
     <Compile Include="OtherForms\Reports\Calendar\CalDays.Designer.cs">
       <DependentUpon>CalDays.cs</DependentUpon>
     </Compile>
+    <Compile Include="OtherForms\Reports\OrderInfoFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForms\Reports\OrderInfoFrm.Designer.cs">
+      <DependentUpon>OrderInfoFrm.cs</DependentUpon>
+    </Compile>
     <Compile Include="OtherForms\Reports\SalesTransactionListItems.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -824,6 +830,9 @@
     <EmbeddedResource Include="OtherForms\Reports\Calendar\CalDays.resx">
       <DependentUpon>CalDays.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\Reports\OrderInfoFrm.resx">
+      <DependentUpon>OrderInfoFrm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="OtherForms\Reports\SalesTransactionListItems.resx">
       <DependentUpon>SalesTransactionListItems.cs</DependentUpon>
     </EmbeddedResource>
@@ -1056,6 +1065,7 @@
     <None Include="Resources\pexels-hson-17635079.jpg" />
     <None Include="Resources\pexels-hilaryh-612331.jpg" />
     <None Include="Resources\pexels-pixabay-36729.jpg" />
+    <None Include="Resources\payment-method-in-illustration-vector.jpg" />
     <Content Include="Resources\report.png" />
     <None Include="Resources\undraw_open_note_6nva.png" />
     <Content Include="Resources\Welcome.png" />

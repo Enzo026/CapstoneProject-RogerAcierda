@@ -153,6 +153,16 @@ namespace Flowershop_Thesis.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap payment_method_in_illustration_vector {
+            get {
+                object obj = ResourceManager.GetObject("payment-method-in-illustration-vector", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap pexels_hilaryh_612331 {
             get {
                 object obj = ResourceManager.GetObject("pexels-hilaryh-612331", resourceCulture);

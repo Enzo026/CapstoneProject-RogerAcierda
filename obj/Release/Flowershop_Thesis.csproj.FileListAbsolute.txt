@@ -617,3 +617,4 @@ D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.Reports
 D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.Reports.SalesTransactionListItems.resources
 D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.Reports.TransactionsList.resources
 D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.InventoryReports.DisposalListItems.resources
+D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.Reports.OrderInfoFrm.resources
