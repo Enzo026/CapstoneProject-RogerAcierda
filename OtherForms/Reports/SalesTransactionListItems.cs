@@ -68,5 +68,11 @@ namespace Flowershop_Thesis.OtherForms.Reports
             set { DOC = value; DateLbl.Text = value.ToString(); }
         }
         #endregion
+
+        private void DetailsBtn_Click(object sender, EventArgs e)
+        {
+            OrderInfoFrm frm = new OrderInfoFrm();
+            frm.ShowDialog();
+        }
     }
 }

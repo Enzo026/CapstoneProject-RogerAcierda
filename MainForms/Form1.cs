@@ -116,7 +116,7 @@ namespace Capstone_Flowershop
             {
                 conn.Open();
 
-                SqlCommand cmd = new SqlCommand("SELECT AccountID,Username,Password,Role,FirstName,LastName from UserAccounts where Username =@User", conn);
+                SqlCommand cmd = new SqlCommand("SELECT AccountID,Username,Password,Role,FirstName,LastName from UserAccounts where Username =@User  AND Status = 'Available'", conn);
                 cmd.Parameters.AddWithValue("User", textBox1.Text.Trim());
                 sdr = cmd.ExecuteReader();
 

@@ -481,81 +481,92 @@ namespace Flowershop_Thesis.OtherForms
         public void TransactionItemsInput()
         {
             try
-            {   
-                using(SqlConnection con =  new SqlConnection(Connect.connectionString))
+            {
+                using (SqlConnection con = new SqlConnection(Connect.connectionString))
                 {
                     int TransId;
                     con.Open();
-                    using (SqlCommand TransactionID = new SqlCommand("Select OrderID from AdvanceOrders where Status = 'Active' and CustomerName = '" + CustNameTxtbox.Text.Trim() + "';", con))
-                    {
-                        TransId = (int)TransactionID.ExecuteScalar();
 
+                    // Retrieve the active order's OrderID
+                    using (SqlCommand TransactionID = new SqlCommand("Select OrderID from AdvanceOrders where Status = 'Active' and CustomerName = @CustomerName;", con))
+                    {
+                        TransactionID.Parameters.AddWithValue("@CustomerName", CustNameTxtbox.Text.Trim());
+                        TransId = (int)TransactionID.ExecuteScalar();
                     }
 
                     if (TransId != 0)
                     {
-                        //deduction of items ordered in Cart
+                        // Retrieve item count in the Advance_ServingCart
+                        int CartCounter;
                         using (SqlCommand CartItems = new SqlCommand("Select Count(*) from Advance_ServingCart", con))
                         {
-                            int CartCounter = (int)CartItems.ExecuteScalar();
+                            CartCounter = (int)CartItems.ExecuteScalar();
 
                             int counter = int.Parse(CounterLbl.Text);
                             if (CartCounter != counter)
                             {
                                 label4.Text = CartCounter.ToString();
                             }
+                        }
 
-
-
-                            CartItems[] inv = new CartItems[CartCounter];
-                            string sqlQuery = "SELECT * FROM Advance_ServingCart";
-                            using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                        // Retrieve items from Advance_ServingCart
+                        List<(int ItemID, string ItemName, string OrderType, int Price, int Quantity)> items = new List<(int, string, string, int, int)>();
+                        string sqlQuery = "SELECT ItemID, ItemName, OrderType, OrderPrice, OrderQty FROM Advance_ServingCart";
+                        using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                        {
+                            using (SqlDataReader reader = command.ExecuteReader())
                             {
-                                using (SqlDataReader reader = command.ExecuteReader())
+                                while (reader.Read())
                                 {
-                                    int index = 0;
-                                    while (reader.Read() && index < inv.Length)
-                                    {
-                                        int ID = reader.GetOrdinal("ItemID");
-                                        int ItemID = reader.IsDBNull(ID) ? 0 : reader.GetInt32(ID);
+                                    int ItemID = reader.IsDBNull(reader.GetOrdinal("ItemID")) ? 0 : reader.GetInt32(reader.GetOrdinal("ItemID"));
+                                    string ItemName = reader["ItemName"].ToString();
+                                    string OrderType = reader["OrderType"].ToString();
+                                    int Price = reader.IsDBNull(reader.GetOrdinal("OrderPrice")) ? 0 : reader.GetInt32(reader.GetOrdinal("OrderPrice"));
+                                    int Quantity = reader.IsDBNull(reader.GetOrdinal("OrderQty")) ? 0 : reader.GetInt32(reader.GetOrdinal("OrderQty"));
 
-
-                                        String ItemName = reader["ItemName"].ToString();
-                                        String OrderType = reader["OrderType"].ToString();
-
-                                        int priceIndex = reader.GetOrdinal("OrderPrice");
-                                        int Price = reader.IsDBNull(priceIndex) ? 0 : reader.GetInt32(priceIndex);
-
-                                        int StockQuantity = reader.GetOrdinal("OrderQty");
-                                        int qty = reader.IsDBNull(StockQuantity) ? 0 : reader.GetInt32(StockQuantity);
-
-
-                                        cmd = new SqlCommand("INSERT INTO AdvanceOrderItems(OrderID,ItemID,Name,Price,Quantity,Type)Values" +
-                                                    "(@OrderID,@ItemID,@Name,@Price,@Qty,@Type);", con);
-
-                                        cmd.Parameters.AddWithValue("@Name", ItemName);
-                                        cmd.Parameters.AddWithValue("@Qty", qty);
-                                        cmd.Parameters.AddWithValue("@Type", OrderType);
-                                        cmd.Parameters.AddWithValue("@Price", Price);
-                                        cmd.Parameters.AddWithValue("@ItemID", ItemID);
-                                        cmd.Parameters.AddWithValue("@OrderID", TransId);
-
-
-                                        cmd.ExecuteNonQuery();
-
-
-                                        index++;
-                                    }
+                                    items.Add((ItemID, ItemName, OrderType, Price, Quantity));
                                 }
                             }
+                        }
 
+                        // Insert items into AdvanceOrderItems and update inventory
+                        foreach (var item in items)
+                        {
+                            // Insert into AdvanceOrderItems
+                            string insertQuery = "INSERT INTO AdvanceOrderItems (OrderID, ItemID, Name, Price, Quantity, Type) " +
+                                                 "VALUES (@OrderID, @ItemID, @Name, @Price, @Qty, @Type)";
+                            using (SqlCommand insertCommand = new SqlCommand(insertQuery, con))
+                            {
+                                insertCommand.Parameters.AddWithValue("@OrderID", TransId);
+                                insertCommand.Parameters.AddWithValue("@ItemID", item.ItemID);
+                                insertCommand.Parameters.AddWithValue("@Name", item.ItemName);
+                                insertCommand.Parameters.AddWithValue("@Price", item.Price);
+                                insertCommand.Parameters.AddWithValue("@Qty", item.Quantity);
+                                insertCommand.Parameters.AddWithValue("@Type", item.OrderType);
+                                insertCommand.ExecuteNonQuery();
+                            }
+
+                            // Update ItemInventory for each item
+                            string updateQuery = "UPDATE ItemInventory SET ItemQuantity = ItemQuantity - @Quantity WHERE ItemID = @ItemID;";
+                            using (SqlCommand updateCommand = new SqlCommand(updateQuery, con))
+                            {
+                                updateCommand.Parameters.AddWithValue("@Quantity", item.Quantity);
+                                updateCommand.Parameters.AddWithValue("@ItemID", item.ItemID);
+                                updateCommand.ExecuteNonQuery();
+                            }
+                        }
+
+                        // Clear the Advance_ServingCart after operations
+                        using (SqlCommand cmd = new SqlCommand("TRUNCATE TABLE Advance_ServingCart", con))
+                        {
+                            cmd.ExecuteNonQuery();
                         }
 
                         AdvanceOrderPlacement.InsertAdvanceOrderItems = true;
                     }
                     else
                     {
-                        MessageBox.Show("OrderIDNotFetched");
+                        MessageBox.Show("OrderID not fetched");
                     }
                 }
             }
@@ -563,46 +574,73 @@ namespace Flowershop_Thesis.OtherForms
             {
                 MessageBox.Show("Error on TransactionItemsInput() : " + ex.Message);
             }
+
+
         }
         Image image;
         public void TransactionTableInput()
         {
             try
-            {   using(SqlConnection con = new SqlConnection(Connect.connectionString))
+            {
+                using (SqlConnection con = new SqlConnection(Connect.connectionString))
                 {
                     Image s_img = CreateAdvanceOrder.ProofOfPayment;
                     ImageConverter converter = new ImageConverter();
                     var ImageConvert = converter.ConvertTo(s_img, typeof(byte[]));
+
+                    // Validate inputs before conversion
+                    decimal totalPrice, downpayment;
+                    int discount;
+
+                    if (!decimal.TryParse(CreateAdvanceOrder.TotalAmount, out totalPrice))
+                    {
+                        MessageBox.Show("Invalid Total Amount format.");
+                        return;
+                    }
+
+                    if (!decimal.TryParse(CreateAdvanceOrder.Downpayment, out downpayment))
+                    {
+                        MessageBox.Show("Invalid Downpayment format.");
+                        return;
+                    }
+
+                    if (!int.TryParse(DiscountTxtbox.Text, out discount))
+                    {
+                        MessageBox.Show("Invalid Discount format.");
+                        return;
+                    }
+
                     con.Open();
-                    cmd = new SqlCommand("INSERT INTO AdvanceOrders(CustomerName,TotalPrice,ModeOfPayment,DateOfReservation,Downpayment,Discount,OrderType,PickupDate,ContactNo,EmployeeName,Status,Image)Values" +
-                     "(@CustomerName,@TotalPrice,@MOP,getdate(),@Downpayment,@Discount,@OrderType,@PickupDate,@ContactNo,@EmployeeName,'Active',@Image);", con);
+
+                    cmd = new SqlCommand("INSERT INTO AdvanceOrders (CustomerName, TotalPrice, ModeOfPayment, DateOfReservation, Downpayment, Discount, OrderType, PickupDate, ContactNo, EmployeeName, Status, Image) " +
+                        "VALUES (@CustomerName, @TotalPrice, @MOP, @DateOfReservation, @Downpayment, @Discount, @OrderType, @PickupDate, @ContactNo, @EmployeeName, 'Active', @Image);", con);
+
                     cmd.Parameters.AddWithValue("@CustomerName", CreateAdvanceOrder.CustomerName);
-                    cmd.Parameters.AddWithValue("@TotalPrice", Convert.ToDecimal(CreateAdvanceOrder.TotalAmount));
+                    cmd.Parameters.AddWithValue("@TotalPrice", totalPrice);  // Use validated value
                     cmd.Parameters.AddWithValue("@MOP", CreateAdvanceOrder.ModeOfPayment);
-                    cmd.Parameters.AddWithValue("@Downpayment", Convert.ToDecimal(CreateAdvanceOrder.Downpayment));
-                    cmd.Parameters.AddWithValue("@Discount", Convert.ToInt32(DiscountTxtbox.Text));
+                    cmd.Parameters.AddWithValue("@DateOfReservation", DateTime.Now);  // Current datetime
+                    cmd.Parameters.AddWithValue("@Downpayment", downpayment);  // Use validated value
+                    cmd.Parameters.AddWithValue("@Discount", discount);  // Use validated value
                     cmd.Parameters.AddWithValue("@OrderType", CreateAdvanceOrder.OrderType);
+
                     DateTime date = PickupDate.Value;
-                    cmd.Parameters.AddWithValue("@PickupDate", date);//here
+                    cmd.Parameters.AddWithValue("@PickupDate", date);
                     cmd.Parameters.AddWithValue("@ContactNo", CreateAdvanceOrder.ContactNumber);
                     cmd.Parameters.AddWithValue("@EmployeeName", UserInfo.Empleyado);
                     cmd.Parameters.AddWithValue("@Image", ImageConvert);
-
-
 
                     cmd.ExecuteNonQuery();
 
                     MessageBox.Show("Transaction Successful!");
                     AdvanceOrderPlacement.InsertAdvanceOrder = true;
                 }
-             
             }
             catch (Exception ex)
             {
-
-                MessageBox.Show("Error TransactionTableInput() : " + ex.Message);
-
+                MessageBox.Show("Error in TransactionTableInput(): " + ex.Message);
             }
+
+
         }
 
         public void CheckCustomerName()

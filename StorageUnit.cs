@@ -11,7 +11,8 @@ namespace Capstone_Flowershop
     public static class Connect
     {
         public static string sqlServer = "DESKTOP-IH4V487\\NEWMSSQL"; // Replace with your SQL server name
-        public static string connectionString = $"Server={sqlServer};Database=FlowershopSystemDB;Integrated Security=True;";
+        public static string connectionString = $"Server=DESKTOP-IH4V487\\NEWMSSQL;Database=FlowershopSystemDB;Integrated Security=True;";
+        public static string connectionStrings = $"Data Source=DESKTOP-IH4V487\\NEWMSSQL;AttachDbFilename=D:\\CapstoneProject-RogerAcierda\\FlowershopSystemDB.mdf;Initial Catalog=FlowershopSystemDB;Integrated Security=True";
     }
     public static class UserInfo
     {

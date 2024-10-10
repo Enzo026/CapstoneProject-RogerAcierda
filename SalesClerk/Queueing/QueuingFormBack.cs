@@ -26,10 +26,11 @@ namespace Flowershop_Thesis.SalesClerk.Queueing
         {
             InitializeComponent();
             instance = this;
-            lblcounter = counter; 
+            lblcounter = counter;
             GetListQueue();
             GetFinished();
             GetCancelled();
+            FormIsReady = true;
         }
 
         private void label7_Click(object sender, EventArgs e)
@@ -212,14 +213,19 @@ namespace Flowershop_Thesis.SalesClerk.Queueing
         }
         private void QueuingFormBack_Load(object sender, EventArgs e)
         {
-
+            
         }
-
+        bool FormIsReady;
         private void counter_TextChanged(object sender, EventArgs e)
         {
-            GetListQueue();
-            GetCancelled();
-            GetFinished();
+            if (FormIsReady)
+            {   
+                flowLayoutPanel1.Controls.Clear();
+                GetListQueue();
+                GetCancelled();
+                GetFinished();
+            }
+
         }
 
         private void counter_Click(object sender, EventArgs e)

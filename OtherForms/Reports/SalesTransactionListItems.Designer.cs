@@ -78,6 +78,7 @@
             this.DetailsBtn.TabIndex = 32;
             this.DetailsBtn.Text = "View full details";
             this.DetailsBtn.UseVisualStyleBackColor = false;
+            this.DetailsBtn.Click += new System.EventHandler(this.DetailsBtn_Click);
             // 
             // PriceLbl
             // 

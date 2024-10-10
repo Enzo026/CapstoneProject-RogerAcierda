@@ -162,6 +162,7 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(408, 713);
             this.panel2.TabIndex = 4;
+            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
             // button6
             // 
@@ -280,6 +281,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "OrderPlacement";
             this.Text = "OrderPlacement";
+            this.Load += new System.EventHandler(this.OrderPlacement_Load);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.ResumeLayout(false);
