@@ -30,6 +30,7 @@
         {
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button3 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.EmployeeName = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
@@ -71,7 +72,6 @@
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.Progress = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -136,6 +136,20 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(882, 612);
             this.panel1.TabIndex = 2;
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.IndianRed;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Font = new System.Drawing.Font("Montserrat", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.ForeColor = System.Drawing.Color.White;
+            this.button3.Location = new System.Drawing.Point(12, 539);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(198, 54);
+            this.button3.TabIndex = 42;
+            this.button3.Text = "Cancel Order";
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // textBox1
             // 
@@ -459,6 +473,7 @@
             this.DiscountTxtbox.Name = "DiscountTxtbox";
             this.DiscountTxtbox.Size = new System.Drawing.Size(188, 23);
             this.DiscountTxtbox.TabIndex = 10;
+            this.DiscountTxtbox.Text = "0";
             this.DiscountTxtbox.TextChanged += new System.EventHandler(this.DiscountTxtbox_TextChanged);
             this.DiscountTxtbox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DiscountTxtbox_KeyPress);
             // 
@@ -560,20 +575,6 @@
             this.Progress.Size = new System.Drawing.Size(42, 18);
             this.Progress.TabIndex = 42;
             this.Progress.Text = "Price";
-            // 
-            // button3
-            // 
-            this.button3.BackColor = System.Drawing.Color.IndianRed;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Montserrat", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(12, 539);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(198, 54);
-            this.button3.TabIndex = 42;
-            this.button3.Text = "Cancel Order";
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // AdvanceOrderCart
             // 
