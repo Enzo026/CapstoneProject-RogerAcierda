@@ -58,6 +58,8 @@ namespace Capstone_Flowershop
 
         public static string TransactionLogID { get; set; } 
 
+        public static string OrderInfo { get; set; }
+
  
 
     }

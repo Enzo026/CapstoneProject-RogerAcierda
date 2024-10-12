@@ -25,7 +25,7 @@ namespace Flowershop_Thesis.OtherForms
         #region FinishedQueue
         private string name;
         private int transactionID;
-        private double price;
+        private decimal price;
 
 
 
@@ -37,7 +37,7 @@ namespace Flowershop_Thesis.OtherForms
             set { transactionID = value; IdLbl.Text = value.ToString(); }
         }
         [Category("QueueList")]
-        public double Price
+        public decimal Price
         {
             get { return price; }
             set { price = value; PriceLbl.Text = value.ToString(); }

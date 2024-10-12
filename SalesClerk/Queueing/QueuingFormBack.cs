@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Flowershop_Thesis;
 using Capstone_Flowershop;
+using Flowershop_Thesis.OtherForms.QueuingList;
 
 namespace Flowershop_Thesis.SalesClerk.Queueing
 {
@@ -31,11 +32,6 @@ namespace Flowershop_Thesis.SalesClerk.Queueing
             GetFinished();
             GetCancelled();
             FormIsReady = true;
-        }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void label78_Click(object sender, EventArgs e)
@@ -64,26 +60,37 @@ namespace Flowershop_Thesis.SalesClerk.Queueing
         {
             
             flowLayoutPanel1.Controls.Clear();
+            flowLayoutPanel4.Controls.Clear();
+            flowLayoutPanel5.Controls.Clear();
             try
             {
                 FormIsReady = false;
                 using (SqlConnection con = new SqlConnection(Connect.connectionString))
                 {
                     con.Open();
-                    string countQuery = "select count(*) from TransactionsTbl where Status != 'Completed' AND Status != 'Cancelled';";
+                    string countQuery = "select count(*) from TransactionsTbl where Status != 'Cancelled' AND  Status != 'Completed';";
                     using (SqlCommand countCommand = new SqlCommand(countQuery, con))
                     {
                         int rowCount = (int)countCommand.ExecuteScalar();
-                        if(int.Parse(counter.Text) != rowCount)
+                        if (int.Parse(counter.Text) != rowCount)
                         {
                             counter.Text = rowCount.ToString();
                         }
+                    }
+                }
+                using (SqlConnection con = new SqlConnection(Connect.connectionString))
+                {
+                    con.Open();
+                    string countQuery = "select count(*) from TransactionsTbl where Status = 'Processing' AND Status != 'Cancelled';";
+                    using (SqlCommand countCommand = new SqlCommand(countQuery, con))
+                    {
+                        int rowCount = (int)countCommand.ExecuteScalar();
                         
 
 
                         QueuingListItems[] inv = new QueuingListItems[rowCount];
 
-                        string sqlQuery = "SELECT * FROM TransactionsTbl where Status != 'Completed' AND Status != 'Cancelled';";
+                        string sqlQuery = "SELECT * FROM TransactionsTbl where Status = 'Processing' AND Status != 'Cancelled';";
                         using (SqlCommand command = new SqlCommand(sqlQuery, con))
                         {
                             using (SqlDataReader reader = command.ExecuteReader())
@@ -93,13 +100,76 @@ namespace Flowershop_Thesis.SalesClerk.Queueing
                                 {
                                     inv[index] = new QueuingListItems();
                                     inv[index].Name = reader["CustomerName"].ToString();
-                                  //  inv[index].Status = reader["Status"].ToString();
-                                    decimal priceIndex = reader.GetOrdinal("Price");
-                                    inv[index].Price = 100;
+                                    //  inv[index].Status = reader["Status"].ToString();
+                                    inv[index].Price = decimal.Parse(reader["Price"].ToString());
                                     int CI = reader.GetOrdinal("TransactionID");
                                     inv[index].transID = reader.IsDBNull((int)CI) ? 0 : reader.GetInt32((int)CI);
 
                                     flowLayoutPanel1.Controls.Add(inv[index]);
+                                    index++;
+                                }
+                            }
+                        }
+                    }
+                }
+                using (SqlConnection con = new SqlConnection(Connect.connectionString))
+                {
+                    con.Open();
+                    string countQuery = "select count(*) from TransactionsTbl where Status = 'Payment' AND Status != 'Cancelled';";
+                    using (SqlCommand countCommand = new SqlCommand(countQuery, con))
+                    {
+                        int rowCount = (int)countCommand.ExecuteScalar();
+
+                        PaymentList[] inv = new PaymentList[rowCount];
+
+                        string sqlQuery = "SELECT * FROM TransactionsTbl where Status = 'Payment' AND Status != 'Cancelled';";
+                        using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                        {
+                            using (SqlDataReader reader = command.ExecuteReader())
+                            {
+                                int index = 0;
+                                while (reader.Read() && index < inv.Length)
+                                {
+                                    inv[index] = new PaymentList();
+                                    inv[index].Name = reader["CustomerName"].ToString();
+                                    //  inv[index].Status = reader["Status"].ToString();
+                                    inv[index].Price = decimal.Parse(reader["Price"].ToString());
+                                    int CI = reader.GetOrdinal("TransactionID");
+                                    inv[index].transID = reader.IsDBNull((int)CI) ? 0 : reader.GetInt32((int)CI);
+
+                                    flowLayoutPanel4.Controls.Add(inv[index]);
+                                    index++;
+                                }
+                            }
+                        }
+                    }
+                }
+                using (SqlConnection con = new SqlConnection(Connect.connectionString))
+                {
+                    con.Open();
+                    string countQuery = "select count(*) from TransactionsTbl where Status = 'Receiving' AND Status != 'Cancelled' AND  PaymentStatus = 'Paid';";
+                    using (SqlCommand countCommand = new SqlCommand(countQuery, con))
+                    {
+                        int rowCount = (int)countCommand.ExecuteScalar();
+
+                        ReceivingList[] inv = new ReceivingList[rowCount];
+
+                        string sqlQuery = "SELECT * FROM TransactionsTbl where Status = 'Receiving' AND Status != 'Cancelled' AND PaymentStatus = 'Paid';";
+                        using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                        {
+                            using (SqlDataReader reader = command.ExecuteReader())
+                            {
+                                int index = 0;
+                                while (reader.Read() && index < inv.Length)
+                                {
+                                    inv[index] = new ReceivingList();
+                                    inv[index].Name = reader["CustomerName"].ToString();
+                                    //  inv[index].Status = reader["Status"].ToString();
+                                    inv[index].Price = decimal.Parse(reader["Price"].ToString());
+                                    int CI = reader.GetOrdinal("TransactionID");
+                                    inv[index].transID = reader.IsDBNull((int)CI) ? 0 : reader.GetInt32((int)CI);
+
+                                    flowLayoutPanel5.Controls.Add(inv[index]);
                                     index++;
                                 }
                             }
@@ -141,7 +211,7 @@ namespace Flowershop_Thesis.SalesClerk.Queueing
                                     inv[index] = new FinishedOrdersList();
                                     inv[index].Name = reader["CustomerName"].ToString();
                                     decimal priceIndex = reader.GetOrdinal("Price");
-                                    inv[index].Price = 100;
+                                    inv[index].Price = decimal.Parse(reader["Price"].ToString());
                                     int CI = reader.GetOrdinal("TransactionID");
                                     inv[index].transID = reader.IsDBNull((int)CI) ? 0 : reader.GetInt32((int)CI);
 
@@ -192,7 +262,7 @@ namespace Flowershop_Thesis.SalesClerk.Queueing
 
 
                                     decimal priceIndex = reader.GetOrdinal("Price");
-                                    inv[index].Price = 100;
+                                    inv[index].Price = decimal.Parse(reader["Price"].ToString());
                                     int CI = reader.GetOrdinal("TransactionID");
                                     inv[index].transID = reader.IsDBNull((int)CI) ? 0 : reader.GetInt32((int)CI);
 

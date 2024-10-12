@@ -65,7 +65,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(321, 852);
             this.panel1.TabIndex = 6;
-
             // 
             // label6
             // 
@@ -198,6 +197,7 @@
             this.Name = "SalesClerk_BasePlatform";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SalesClerk_BasePlatform";
+            this.Load += new System.EventHandler(this.SalesClerk_BasePlatform_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);

@@ -317,11 +317,23 @@
     <Compile Include="OtherForms\ProductMaintenance\ProductMaintenanceList.Designer.cs">
       <DependentUpon>ProductMaintenanceList.cs</DependentUpon>
     </Compile>
+    <Compile Include="OtherForms\QueuingList\OrderInfoList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OtherForms\QueuingList\OrderInfoList.Designer.cs">
+      <DependentUpon>OrderInfoList.cs</DependentUpon>
+    </Compile>
     <Compile Include="OtherForms\QueuingList\PaymentList.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="OtherForms\QueuingList\PaymentList.Designer.cs">
       <DependentUpon>PaymentList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\QueuingList\ReceivingList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OtherForms\QueuingList\ReceivingList.Designer.cs">
+      <DependentUpon>ReceivingList.cs</DependentUpon>
     </Compile>
     <Compile Include="OtherForms\Reports\Calendar\CalBlank.cs">
       <SubType>UserControl</SubType>
@@ -667,6 +679,12 @@
     <Compile Include="SalesClerk\PriceList\PriceList.Designer.cs">
       <DependentUpon>PriceList.cs</DependentUpon>
     </Compile>
+    <Compile Include="SalesClerk\Queueing\OrderInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SalesClerk\Queueing\OrderInfo.Designer.cs">
+      <DependentUpon>OrderInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="SalesClerk\Queueing\QueuingFormBack.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -830,8 +848,14 @@
     <EmbeddedResource Include="OtherForms\ProductMaintenance\ProductMaintenanceList.resx">
       <DependentUpon>ProductMaintenanceList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\QueuingList\OrderInfoList.resx">
+      <DependentUpon>OrderInfoList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="OtherForms\QueuingList\PaymentList.resx">
       <DependentUpon>PaymentList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\QueuingList\ReceivingList.resx">
+      <DependentUpon>ReceivingList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OtherForms\Reports\Calendar\CalBlank.resx">
       <DependentUpon>CalBlank.cs</DependentUpon>
@@ -1013,6 +1037,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SalesClerk\PriceList\PriceList.resx">
       <DependentUpon>PriceList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SalesClerk\Queueing\OrderInfo.resx">
+      <DependentUpon>OrderInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SalesClerk\Queueing\QueuingFormBack.resx">
       <DependentUpon>QueuingFormBack.cs</DependentUpon>

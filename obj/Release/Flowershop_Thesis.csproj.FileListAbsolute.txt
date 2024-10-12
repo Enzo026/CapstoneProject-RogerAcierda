@@ -619,3 +619,6 @@ D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.Reports
 D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.InventoryReports.DisposalListItems.resources
 D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.Reports.OrderInfoFrm.resources
 D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.QueuingList.PaymentList.resources
+D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.QueuingList.ReceivingList.resources
+D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.QueuingList.OrderInfoList.resources
+D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.SalesClerk.Queueing.OrderInfo.resources

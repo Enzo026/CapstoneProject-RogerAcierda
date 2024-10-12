@@ -140,13 +140,13 @@ namespace Flowershop_Thesis.SalesClerk.Queueing
                 using (SqlConnection con = new SqlConnection(Connect.connectionString))
                 {
                     con.Open();
-                    string countQuery = "select count(*) from TransactionsTbl where Status = 'Recieving';";
+                    string countQuery = "select count(*) from TransactionsTbl where Status = 'Receiving' AND PaymentStatus = 'Paid';";
                     using (SqlCommand countCommand = new SqlCommand(countQuery, con))
                     {
                         int rowCount = (int)countCommand.ExecuteScalar();
                         QueueBoardContent[] inv = new QueueBoardContent[rowCount];
 
-                        string sqlQuery = "SELECT * FROM TransactionsTbl where Status = 'Recieving' ;";
+                        string sqlQuery = "SELECT * FROM TransactionsTbl where Status = 'Receiving' AND PaymentStatus = 'Paid' ;";
                         using (SqlCommand command = new SqlCommand(sqlQuery, con))
                         {
                             using (SqlDataReader reader = command.ExecuteReader())
@@ -156,7 +156,7 @@ namespace Flowershop_Thesis.SalesClerk.Queueing
                                 {
                                     inv[index] = new QueueBoardContent();
                                     inv[index].Name = reader["CustomerName"].ToString();
-                                    flowLayoutPanel1.Controls.Add(inv[index]);
+                                    flowLayoutPanel3.Controls.Add(inv[index]);
                                     index++;
                                 }
                             }

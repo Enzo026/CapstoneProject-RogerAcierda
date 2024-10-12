@@ -28,7 +28,7 @@ namespace Flowershop_Thesis.OtherForms
         #region OrderQueue
         private string name;
         private int transactionID;
-        private double price;
+        private decimal price;
         private string status;
         
 
@@ -40,7 +40,7 @@ namespace Flowershop_Thesis.OtherForms
             set { transactionID = value; IdLbl.Text = value.ToString(); }
         }
         [Category("QueueList")]
-        public double Price
+        public decimal Price
         {
             get { return price; }
             set { price = value; PriceLbl.Text = value.ToString() + " php"; }
@@ -54,29 +54,6 @@ namespace Flowershop_Thesis.OtherForms
         }
         #endregion
 
-        private void CancelLbl_Click(object sender, EventArgs e)
-        {
-            DialogResult result = MessageBox.Show("Do you want this order to be Canceled?", "Cancel Order", MessageBoxButtons.YesNo);
-            if (result == DialogResult.Yes)
-            {   
-                using(SqlConnection con = new SqlConnection(Connect.connectionString))
-                {
-                    string updateQuery = "UPDATE TransactionsTbl SET Status = 'Cancelled' WHERE TransactionID = @ID;";
-                    con.Open();
-                    using (SqlCommand updateCommand = new SqlCommand(updateQuery, con))
-                    {
-                        updateCommand.Parameters.AddWithValue("@ID", transactionID);
-                        updateCommand.ExecuteNonQuery();
-                        int queue = int.Parse(QueuingFormBack.instance.lblcounter.Text);
-                        int addqueue = queue - 1;
-                        QueuingFormBack.instance.lblcounter.Text = addqueue.ToString();
-                    }
-                    string def = UserInfo.Empleyado + " Cancelled the order (" + transactionID + ")";
-                    addTransactionLog(name, price.ToString(), transactionID.ToString(), def);
-                    MessageBox.Show("Order cancelled!");
-                }
-            }
-        }
         public void addTransactionLog(string CustomerName, string Price, string TId, string definition)
         {
             try
@@ -110,9 +87,75 @@ namespace Flowershop_Thesis.OtherForms
             UpdateStatus US = new UpdateStatus();
             US.Name = name;
             US.transID = transactionID;
-            US.status = status;
             US.Show();
 
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DialogResult result = MessageBox.Show("Proceed to Payments", "Order Update", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    using (SqlConnection con = new SqlConnection(Connect.connectionString))
+                    {
+                        string updateQuery = "UPDATE TransactionsTbl SET Status = 'Payment' WHERE TransactionID = @ID;";
+                        con.Open();
+                        using (SqlCommand updateCommand = new SqlCommand(updateQuery, con))
+                        {
+                            updateCommand.Parameters.AddWithValue("@ID", transactionID);
+                            updateCommand.ExecuteNonQuery();
+                            int queue = int.Parse(QueuingFormBack.instance.lblcounter.Text);
+                            int addqueue = queue - 1;
+                            QueuingFormBack.instance.lblcounter.Text = addqueue.ToString();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error on Cancelling the order" + ex.Message);
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DialogResult result = MessageBox.Show("Do you want this order to be Canceled?", "Cancel Order", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    using (SqlConnection con = new SqlConnection(Connect.connectionString))
+                    {
+                        string updateQuery = "UPDATE TransactionsTbl SET Status = 'Cancelled' WHERE TransactionID = @ID;";
+                        con.Open();
+                        using (SqlCommand updateCommand = new SqlCommand(updateQuery, con))
+                        {
+                            updateCommand.Parameters.AddWithValue("@ID", transactionID);
+                            updateCommand.ExecuteNonQuery();
+                            int queue = int.Parse(QueuingFormBack.instance.lblcounter.Text);
+                            int addqueue = queue - 1;
+                            QueuingFormBack.instance.lblcounter.Text = addqueue.ToString();
+                        }
+                        string def = UserInfo.Empleyado + " Cancelled the order (" + transactionID + ")";
+                        addTransactionLog(name, price.ToString(), transactionID.ToString(), def);
+                        MessageBox.Show("Order cancelled!");
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Error on Cancelling the order" + ex.Message);
+            }
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            ChangeIds.OrderInfo = transactionID.ToString();
+            OrderInfo frm = new OrderInfo();
+            frm.ShowDialog();
         }
     }
 }
