@@ -98,6 +98,7 @@
             this.button2.TabIndex = 8;
             this.button2.Text = "Proceed Edit";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // EditPickupDate
             // 
@@ -112,6 +113,7 @@
             this.Controls.Add(this.label1);
             this.Name = "EditPickupDate";
             this.Size = new System.Drawing.Size(356, 477);
+            this.Load += new System.EventHandler(this.EditPickupDate_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

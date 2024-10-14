@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -75,8 +75,6 @@
             this.label81 = new System.Windows.Forms.Label();
             this.label82 = new System.Windows.Forms.Label();
             this.panel20 = new System.Windows.Forms.Panel();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -339,8 +337,6 @@
             this.panel56.BackColor = System.Drawing.Color.White;
             this.panel56.Controls.Add(this.flowLayoutPanel3);
             this.panel56.Controls.Add(this.panel20);
-            this.panel56.Controls.Add(this.label22);
-            this.panel56.Controls.Add(this.label21);
             this.panel56.Controls.Add(this.label14);
             this.panel56.Location = new System.Drawing.Point(438, 12);
             this.panel56.Name = "panel56";
@@ -627,35 +623,16 @@
             this.panel20.Size = new System.Drawing.Size(229, 5);
             this.panel20.TabIndex = 21;
             // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("Montserrat SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(80, 13);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(50, 22);
-            this.label22.TabIndex = 20;
-            this.label22.Text = "2024";
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Montserrat SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(80, 35);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(77, 22);
-            this.label21.TabIndex = 19;
-            this.label21.Text = "October";
-            // 
             // label14
             // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Montserrat", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(14, 13);
+            this.label14.Font = new System.Drawing.Font("Montserrat", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(21, 13);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(60, 44);
+            this.label14.Size = new System.Drawing.Size(229, 44);
             this.label14.TabIndex = 18;
             this.label14.Text = "24";
+            this.label14.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.label14.TextChanged += new System.EventHandler(this.label14_TextChanged);
             // 
             // flowLayoutPanel2
             // 
@@ -683,13 +660,13 @@
             // 
             // chart1
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
+            chartArea3.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea3);
             this.chart1.Location = new System.Drawing.Point(8, 91);
             this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.Name = "SalesChart";
-            this.chart1.Series.Add(series1);
+            series3.ChartArea = "ChartArea1";
+            series3.Name = "SalesChart";
+            this.chart1.Series.Add(series3);
             this.chart1.Size = new System.Drawing.Size(715, 326);
             this.chart1.TabIndex = 47;
             this.chart1.Text = "chart1";
@@ -770,14 +747,14 @@
             // 
             // chart2
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chart2.ChartAreas.Add(chartArea2);
+            chartArea4.Name = "ChartArea1";
+            this.chart2.ChartAreas.Add(chartArea4);
             this.chart2.Location = new System.Drawing.Point(28, 134);
             this.chart2.Name = "chart2";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series2.Name = "VisualComparison";
-            this.chart2.Series.Add(series2);
+            series4.ChartArea = "ChartArea1";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series4.Name = "VisualComparison";
+            this.chart2.Series.Add(series4);
             this.chart2.Size = new System.Drawing.Size(266, 235);
             this.chart2.TabIndex = 21;
             this.chart2.Text = "chart2";
@@ -1154,7 +1131,6 @@
             this.panel10.ResumeLayout(false);
             this.panel10.PerformLayout();
             this.panel56.ResumeLayout(false);
-            this.panel56.PerformLayout();
             this.flowLayoutPanel3.ResumeLayout(false);
             this.panel22.ResumeLayout(false);
             this.panel22.PerformLayout();
@@ -1259,8 +1235,6 @@
         private System.Windows.Forms.Panel panel22;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Panel panel20;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Button button24;
         private System.Windows.Forms.Label label24;

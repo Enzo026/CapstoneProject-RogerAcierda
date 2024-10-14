@@ -1,4 +1,5 @@
 ﻿using Capstone_Flowershop;
+using Capstone_Flowershop.AdminForms.Reports.SalesReports;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -6,6 +7,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -25,7 +27,15 @@ namespace Flowershop_Thesis.OtherForms.Reports.Calendar
 
         private void DayLbl_Click(object sender, EventArgs e)
         {
+            string givendate = q_month + "/" + q_day + "/" + q_year;
+            DateTime parsedDate = DateTime.ParseExact(givendate, "MM/d/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+            string formattedDate = parsedDate.ToString("MMM dd, yyyy");
+           // MessageBox.Show(formattedDate);
+            SalesReport.instance.PickDate.Text = formattedDate;
+        }
 
+        private void panel1_Click(object sender, EventArgs e)
+        {   
         }
 
         public void days(int day , int monthnow, int month, int year)

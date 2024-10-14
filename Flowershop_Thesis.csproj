@@ -233,6 +233,24 @@
     <Compile Include="OtherForms\AdminDashboard\ReportTabContents.Designer.cs">
       <DependentUpon>ReportTabContents.cs</DependentUpon>
     </Compile>
+    <Compile Include="OtherForms\AdvanceOrder\EditOrderItems\EditItemList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OtherForms\AdvanceOrder\EditOrderItems\EditItemList.Designer.cs">
+      <DependentUpon>EditItemList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\AdvanceOrder\EditOrderItems\SeeItemsListItems.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OtherForms\AdvanceOrder\EditOrderItems\SeeItemsListItems.Designer.cs">
+      <DependentUpon>SeeItemsListItems.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\AdvanceOrder\EventPackagesModalsAndList\EventPackagesModal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForms\AdvanceOrder\EventPackagesModalsAndList\EventPackagesModal.Designer.cs">
+      <DependentUpon>EventPackagesModal.cs</DependentUpon>
+    </Compile>
     <Compile Include="OtherForms\HistoryLogs\ActivityLogsList.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -346,6 +364,12 @@
     </Compile>
     <Compile Include="OtherForms\Reports\Calendar\CalDays.Designer.cs">
       <DependentUpon>CalDays.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\Reports\Calendar\CalItems.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OtherForms\Reports\Calendar\CalItems.Designer.cs">
+      <DependentUpon>CalItems.cs</DependentUpon>
     </Compile>
     <Compile Include="OtherForms\Reports\OrderInfoFrm.cs">
       <SubType>Form</SubType>
@@ -649,6 +673,12 @@
     <Compile Include="SalesClerk\Order Placement\AdvanceOrderfolder\Adv_Custom.Designer.cs">
       <DependentUpon>Adv_Custom.cs</DependentUpon>
     </Compile>
+    <Compile Include="SalesClerk\Order Placement\AdvanceOrderfolder\EventPackagesFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SalesClerk\Order Placement\AdvanceOrderfolder\EventPackagesFrm.Designer.cs">
+      <DependentUpon>EventPackagesFrm.cs</DependentUpon>
+    </Compile>
     <Compile Include="SalesClerk\Order Placement\AdvanceOrderfolder\IndividualFrm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -806,6 +836,15 @@
     <EmbeddedResource Include="OtherForms\AdminDashboard\ReportTabContents.resx">
       <DependentUpon>ReportTabContents.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\AdvanceOrder\EditOrderItems\EditItemList.resx">
+      <DependentUpon>EditItemList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\AdvanceOrder\EditOrderItems\SeeItemsListItems.resx">
+      <DependentUpon>SeeItemsListItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\AdvanceOrder\EventPackagesModalsAndList\EventPackagesModal.resx">
+      <DependentUpon>EventPackagesModal.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="OtherForms\HistoryLogs\ActivityLogsList.resx">
       <DependentUpon>ActivityLogsList.cs</DependentUpon>
     </EmbeddedResource>
@@ -862,6 +901,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="OtherForms\Reports\Calendar\CalDays.resx">
       <DependentUpon>CalDays.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\Reports\Calendar\CalItems.resx">
+      <DependentUpon>CalItems.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OtherForms\Reports\OrderInfoFrm.resx">
       <DependentUpon>OrderInfoFrm.cs</DependentUpon>
@@ -1023,6 +1065,9 @@
     <EmbeddedResource Include="SalesClerk\Order Placement\AdvanceOrderfolder\Adv_Custom.resx">
       <DependentUpon>Adv_Custom.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SalesClerk\Order Placement\AdvanceOrderfolder\EventPackagesFrm.resx">
+      <DependentUpon>EventPackagesFrm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SalesClerk\Order Placement\AdvanceOrderfolder\IndividualFrm.resx">
       <DependentUpon>IndividualFrm.cs</DependentUpon>
     </EmbeddedResource>
@@ -1077,6 +1122,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\WP Events Flowers.jpg" />
     <None Include="Resources\addImg.jpg" />
     <None Include="Resources\cancel.png" />
     <None Include="Resources\check.jpg" />
@@ -1092,6 +1138,7 @@
     <None Include="Resources\basket1.png" />
     <None Include="Resources\b1_24x24.png" />
     <None Include="Resources\b2_24x24.png" />
+    <None Include="Resources\1a60c2f2fc65d70095705ddbcf188fd7.jpg" />
     <Content Include="Resources\LoginImg.png" />
     <None Include="Resources\LoginImg2.png" />
     <None Include="Resources\Welcome1.png" />
@@ -1104,6 +1151,8 @@
     <None Include="Resources\payment-method-in-illustration-vector.jpg" />
     <Content Include="Resources\report.png" />
     <None Include="Resources\undraw_open_note_6nva.png" />
+    <None Include="Resources\wedding_flowers.jpg" />
+    <None Include="Resources\wedding_flowers1.jpg" />
     <Content Include="Resources\Welcome.png" />
   </ItemGroup>
   <ItemGroup>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Flowershop_Thesis.OtherForms.AdvanceOrder.EventPackagesModalsAndList;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,12 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement.AdvanceOrderfolder
         public EventPackagesFrm()
         {
             InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            EventPackagesModal form = new EventPackagesModal();
+            form.ShowDialog();
         }
     }
 }

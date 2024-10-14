@@ -59,18 +59,105 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement.AdvanceOrderfolder
 
         private void button24_Click(object sender, EventArgs e)
         {
+            ChangeIds.TransactionLogID = label33.Text;
             AdvanceOrderEdit form = new AdvanceOrderEdit();
             form.ShowDialog();
         }
 
         private void button23_Click(object sender, EventArgs e)
         {
+            try
+            {
+                // Show the confirmation dialog with Yes and No buttons
+                DialogResult dialogResult = MessageBox.Show("Do you want to cancel this order?",
+                                                            "Order Cancellation",
+                                                            MessageBoxButtons.YesNo,
+                                                            MessageBoxIcon.Question);
+
+                // If the user clicks "Yes", proceed with the transaction
+                if (dialogResult == DialogResult.Yes)
+                {
+                    int numId = 0; // Initialize numId
+                    using (SqlConnection conn = new SqlConnection(Connect.connectionString))
+                    {
+                        // Query to count the number of records with the given OrderID
+                        string countQuery = "Select count(*) from AdvanceOrders where OrderID = @ID";
+                        using (SqlCommand countCommand = new SqlCommand(countQuery, conn))
+                        {
+                            conn.Open();
+
+                            // Add parameter for OrderID (ensure correct type)
+                            countCommand.Parameters.AddWithValue("@ID", ChangeIds.TransactionLogID);
+
+                            // Execute the count query and store the result in numId
+                            numId = (int)countCommand.ExecuteScalar();
+                        }
+                    }
+
+                    // Check if exactly one record exists for the given OrderID
+                    if (numId == 1)
+                    {
+                        using (SqlConnection conn = new SqlConnection(Connect.connectionString))
+                        {
+                            // Query to update the Status to 'Cancelled'
+                            string updateQuery = "UPDATE AdvanceOrders SET Status = 'Cancelled' WHERE OrderID = @ID;";
+                            using (SqlCommand updateCommand = new SqlCommand(updateQuery, conn))
+                            {
+                                conn.Open();
+
+                                // Add parameters for the update query
+                                updateCommand.Parameters.AddWithValue("@ID", ChangeIds.TransactionLogID);
+
+                                // Execute the update query
+                                int rowsAffected = updateCommand.ExecuteNonQuery();
+
+                                // Check if any rows were updated
+                                if (rowsAffected > 0)
+                                {
+                                    MessageBox.Show("Order has been cancelled successfully!");
+                                    getListOrder();
+                                    ordertoday();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("No row was updated. Please check the OrderID.");
+                                }
+                            }
+                        }
+                    }
+                    else if (numId > 1)
+                    {
+                        MessageBox.Show("There are multiple items with this OrderID.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("No item found with the given OrderID.");
+                    }
+                }
+                // If the user clicks "No", do nothing
+                else
+                {
+                    MessageBox.Show("Order cancellation aborted.");
+                }
+            }
+            catch (SqlException sqlEx)
+            {
+                MessageBox.Show("SQL Error: " + sqlEx.Message);
+            }
+            catch (InvalidCastException castEx)
+            {
+                MessageBox.Show("Data type error: " + castEx.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error on changing PickupDate: " + ex.Message);
+            }
 
         }
         public void getListOrder()
         {
             try
-            {   
+            {   flowLayoutPanel1.Controls.Clear();
                 using(SqlConnection con = new SqlConnection(Connect.connectionString))
                 {
                     con.Open();
@@ -127,7 +214,7 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement.AdvanceOrderfolder
                         int rowCount = (int)countCommand.ExecuteScalar();
                         AdvanceOrderListContents[] inv = new AdvanceOrderListContents[rowCount];
 
-                        string sqlQuery = "SELECT * FROM AdvanceOrders where Status = 'Active' order by PickupDate ASC ";
+                        string sqlQuery = "SELECT * FROM AdvanceOrders where Status = 'Active' order by PickupDate DESC ";
                         using (SqlCommand command = new SqlCommand(sqlQuery, con))
                         {
                             using (SqlDataReader reader = command.ExecuteReader())

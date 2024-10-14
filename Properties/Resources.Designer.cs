@@ -63,6 +63,16 @@ namespace Flowershop_Thesis.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _1a60c2f2fc65d70095705ddbcf188fd7 {
+            get {
+                object obj = ResourceManager.GetObject("1a60c2f2fc65d70095705ddbcf188fd7", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap addImg {
             get {
                 object obj = ResourceManager.GetObject("addImg", resourceCulture);
@@ -233,9 +243,39 @@ namespace Flowershop_Thesis.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap wedding_flowers {
+            get {
+                object obj = ResourceManager.GetObject("wedding_flowers", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap wedding_flowers1 {
+            get {
+                object obj = ResourceManager.GetObject("wedding_flowers1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Welcome {
             get {
                 object obj = ResourceManager.GetObject("Welcome", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap WP_Events_Flowers {
+            get {
+                object obj = ResourceManager.GetObject("WP Events Flowers", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

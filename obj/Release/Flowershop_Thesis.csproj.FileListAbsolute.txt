@@ -622,3 +622,8 @@ D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.Queuing
 D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.QueuingList.ReceivingList.resources
 D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.QueuingList.OrderInfoList.resources
 D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.SalesClerk.Queueing.OrderInfo.resources
+D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.SalesClerk.Order_Placement.AdvanceOrderfolder.EventPackagesFrm.resources
+D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.AdvanceOrder.EventPackagesModalsAndList.EventPackagesModal.resources
+D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.AdvanceOrder.EditOrderItems.SeeItemsListItems.resources
+D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.AdvanceOrder.EditOrderItems.EditItemList.resources
+D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.Reports.Calendar.CalItems.resources

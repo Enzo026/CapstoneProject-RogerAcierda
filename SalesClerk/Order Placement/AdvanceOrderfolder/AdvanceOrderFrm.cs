@@ -129,5 +129,15 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement.AdvanceOrderfolder
             AdvanceOrdersList form = new AdvanceOrdersList();
             form.Show();
         }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+            EventPackagesFrm frm = new EventPackagesFrm();
+            panel2.Controls.Clear();
+            frm.TopLevel = false; //para di mag agaw ng place
+            panel2.Controls.Add(frm); //ilalagay na natin yung form
+            frm.BringToFront(); //front yung form 
+            frm.Show();
+        }
     }
 }

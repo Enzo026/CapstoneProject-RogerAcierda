@@ -24,6 +24,8 @@ namespace Capstone_Flowershop.AdminForms.Reports.SalesReports
         int month, year, monthnow;
         public static SalesReport instance;
         public Label uid;
+        public Label PickDate;
+        bool FormisReady = false;
         public SalesReport()
         {
    
@@ -32,12 +34,14 @@ namespace Capstone_Flowershop.AdminForms.Reports.SalesReports
         
             instance = this;
             uid = label2;
-
+            PickDate = label14;
+  
 
             DateTime date = DateTime.Now;
             string datenow = DateTime.Now.Date.ToString();
             label3.Text = date.ToString();
            label2.Text = UserInfo.FullName;
+            
 
             getDaily();
             getMonthly();
@@ -115,9 +119,13 @@ namespace Capstone_Flowershop.AdminForms.Reports.SalesReports
             month = now.Month;
             monthnow = now.Month;
             year = now.Year;
+            label14.Text= now.ToString("MMM dd, yyyy");
+
             GetCalendar();
             getTransactions();
             donutChart();
+            getTransactions();
+            FormisReady = true;
         
         }
         private void button19_Click(object sender, EventArgs e)
@@ -179,6 +187,7 @@ namespace Capstone_Flowershop.AdminForms.Reports.SalesReports
         {
             try
             {
+              
                 using (SqlConnection con = new SqlConnection(Connect.connectionString))
                 {
                     con.Open();
@@ -214,6 +223,7 @@ namespace Capstone_Flowershop.AdminForms.Reports.SalesReports
 
                     }
                 }
+           
             }
             catch (Exception ex)
             {
@@ -226,7 +236,6 @@ namespace Capstone_Flowershop.AdminForms.Reports.SalesReports
         {
             BarChart();
         }
-
         public void donutChart()
         {
             DateTime date = DateTime.Now;
@@ -285,6 +294,16 @@ namespace Capstone_Flowershop.AdminForms.Reports.SalesReports
                 chart2.Series["VisualComparison"].Points[index2].Color = Color.LightGreen;
             }
         }
+
+        private void label14_TextChanged(object sender, EventArgs e)
+        {   
+            if(FormisReady)
+            {
+                getAdvanceOrders();
+            }
+          
+        }
+
         public void BarChart()
         {
             try
@@ -354,6 +373,64 @@ namespace Capstone_Flowershop.AdminForms.Reports.SalesReports
             catch (Exception ex)
             {
                 MessageBox.Show("Error on Displaying Transaction List: " + ex.Message);
+            }
+
+        }
+        public void getAdvanceOrders()
+        {
+           
+
+            // Parse the input date string into a DateTime object
+            
+
+            // Convert the parsed DateTime to 'MM/dd/yyyy' format
+            
+
+            // Display the result
+            try
+            {
+                FormisReady = false;
+                flowLayoutPanel3.Controls.Clear();
+                DateTime parsedDate = DateTime.ParseExact(label14.Text.Trim(), "MMM dd, yyyy", System.Globalization.CultureInfo.InvariantCulture);
+                //        string formattedDate = parsedDate.ToString("MM/dd/yyyy");
+                string formattedDate = "10/15/2024";
+                using (SqlConnection con = new SqlConnection(Connect.connectionString))
+                {
+                    con.Open();
+                    string countQuery = "SELECT count(*) FROM AdvanceOrders WHERE CONVERT(varchar, PickupDate, 103) = @Date AND Status = 'Active';";
+                    using (SqlCommand countCommand = new SqlCommand(countQuery, con))
+                    {   
+                        countCommand.Parameters.AddWithValue("@Date", formattedDate);
+                        int rowCount = (int)countCommand.ExecuteScalar();
+                        CalItems[] inv = new CalItems[rowCount];
+
+                        string sqlQuery = "SELECT * FROM AdvanceOrders WHERE CONVERT(varchar, PickupDate, 103) = @Date AND Status = 'Active';";
+                        using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                        {
+                            command.Parameters.AddWithValue("@Date", formattedDate);
+                            using (SqlDataReader reader = command.ExecuteReader())
+                            {
+                                int index = 0;
+                                while (reader.Read() && index < inv.Length)
+                                {
+                                    inv[index] = new CalItems();
+                                    inv[index].LocalID = reader["OrderID"].ToString().Trim();
+                                    inv[index].CustName = reader["CustomerName"].ToString().Trim();
+                                    inv[index].Price = reader["TotalPrice"].ToString().Trim();
+
+                                    flowLayoutPanel3.Controls.Add(inv[index]);
+                                    index++;
+                                }
+                            }
+                        }
+
+                    }
+                }
+                FormisReady = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error on Displaying Transaction List :" + ex.Message);
             }
 
         }

@@ -44,6 +44,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(54, 41);
             this.panel1.TabIndex = 0;
+            this.panel1.Click += new System.EventHandler(this.panel1_Click);
             // 
             // lineLbl
             // 
@@ -56,12 +57,12 @@
             // DayLbl
             // 
             this.DayLbl.Font = new System.Drawing.Font("Montserrat", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DayLbl.Location = new System.Drawing.Point(3, 5);
+            this.DayLbl.Location = new System.Drawing.Point(3, 0);
             this.DayLbl.Name = "DayLbl";
-            this.DayLbl.Size = new System.Drawing.Size(48, 26);
+            this.DayLbl.Size = new System.Drawing.Size(48, 41);
             this.DayLbl.TabIndex = 21;
             this.DayLbl.Text = "55";
-            this.DayLbl.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.DayLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.DayLbl.Click += new System.EventHandler(this.DayLbl_Click);
             // 
             // CalDays
