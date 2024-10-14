@@ -86,7 +86,7 @@ namespace Flowershop_Thesis.OtherForms.AdvanceOrder
         public int transID
         {
             get { return transactionID; }
-            set { transactionID = value; CustomerNameLbl.Text = value.ToString(); }
+            set { transactionID = value; }
         }
         [Category("ListItems")]
         public string Name

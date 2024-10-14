@@ -57,12 +57,13 @@
             this.button24.TabIndex = 25;
             this.button24.Text = "See Items...";
             this.button24.UseVisualStyleBackColor = false;
+            this.button24.Click += new System.EventHandler(this.button24_Click);
             // 
             // PriceLbl
             // 
             this.PriceLbl.AutoSize = true;
             this.PriceLbl.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PriceLbl.Location = new System.Drawing.Point(141, 33);
+            this.PriceLbl.Location = new System.Drawing.Point(116, 31);
             this.PriceLbl.Name = "PriceLbl";
             this.PriceLbl.Size = new System.Drawing.Size(72, 18);
             this.PriceLbl.TabIndex = 24;

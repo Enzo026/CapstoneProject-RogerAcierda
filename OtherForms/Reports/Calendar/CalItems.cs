@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Capstone_Flowershop;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -42,5 +43,12 @@ namespace Flowershop_Thesis.OtherForms.Reports.Calendar
         }
 
         #endregion
+
+        private void button24_Click(object sender, EventArgs e)
+        {
+            ChangeIds.TransactionLogID = ID;
+            AdvanceOrderListItems form = new AdvanceOrderListItems();
+            form.ShowDialog();
+        }
     }
 }

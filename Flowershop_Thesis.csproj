@@ -353,6 +353,18 @@
     <Compile Include="OtherForms\QueuingList\ReceivingList.Designer.cs">
       <DependentUpon>ReceivingList.cs</DependentUpon>
     </Compile>
+    <Compile Include="OtherForms\Reports\Calendar\AdvanceOrderListItems.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForms\Reports\Calendar\AdvanceOrderListItems.Designer.cs">
+      <DependentUpon>AdvanceOrderListItems.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\Reports\Calendar\AO_ListItems.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OtherForms\Reports\Calendar\AO_ListItems.Designer.cs">
+      <DependentUpon>AO_ListItems.cs</DependentUpon>
+    </Compile>
     <Compile Include="OtherForms\Reports\Calendar\CalBlank.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -370,6 +382,12 @@
     </Compile>
     <Compile Include="OtherForms\Reports\Calendar\CalItems.Designer.cs">
       <DependentUpon>CalItems.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\Reports\OIF_List.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OtherForms\Reports\OIF_List.Designer.cs">
+      <DependentUpon>OIF_List.cs</DependentUpon>
     </Compile>
     <Compile Include="OtherForms\Reports\OrderInfoFrm.cs">
       <SubType>Form</SubType>
@@ -896,6 +914,12 @@
     <EmbeddedResource Include="OtherForms\QueuingList\ReceivingList.resx">
       <DependentUpon>ReceivingList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\Reports\Calendar\AdvanceOrderListItems.resx">
+      <DependentUpon>AdvanceOrderListItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\Reports\Calendar\AO_ListItems.resx">
+      <DependentUpon>AO_ListItems.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="OtherForms\Reports\Calendar\CalBlank.resx">
       <DependentUpon>CalBlank.cs</DependentUpon>
     </EmbeddedResource>
@@ -904,6 +928,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="OtherForms\Reports\Calendar\CalItems.resx">
       <DependentUpon>CalItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\Reports\OIF_List.resx">
+      <DependentUpon>OIF_List.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OtherForms\Reports\OrderInfoFrm.resx">
       <DependentUpon>OrderInfoFrm.cs</DependentUpon>

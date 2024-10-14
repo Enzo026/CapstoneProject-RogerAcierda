@@ -77,4 +77,10 @@ namespace Capstone_Flowershop
         public static Image ProofofPayment { get; set; }
 
     }
+
+    public static class ViewInfo
+    {
+        public static string ID { get; set; }
+        public static string type { get; set; }
+    }
 }
