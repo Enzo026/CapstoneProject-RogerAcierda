@@ -14,6 +14,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Capstone_Flowershop.AdminForms.Reports
 {
@@ -298,7 +299,7 @@ namespace Capstone_Flowershop.AdminForms.Reports
                                     inv[index].status = reader["Evaluation"].ToString().Trim();
                                     inv[index].date = reader["CancellationDate"].ToString().Trim();
                                     inv[index].Qty = reader["TotalPrice"].ToString().Trim();
-
+                                    inv[index].Ordertype = reader["TransactionType"].ToString().Trim();
                                     flowLayoutPanel2.Controls.Add(inv[index]);
                                     index++;
                                 }
@@ -342,7 +343,7 @@ namespace Capstone_Flowershop.AdminForms.Reports
                                     inv[index].status = reader["Evaluation"].ToString().Trim();
                                     inv[index].date = reader["CancellationDate"].ToString().Trim();
                                     inv[index].Qty = reader["TotalPrice"].ToString().Trim();
-
+                                    inv[index].Ordertype = reader["TransactionType"].ToString().Trim();
                                     flowLayoutPanel2.Controls.Add(inv[index]);
                                     index++;
                                 }
@@ -386,6 +387,7 @@ namespace Capstone_Flowershop.AdminForms.Reports
                                     inv[index].status = reader["Evaluation"].ToString().Trim();
                                     inv[index].date = reader["CancellationDate"].ToString().Trim();
                                     inv[index].Qty = reader["TotalPrice"].ToString().Trim();
+                                    inv[index].Ordertype = reader["TransactionType"].ToString().Trim();
 
                                     flowLayoutPanel2.Controls.Add(inv[index]);
                                     index++;
@@ -410,6 +412,125 @@ namespace Capstone_Flowershop.AdminForms.Reports
         private void button19_Click(object sender, EventArgs e)
         {
             PendingList();
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                flowLayoutPanel2.Controls.Clear();
+                using (SqlConnection con = new SqlConnection(Connect.connectionString))
+                {
+                    con.Open();
+                    string countQuery = "SELECT COUNT(*) FROM CancelledTransaction where CustomerName = @Name";
+                    using (SqlCommand countCommand = new SqlCommand(countQuery, con))
+                    {
+                        countCommand.Parameters.AddWithValue("@name", textBox2.Text);
+                        int rowCount = (int)countCommand.ExecuteScalar();
+                        DisposalListItems[] inv = new DisposalListItems[rowCount];
+
+                        string sqlQuery = "SELECT * FROM CancelledTransaction where CustomerName = @Name;";
+                        using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                        {
+                            command.Parameters.AddWithValue("@name", textBox2.Text);
+                            using (SqlDataReader reader = command.ExecuteReader())
+                            {
+                                int index = 0;
+                                while (reader.Read() && index < inv.Length)
+                                {
+                                    inv[index] = new DisposalListItems();
+                                    inv[index].LocalID = reader["TransactionID"].ToString().Trim();
+                                    inv[index].CustName = reader["CustomerName"].ToString().Trim();
+                                    inv[index].Employee = reader["EmployeeName"].ToString().Trim();
+                                    inv[index].status = reader["Evaluation"].ToString().Trim();
+                                    inv[index].date = reader["CancellationDate"].ToString().Trim();
+                                    inv[index].Ordertype = reader["TransactionType"].ToString().Trim();
+                                    inv[index].Qty = reader["TotalPrice"].ToString().Trim();
+
+                                    flowLayoutPanel2.Controls.Add(inv[index]);
+                                    index++;
+                                }
+                            }
+                        }
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error on Displaying Transaction List :" + ex.Message);
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                flowLayoutPanel2.Controls.Clear();
+                using (SqlConnection con = new SqlConnection(Connect.connectionString))
+                {
+                    con.Open();
+
+                    // Define your start and end dates
+                    DateTime startDate = dateTimePicker4.Value.Date;
+                    DateTime endDate = dateTimePicker3.Value.Date;
+
+                    // Query to select data within the date range
+                    string sqlQuery = "SELECT * FROM CancelledTransaction WHERE CancellationDate BETWEEN @startDate AND @endDate;";
+                    using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                    {
+                        command.Parameters.AddWithValue("@startDate", startDate);
+                        command.Parameters.AddWithValue("@endDate", endDate);
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            // List to hold all transactions
+                            List<DisposalListItems> transactions = new List<DisposalListItems>();
+
+                            while (reader.Read())
+                            {
+                                // Extracting fields from the reader
+
+                                string ID = reader["TransactionID"].ToString().Trim();
+                                string CustName = reader["CustomerName"].ToString().Trim();
+                                string Employee = reader["EmployeeName"].ToString().Trim();
+                                string status = reader["Evaluation"].ToString().Trim();
+                                string date = reader["CancellationDate"].ToString().Trim();
+                                string Qty = reader["TotalPrice"].ToString().Trim();
+                                string Type = reader["TransactionType"].ToString().Trim();
+
+                                // Create a new TransactionsList instance
+                                DisposalListItems inv = new DisposalListItems
+                                {
+
+
+                                    LocalID = ID,
+                                    CustName = CustName,
+                                    Employee = Employee,
+                                    status = status,
+                                    date = date,
+                                    Qty = Qty,
+                                    Ordertype = Type
+                                };
+
+                                // Add to the list of transactions
+                                transactions.Add(inv);
+                            }
+
+                            // Add all controls to the FlowLayoutPanel
+                            foreach (var inv in transactions)
+                            {
+                                flowLayoutPanel2.Controls.Add(inv);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error on Displaying Transaction List: " + ex.Message);
+            }
+
         }
     }
 }

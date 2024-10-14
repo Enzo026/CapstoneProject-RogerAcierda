@@ -158,5 +158,10 @@ namespace Capstone_Flowershop.AdminForms.ProductMaintenance
             DeactivatedItemsFrm frm = new DeactivatedItemsFrm();
             frm.ShowDialog();
         }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            DisplayFlowers();
+        }
     }
 }

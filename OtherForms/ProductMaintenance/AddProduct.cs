@@ -99,5 +99,10 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
                 Image.Image = new Bitmap(open.FileName);
             }
         }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

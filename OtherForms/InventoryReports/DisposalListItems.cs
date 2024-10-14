@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Capstone_Flowershop;
+using Flowershop_Thesis.OtherForms.Reports;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -25,6 +27,7 @@ namespace Flowershop_Thesis.OtherForms.InventoryReports
         private string TotalQuantity;
         private string Status;
         private string Date;
+        private string type;
 
         [Category("ItemList")]
         public string TransID
@@ -67,6 +70,19 @@ namespace Flowershop_Thesis.OtherForms.InventoryReports
             get { return Date; }
             set { Date = value; DateLbl.Text = value.ToString(); }
         }
+        public string Ordertype
+        {
+            get { return type; }
+            set { type = value; TypeLbl.Text = value.ToString(); }
+        }
         #endregion
+
+        private void button30_Click(object sender, EventArgs e)
+        {
+            ViewInfo.ID = LocalID;
+            ViewInfo.type = TypeLbl.Text;
+            OrderInfoFrm frm = new OrderInfoFrm();
+            frm.ShowDialog();
+        }
     }
 }

@@ -36,12 +36,14 @@
             this.ItemsLbl = new System.Windows.Forms.Label();
             this.CustNameLbl = new System.Windows.Forms.Label();
             this.IdLbl = new System.Windows.Forms.Label();
+            this.TypeLbl = new System.Windows.Forms.Label();
             this.panel27.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel27
             // 
             this.panel27.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            this.panel27.Controls.Add(this.TypeLbl);
             this.panel27.Controls.Add(this.EmpLbl);
             this.panel27.Controls.Add(this.button30);
             this.panel27.Controls.Add(this.StatusLbl);
@@ -75,13 +77,14 @@
             this.button30.TabIndex = 14;
             this.button30.Text = "View full details";
             this.button30.UseVisualStyleBackColor = false;
+            this.button30.Click += new System.EventHandler(this.button30_Click);
             // 
             // StatusLbl
             // 
             this.StatusLbl.AutoSize = true;
             this.StatusLbl.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.StatusLbl.ForeColor = System.Drawing.Color.OrangeRed;
-            this.StatusLbl.Location = new System.Drawing.Point(668, 7);
+            this.StatusLbl.Location = new System.Drawing.Point(698, 7);
             this.StatusLbl.Name = "StatusLbl";
             this.StatusLbl.Size = new System.Drawing.Size(70, 15);
             this.StatusLbl.TabIndex = 13;
@@ -91,7 +94,7 @@
             // 
             this.DateLbl.AutoSize = true;
             this.DateLbl.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DateLbl.Location = new System.Drawing.Point(478, 7);
+            this.DateLbl.Location = new System.Drawing.Point(533, 7);
             this.DateLbl.Name = "DateLbl";
             this.DateLbl.Size = new System.Drawing.Size(105, 15);
             this.DateLbl.TabIndex = 12;
@@ -101,7 +104,7 @@
             // 
             this.ItemsLbl.AutoSize = true;
             this.ItemsLbl.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ItemsLbl.Location = new System.Drawing.Point(338, 7);
+            this.ItemsLbl.Location = new System.Drawing.Point(485, 7);
             this.ItemsLbl.Name = "ItemsLbl";
             this.ItemsLbl.Size = new System.Drawing.Size(13, 15);
             this.ItemsLbl.TabIndex = 10;
@@ -127,6 +130,16 @@
             this.IdLbl.TabIndex = 8;
             this.IdLbl.Text = "01";
             // 
+            // TypeLbl
+            // 
+            this.TypeLbl.AutoSize = true;
+            this.TypeLbl.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TypeLbl.Location = new System.Drawing.Point(347, 7);
+            this.TypeLbl.Name = "TypeLbl";
+            this.TypeLbl.Size = new System.Drawing.Size(13, 15);
+            this.TypeLbl.TabIndex = 16;
+            this.TypeLbl.Text = "3";
+            // 
             // DisposalListItems
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -149,5 +162,6 @@
         private System.Windows.Forms.Label ItemsLbl;
         private System.Windows.Forms.Label CustNameLbl;
         private System.Windows.Forms.Label IdLbl;
+        private System.Windows.Forms.Label TypeLbl;
     }
 }

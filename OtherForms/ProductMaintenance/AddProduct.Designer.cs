@@ -163,6 +163,7 @@
             this.label8.Size = new System.Drawing.Size(40, 13);
             this.label8.TabIndex = 67;
             this.label8.Text = "Cancel";
+            this.label8.Click += new System.EventHandler(this.label8_Click);
             // 
             // button1
             // 
@@ -293,7 +294,7 @@
             this.Controls.Add(this.label9);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name.Text = "";
+            this.Name = "AddProduct";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AddProduct";
             this.panel1.ResumeLayout(false);

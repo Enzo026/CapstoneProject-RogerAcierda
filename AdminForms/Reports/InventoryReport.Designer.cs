@@ -28,17 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label24 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label13 = new System.Windows.Forms.Label();
             this.chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
@@ -48,6 +49,7 @@
             this.label20 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel5 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -60,6 +62,7 @@
             this.label12 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
+            this.label14 = new System.Windows.Forms.Label();
             this.panel22 = new System.Windows.Forms.Panel();
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel23 = new System.Windows.Forms.Panel();
@@ -88,14 +91,19 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label38 = new System.Windows.Forms.Label();
+            this.dateTimePicker4 = new System.Windows.Forms.DateTimePicker();
+            this.label22 = new System.Windows.Forms.Label();
+            this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart2)).BeginInit();
             this.panel10.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel5.SuspendLayout();
             this.panel9.SuspendLayout();
             this.panel8.SuspendLayout();
@@ -105,8 +113,6 @@
             this.panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -186,6 +192,16 @@
             this.label27.TabIndex = 28;
             this.label27.Text = "Slow Moving";
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::Flowershop_Thesis.Properties.Resources.pexels_pixabay_60520;
+            this.pictureBox2.Location = new System.Drawing.Point(12, 16);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(131, 170);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 27;
+            this.pictureBox2.TabStop = false;
+            // 
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.SystemColors.ButtonHighlight;
@@ -212,14 +228,14 @@
             // 
             // chart2
             // 
-            chartArea7.Name = "ChartArea1";
-            this.chart2.ChartAreas.Add(chartArea7);
+            chartArea5.Name = "ChartArea1";
+            this.chart2.ChartAreas.Add(chartArea5);
             this.chart2.Location = new System.Drawing.Point(37, 34);
             this.chart2.Name = "chart2";
-            series7.ChartArea = "ChartArea1";
-            series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series7.Name = "PieChart1";
-            this.chart2.Series.Add(series7);
+            series5.ChartArea = "ChartArea1";
+            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series5.Name = "PieChart1";
+            this.chart2.Series.Add(series5);
             this.chart2.Size = new System.Drawing.Size(287, 113);
             this.chart2.TabIndex = 22;
             this.chart2.Text = "chart2";
@@ -291,6 +307,16 @@
             this.label18.Size = new System.Drawing.Size(171, 33);
             this.label18.TabIndex = 22;
             this.label18.Text = "Fast Moving";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Flowershop_Thesis.Properties.Resources.pexels_pixabay_60520;
+            this.pictureBox1.Location = new System.Drawing.Point(11, 16);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(131, 170);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
             // 
             // panel5
             // 
@@ -432,8 +458,18 @@
             this.panel8.Controls.Add(this.panel20);
             this.panel8.Location = new System.Drawing.Point(10, 578);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(1074, 494);
+            this.panel8.Size = new System.Drawing.Size(1074, 627);
             this.panel8.TabIndex = 5;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(477, 164);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(121, 15);
+            this.label14.TabIndex = 15;
+            this.label14.Text = "Date of Transaction";
             // 
             // panel22
             // 
@@ -524,7 +560,7 @@
             // 
             this.label81.AutoSize = true;
             this.label81.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label81.Location = new System.Drawing.Point(793, 101);
+            this.label81.Location = new System.Drawing.Point(795, 164);
             this.label81.Name = "label81";
             this.label81.Size = new System.Drawing.Size(65, 15);
             this.label81.TabIndex = 14;
@@ -534,7 +570,7 @@
             // 
             this.label82.AutoSize = true;
             this.label82.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label82.Location = new System.Drawing.Point(682, 101);
+            this.label82.Location = new System.Drawing.Point(684, 164);
             this.label82.Name = "label82";
             this.label82.Size = new System.Drawing.Size(45, 15);
             this.label82.TabIndex = 13;
@@ -544,7 +580,7 @@
             // 
             this.label88.AutoSize = true;
             this.label88.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label88.Location = new System.Drawing.Point(312, 101);
+            this.label88.Location = new System.Drawing.Point(314, 164);
             this.label88.Name = "label88";
             this.label88.Size = new System.Drawing.Size(68, 15);
             this.label88.TabIndex = 12;
@@ -555,7 +591,7 @@
             // 
             this.label90.AutoSize = true;
             this.label90.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label90.Location = new System.Drawing.Point(105, 101);
+            this.label90.Location = new System.Drawing.Point(107, 164);
             this.label90.Name = "label90";
             this.label90.Size = new System.Drawing.Size(103, 15);
             this.label90.TabIndex = 9;
@@ -565,7 +601,7 @@
             // 
             this.label91.AutoSize = true;
             this.label91.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label91.Location = new System.Drawing.Point(15, 101);
+            this.label91.Location = new System.Drawing.Point(17, 164);
             this.label91.Name = "label91";
             this.label91.Size = new System.Drawing.Size(20, 15);
             this.label91.TabIndex = 8;
@@ -573,14 +609,20 @@
             // 
             // flowLayoutPanel2
             // 
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 119);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(5, 182);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(1066, 374);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(1061, 420);
             this.flowLayoutPanel2.TabIndex = 1;
             // 
             // panel20
             // 
             this.panel20.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            this.panel20.Controls.Add(this.label38);
+            this.panel20.Controls.Add(this.dateTimePicker4);
+            this.panel20.Controls.Add(this.label22);
+            this.panel20.Controls.Add(this.dateTimePicker3);
+            this.panel20.Controls.Add(this.button1);
+            this.panel20.Controls.Add(this.label16);
             this.panel20.Controls.Add(this.button23);
             this.panel20.Controls.Add(this.button19);
             this.panel20.Controls.Add(this.button18);
@@ -588,7 +630,7 @@
             this.panel20.Controls.Add(this.label79);
             this.panel20.Location = new System.Drawing.Point(3, 3);
             this.panel20.Name = "panel20";
-            this.panel20.Size = new System.Drawing.Size(1064, 79);
+            this.panel20.Size = new System.Drawing.Size(1064, 149);
             this.panel20.TabIndex = 0;
             // 
             // button23
@@ -596,7 +638,7 @@
             this.button23.BackColor = System.Drawing.Color.White;
             this.button23.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button23.Font = new System.Drawing.Font("Montserrat", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button23.Location = new System.Drawing.Point(905, 39);
+            this.button23.Location = new System.Drawing.Point(156, 101);
             this.button23.Name = "button23";
             this.button23.Size = new System.Drawing.Size(137, 30);
             this.button23.TabIndex = 4;
@@ -609,7 +651,7 @@
             this.button19.BackColor = System.Drawing.Color.MediumSlateBlue;
             this.button19.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button19.Font = new System.Drawing.Font("Montserrat", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button19.Location = new System.Drawing.Point(734, 39);
+            this.button19.Location = new System.Drawing.Point(11, 101);
             this.button19.Name = "button19";
             this.button19.Size = new System.Drawing.Size(137, 30);
             this.button19.TabIndex = 3;
@@ -622,9 +664,9 @@
             this.button18.BackColor = System.Drawing.Color.LightCoral;
             this.button18.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button18.Font = new System.Drawing.Font("Montserrat", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button18.Location = new System.Drawing.Point(335, 41);
+            this.button18.Location = new System.Drawing.Point(165, 9);
             this.button18.Name = "button18";
-            this.button18.Size = new System.Drawing.Size(80, 30);
+            this.button18.Size = new System.Drawing.Size(120, 30);
             this.button18.TabIndex = 2;
             this.button18.Text = "Print";
             this.button18.UseVisualStyleBackColor = false;
@@ -632,10 +674,11 @@
             // textBox2
             // 
             this.textBox2.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(24, 46);
+            this.textBox2.Location = new System.Drawing.Point(11, 72);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(290, 23);
+            this.textBox2.Size = new System.Drawing.Size(282, 23);
             this.textBox2.TabIndex = 1;
+            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // label79
             // 
@@ -672,25 +715,25 @@
             // 
             // chart1
             // 
-            chartArea8.Name = "ChartArea1";
-            chartArea8.Position.Auto = false;
-            chartArea8.Position.Height = 79F;
-            chartArea8.Position.Width = 94F;
-            chartArea8.Position.X = 3F;
-            chartArea8.Position.Y = 21F;
-            this.chart1.ChartAreas.Add(chartArea8);
-            legend4.Name = "Legend1";
-            legend4.Position.Auto = false;
-            legend4.Position.Height = 20F;
-            legend4.Position.Width = 100F;
-            this.chart1.Legends.Add(legend4);
+            chartArea6.Name = "ChartArea1";
+            chartArea6.Position.Auto = false;
+            chartArea6.Position.Height = 79F;
+            chartArea6.Position.Width = 94F;
+            chartArea6.Position.X = 3F;
+            chartArea6.Position.Y = 21F;
+            this.chart1.ChartAreas.Add(chartArea6);
+            legend3.Name = "Legend1";
+            legend3.Position.Auto = false;
+            legend3.Position.Height = 20F;
+            legend3.Position.Width = 100F;
+            this.chart1.Legends.Add(legend3);
             this.chart1.Location = new System.Drawing.Point(8, 103);
             this.chart1.Name = "chart1";
-            series8.ChartArea = "ChartArea1";
-            series8.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series8.Legend = "Legend1";
-            series8.Name = "TSP";
-            this.chart1.Series.Add(series8);
+            series6.ChartArea = "ChartArea1";
+            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series6.Legend = "Legend1";
+            series6.Name = "TSP";
+            this.chart1.Series.Add(series6);
             this.chart1.Size = new System.Drawing.Size(300, 399);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
@@ -752,35 +795,66 @@
             this.label7.TabIndex = 6;
             this.label7.Text = "20";
             // 
-            // label14
+            // label16
             // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(475, 101);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(121, 15);
-            this.label14.TabIndex = 15;
-            this.label14.Text = "Date of Transaction";
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(12, 54);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(103, 15);
+            this.label16.TabIndex = 16;
+            this.label16.Text = "Customer Name";
             // 
-            // pictureBox2
+            // label38
             // 
-            this.pictureBox2.Image = global::Flowershop_Thesis.Properties.Resources.pexels_pixabay_60520;
-            this.pictureBox2.Location = new System.Drawing.Point(12, 16);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(131, 170);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 27;
-            this.pictureBox2.TabStop = false;
+            this.label38.AutoSize = true;
+            this.label38.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label38.Location = new System.Drawing.Point(665, 89);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(38, 15);
+            this.label38.TabIndex = 51;
+            this.label38.Text = "From";
             // 
-            // pictureBox1
+            // dateTimePicker4
             // 
-            this.pictureBox1.Image = global::Flowershop_Thesis.Properties.Resources.pexels_pixabay_60520;
-            this.pictureBox1.Location = new System.Drawing.Point(11, 16);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(131, 170);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.dateTimePicker4.CalendarFont = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker4.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker4.Location = new System.Drawing.Point(707, 81);
+            this.dateTimePicker4.Name = "dateTimePicker4";
+            this.dateTimePicker4.Size = new System.Drawing.Size(200, 23);
+            this.dateTimePicker4.TabIndex = 50;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.Location = new System.Drawing.Point(681, 116);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(20, 15);
+            this.label22.TabIndex = 49;
+            this.label22.Text = "To";
+            // 
+            // dateTimePicker3
+            // 
+            this.dateTimePicker3.CalendarFont = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker3.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker3.Location = new System.Drawing.Point(707, 110);
+            this.dateTimePicker3.Name = "dateTimePicker3";
+            this.dateTimePicker3.Size = new System.Drawing.Size(200, 23);
+            this.dateTimePicker3.TabIndex = 48;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Gainsboro;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(916, 81);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(137, 50);
+            this.button1.TabIndex = 47;
+            this.button1.Text = "Search By Date";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // InventoryReport
             // 
@@ -794,11 +868,13 @@
             this.panel1.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart2)).EndInit();
             this.panel10.ResumeLayout(false);
             this.panel10.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
             this.panel9.ResumeLayout(false);
@@ -815,8 +891,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -881,5 +955,11 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart chart2;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.DateTimePicker dateTimePicker4;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.DateTimePicker dateTimePicker3;
+        private System.Windows.Forms.Button button1;
     }
 }
