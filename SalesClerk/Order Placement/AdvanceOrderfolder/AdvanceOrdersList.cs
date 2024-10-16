@@ -477,7 +477,7 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement.AdvanceOrderfolder
         private void ordertoday() 
         {
             try
-            {
+            {   flowLayoutPanel2.Controls.Clear();
                 using(SqlConnection con = new SqlConnection(Connect.connectionString))
                 {
                     con.Open();

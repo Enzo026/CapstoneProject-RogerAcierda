@@ -84,7 +84,8 @@ namespace Flowershop_Thesis.OtherForms.Accounts
         }
         #endregion
 
-        private void label6_Click(object sender, EventArgs e)
+
+        private void button1_Click(object sender, EventArgs e)
         {
             AccountMaintenance.instance.AccID.Text = AccountID;
             AccountMaintenance.instance.AccName.Text = AccountName;
@@ -92,8 +93,7 @@ namespace Flowershop_Thesis.OtherForms.Accounts
             AccountMaintenance.instance.AccNum.Text = AccountContactNum;
             AccountMaintenance.instance.AccRole.Text = AccountRole;
             AccountMaintenance.instance.AccStatus.Text = AccountStatus;
-          //  AccountMaintenance.instance.AccImg.Image = AccountImage;
+            AccountMaintenance.instance.AccImg.Image = AccountImage;
         }
-
     }
 }

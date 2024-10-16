@@ -30,10 +30,10 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             this.SuspendLayout();
             // 
@@ -55,16 +55,6 @@
             this.label25.TabIndex = 16;
             this.label25.Text = "09356324259";
             // 
-            // label6
-            // 
-            this.label6.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(672, 22);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(92, 18);
-            this.label6.TabIndex = 15;
-            this.label6.Text = "Manage";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
-            // 
             // label7
             // 
             this.label7.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -82,6 +72,7 @@
             this.label8.Size = new System.Drawing.Size(227, 51);
             this.label8.TabIndex = 12;
             this.label8.Text = "Alexis Payot";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // pictureBox7
             // 
@@ -93,13 +84,23 @@
             this.pictureBox7.TabIndex = 13;
             this.pictureBox7.TabStop = false;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(668, 12);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(92, 39);
+            this.button1.TabIndex = 18;
+            this.button1.Text = "Manage";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // AccountsList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label25);
-            this.Controls.Add(this.label6);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.pictureBox7);
@@ -114,9 +115,9 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.PictureBox pictureBox7;
+        private System.Windows.Forms.Button button1;
     }
 }
