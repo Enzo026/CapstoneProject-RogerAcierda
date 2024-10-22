@@ -39,10 +39,73 @@ namespace Capstone_Flowershop.AdminForms.AccountsMaintenance
 
 
         }
-        public void DisplayList()
+        public void diplaysearch()
         {
             try
             {
+                flowLayoutPanel1.Controls.Clear();
+                using (SqlConnection conn = new SqlConnection(Connect.connectionString))
+                {
+                    conn.Open();
+                    string countQuery = "SELECT COUNT(*) FROM UserAccounts where Status = 'Available' AND FirstName like @fn OR LastName like @ln ";
+                    using (SqlCommand countCommand = new SqlCommand(countQuery, conn))
+                    {   
+                        countCommand.Parameters.AddWithValue("@fn", "%"+textBox1.Text + "%");
+                        countCommand.Parameters.AddWithValue("@ln", "%" + textBox1.Text + "%");
+                        int rowCount = (int)countCommand.ExecuteScalar();
+                        AccountsList[] inv = new AccountsList[rowCount];
+
+                        string sqlQuery = "SELECT * FROM UserAccounts where Status = 'Available' AND FirstName like @fn OR LastName like @ln ";
+                        using (SqlCommand command = new SqlCommand(sqlQuery, conn))
+                        {
+                            command.Parameters.AddWithValue("@fn", "%" + textBox1.Text + "%");
+                            command.Parameters.AddWithValue("@ln", "%" + textBox1.Text + "%");
+                            using (SqlDataReader reader = command.ExecuteReader())
+                            {
+                                int index = 0;
+                                while (reader.Read() && index < inv.Length)
+                                {
+                                    inv[index] = new AccountsList();
+                                    inv[index].AccID = reader["AccountID"].ToString().Trim();
+                                    inv[index].AccName = reader["FirstName"].ToString().Trim() + " " + reader["LastName"].ToString().Trim();
+                                    inv[index].AccUsername = reader["Username"].ToString().Trim();
+                                    inv[index].AccRole = reader["Role"].ToString().Trim();
+                                    inv[index].AccStatus = reader["Status"].ToString().Trim();
+                                    inv[index].AccContact = reader["ContactNumber"].ToString().Trim();
+
+                                    inv[index].AccType = reader["Role"].ToString();
+
+                                    if (reader["AccountImage"] != DBNull.Value)
+                                    {
+                                        byte[] imageData = (byte[])reader["AccountImage"];
+                                        using (MemoryStream ms = new MemoryStream(imageData))
+                                        {
+                                            inv[index].img = Image.FromStream(ms);
+                                        }
+                                    }
+
+                                    flowLayoutPanel1.Controls.Add(inv[index]);
+                                    index++;
+                                }
+                            }
+                        }
+
+                    }
+
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error AccountList: " + ex.Message);
+            }
+        }
+        public void DisplayList()
+        {
+            try
+            {   
+                flowLayoutPanel1.Controls.Clear();
                 using (SqlConnection conn = new SqlConnection(Connect.connectionString))
                 {
                     conn.Open();
@@ -312,6 +375,23 @@ namespace Capstone_Flowershop.AdminForms.AccountsMaintenance
             if (isLoaded == true)
             {
                 flowLayoutPanel2.Controls.Clear();
+                LoadList();
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            if(textBox1.Text.Length > 0)
+            {
+                diplaysearch();
+            }
+            else
+            {
                 LoadList();
             }
         }

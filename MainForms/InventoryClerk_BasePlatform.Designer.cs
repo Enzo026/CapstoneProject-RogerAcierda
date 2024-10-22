@@ -30,6 +30,8 @@
         {
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.EmpName = new System.Windows.Forms.Label();
             this.button7 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
@@ -41,8 +43,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.EmpName = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -71,6 +71,26 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(321, 852);
             this.panel1.TabIndex = 6;
+            // 
+            // label6
+            // 
+            this.label6.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(-1, 67);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(315, 23);
+            this.label6.TabIndex = 11;
+            this.label6.Text = "______________________________________";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // EmpName
+            // 
+            this.EmpName.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EmpName.Location = new System.Drawing.Point(3, 86);
+            this.EmpName.Name = "EmpName";
+            this.EmpName.Size = new System.Drawing.Size(315, 23);
+            this.EmpName.TabIndex = 10;
+            this.EmpName.Text = "Employee";
+            this.EmpName.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // button7
             // 
@@ -196,6 +216,7 @@
             this.label3.Size = new System.Drawing.Size(21, 24);
             this.label3.TabIndex = 8;
             this.label3.Text = "_";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label2
             // 
@@ -207,26 +228,7 @@
             this.label2.Size = new System.Drawing.Size(24, 24);
             this.label2.TabIndex = 5;
             this.label2.Text = "X";
-            // 
-            // label6
-            // 
-            this.label6.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(-1, 67);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(315, 23);
-            this.label6.TabIndex = 11;
-            this.label6.Text = "______________________________________";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // EmpName
-            // 
-            this.EmpName.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.EmpName.Location = new System.Drawing.Point(3, 86);
-            this.EmpName.Name = "EmpName";
-            this.EmpName.Size = new System.Drawing.Size(315, 23);
-            this.EmpName.TabIndex = 10;
-            this.EmpName.Text = "Employee";
-            this.EmpName.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // InventoryClerk_BasePlatform
             // 
@@ -243,6 +245,7 @@
             this.Name = "InventoryClerk_BasePlatform";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "InventoryClerk_BasePlatform";
+            this.Load += new System.EventHandler(this.InventoryClerk_BasePlatform_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);

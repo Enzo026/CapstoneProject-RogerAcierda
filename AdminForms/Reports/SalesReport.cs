@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,6 +25,8 @@ namespace Capstone_Flowershop.AdminForms.Reports.SalesReports
         int month, year, monthnow;
         public static SalesReport instance;
         public Label uid;
+        public Label PickDate;
+        bool FormisReady = false;
         public SalesReport()
         {
    
@@ -32,12 +35,15 @@ namespace Capstone_Flowershop.AdminForms.Reports.SalesReports
         
             instance = this;
             uid = label2;
-
+            PickDate = label14;
+  
 
             DateTime date = DateTime.Now;
             string datenow = DateTime.Now.Date.ToString();
             label3.Text = date.ToString();
            label2.Text = UserInfo.FullName;
+
+
 
             getDaily();
             getMonthly();
@@ -115,9 +121,14 @@ namespace Capstone_Flowershop.AdminForms.Reports.SalesReports
             month = now.Month;
             monthnow = now.Month;
             year = now.Year;
+            label14.Text= now.ToString("MMM dd, yyyy");
+
             GetCalendar();
             getTransactions();
             donutChart();
+            getTransactions();
+            getAdvanceOrders();
+            FormisReady = true;
         
         }
         private void button19_Click(object sender, EventArgs e)
@@ -179,6 +190,7 @@ namespace Capstone_Flowershop.AdminForms.Reports.SalesReports
         {
             try
             {
+              
                 using (SqlConnection con = new SqlConnection(Connect.connectionString))
                 {
                     con.Open();
@@ -214,6 +226,7 @@ namespace Capstone_Flowershop.AdminForms.Reports.SalesReports
 
                     }
                 }
+           
             }
             catch (Exception ex)
             {
@@ -226,7 +239,6 @@ namespace Capstone_Flowershop.AdminForms.Reports.SalesReports
         {
             BarChart();
         }
-
         public void donutChart()
         {
             DateTime date = DateTime.Now;
@@ -285,6 +297,127 @@ namespace Capstone_Flowershop.AdminForms.Reports.SalesReports
                 chart2.Series["VisualComparison"].Points[index2].Color = Color.LightGreen;
             }
         }
+
+        private void label14_TextChanged(object sender, EventArgs e)
+        {   
+            if(FormisReady)
+            {
+                getAdvanceOrders();
+            }
+          
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                flowLayoutPanel1.Controls.Clear();
+                using (SqlConnection con = new SqlConnection(Connect.connectionString))
+                {
+                    con.Open();
+                    string countQuery = "SELECT COUNT(*) FROM FinishedTransactionList Where CustomerName = @name";
+                    using (SqlCommand countCommand = new SqlCommand(countQuery, con))
+                    {   
+                        countCommand.Parameters.AddWithValue("@name", textBox1.Text);
+                        int rowCount = (int)countCommand.ExecuteScalar();
+                        TransactionsList[] inv = new TransactionsList[rowCount];
+
+                        string sqlQuery = "SELECT * FROM FinishedTransactionList  Where CustomerName = @name";
+                        using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                        {
+                            command.Parameters.AddWithValue("@name", textBox1.Text);
+                            using (SqlDataReader reader = command.ExecuteReader())
+                            {
+                                int index = 0;
+                                while (reader.Read() && index < inv.Length)
+                                {
+                                    inv[index] = new TransactionsList();
+                                    inv[index].LocalID = reader["ID"].ToString().Trim();
+                                    inv[index].TransID = reader["TransactionID"].ToString().Trim();
+                                    inv[index].CustName = reader["CustomerName"].ToString().Trim();
+                                    inv[index].Price = reader["TotalPrice"].ToString().Trim();
+                                    inv[index].Employee = reader["EmployeeName"].ToString().Trim();
+                                    inv[index].Type = reader["TransactionType"].ToString().Trim();
+                                    inv[index].Date = reader["DOC"].ToString().Trim();
+
+                                    flowLayoutPanel1.Controls.Add(inv[index]);
+                                    index++;
+                                }
+                            }
+                        }
+
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error on Displaying Transaction List :" + ex.Message);
+            }
+        }
+
+        private void button18_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                flowLayoutPanel1.Controls.Clear();
+                using (SqlConnection con = new SqlConnection(Connect.connectionString))
+                {
+                    con.Open();
+
+                    // Define your start and end dates
+                    DateTime startDate = dateTimePicker4.Value.Date;
+                    DateTime endDate = dateTimePicker3.Value.Date;
+
+                    // Query to select data within the date range
+                    string sqlQuery = "SELECT * FROM FinishedTransactionList WHERE DOC BETWEEN @startDate AND @endDate;";
+                    using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                    {
+                        command.Parameters.AddWithValue("@startDate", startDate);
+                        command.Parameters.AddWithValue("@endDate", endDate);
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            // List to hold all transactions
+                            List<TransactionsList> transactions = new List<TransactionsList>();
+
+                            while (reader.Read())
+                            {
+                                // Extracting fields from the reader
+                                DateTime date = (DateTime)reader["DOC"];
+                                decimal amount = decimal.Parse(reader["TotalPrice"].ToString());
+                                string transID = reader["TransactionID"].ToString();
+                                string transactionType = reader["TransactionType"].ToString();
+
+                                // Create a new TransactionsList instance
+                                TransactionsList inv = new TransactionsList
+                                {
+                                    LocalID = transID, // Use appropriate ID
+                                    Price = amount.ToString("C"), // Format as currency
+                                    Date = date.ToString("d"), // Format date as desired
+                                };
+
+                                // Add to the list of transactions
+                                transactions.Add(inv);
+                            }
+
+                            // Add all controls to the FlowLayoutPanel
+                            foreach (var inv in transactions)
+                            {
+                                flowLayoutPanel1.Controls.Add(inv);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error on Displaying Transaction List: " + ex.Message);
+            }
+
+
+        }
+
         public void BarChart()
         {
             try
@@ -354,6 +487,64 @@ namespace Capstone_Flowershop.AdminForms.Reports.SalesReports
             catch (Exception ex)
             {
                 MessageBox.Show("Error on Displaying Transaction List: " + ex.Message);
+            }
+
+        }
+        public void getAdvanceOrders()
+        {
+           
+
+            // Parse the input date string into a DateTime object
+            
+
+            // Convert the parsed DateTime to 'MM/dd/yyyy' format
+            
+
+            // Display the result
+            try
+            {
+                FormisReady = false;
+                flowLayoutPanel3.Controls.Clear();
+                DateTime parsedDate = DateTime.ParseExact(label14.Text.Trim(), "MMM d, yyyy", System.Globalization.CultureInfo.InvariantCulture);
+                string formattedDate = parsedDate.ToString("dd/MM/yyyy");
+                
+                using (SqlConnection con = new SqlConnection(Connect.connectionString))
+                {
+                    con.Open();
+                    string countQuery = "SELECT count(*) FROM AdvanceOrders WHERE CONVERT(varchar, PickupDate, 103) = @Date AND Status = 'Active';";
+                    using (SqlCommand countCommand = new SqlCommand(countQuery, con))
+                    {   
+                        countCommand.Parameters.AddWithValue("@Date", formattedDate);
+                        int rowCount = (int)countCommand.ExecuteScalar();
+                        CalItems[] inv = new CalItems[rowCount];
+
+                        string sqlQuery = "SELECT * FROM AdvanceOrders WHERE CONVERT(varchar, PickupDate, 103) = @Date AND Status = 'Active';";
+                        using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                        {
+                            command.Parameters.AddWithValue("@Date", formattedDate);
+                            using (SqlDataReader reader = command.ExecuteReader())
+                            {
+                                int index = 0;
+                                while (reader.Read() && index < inv.Length)
+                                {
+                                    inv[index] = new CalItems();
+                                    inv[index].LocalID = reader["OrderID"].ToString().Trim();
+                                    inv[index].CustName = reader["CustomerName"].ToString().Trim();
+                                    inv[index].Price = reader["TotalPrice"].ToString().Trim();
+
+                                    flowLayoutPanel3.Controls.Add(inv[index]);
+                                    index++;
+                                }
+                            }
+                        }
+
+                    }
+                }
+                FormisReady = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error on Displaying Transaction List :" + ex.Message);
             }
 
         }

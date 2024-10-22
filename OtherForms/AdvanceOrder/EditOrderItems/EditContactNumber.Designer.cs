@@ -90,6 +90,7 @@
             this.button1.TabIndex = 7;
             this.button1.Text = "Proceed Changes";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -113,6 +114,7 @@
             this.Controls.Add(this.label1);
             this.Name = "EditContactNumber";
             this.Size = new System.Drawing.Size(356, 477);
+            this.Load += new System.EventHandler(this.EditContactNumber_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

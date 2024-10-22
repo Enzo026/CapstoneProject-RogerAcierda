@@ -11,8 +11,13 @@ namespace Capstone_Flowershop
     public static class Connect
     {
         public static string sqlServer = "DESKTOP-IH4V487\\NEWMSSQL"; // Replace with your SQL server name
-        public static string connectionString = $"Server=DESKTOP-IH4V487\\NEWMSSQL;Database=FlowershopSystemDB;Integrated Security=True;";
-        public static string connectionStrings = $"Data Source=DESKTOP-IH4V487\\NEWMSSQL;AttachDbFilename=D:\\CapstoneProject-RogerAcierda\\FlowershopSystemDB.mdf;Initial Catalog=FlowershopSystemDB;Integrated Security=True";
+        public static string connectionString = $"Server=DESKTOP-IH4V487\\NEWMSSQL;Database=D:\\CAPSTONEPROJECT-ROGERACIERDA\\FLOWERSHOPSYSTEMDB.MDF;Integrated Security=True;";
+        public static string connectionString2 = $"Data Source=DESKTOP-IH4V487\\NEWMSSQL;AttachDbFilename=D:\\CapstoneProject-RogerAcierda\\FlowershopSystemDB.mdf;Initial Catalog=FlowershopSystemDB;Integrated Security=True";
+
+        //laptop
+        public static string connectionStrings = $"Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"D:\\Thesis Repository Capstone\\CapstoneProject-RogerAcierda\\FlowershopSystemDB.mdf\";Integrated Security=True";
+
+
     }
     public static class UserInfo
     {
@@ -58,6 +63,8 @@ namespace Capstone_Flowershop
 
         public static string TransactionLogID { get; set; } 
 
+        public static string OrderInfo { get; set; }
+
  
 
     }
@@ -74,5 +81,16 @@ namespace Capstone_Flowershop
         public static string PaymentMethod { get; set; }
         public static Image ProofofPayment { get; set; }
 
+    }
+
+    public static class ViewInfo
+    {
+        public static string ID { get; set; }
+        public static string type { get; set; }
+    }
+    public static class RestockingProcess
+    {
+        public static int ID { get; set; }
+        public static string type { get; set; }
     }
 }

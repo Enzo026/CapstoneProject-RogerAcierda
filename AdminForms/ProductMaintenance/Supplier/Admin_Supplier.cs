@@ -48,7 +48,223 @@ namespace Flowershop_Thesis.AdminForms.ProductMaintenance.Supplier
 
         }
         #region methods
+        public void SortItemsTextBox()
+        {
+            try
+            {
+                flowLayoutPanel1.Controls.Clear();
+                using (SqlConnection con = new SqlConnection(Connect.connectionString))
+                {
+                    con.Open();
+                    string countQuery = "SELECT COUNT(*) FROM Supplier where Status = 'Active' AND SupplierName like @name  ";
+                    using (SqlCommand countCommand = new SqlCommand(countQuery, con))
+                    {
+                        countCommand.Parameters.AddWithValue("@name", textBox1.Text.Trim() + "%");
+                        int rowCount = (int)countCommand.ExecuteScalar();
+                        Admin_SupplierList[] inv = new Admin_SupplierList[rowCount];
 
+                        string sqlQuery = "SELECT * FROM Supplier where Status = 'Active' AND SupplierName like @name ";
+                        using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                        {
+                            command.Parameters.AddWithValue("@name", textBox1.Text.Trim()+"%");
+                            using (SqlDataReader reader = command.ExecuteReader())
+                            {
+                                int index = 0;
+                                while (reader.Read() && index < inv.Length)
+                                {
+                                    inv[index] = new Admin_SupplierList();
+                                    inv[index].SuppID = reader["SupplierID"].ToString();
+                                    inv[index].Suppname = reader["SupplierName"].ToString();
+                                    inv[index].SuppType = reader["SupplierType"].ToString();
+                                    inv[index].SuppContact = reader["ContactNumber"].ToString();
+                                    inv[index].SuppAdd = reader["SupplierAddress"].ToString();
+
+                                    if (reader["Image"] != DBNull.Value)
+                                    {
+                                        byte[] imageData = (byte[])reader["Image"];
+                                        using (MemoryStream ms = new MemoryStream(imageData))
+                                        {
+                                            inv[index].img = Image.FromStream(ms);
+                                        }
+                                    }
+
+                                    flowLayoutPanel1.Controls.Add(inv[index]);
+                                    index++;
+                                }
+                            }
+                        }
+
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error Materials: " + ex.Message);
+            }
+        }
+        public void SortMaterialSupplier()
+        {
+            try
+            {
+                flowLayoutPanel1.Controls.Clear();
+                using (SqlConnection con = new SqlConnection(Connect.connectionString))
+                {
+                    con.Open();
+                    string countQuery = "SELECT COUNT(*) FROM Supplier where Status = 'Active' AND SupplierType = 'Materials'  ";
+                    using (SqlCommand countCommand = new SqlCommand(countQuery, con))
+                    {
+                        int rowCount = (int)countCommand.ExecuteScalar();
+                        Admin_SupplierList[] inv = new Admin_SupplierList[rowCount];
+
+                        string sqlQuery = "SELECT * FROM Supplier where Status = 'Active' AND SupplierType = 'Materials' ";
+                        using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                        {
+
+                            using (SqlDataReader reader = command.ExecuteReader())
+                            {
+                                int index = 0;
+                                while (reader.Read() && index < inv.Length)
+                                {
+                                    inv[index] = new Admin_SupplierList();
+                                    inv[index].SuppID = reader["SupplierID"].ToString();
+                                    inv[index].Suppname = reader["SupplierName"].ToString();
+                                    inv[index].SuppType = reader["SupplierType"].ToString();
+                                    inv[index].SuppContact = reader["ContactNumber"].ToString();
+                                    inv[index].SuppAdd = reader["SupplierAddress"].ToString();
+
+                                    if (reader["Image"] != DBNull.Value)
+                                    {
+                                        byte[] imageData = (byte[])reader["Image"];
+                                        using (MemoryStream ms = new MemoryStream(imageData))
+                                        {
+                                            inv[index].img = Image.FromStream(ms);
+                                        }
+                                    }
+
+                                    flowLayoutPanel1.Controls.Add(inv[index]);
+                                    index++;
+                                }
+                            }
+                        }
+
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error Materials: " + ex.Message);
+            }
+        }
+        public void SortFlowerSupplier()
+        {
+            try
+            {
+                flowLayoutPanel1.Controls.Clear();
+                using (SqlConnection con = new SqlConnection(Connect.connectionString))
+                {
+                    con.Open();
+                    string countQuery = "SELECT COUNT(*) FROM Supplier where Status = 'Active' AND SupplierType = 'Flowers'  ";
+                    using (SqlCommand countCommand = new SqlCommand(countQuery, con))
+                    {
+                        int rowCount = (int)countCommand.ExecuteScalar();
+                        Admin_SupplierList[] inv = new Admin_SupplierList[rowCount];
+
+                        string sqlQuery = "SELECT * FROM Supplier where Status = 'Active' AND SupplierType = 'Flowers' ";
+                        using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                        {
+
+                            using (SqlDataReader reader = command.ExecuteReader())
+                            {
+                                int index = 0;
+                                while (reader.Read() && index < inv.Length)
+                                {
+                                    inv[index] = new Admin_SupplierList();
+                                    inv[index].SuppID = reader["SupplierID"].ToString();
+                                    inv[index].Suppname = reader["SupplierName"].ToString();
+                                    inv[index].SuppType = reader["SupplierType"].ToString();
+                                    inv[index].SuppContact = reader["ContactNumber"].ToString();
+                                    inv[index].SuppAdd = reader["SupplierAddress"].ToString();
+
+                                    if (reader["Image"] != DBNull.Value)
+                                    {
+                                        byte[] imageData = (byte[])reader["Image"];
+                                        using (MemoryStream ms = new MemoryStream(imageData))
+                                        {
+                                            inv[index].img = Image.FromStream(ms);
+                                        }
+                                    }
+
+                                    flowLayoutPanel1.Controls.Add(inv[index]);
+                                    index++;
+                                }
+                            }
+                        }
+
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error Flower: " + ex.Message);
+            }
+        }
+        public void DisplayListAZ()
+        {
+            try
+            {
+                flowLayoutPanel1.Controls.Clear();
+                using (SqlConnection con = new SqlConnection(Connect.connectionString))
+                {
+                    con.Open();
+                    string countQuery = "SELECT COUNT(*) FROM Supplier where Status = 'Active'  ";
+                    using (SqlCommand countCommand = new SqlCommand(countQuery, con))
+                    {
+                        int rowCount = (int)countCommand.ExecuteScalar();
+                        Admin_SupplierList[] inv = new Admin_SupplierList[rowCount];
+
+                        string sqlQuery = "SELECT * FROM Supplier where Status = 'Active' order by SupplierName asc";
+                        using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                        {
+
+                            using (SqlDataReader reader = command.ExecuteReader())
+                            {
+                                int index = 0;
+                                while (reader.Read() && index < inv.Length)
+                                {
+                                    inv[index] = new Admin_SupplierList();
+                                    inv[index].SuppID = reader["SupplierID"].ToString();
+                                    inv[index].Suppname = reader["SupplierName"].ToString();
+                                    inv[index].SuppType = reader["SupplierType"].ToString();
+                                    inv[index].SuppContact = reader["ContactNumber"].ToString();
+                                    inv[index].SuppAdd = reader["SupplierAddress"].ToString();
+
+                                    if (reader["Image"] != DBNull.Value)
+                                    {
+                                        byte[] imageData = (byte[])reader["Image"];
+                                        using (MemoryStream ms = new MemoryStream(imageData))
+                                        {
+                                            inv[index].img = Image.FromStream(ms);
+                                        }
+                                    }
+
+                                    flowLayoutPanel1.Controls.Add(inv[index]);
+                                    index++;
+                                }
+                            }
+                        }
+
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                //MessageBox.Show("Error Individual: " + ex.Message);
+            }
+        }
         public void DisplayList()
         {
             try
@@ -270,6 +486,34 @@ namespace Flowershop_Thesis.AdminForms.ProductMaintenance.Supplier
         private void label15_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            DisplayListAZ();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            SortFlowerSupplier();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            SortMaterialSupplier();
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            if(textBox1.Text.Length > 0)
+            {
+                SortItemsTextBox();
+            }
+            else
+            {
+                DisplayList();
+            }
+            
         }
     }
 }

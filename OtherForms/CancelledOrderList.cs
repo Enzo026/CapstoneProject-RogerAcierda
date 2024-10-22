@@ -25,7 +25,7 @@ namespace Flowershop_Thesis.OtherForms
         #region FinishedQueue
         private string name;
         private int transactionID;
-        private double price;
+        private decimal price;
 
 
 
@@ -37,7 +37,7 @@ namespace Flowershop_Thesis.OtherForms
             set { transactionID = value; IdLbl.Text = value.ToString(); }
         }
         [Category("QueueList")]
-        public double Price
+        public decimal Price
         {
             get { return price; }
             set { price = value; PriceLbl.Text = value.ToString(); }
@@ -53,30 +53,7 @@ namespace Flowershop_Thesis.OtherForms
 
         private void label1_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Do you want this order to be Reverted back to processing?", "Revert Order", MessageBoxButtons.YesNo);
-            if (result == DialogResult.Yes)
-            {   
-                using(SqlConnection con = new SqlConnection(Connect.connectionString))
-                {
-                    string updateQuery = "UPDATE TransactionsTbl SET Status = 'Processing' WHERE TransactionID = @ID;";
-                    con.Open();
-                    using (SqlCommand updateCommand = new SqlCommand(updateQuery, con))
-                    {
 
-                        updateCommand.Parameters.AddWithValue("@ID", transactionID);
-
-                        updateCommand.ExecuteNonQuery();
-
-                        int queue = int.Parse(QueuingFormBack.instance.lblcounter.Text);
-                        int addqueue = queue + 1;
-                        QueuingFormBack.instance.lblcounter.Text = addqueue.ToString();
-
-                    }
-                    string def = UserInfo.Empleyado + " Re-List the order (" + transactionID + "). Order is now Available Again";
-                    addTransactionLog(name, price.ToString(), transactionID.ToString(), def);
-                    MessageBox.Show("Order Reverted");
-                }
-            }
         }
         public void addTransactionLog(string CustomerName, string Price, string TId, string definition)
         {
@@ -105,6 +82,34 @@ namespace Flowershop_Thesis.OtherForms
             catch (Exception ex)
             {
                 MessageBox.Show("Adding Activity Failed!" + " : " + ex);
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Do you want this order to be Reverted back to processing?", "Revert Order", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                using (SqlConnection con = new SqlConnection(Connect.connectionString))
+                {
+                    string updateQuery = "UPDATE TransactionsTbl SET Status = 'Processing' WHERE TransactionID = @ID;";
+                    con.Open();
+                    using (SqlCommand updateCommand = new SqlCommand(updateQuery, con))
+                    {
+
+                        updateCommand.Parameters.AddWithValue("@ID", transactionID);
+
+                        updateCommand.ExecuteNonQuery();
+
+                        int queue = int.Parse(QueuingFormBack.instance.lblcounter.Text);
+                        int addqueue = queue + 1;
+                        QueuingFormBack.instance.lblcounter.Text = addqueue.ToString();
+
+                    }
+                    string def = UserInfo.Empleyado + " Re-List the order (" + transactionID + "). Order is now Available Again";
+                    addTransactionLog(name, price.ToString(), transactionID.ToString(), def);
+                    MessageBox.Show("Order Reverted");
+                }
             }
         }
     }

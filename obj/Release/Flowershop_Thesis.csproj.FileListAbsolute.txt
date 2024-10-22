@@ -256,8 +256,6 @@ E:\Git Thesis Repo\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.ex
 E:\Git Thesis Repo\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.application
 E:\Git Thesis Repo\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.exe
 E:\Git Thesis Repo\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.pdb
-D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\bin\Release\try.mdf
-D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\bin\Release\try_log.ldf
 D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\bin\Release\Flowershop_Thesis.exe.config
 D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\bin\Release\Flowershop_Thesis.exe.manifest
 D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\bin\Release\Flowershop_Thesis.application
@@ -274,7 +272,6 @@ D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Capstone_
 D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Capstone_Flowershop.AdminForms.Reports.SalesReports.SalesReport.resources
 D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Capstone_Flowershop.AdminForms.System_Maintenance.SystemMaintenance.resources
 D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.InventoryClerk.LandingPage.DashboardFrm.resources
-D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.InventoryClerk.Restocking.RestockingForm.resources
 D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.InventoryClerk.StockAdjustment.StockAdjustmentFrmcs.resources
 D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Capstone_Flowershop.Form1.resources
 D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Capstone_Flowershop.MainForms.Admin_BasePlatform.resources
@@ -618,3 +615,83 @@ D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.Reports
 D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.Reports.TransactionsList.resources
 D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.InventoryReports.DisposalListItems.resources
 D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.Reports.OrderInfoFrm.resources
+D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.QueuingList.PaymentList.resources
+D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.QueuingList.ReceivingList.resources
+D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.QueuingList.OrderInfoList.resources
+D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.SalesClerk.Queueing.OrderInfo.resources
+D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.SalesClerk.Order_Placement.AdvanceOrderfolder.EventPackagesFrm.resources
+D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.AdvanceOrder.EventPackagesModalsAndList.EventPackagesModal.resources
+D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.AdvanceOrder.EditOrderItems.SeeItemsListItems.resources
+D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.AdvanceOrder.EditOrderItems.EditItemList.resources
+D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.Reports.Calendar.CalItems.resources
+D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.Reports.Calendar.AdvanceOrderListItems.resources
+D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.Reports.Calendar.AO_ListItems.resources
+D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.Reports.OIF_List.resources
+D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.AdminForms.ProductMaintenance.Supplier.Admin_Supplier.resources
+D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.InventoryClerk.Restocking.RestockNew.resources
+D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.Accounts.AccountsList.resources
+D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.Accounts.DeactivatedAccounts.resources
+D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.Accounts.EditAccount.resources
+D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.Accounts.EditAccountContents.AccountInfo.resources
+D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.Accounts.EditAccountContents.EditRole.resources
+D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.Accounts.EditAccountContents.EditUserInfo.resources
+D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.AdminDashboard.ReportTabContents.resources
+D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.AdvanceOrder.EditOrderItems.EditItemList.resources
+D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.AdvanceOrder.EditOrderItems.SeeItemsListItems.resources
+D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.AdvanceOrder.EventPackagesModalsAndList.EventPackagesModal.resources
+D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.HistoryLogs.ActivityLogsList.resources
+D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.HistoryLogs.LogInformation.resources
+D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.HistoryLogs.TransactionLogsList.resources
+D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.InventoryReports.DisposalListItems.resources
+D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.ProductMaintenance.AddMaterials.resources
+D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.ProductMaintenance.AddProduct.resources
+D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.ProductMaintenance.DeactivatedItemsFrm.resources
+D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.ProductMaintenance.DeactivatedListItems.resources
+D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.ProductMaintenance.EditFlower.resources
+D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.ProductMaintenance.EditMaterials.resources
+D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.ProductMaintenance.FlowerInformation.resources
+D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.ProductMaintenance.MaterialInformation.resources
+D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.ProductMaintenance.PickAddProduct.resources
+D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.ProductMaintenance.ProductMaintenanceListItem.resources
+D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.QueuingList.OrderInfoList.resources
+D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.QueuingList.PaymentList.resources
+D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.QueuingList.ReceivingList.resources
+D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.Reports.Calendar.AdvanceOrderListItems.resources
+D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.Reports.Calendar.AO_ListItems.resources
+D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.Reports.Calendar.CalBlank.resources
+D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.Reports.Calendar.CalDays.resources
+D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.Reports.Calendar.CalItems.resources
+D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.Reports.OIF_List.resources
+D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.Reports.OrderInfoFrm.resources
+D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.Reports.SalesTransactionListItems.resources
+D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.Reports.TransactionsList.resources
+D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.Abuel.restockinglist.resources
+D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.Abuel.RestockList.resources
+D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.AdvanceOrder.AdvanceOrderEdit.resources
+D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.AdvanceOrder.AdvanceOrderListContents.resources
+D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.AdvanceOrder.EditOrderItems.AdvanceOrderFinishPayment.resources
+D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.AdvanceOrder.EditOrderItems.EditContactNumber.resources
+D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.AdvanceOrder.EditOrderItems.EditItemOrders.resources
+D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.AdvanceOrder.EditOrderItems.EditPickupDate.resources
+D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.AdvanceOrder.EditOrderItems.NormalBackground.resources
+D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.AdvanceOrder.EditOrderItems.SeeItems.resources
+D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.AdvanceOrder.GcashOrderFrm.resources
+D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.AdvanceOrder.OrdersTodayList.resources
+D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.PaymentConfirmation.ConfirmPayment.resources
+D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.StockAdjustments.StockAdjustmentListItems.resources
+D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.Supplier.Admin_SupplierList.resources
+D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.Supplier.EditSupplier.resources
+D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.Supplier.InactiveSupplierList.resources
+D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.Supplier.Inv_Supplier.resources
+D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.SalesClerk.Order_Placement.AdvanceOrderfolder.AdvanceOrdersList.resources
+D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.SalesClerk.Order_Placement.AdvanceOrderfolder.EventPackagesFrm.resources
+D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.SalesClerk.Queueing.OrderInfo.resources
+D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.Temporary_Forms.Other_AddSupp.resources
+D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.Temporary_Forms.TryCamera.resources
+D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\bin\Release\FlowershopSystemDB.mdf
+D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\bin\Release\FlowershopSystemDB_log.ldf
+D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.Restocking.DropdownRestockItem.resources
+D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.Restocking.RestockItem.resources
+D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.Restocking.RestockingProcessItems.resources
+D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.Restocking.BatchListItems.resources
+D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.Restocking.BatchItemInfo.resources

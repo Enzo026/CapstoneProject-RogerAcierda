@@ -87,6 +87,7 @@
             this.label6.Size = new System.Drawing.Size(113, 18);
             this.label6.TabIndex = 12;
             this.label6.Text = "Event Packages";
+            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // label5
             // 

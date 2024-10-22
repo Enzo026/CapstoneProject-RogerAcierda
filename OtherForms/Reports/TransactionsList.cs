@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Capstone_Flowershop;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -70,6 +71,8 @@ namespace Flowershop_Thesis.OtherForms.Reports
 
         private void DetailsBtn_Click(object sender, EventArgs e)
         {
+            ViewInfo.ID = TransID;
+            ViewInfo.type = TypeLbl.Text.Trim();
             OrderInfoFrm frm = new OrderInfoFrm();
             frm.ShowDialog();
         }

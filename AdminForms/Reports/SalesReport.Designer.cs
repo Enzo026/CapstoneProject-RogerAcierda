@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -75,8 +75,6 @@
             this.label81 = new System.Windows.Forms.Label();
             this.label82 = new System.Windows.Forms.Label();
             this.panel20 = new System.Windows.Forms.Panel();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -109,7 +107,6 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel9 = new System.Windows.Forms.Panel();
             this.panel12 = new System.Windows.Forms.Panel();
@@ -124,6 +121,12 @@
             this.button18 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label31 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label38 = new System.Windows.Forms.Label();
+            this.dateTimePicker4 = new System.Windows.Forms.DateTimePicker();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -144,15 +147,16 @@
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel9.SuspendLayout();
             this.panel12.SuspendLayout();
             this.panel11.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.AutoScroll = true;
+            this.panel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panel1.Controls.Add(this.tabControl1);
             this.panel1.Controls.Add(this.panel5);
             this.panel1.Controls.Add(this.panel6);
@@ -171,7 +175,7 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(11, 299);
+            this.tabControl1.Location = new System.Drawing.Point(15, 308);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(750, 495);
@@ -339,8 +343,6 @@
             this.panel56.BackColor = System.Drawing.Color.White;
             this.panel56.Controls.Add(this.flowLayoutPanel3);
             this.panel56.Controls.Add(this.panel20);
-            this.panel56.Controls.Add(this.label22);
-            this.panel56.Controls.Add(this.label21);
             this.panel56.Controls.Add(this.label14);
             this.panel56.Location = new System.Drawing.Point(438, 12);
             this.panel56.Name = "panel56";
@@ -627,35 +629,16 @@
             this.panel20.Size = new System.Drawing.Size(229, 5);
             this.panel20.TabIndex = 21;
             // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("Montserrat SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(80, 13);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(50, 22);
-            this.label22.TabIndex = 20;
-            this.label22.Text = "2024";
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Montserrat SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(80, 35);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(77, 22);
-            this.label21.TabIndex = 19;
-            this.label21.Text = "October";
-            // 
             // label14
             // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Montserrat", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(14, 13);
+            this.label14.Font = new System.Drawing.Font("Montserrat", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(21, 13);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(60, 44);
+            this.label14.Size = new System.Drawing.Size(229, 44);
             this.label14.TabIndex = 18;
             this.label14.Text = "24";
+            this.label14.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.label14.TextChanged += new System.EventHandler(this.label14_TextChanged);
             // 
             // flowLayoutPanel2
             // 
@@ -683,13 +666,13 @@
             // 
             // chart1
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
+            chartArea6.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea6);
             this.chart1.Location = new System.Drawing.Point(8, 91);
             this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.Name = "SalesChart";
-            this.chart1.Series.Add(series1);
+            series6.ChartArea = "ChartArea1";
+            series6.Name = "SalesChart";
+            this.chart1.Series.Add(series6);
             this.chart1.Size = new System.Drawing.Size(715, 326);
             this.chart1.TabIndex = 47;
             this.chart1.Text = "chart1";
@@ -763,21 +746,21 @@
             this.panel5.Controls.Add(this.label18);
             this.panel5.Controls.Add(this.label17);
             this.panel5.Controls.Add(this.label16);
-            this.panel5.Location = new System.Drawing.Point(767, 299);
+            this.panel5.Location = new System.Drawing.Point(771, 308);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(324, 459);
             this.panel5.TabIndex = 28;
             // 
             // chart2
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chart2.ChartAreas.Add(chartArea2);
+            chartArea5.Name = "ChartArea1";
+            this.chart2.ChartAreas.Add(chartArea5);
             this.chart2.Location = new System.Drawing.Point(28, 134);
             this.chart2.Name = "chart2";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series2.Name = "VisualComparison";
-            this.chart2.Series.Add(series2);
+            series5.ChartArea = "ChartArea1";
+            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series5.Name = "VisualComparison";
+            this.chart2.Series.Add(series5);
             this.chart2.Size = new System.Drawing.Size(266, 235);
             this.chart2.TabIndex = 21;
             this.chart2.Text = "chart2";
@@ -853,7 +836,7 @@
             this.panel6.BackColor = System.Drawing.Color.Linen;
             this.panel6.Controls.Add(this.label7);
             this.panel6.Controls.Add(this.label8);
-            this.panel6.Location = new System.Drawing.Point(382, 180);
+            this.panel6.Location = new System.Drawing.Point(386, 189);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(337, 113);
             this.panel6.TabIndex = 25;
@@ -882,7 +865,7 @@
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(10, 423);
+            this.label15.Location = new System.Drawing.Point(10, 1018);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(0, 21);
             this.label15.TabIndex = 27;
@@ -892,7 +875,7 @@
             this.panel3.BackColor = System.Drawing.Color.Linen;
             this.panel3.Controls.Add(this.label9);
             this.panel3.Controls.Add(this.label10);
-            this.panel3.Location = new System.Drawing.Point(754, 180);
+            this.panel3.Location = new System.Drawing.Point(758, 189);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(337, 113);
             this.panel3.TabIndex = 26;
@@ -922,7 +905,7 @@
             this.panel2.BackColor = System.Drawing.Color.Linen;
             this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.label5);
-            this.panel2.Location = new System.Drawing.Point(3, 180);
+            this.panel2.Location = new System.Drawing.Point(7, 189);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(337, 113);
             this.panel2.TabIndex = 23;
@@ -954,7 +937,7 @@
             this.panel4.Controls.Add(this.label2);
             this.panel4.Controls.Add(this.pictureBox1);
             this.panel4.Controls.Add(this.label1);
-            this.panel4.Location = new System.Drawing.Point(3, 3);
+            this.panel4.Location = new System.Drawing.Point(7, 12);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(1088, 165);
             this.panel4.TabIndex = 22;
@@ -979,16 +962,6 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Username";
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Flowershop_Thesis.Properties.Resources.Welcome;
-            this.pictureBox1.Location = new System.Drawing.Point(563, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(522, 159);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -1012,17 +985,17 @@
             this.panel9.Controls.Add(this.label32);
             this.panel9.Controls.Add(this.panel11);
             this.panel9.Font = new System.Drawing.Font("Montserrat Medium", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel9.Location = new System.Drawing.Point(11, 819);
+            this.panel9.Location = new System.Drawing.Point(15, 828);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(1074, 518);
+            this.panel9.Size = new System.Drawing.Size(1074, 556);
             this.panel9.TabIndex = 35;
             // 
             // panel12
             // 
             this.panel12.Controls.Add(this.flowLayoutPanel1);
-            this.panel12.Location = new System.Drawing.Point(3, 116);
+            this.panel12.Location = new System.Drawing.Point(3, 131);
             this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(1066, 377);
+            this.panel12.Size = new System.Drawing.Size(1066, 412);
             this.panel12.TabIndex = 8;
             // 
             // flowLayoutPanel1
@@ -1031,14 +1004,14 @@
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(1066, 377);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1066, 412);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
             // label37
             // 
             this.label37.AutoSize = true;
             this.label37.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label37.Location = new System.Drawing.Point(827, 94);
+            this.label37.Location = new System.Drawing.Point(831, 113);
             this.label37.Name = "label37";
             this.label37.Size = new System.Drawing.Size(65, 15);
             this.label37.TabIndex = 7;
@@ -1048,7 +1021,7 @@
             // 
             this.label36.AutoSize = true;
             this.label36.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label36.Location = new System.Drawing.Point(663, 94);
+            this.label36.Location = new System.Drawing.Point(667, 113);
             this.label36.Name = "label36";
             this.label36.Size = new System.Drawing.Size(121, 15);
             this.label36.TabIndex = 6;
@@ -1058,7 +1031,7 @@
             // 
             this.label35.AutoSize = true;
             this.label35.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label35.Location = new System.Drawing.Point(392, 94);
+            this.label35.Location = new System.Drawing.Point(396, 113);
             this.label35.Name = "label35";
             this.label35.Size = new System.Drawing.Size(37, 15);
             this.label35.TabIndex = 5;
@@ -1068,7 +1041,7 @@
             // 
             this.label34.AutoSize = true;
             this.label34.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label34.Location = new System.Drawing.Point(546, 94);
+            this.label34.Location = new System.Drawing.Point(550, 113);
             this.label34.Name = "label34";
             this.label34.Size = new System.Drawing.Size(36, 15);
             this.label34.TabIndex = 4;
@@ -1078,7 +1051,7 @@
             // 
             this.label33.AutoSize = true;
             this.label33.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label33.Location = new System.Drawing.Point(139, 94);
+            this.label33.Location = new System.Drawing.Point(143, 113);
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(103, 15);
             this.label33.TabIndex = 3;
@@ -1088,7 +1061,7 @@
             // 
             this.label32.AutoSize = true;
             this.label32.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label32.Location = new System.Drawing.Point(15, 94);
+            this.label32.Location = new System.Drawing.Point(19, 113);
             this.label32.Name = "label32";
             this.label32.Size = new System.Drawing.Size(20, 15);
             this.label32.TabIndex = 2;
@@ -1097,33 +1070,40 @@
             // panel11
             // 
             this.panel11.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            this.panel11.Controls.Add(this.label38);
+            this.panel11.Controls.Add(this.dateTimePicker4);
+            this.panel11.Controls.Add(this.label22);
+            this.panel11.Controls.Add(this.dateTimePicker3);
+            this.panel11.Controls.Add(this.label21);
             this.panel11.Controls.Add(this.button18);
             this.panel11.Controls.Add(this.textBox1);
             this.panel11.Controls.Add(this.label31);
             this.panel11.Location = new System.Drawing.Point(3, 3);
             this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(1066, 74);
+            this.panel11.Size = new System.Drawing.Size(1066, 96);
             this.panel11.TabIndex = 0;
             // 
             // button18
             // 
-            this.button18.BackColor = System.Drawing.Color.LightCoral;
+            this.button18.BackColor = System.Drawing.Color.Gainsboro;
             this.button18.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button18.Font = new System.Drawing.Font("Montserrat", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button18.Location = new System.Drawing.Point(905, 29);
+            this.button18.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button18.Location = new System.Drawing.Point(920, 39);
             this.button18.Name = "button18";
-            this.button18.Size = new System.Drawing.Size(137, 36);
+            this.button18.Size = new System.Drawing.Size(137, 50);
             this.button18.TabIndex = 2;
-            this.button18.Text = "Print";
+            this.button18.Text = "Search By Date";
             this.button18.UseVisualStyleBackColor = false;
+            this.button18.Click += new System.EventHandler(this.button18_Click);
             // 
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(23, 42);
+            this.textBox1.Location = new System.Drawing.Point(12, 70);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(291, 23);
             this.textBox1.TabIndex = 1;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // label31
             // 
@@ -1136,10 +1116,67 @@
             this.label31.TabIndex = 0;
             this.label31.Text = "SALES TRANSACTIONS";
             // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.Location = new System.Drawing.Point(11, 52);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(103, 15);
+            this.label21.TabIndex = 9;
+            this.label21.Text = "Customer Name";
+            // 
+            // dateTimePicker3
+            // 
+            this.dateTimePicker3.CalendarFont = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker3.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker3.Location = new System.Drawing.Point(711, 68);
+            this.dateTimePicker3.Name = "dateTimePicker3";
+            this.dateTimePicker3.Size = new System.Drawing.Size(200, 23);
+            this.dateTimePicker3.TabIndex = 43;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.Location = new System.Drawing.Point(685, 74);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(20, 15);
+            this.label22.TabIndex = 44;
+            this.label22.Text = "To";
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label38.Location = new System.Drawing.Point(669, 47);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(38, 15);
+            this.label38.TabIndex = 46;
+            this.label38.Text = "From";
+            // 
+            // dateTimePicker4
+            // 
+            this.dateTimePicker4.CalendarFont = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker4.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker4.Location = new System.Drawing.Point(711, 39);
+            this.dateTimePicker4.Name = "dateTimePicker4";
+            this.dateTimePicker4.Size = new System.Drawing.Size(200, 23);
+            this.dateTimePicker4.TabIndex = 45;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Flowershop_Thesis.Properties.Resources.Welcome;
+            this.pictureBox1.Location = new System.Drawing.Point(563, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(522, 159);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
+            // 
             // SalesReport
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1115, 780);
             this.Controls.Add(this.panel1);
@@ -1154,7 +1191,6 @@
             this.panel10.ResumeLayout(false);
             this.panel10.PerformLayout();
             this.panel56.ResumeLayout(false);
-            this.panel56.PerformLayout();
             this.flowLayoutPanel3.ResumeLayout(false);
             this.panel22.ResumeLayout(false);
             this.panel22.PerformLayout();
@@ -1182,12 +1218,12 @@
             this.panel2.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel9.ResumeLayout(false);
             this.panel9.PerformLayout();
             this.panel12.ResumeLayout(false);
             this.panel11.ResumeLayout(false);
             this.panel11.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1259,8 +1295,6 @@
         private System.Windows.Forms.Panel panel22;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Panel panel20;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Button button24;
         private System.Windows.Forms.Label label24;
@@ -1286,5 +1320,10 @@
         private System.Windows.Forms.Label label82;
         private System.Windows.Forms.Panel panel12;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.DateTimePicker dateTimePicker4;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.DateTimePicker dateTimePicker3;
+        private System.Windows.Forms.Label label21;
     }
 }

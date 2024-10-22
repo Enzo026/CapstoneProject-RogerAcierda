@@ -28,30 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CancelledOrderList));
             this.panel21 = new System.Windows.Forms.Panel();
             this.PriceLbl = new System.Windows.Forms.Label();
             this.NameLbl = new System.Windows.Forms.Label();
             this.IdLbl = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.button4 = new System.Windows.Forms.Button();
             this.panel21.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel21
             // 
-            this.panel21.Controls.Add(this.label1);
+            this.panel21.Controls.Add(this.button4);
             this.panel21.Controls.Add(this.PriceLbl);
             this.panel21.Controls.Add(this.NameLbl);
             this.panel21.Controls.Add(this.IdLbl);
             this.panel21.Location = new System.Drawing.Point(3, 3);
             this.panel21.Name = "panel21";
-            this.panel21.Size = new System.Drawing.Size(259, 31);
+            this.panel21.Size = new System.Drawing.Size(259, 41);
             this.panel21.TabIndex = 25;
             // 
             // PriceLbl
             // 
             this.PriceLbl.AutoSize = true;
             this.PriceLbl.Font = new System.Drawing.Font("Montserrat Medium", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PriceLbl.Location = new System.Drawing.Point(117, 8);
+            this.PriceLbl.Location = new System.Drawing.Point(149, 12);
             this.PriceLbl.Name = "PriceLbl";
             this.PriceLbl.Size = new System.Drawing.Size(50, 15);
             this.PriceLbl.TabIndex = 2;
@@ -61,7 +62,7 @@
             // 
             this.NameLbl.AutoSize = true;
             this.NameLbl.Font = new System.Drawing.Font("Montserrat Medium", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NameLbl.Location = new System.Drawing.Point(53, 8);
+            this.NameLbl.Location = new System.Drawing.Point(39, 12);
             this.NameLbl.Name = "NameLbl";
             this.NameLbl.Size = new System.Drawing.Size(39, 15);
             this.NameLbl.TabIndex = 1;
@@ -71,23 +72,25 @@
             // 
             this.IdLbl.AutoSize = true;
             this.IdLbl.Font = new System.Drawing.Font("Montserrat Medium", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.IdLbl.Location = new System.Drawing.Point(5, 8);
+            this.IdLbl.Location = new System.Drawing.Point(3, 12);
             this.IdLbl.Name = "IdLbl";
             this.IdLbl.Size = new System.Drawing.Size(20, 15);
             this.IdLbl.TabIndex = 0;
             this.IdLbl.Text = "20";
             // 
-            // label1
+            // button4
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Montserrat ExtraBold", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.IndianRed;
-            this.label1.Location = new System.Drawing.Point(192, 8);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(46, 15);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Revert";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            this.button4.BackColor = System.Drawing.Color.White;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button4.ForeColor = System.Drawing.Color.White;
+            this.button4.Image = ((System.Drawing.Image)(resources.GetObject("button4.Image")));
+            this.button4.Location = new System.Drawing.Point(217, 0);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(39, 38);
+            this.button4.TabIndex = 17;
+            this.button4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // CancelledOrderList
             // 
@@ -95,7 +98,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panel21);
             this.Name = "CancelledOrderList";
-            this.Size = new System.Drawing.Size(265, 38);
+            this.Size = new System.Drawing.Size(265, 47);
             this.panel21.ResumeLayout(false);
             this.panel21.PerformLayout();
             this.ResumeLayout(false);
@@ -108,6 +111,6 @@
         private System.Windows.Forms.Label PriceLbl;
         private System.Windows.Forms.Label NameLbl;
         private System.Windows.Forms.Label IdLbl;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button4;
     }
 }

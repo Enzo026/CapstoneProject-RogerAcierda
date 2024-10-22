@@ -27,7 +27,6 @@ namespace Flowershop_Thesis.MainForms
         {
             
             InitializeComponent();
-            EmpName.Text = UserInfo.Empleyado;
             
             
             panel2.Controls.Clear(); //tatanggalin yung current na laman ng panel
@@ -91,6 +90,9 @@ namespace Flowershop_Thesis.MainForms
             PL.Show(); //para lumitaw
         }
 
-
+        private void SalesClerk_BasePlatform_Load(object sender, EventArgs e)
+        {
+            EmpName.Text = UserInfo.Empleyado + ", Administrator";
+        }
     }
 }
