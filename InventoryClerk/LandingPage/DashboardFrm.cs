@@ -21,6 +21,7 @@ namespace Flowershop_Thesis.InventoryClerk.LandingPage
             InitializeComponent();
             RestockNum();
             SupplierNum();
+            ForEvaluation();
         }
         public void RestockNum()
         {
@@ -64,6 +65,27 @@ namespace Flowershop_Thesis.InventoryClerk.LandingPage
                 MessageBox.Show("Error Individual: " + ex.Message);
             }
         }
+        public void ForEvaluation()
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(Connect.connectionString))
+                {
+                    con.Open();
+
+                    string countQuery = "SELECT COUNT(*) FROM CancelledTransaction where Evaluation = 'Pending' ";
+                    using (SqlCommand countCommand = new SqlCommand(countQuery, con))
+                    {
+                        int Count = (int)countCommand.ExecuteScalar();
+                        label10.Text = Count.ToString();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error Individual: " + ex.Message);
+            }
+        }
         private void panel2_Paint(object sender, PaintEventArgs e)
         {
 
@@ -76,7 +98,10 @@ namespace Flowershop_Thesis.InventoryClerk.LandingPage
 
         private void DashboardFrm_Load(object sender, EventArgs e)
         {
-
+           
+          
+            DateTime date = DateTime.Now;
+            label2.Text = "SalesClerk , "+date.ToString();
         }
 
         private void label3_Click(object sender, EventArgs e)

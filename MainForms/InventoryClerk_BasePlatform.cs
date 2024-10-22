@@ -11,6 +11,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -42,7 +43,7 @@ namespace Flowershop_Thesis.MainForms
             }
 
         }
- 
+        
 
         private void button7_Click(object sender, EventArgs e)
         {
@@ -99,6 +100,22 @@ namespace Flowershop_Thesis.MainForms
             panel2.Controls.Add(DF); //ilalagay na natin yung form
             DF.BringToFront(); //front yung form 
             DF.Show(); //para lumitaw
+        }
+
+        private void InventoryClerk_BasePlatform_Load(object sender, EventArgs e)
+        {
+            EmpName.Text = UserInfo.Empleyado + ", Sales Clerk";
+          
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
         }
     }
 }

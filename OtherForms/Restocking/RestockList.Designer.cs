@@ -28,86 +28,86 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.restockBtnLabel = new System.Windows.Forms.Label();
-            this.supplierLabel = new System.Windows.Forms.Label();
-            this.itemQuantityLabel = new System.Windows.Forms.Label();
-            this.itemNameLabel = new System.Windows.Forms.Label();
-            this.stockLevelLabel = new System.Windows.Forms.Label();
+            this.panel27 = new System.Windows.Forms.Panel();
+            this.button28 = new System.Windows.Forms.Button();
+            this.StatusLbl = new System.Windows.Forms.Label();
+            this.QtyLbl = new System.Windows.Forms.Label();
+            this.ItemNameLbl = new System.Windows.Forms.Label();
+            this.panel27.SuspendLayout();
             this.SuspendLayout();
             // 
-            // restockBtnLabel
+            // panel27
             // 
-            this.restockBtnLabel.AutoSize = true;
-            this.restockBtnLabel.Font = new System.Drawing.Font("Montserrat SemiBold", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.restockBtnLabel.Location = new System.Drawing.Point(613, 7);
-            this.restockBtnLabel.Name = "restockBtnLabel";
-            this.restockBtnLabel.Size = new System.Drawing.Size(68, 18);
-            this.restockBtnLabel.TabIndex = 14;
-            this.restockBtnLabel.Text = "Re-stock";
-            this.restockBtnLabel.Click += new System.EventHandler(this.restockBtnLabel_Click);
+            this.panel27.Controls.Add(this.button28);
+            this.panel27.Controls.Add(this.StatusLbl);
+            this.panel27.Controls.Add(this.QtyLbl);
+            this.panel27.Controls.Add(this.ItemNameLbl);
+            this.panel27.Location = new System.Drawing.Point(3, 3);
+            this.panel27.Name = "panel27";
+            this.panel27.Size = new System.Drawing.Size(636, 42);
+            this.panel27.TabIndex = 4;
             // 
-            // supplierLabel
+            // button28
             // 
-            this.supplierLabel.AutoSize = true;
-            this.supplierLabel.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.supplierLabel.Location = new System.Drawing.Point(458, 7);
-            this.supplierLabel.Name = "supplierLabel";
-            this.supplierLabel.Size = new System.Drawing.Size(51, 18);
-            this.supplierLabel.TabIndex = 13;
-            this.supplierLabel.Text = "Hnezo";
+            this.button28.FlatAppearance.BorderSize = 0;
+            this.button28.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button28.Font = new System.Drawing.Font("Montserrat SemiBold", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button28.Image = global::Flowershop_Thesis.Properties.Resources.add_product;
+            this.button28.Location = new System.Drawing.Point(590, 3);
+            this.button28.Name = "button28";
+            this.button28.Size = new System.Drawing.Size(43, 36);
+            this.button28.TabIndex = 34;
+            this.button28.UseVisualStyleBackColor = true;
+            this.button28.Click += new System.EventHandler(this.button28_Click);
             // 
-            // itemQuantityLabel
+            // StatusLbl
             // 
-            this.itemQuantityLabel.AutoSize = true;
-            this.itemQuantityLabel.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.itemQuantityLabel.Location = new System.Drawing.Point(195, 7);
-            this.itemQuantityLabel.Name = "itemQuantityLabel";
-            this.itemQuantityLabel.Size = new System.Drawing.Size(20, 18);
-            this.itemQuantityLabel.TabIndex = 11;
-            this.itemQuantityLabel.Text = "12";
+            this.StatusLbl.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StatusLbl.ForeColor = System.Drawing.Color.Crimson;
+            this.StatusLbl.Location = new System.Drawing.Point(396, 12);
+            this.StatusLbl.Name = "StatusLbl";
+            this.StatusLbl.Size = new System.Drawing.Size(170, 18);
+            this.StatusLbl.TabIndex = 33;
+            this.StatusLbl.Text = "Out of Stock";
+            this.StatusLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // itemNameLabel
+            // QtyLbl
             // 
-            this.itemNameLabel.AutoSize = true;
-            this.itemNameLabel.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.itemNameLabel.Location = new System.Drawing.Point(10, 7);
-            this.itemNameLabel.Name = "itemNameLabel";
-            this.itemNameLabel.Size = new System.Drawing.Size(39, 18);
-            this.itemNameLabel.TabIndex = 10;
-            this.itemNameLabel.Text = "Rose";
+            this.QtyLbl.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.QtyLbl.Location = new System.Drawing.Point(265, 12);
+            this.QtyLbl.Name = "QtyLbl";
+            this.QtyLbl.Size = new System.Drawing.Size(115, 18);
+            this.QtyLbl.TabIndex = 32;
+            this.QtyLbl.Text = "100";
+            this.QtyLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // stockLevelLabel
+            // ItemNameLbl
             // 
-            this.stockLevelLabel.AutoSize = true;
-            this.stockLevelLabel.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.stockLevelLabel.Location = new System.Drawing.Point(322, 6);
-            this.stockLevelLabel.Name = "stockLevelLabel";
-            this.stockLevelLabel.Size = new System.Drawing.Size(52, 18);
-            this.stockLevelLabel.TabIndex = 15;
-            this.stockLevelLabel.Text = "Hnezo";
+            this.ItemNameLbl.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ItemNameLbl.Location = new System.Drawing.Point(16, 12);
+            this.ItemNameLbl.Name = "ItemNameLbl";
+            this.ItemNameLbl.Size = new System.Drawing.Size(241, 18);
+            this.ItemNameLbl.TabIndex = 31;
+            this.ItemNameLbl.Text = "FlowerName";
             // 
             // RestockList
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.stockLevelLabel);
-            this.Controls.Add(this.restockBtnLabel);
-            this.Controls.Add(this.supplierLabel);
-            this.Controls.Add(this.itemQuantityLabel);
-            this.Controls.Add(this.itemNameLabel);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.Controls.Add(this.panel27);
             this.Name = "RestockList";
-            this.Size = new System.Drawing.Size(694, 36);
+            this.Size = new System.Drawing.Size(643, 48);
+            this.Load += new System.EventHandler(this.RestockList_Load);
+            this.panel27.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Label restockBtnLabel;
-        private System.Windows.Forms.Label supplierLabel;
-        private System.Windows.Forms.Label itemQuantityLabel;
-        private System.Windows.Forms.Label itemNameLabel;
-        private System.Windows.Forms.Label stockLevelLabel;
+        private System.Windows.Forms.Panel panel27;
+        private System.Windows.Forms.Button button28;
+        private System.Windows.Forms.Label StatusLbl;
+        private System.Windows.Forms.Label QtyLbl;
+        private System.Windows.Forms.Label ItemNameLbl;
     }
 }

@@ -690,3 +690,8 @@ D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowersho
 D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.Temporary_Forms.TryCamera.resources
 D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\bin\Release\FlowershopSystemDB.mdf
 D:\Thesis Repository Capstone\CapstoneProject-RogerAcierda\bin\Release\FlowershopSystemDB_log.ldf
+D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.Restocking.DropdownRestockItem.resources
+D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.Restocking.RestockItem.resources
+D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.Restocking.RestockingProcessItems.resources
+D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.Restocking.BatchListItems.resources
+D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.Restocking.BatchItemInfo.resources

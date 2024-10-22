@@ -407,11 +407,41 @@
     <Compile Include="OtherForms\Reports\TransactionsList.Designer.cs">
       <DependentUpon>TransactionsList.cs</DependentUpon>
     </Compile>
+    <Compile Include="OtherForms\Restocking\BatchItemInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForms\Restocking\BatchItemInfo.Designer.cs">
+      <DependentUpon>BatchItemInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\Restocking\BatchListItems.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OtherForms\Restocking\BatchListItems.Designer.cs">
+      <DependentUpon>BatchListItems.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\Restocking\DropdownRestockItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForms\Restocking\DropdownRestockItem.Designer.cs">
+      <DependentUpon>DropdownRestockItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="OtherForms\Restocking\restockinglist.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="OtherForms\Restocking\restockinglist.Designer.cs">
       <DependentUpon>restockinglist.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\Restocking\RestockingProcessItems.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OtherForms\Restocking\RestockingProcessItems.Designer.cs">
+      <DependentUpon>RestockingProcessItems.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\Restocking\RestockItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForms\Restocking\RestockItem.Designer.cs">
+      <DependentUpon>RestockItem.cs</DependentUpon>
     </Compile>
     <Compile Include="OtherForms\Restocking\RestockList.cs">
       <SubType>UserControl</SubType>
@@ -941,8 +971,23 @@
     <EmbeddedResource Include="OtherForms\Reports\TransactionsList.resx">
       <DependentUpon>TransactionsList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\Restocking\BatchItemInfo.resx">
+      <DependentUpon>BatchItemInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\Restocking\BatchListItems.resx">
+      <DependentUpon>BatchListItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\Restocking\DropdownRestockItem.resx">
+      <DependentUpon>DropdownRestockItem.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="OtherForms\Restocking\restockinglist.resx">
       <DependentUpon>restockinglist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\Restocking\RestockingProcessItems.resx">
+      <DependentUpon>RestockingProcessItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\Restocking\RestockItem.resx">
+      <DependentUpon>RestockItem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OtherForms\Restocking\RestockList.resx">
       <DependentUpon>RestockList.cs</DependentUpon>
@@ -1166,6 +1211,7 @@
     <None Include="Resources\b1_24x24.png" />
     <None Include="Resources\b2_24x24.png" />
     <None Include="Resources\1a60c2f2fc65d70095705ddbcf188fd7.jpg" />
+    <None Include="Resources\add-product.png" />
     <Content Include="Resources\LoginImg.png" />
     <None Include="Resources\LoginImg2.png" />
     <None Include="Resources\Welcome1.png" />
