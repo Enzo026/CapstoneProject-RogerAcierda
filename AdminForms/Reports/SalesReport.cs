@@ -8,10 +8,12 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.InteropServices.ComTypes;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 using Capstone_Flowershop;
 using Flowershop_Thesis.OtherForms.AdvanceOrder;
 using Flowershop_Thesis.OtherForms.ProductMaintenance;
@@ -189,54 +191,71 @@ namespace Capstone_Flowershop.AdminForms.Reports.SalesReports
         public void getTransactions()
         {
             try
-            {
-              
+            {   
+                DateTime now  = DateTime.Now;
+                TotalInfoDate(now, now);
                 using (SqlConnection con = new SqlConnection(Connect.connectionString))
                 {
                     con.Open();
-                    string countQuery = "SELECT COUNT(*) FROM FinishedTransactionList";
+
+                    // Adjusted to count transactions for today, without time
+                    string countQuery = "SELECT COUNT(*) FROM FinishedTransactionList WHERE CAST(DOC AS DATE) = CAST(GETDATE() AS DATE)";
                     using (SqlCommand countCommand = new SqlCommand(countQuery, con))
                     {
                         int rowCount = (int)countCommand.ExecuteScalar();
                         TransactionsList[] inv = new TransactionsList[rowCount];
 
-                        string sqlQuery = "SELECT * FROM FinishedTransactionList";
-                        using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                        // Clear previous items to avoid duplicates
+                        flowLayoutPanel1.Controls.Clear();
+
+                        if (rowCount > 0)
                         {
-
-                            using (SqlDataReader reader = command.ExecuteReader())
+                            label43.Visible = false;
+                            string sqlQuery = "SELECT * FROM FinishedTransactionList WHERE CAST(DOC AS DATE) = CAST(GETDATE() AS DATE)";
+                            using (SqlCommand command = new SqlCommand(sqlQuery, con))
                             {
-                                int index = 0;
-                                while (reader.Read() && index < inv.Length)
+                                using (SqlDataReader reader = command.ExecuteReader())
                                 {
-                                    inv[index] = new TransactionsList();
-                                    inv[index].LocalID = reader["ID"].ToString().Trim();
-                                    inv[index].TransID = reader["TransactionID"].ToString().Trim();
-                                    inv[index].CustName = reader["CustomerName"].ToString().Trim();
-                                    inv[index].Price = reader["TotalPrice"].ToString().Trim();
-                                    inv[index].Employee = reader["EmployeeName"].ToString().Trim();
-                                    inv[index].Type = reader["TransactionType"].ToString().Trim();
-                                    inv[index].Date = reader["DOC"].ToString().Trim();
+                                    int index = 0;
+                                    while (reader.Read() && index < inv.Length)
+                                    {
+                                        inv[index] = new TransactionsList();
 
-                                    flowLayoutPanel1.Controls.Add(inv[index]);
-                                    index++;
+                                        // Use DBNull.Value checks
+                                        inv[index].LocalID = reader["ID"] != DBNull.Value ? reader["ID"].ToString().Trim() : string.Empty;
+                                        inv[index].TransID = reader["TransactionID"] != DBNull.Value ? reader["TransactionID"].ToString().Trim() : string.Empty;
+                                        inv[index].CustName = reader["CustomerName"] != DBNull.Value ? reader["CustomerName"].ToString().Trim() : string.Empty;
+                                        inv[index].Price = reader["TotalPrice"] != DBNull.Value ? ((decimal)reader["TotalPrice"]).ToString("C") : string.Empty;
+                                        inv[index].Employee = reader["EmployeeName"] != DBNull.Value ? reader["EmployeeName"].ToString().Trim() : string.Empty;
+                                        inv[index].Type = reader["TransactionType"] != DBNull.Value ? reader["TransactionType"].ToString().Trim() : string.Empty;
+                                        inv[index].Date = reader["DOC"] != DBNull.Value ? reader["DOC"].ToString().Trim() : string.Empty;
+
+                                        // Add to FlowLayoutPanel
+                                        flowLayoutPanel1.Controls.Add(inv[index]);
+                                        index++;
+                                    }
                                 }
                             }
                         }
-
+                        else
+                        {
+                            label43.Visible = true;
+                        }
                     }
                 }
-           
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error on Displaying Transaction List :" + ex.Message);
+                MessageBox.Show("Error on displaying Transaction List: " + ex.Message);
             }
+
 
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            chart1.Titles.Clear(); // Clear any titles
+            chart1.Legends.Clear(); // Clear any legends
             BarChart();
         }
         public void donutChart()
@@ -361,21 +380,20 @@ namespace Capstone_Flowershop.AdminForms.Reports.SalesReports
             try
             {
                 flowLayoutPanel1.Controls.Clear();
+                DateTime startDate = dateTimePicker4.Value.Date;
+                DateTime endDate = dateTimePicker3.Value.Date;
+                TotalInfoDate(startDate, endDate);
                 using (SqlConnection con = new SqlConnection(Connect.connectionString))
                 {
                     con.Open();
 
-                    // Define your start and end dates
-                    DateTime startDate = dateTimePicker4.Value.Date;
-                    DateTime endDate = dateTimePicker3.Value.Date;
-
-                    // Query to select data within the date range
                     string sqlQuery = "SELECT * FROM FinishedTransactionList WHERE DOC BETWEEN @startDate AND @endDate;";
                     using (SqlCommand command = new SqlCommand(sqlQuery, con))
                     {
                         command.Parameters.AddWithValue("@startDate", startDate);
                         command.Parameters.AddWithValue("@endDate", endDate);
 
+                     
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
                             // List to hold all transactions
@@ -418,10 +436,65 @@ namespace Capstone_Flowershop.AdminForms.Reports.SalesReports
 
         }
 
+        private void TotalInfoDate(DateTime d1, DateTime d2)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(Connect.connectionString))
+                {
+                    con.Open();
+
+                    string sqlQuery = "SELECT COUNT(*) AS TotalOrders, SUM(TotalPrice) AS TotalOrderPrice FROM FinishedTransactionList WHERE DOC BETWEEN @startDate AND @endDate;";
+                    using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                    {
+                        command.Parameters.AddWithValue("@startDate", d1);
+                        command.Parameters.AddWithValue("@endDate", d2);
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                label40.Text = reader["TotalOrders"].ToString(); // Set label with TotalOrders
+                                label41.Text = ((decimal)reader["TotalOrderPrice"]).ToString("C");// Format as currency
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error on Displaying Transaction List bottom info: " + ex.Message);
+            }
+
+        }
+
+        private void dateTimePicker4_ValueChanged(object sender, EventArgs e)
+        {
+            dateTimePicker3.MinDate = dateTimePicker4.Value; // Update MinDate
+            dateTimePicker3.MaxDate = DateTime.Today;
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            dateTimePicker2.MinDate = dateTimePicker1.Value; // Update MinDate
+            dateTimePicker2.MaxDate = DateTime.Today;
+        }
+
         public void BarChart()
         {
             try
             {
+                // Clear existing series
+                chart1.Series.Clear();
+
+                // Create a new series for the sales chart
+                Series salesChart = new Series("SalesChart")
+                {
+                    ChartType = SeriesChartType.Bar, // Set the chart type to Bar
+                    Color = Color.Green // Set the color of the bars
+                };
+                chart1.Series.Add(salesChart); // Add the series to the chart
+
                 using (SqlConnection con = new SqlConnection(Connect.connectionString))
                 {
                     con.Open();
@@ -438,24 +511,27 @@ namespace Capstone_Flowershop.AdminForms.Reports.SalesReports
                         countCommand.Parameters.AddWithValue("@endDate", endDate);
 
                         int rowCount = (int)countCommand.ExecuteScalar(); // Getting the count of rows
+                    }
 
-                        // Query to select the DOC and TotalPrice
-                        string sqlQuery = "SELECT DOC, TotalPrice FROM FinishedTransactionList WHERE DOC BETWEEN @startDate AND @endDate;";
-                        using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                    // Query to select the DOC and TotalPrice
+                    string sqlQuery = "SELECT DOC, TotalPrice FROM FinishedTransactionList WHERE DOC BETWEEN @startDate AND @endDate order by DOC desc";
+                    using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                    {
+                        command.Parameters.AddWithValue("@startDate", startDate);
+                        command.Parameters.AddWithValue("@endDate", endDate);
+
+                        using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            command.Parameters.AddWithValue("@startDate", startDate);
-                            command.Parameters.AddWithValue("@endDate", endDate);
+                            // Dictionary to hold the total amount per date
+                            Dictionary<DateTime, decimal> dateAmountMap = new Dictionary<DateTime, decimal>();
 
-                            using (SqlDataReader reader = command.ExecuteReader())
+                            while (reader.Read())
                             {
-                                // Dictionary to hold the total amount per date
-                                Dictionary<DateTime, decimal> dateAmountMap = new Dictionary<DateTime, decimal>();
-
-                                while (reader.Read())
+                                // Ensure DOC is not null before casting
+                                if (reader["DOC"] != DBNull.Value)
                                 {
-                                    // Cast DOC directly to DateTime
                                     DateTime date = (DateTime)reader["DOC"];
-                                    decimal amount = decimal.Parse(reader["TotalPrice"].ToString());
+                                    decimal amount = reader["TotalPrice"] != DBNull.Value ? decimal.Parse(reader["TotalPrice"].ToString()) : 0;
 
                                     // If the date already exists, sum the amounts; otherwise, add it to the dictionary
                                     if (dateAmountMap.ContainsKey(date))
@@ -467,18 +543,18 @@ namespace Capstone_Flowershop.AdminForms.Reports.SalesReports
                                         dateAmountMap[date] = amount;
                                     }
                                 }
+                            }
 
-                                // Now add the aggregated data to the chart
-                                foreach (var entry in dateAmountMap)
-                                {
-                                    // Get month and day
-                                    int month = entry.Key.Month;
-                                    int day = entry.Key.Day;
-                                    string smonth = new DateTime(1, month, 1).ToString("MMMM"); // Get the month name
+                            // Now add the aggregated data to the chart
+                            foreach (var entry in dateAmountMap)
+                            {
+                                // Get month and day
+                                int month = entry.Key.Month;
+                                int day = entry.Key.Day;
+                                string smonth = new DateTime(1, month, 1).ToString("MMMM"); // Get the month name
 
-                                    // Add aggregated data to the chart
-                                    chart1.Series["SalesChart"].Points.AddXY($"{smonth} {day}", entry.Value);
-                                }
+                                // Add aggregated data to the chart
+                                salesChart.Points.AddXY($"{smonth} {day}", entry.Value);
                             }
                         }
                     }
@@ -486,7 +562,7 @@ namespace Capstone_Flowershop.AdminForms.Reports.SalesReports
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error on Displaying Transaction List: " + ex.Message);
+                MessageBox.Show("Error on displaying Transaction chart: " + ex.Message);
             }
 
         }

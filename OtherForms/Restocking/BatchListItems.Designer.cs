@@ -31,9 +31,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BatchListItems));
             this.panel15 = new System.Windows.Forms.Panel();
             this.DateLbl = new System.Windows.Forms.Label();
+            this.button16 = new System.Windows.Forms.Button();
             this.QtyLbl = new System.Windows.Forms.Label();
             this.BatchIDLbl = new System.Windows.Forms.Label();
-            this.button16 = new System.Windows.Forms.Button();
             this.panel15.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -58,6 +58,20 @@
             this.DateLbl.Text = "19/10/2024";
             this.DateLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // button16
+            // 
+            this.button16.BackColor = System.Drawing.Color.White;
+            this.button16.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button16.ForeColor = System.Drawing.Color.White;
+            this.button16.Image = ((System.Drawing.Image)(resources.GetObject("button16.Image")));
+            this.button16.Location = new System.Drawing.Point(577, 3);
+            this.button16.Name = "button16";
+            this.button16.Size = new System.Drawing.Size(39, 38);
+            this.button16.TabIndex = 18;
+            this.button16.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button16.UseVisualStyleBackColor = false;
+            this.button16.Click += new System.EventHandler(this.button16_Click);
+            // 
             // QtyLbl
             // 
             this.QtyLbl.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -77,19 +91,6 @@
             this.BatchIDLbl.Size = new System.Drawing.Size(82, 18);
             this.BatchIDLbl.TabIndex = 0;
             this.BatchIDLbl.Text = "B191020241";
-            // 
-            // button16
-            // 
-            this.button16.BackColor = System.Drawing.Color.White;
-            this.button16.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button16.ForeColor = System.Drawing.Color.White;
-            this.button16.Image = ((System.Drawing.Image)(resources.GetObject("button16.Image")));
-            this.button16.Location = new System.Drawing.Point(577, 3);
-            this.button16.Name = "button16";
-            this.button16.Size = new System.Drawing.Size(39, 38);
-            this.button16.TabIndex = 18;
-            this.button16.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.button16.UseVisualStyleBackColor = false;
             // 
             // BatchListItems
             // 

@@ -137,11 +137,11 @@
     <Compile Include="AdminForms\System Maintenance\SystemMaintenance.Designer.cs">
       <DependentUpon>SystemMaintenance.cs</DependentUpon>
     </Compile>
-    <Compile Include="InventoryClerk\Disposal\DisposalFrm.cs">
+    <Compile Include="InventoryClerk\Disposal\DisposalMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="InventoryClerk\Disposal\DisposalFrm.Designer.cs">
-      <DependentUpon>DisposalFrm.cs</DependentUpon>
+    <Compile Include="InventoryClerk\Disposal\DisposalMain.Designer.cs">
+      <DependentUpon>DisposalMain.cs</DependentUpon>
     </Compile>
     <Compile Include="InventoryClerk\LandingPage\DashboardFrm.cs">
       <SubType>Form</SubType>
@@ -250,6 +250,24 @@
     </Compile>
     <Compile Include="OtherForms\AdvanceOrder\EventPackagesModalsAndList\EventPackagesModal.Designer.cs">
       <DependentUpon>EventPackagesModal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\DisposalContents\DisposalItems.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForms\DisposalContents\DisposalItems.Designer.cs">
+      <DependentUpon>DisposalItems.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\DisposalContents\DisposalOrderListItems.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OtherForms\DisposalContents\DisposalOrderListItems.Designer.cs">
+      <DependentUpon>DisposalOrderListItems.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\DisposalContents\PendingList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OtherForms\DisposalContents\PendingList.Designer.cs">
+      <DependentUpon>PendingList.cs</DependentUpon>
     </Compile>
     <Compile Include="OtherForms\HistoryLogs\ActivityLogsList.cs">
       <SubType>UserControl</SubType>
@@ -406,6 +424,12 @@
     </Compile>
     <Compile Include="OtherForms\Reports\TransactionsList.Designer.cs">
       <DependentUpon>TransactionsList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\Restocking\BatchInfoList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OtherForms\Restocking\BatchInfoList.Designer.cs">
+      <DependentUpon>BatchInfoList.cs</DependentUpon>
     </Compile>
     <Compile Include="OtherForms\Restocking\BatchItemInfo.cs">
       <SubType>Form</SubType>
@@ -836,8 +860,8 @@
     <EmbeddedResource Include="AdminForms\System Maintenance\SystemMaintenance.resx">
       <DependentUpon>SystemMaintenance.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="InventoryClerk\Disposal\DisposalFrm.resx">
-      <DependentUpon>DisposalFrm.cs</DependentUpon>
+    <EmbeddedResource Include="InventoryClerk\Disposal\DisposalMain.resx">
+      <DependentUpon>DisposalMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InventoryClerk\LandingPage\DashboardFrm.resx">
       <DependentUpon>DashboardFrm.cs</DependentUpon>
@@ -892,6 +916,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="OtherForms\AdvanceOrder\EventPackagesModalsAndList\EventPackagesModal.resx">
       <DependentUpon>EventPackagesModal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\DisposalContents\DisposalItems.resx">
+      <DependentUpon>DisposalItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\DisposalContents\DisposalOrderListItems.resx">
+      <DependentUpon>DisposalOrderListItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\DisposalContents\PendingList.resx">
+      <DependentUpon>PendingList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OtherForms\HistoryLogs\ActivityLogsList.resx">
       <DependentUpon>ActivityLogsList.cs</DependentUpon>
@@ -970,6 +1003,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="OtherForms\Reports\TransactionsList.resx">
       <DependentUpon>TransactionsList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\Restocking\BatchInfoList.resx">
+      <DependentUpon>BatchInfoList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OtherForms\Restocking\BatchItemInfo.resx">
       <DependentUpon>BatchItemInfo.cs</DependentUpon>
@@ -1212,6 +1248,7 @@
     <None Include="Resources\b2_24x24.png" />
     <None Include="Resources\1a60c2f2fc65d70095705ddbcf188fd7.jpg" />
     <None Include="Resources\add-product.png" />
+    <None Include="Resources\bin.png" />
     <Content Include="Resources\LoginImg.png" />
     <None Include="Resources\LoginImg2.png" />
     <None Include="Resources\Welcome1.png" />
@@ -1226,6 +1263,7 @@
     <None Include="Resources\undraw_open_note_6nva.png" />
     <None Include="Resources\wedding_flowers.jpg" />
     <None Include="Resources\wedding_flowers1.jpg" />
+    <None Include="Resources\reset.png" />
     <Content Include="Resources\Welcome.png" />
   </ItemGroup>
   <ItemGroup>

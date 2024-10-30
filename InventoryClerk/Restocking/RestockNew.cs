@@ -368,20 +368,6 @@ namespace Flowershop_Thesis.InventoryClerk.Restocking
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            SortH2L();
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            Outofstock();
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            Lowstock();
-        }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
@@ -389,12 +375,6 @@ namespace Flowershop_Thesis.InventoryClerk.Restocking
             {
                 Searchbar();
             }
-        }
-
-
-        private void panel23_Paint(object sender, PaintEventArgs e)
-        {
-
         }
 
         private void label8_Click(object sender, EventArgs e)
@@ -484,7 +464,27 @@ namespace Flowershop_Thesis.InventoryClerk.Restocking
 
         private void button2_Click_1(object sender, EventArgs e)
         {
-            //EXEC[dbo].[RestockingProcess];
+            using (SqlConnection con = new SqlConnection(Connect.connectionString))
+            {
+                try
+                {
+                    con.Open();
+
+                    using (SqlCommand cmd = new SqlCommand("RestockingProcess", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@Employee", UserInfo.Empleyado);
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        MessageBox.Show($"Stored procedure executed successfully. Rows affected: {rowsAffected}");
+                        flowLayoutPanel2.Controls.Clear();
+                        getbatch();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"An error occurred: {ex.Message}");
+                }
+            }
         }
         public void getbatch()
         {
@@ -500,7 +500,7 @@ namespace Flowershop_Thesis.InventoryClerk.Restocking
                         int rowCount = (int)countCommand.ExecuteScalar();
                         BatchListItems[] itemList = new BatchListItems[rowCount];
 
-                        string sqlQuery = "SELECT * FROM BatchRestockCompiled";
+                        string sqlQuery = "SELECT * FROM BatchRestockCompiled order by BatchID desc";
                         using (SqlCommand command = new SqlCommand(sqlQuery, con))
                         {
                             using (SqlDataReader reader = command.ExecuteReader())
@@ -540,6 +540,57 @@ namespace Flowershop_Thesis.InventoryClerk.Restocking
 
         }
 
+        private void button3_Click(object sender, EventArgs e)
+        {
+            int count = int.Parse(label78.Text);
+            if(count > 0)
+            {
+                DialogResult result = MessageBox.Show(
+                 "Do you really want to cancel all items in restocking?",
+                 "Confirm Cancellation",
+                 MessageBoxButtons.YesNo,
+                 MessageBoxIcon.Question
+                 );
 
+                if (result == DialogResult.Yes)
+                {
+                    // Call the method to delete items
+                    DeleteAllItems();
+
+                }
+                else
+                {
+                    // User selected No, handle accordingly
+                    MessageBox.Show("Cancellation aborted.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("There are no Items in the Cart");
+            }
+         
+        }
+        private void DeleteAllItems()
+        {
+            using (SqlConnection con = new SqlConnection(Connect.connectionString))
+            {
+                con.Open();
+                string deleteQuery = "DELETE FROM TempRestockTbl;";
+
+                using (SqlCommand command = new SqlCommand(deleteQuery, con))
+                {
+                    try
+                    {
+                        int rowsAffected = command.ExecuteNonQuery();
+                        MessageBox.Show($"{rowsAffected} rows deleted from temprestocktbl.");
+                        loadrestock();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("An error occurred: " + ex.Message);
+                    }
+                }
+            }
+        }
     }
 }

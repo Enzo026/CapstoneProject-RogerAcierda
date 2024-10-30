@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Capstone_Flowershop;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -45,5 +46,12 @@ namespace Flowershop_Thesis.OtherForms.Restocking
             set { date = value;  DateLbl.Text = value; }
         }
         #endregion
+
+        private void button16_Click(object sender, EventArgs e)
+        {
+            ViewInfo.RI_Id = itemId;
+            BatchItemInfo frm  = new BatchItemInfo();
+            frm.ShowDialog();
+        }
     }
 }

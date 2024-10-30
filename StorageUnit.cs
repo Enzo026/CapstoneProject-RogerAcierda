@@ -87,10 +87,24 @@ namespace Capstone_Flowershop
     {
         public static string ID { get; set; }
         public static string type { get; set; }
+
+        public static string  RI_Id { get; set; }
     }
     public static class RestockingProcess
     {
         public static int ID { get; set; }
         public static string type { get; set; }
+    }
+    public static class DisposalInfo
+    {
+        public static string ID { get; set; }
+        public static string type { get; set; }
+
+        public static string EvID { get; set; }
+        public static string EvName { get; set; }
+        public static string EvQty { get; set; }
+
+        public static string EvPrice { get; set; }
+
     }
 }

@@ -511,7 +511,6 @@ D:\CapstoneProject-RogerAcierda\obj\Release\Capstone_Flowershop.AdminForms.Repor
 D:\CapstoneProject-RogerAcierda\obj\Release\Capstone_Flowershop.AdminForms.Reports.SalesReports.Reports.resources
 D:\CapstoneProject-RogerAcierda\obj\Release\Capstone_Flowershop.AdminForms.Reports.SalesReports.SalesReport.resources
 D:\CapstoneProject-RogerAcierda\obj\Release\Capstone_Flowershop.AdminForms.System_Maintenance.SystemMaintenance.resources
-D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.InventoryClerk.Disposal.DisposalFrm.resources
 D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.InventoryClerk.LandingPage.DashboardFrm.resources
 D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.InventoryClerk.Restocking.RestockNew.resources
 D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.InventoryClerk.StockAdjustment.StockAdjustmentFrmcs.resources
@@ -695,3 +694,8 @@ D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.Restock
 D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.Restocking.RestockingProcessItems.resources
 D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.Restocking.BatchListItems.resources
 D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.Restocking.BatchItemInfo.resources
+D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.Restocking.BatchInfoList.resources
+D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.DisposalContents.PendingList.resources
+D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.InventoryClerk.Disposal.DisposalMain.resources
+D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.DisposalContents.DisposalItems.resources
+D:\CapstoneProject-RogerAcierda\obj\Release\Flowershop_Thesis.OtherForms.DisposalContents.DisposalOrderListItems.resources

@@ -41,7 +41,7 @@ namespace Capstone_Flowershop.AdminForms.Reports
             using (SqlConnection con = new SqlConnection(Connect.connectionString))
             {
                 con.Open();
-                string query = "SELECT COALESCE(Count(*), 0) AS output FROM ItemInventory WHERE ItemType = 'Individual' AND ItemQuantity < 20;";
+                string query = "SELECT COALESCE(Count(*), 0) AS output FROM ItemInventory WHERE ItemType = 'Individual' OR ItemType = 'Bouquet' AND ItemQuantity < 20;";
                 using (SqlCommand cmd = new SqlCommand(query, con))
                 {
                     SqlDataReader reader = cmd.ExecuteReader();
@@ -93,7 +93,7 @@ namespace Capstone_Flowershop.AdminForms.Reports
             {
 
                 con.Open();
-                string query = "SELECT COALESCE(Count(*), 0) AS output FROM ItemInventory WHERE ItemType = 'Individual' AND ItemQuantity = 0 OR ItemStatus = 'Expired';";
+                string query = "SELECT COALESCE(Count(*), 0) AS output FROM ItemInventory WHERE ItemType = 'Individual' OR ItemType = 'Bouquet'  AND ItemQuantity = 0 OR ItemStatus = 'Expired';";
                 using (SqlCommand cmd = new SqlCommand(query, con))
                 {
                     SqlDataReader reader = cmd.ExecuteReader();

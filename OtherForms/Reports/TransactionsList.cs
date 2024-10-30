@@ -48,7 +48,7 @@ namespace Flowershop_Thesis.OtherForms.Reports
         public string Price
         {
             get { return TotalPrice; }
-            set { TotalPrice = value; PriceLbl.Text = value.ToString() + " Php"; }
+            set { TotalPrice = value; PriceLbl.Text = value.ToString(); }
         }
         [Category("ItemList")]
         public string Employee
