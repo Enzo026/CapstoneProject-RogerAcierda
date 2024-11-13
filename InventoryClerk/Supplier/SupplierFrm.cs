@@ -28,16 +28,17 @@ namespace Flowershop_Thesis.InventoryClerk.Supplier
             try
             {
                 flowLayoutPanel1.Controls.Clear();
-                using(SqlConnection con = new SqlConnection(Connect.connectionString))
+                using (SqlConnection con = new SqlConnection(Connect.connectionString))
                 {
                     con.Open();
-                    string countQuery = "select count(*) from Supplier where Status='active';";
+
+                    string countQuery = "SELECT COUNT(*) FROM Supplier WHERE Status='active';";
                     using (SqlCommand countCommand = new SqlCommand(countQuery, con))
                     {
                         int rowCount = (int)countCommand.ExecuteScalar();
                         Inv_Supplier[] itemList = new Inv_Supplier[rowCount];
 
-                        string sqlQuery = "select * from Supplier where Status='active';";
+                        string sqlQuery = "SELECT * FROM Supplier WHERE Status='active';";
                         using (SqlCommand command = new SqlCommand(sqlQuery, con))
                         {
                             using (SqlDataReader reader = command.ExecuteReader())
@@ -45,26 +46,38 @@ namespace Flowershop_Thesis.InventoryClerk.Supplier
                                 int index = 0;
                                 while (reader.Read() && index < itemList.Length)
                                 {
-                                    itemList[index] = new Inv_Supplier();
-                                    itemList[index].SuppID = int.Parse(reader["SupplierID"].ToString());
-                                    itemList[index].Suppname = reader["SupplierName"].ToString();
-                                    itemList[index].SuppType = reader["SupplierType"].ToString();
-                                    itemList[index].SuppContact = reader["ContactNumber"].ToString();
-                                    itemList[index].SuppAddress = reader["SupplierAddress"].ToString();
+                                    itemList[index] = new Inv_Supplier
+                                    {
+                                        SuppID = Convert.ToInt32(reader["SupplierID"]),
+                                        Suppname = reader["SupplierName"].ToString(),
+                                        SuppType = reader["SupplierType"].ToString(),
+                                        SuppContact = reader["ContactNumber"].ToString(),
+                                        SuppAddress = reader["SupplierAddress"].ToString()
+                                    };
+
+                                    // Read the image data from the database
+                                    if (reader["Image"] != DBNull.Value)
+                                    {
+                                        byte[] imgData = (byte[])reader["Image"];
+                                        using (MemoryStream ms = new MemoryStream(imgData))
+                                        {
+                                            itemList[index].Img = Image.FromStream(ms);
+                                        }
+                                    }
 
                                     flowLayoutPanel1.Controls.Add(itemList[index]);
                                     index++;
-
                                 }
                             }
                         }
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                MessageBox.Show(e.Message);
+                MessageBox.Show("An error occurred: " + ex.Message);
             }
+
         }
         public void flower()
         {
@@ -94,7 +107,14 @@ namespace Flowershop_Thesis.InventoryClerk.Supplier
                                     itemList[index].SuppType = reader["SupplierType"].ToString();
                                     itemList[index].SuppContact = reader["ContactNumber"].ToString();
                                     itemList[index].SuppAddress = reader["SupplierAddress"].ToString();
-
+                                    if (reader["Image"] != DBNull.Value)
+                                    {
+                                        byte[] imgData = (byte[])reader["Image"];
+                                        using (MemoryStream ms = new MemoryStream(imgData))
+                                        {
+                                            itemList[index].Img = Image.FromStream(ms);
+                                        }
+                                    }
                                     flowLayoutPanel1.Controls.Add(itemList[index]);
                                     index++;
 
@@ -139,7 +159,14 @@ namespace Flowershop_Thesis.InventoryClerk.Supplier
                                     itemList[index].SuppType = reader["SupplierType"].ToString();
                                     itemList[index].SuppContact = reader["ContactNumber"].ToString();
                                     itemList[index].SuppAddress = reader["SupplierAddress"].ToString();
-
+                                    if (reader["Image"] != DBNull.Value)
+                                    {
+                                        byte[] imgData = (byte[])reader["Image"];
+                                        using (MemoryStream ms = new MemoryStream(imgData))
+                                        {
+                                            itemList[index].Img = Image.FromStream(ms);
+                                        }
+                                    }
                                     flowLayoutPanel1.Controls.Add(itemList[index]);
                                     index++;
 

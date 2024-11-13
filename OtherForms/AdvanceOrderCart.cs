@@ -25,17 +25,19 @@ namespace Flowershop_Thesis.OtherForms
     public partial class AdvanceOrderCart : Form
     {
         SqlCommand cmd = new SqlCommand();
-
+        public static AdvanceOrderCart instance;
+        public Label Loadinglbl;
         public AdvanceOrderCart()
         {
             InitializeComponent();
-
+            instance = this;
+            Loadinglbl = label22;
             EmployeeName.Text = UserInfo.Empleyado;
             // getcounter();
             getCartList();
             getPrice();
             label21.Visible = false;
-            DiscountTxtbox.Enabled = false;
+
             NameIndicator.Visible = false;
 
             long date = DateTime.Now.Day;
@@ -192,15 +194,11 @@ namespace Flowershop_Thesis.OtherForms
                 }
                 else if (GcashOption.Checked == false && CashOption.Checked == false)
                 {
-                    MessageBox.Show("Wala kang balak magbayad?!");
-                }
-                else if (DiscountCheckBox.Checked && DiscountTxtbox.Text.Equals("0"))
-                {
-                    MessageBox.Show("Kung wala namang Laman yung discount i uncheck mo!");
+                    MessageBox.Show("No Payment");
                 }
                 else if (PaymentTxtBox.Text.Equals("0") && CashOption.Checked)
                 {
-                    MessageBox.Show("Ano Di ka magbabayad?");
+                    MessageBox.Show("No Payment");
                 }
                 else if (GcashOption.Checked == true && paymentStatus == "Unpaid")
                 {
@@ -217,11 +215,11 @@ namespace Flowershop_Thesis.OtherForms
                 }
                 else if (TotalAmountLbl.Text.Equals("0"))
                 {
-                    MessageBox.Show("Ano babayaran mo? TAnga!");
+                    MessageBox.Show("No Downpayment Value");
                 }
                 else if (DownpaymentLbl.Text.Equals("0"))
                 {
-                    MessageBox.Show("Ano babayaran mo nga? TAnga!");
+                    MessageBox.Show("No Downpayment Value");
                 }
                 else
                 {
@@ -325,16 +323,7 @@ namespace Flowershop_Thesis.OtherForms
         string CustomerName;
         public void paymentcheck()
         {
-            if (DiscountCheckBox.Checked)
-            {
-                if (int.Parse(DiscountLbl.Text) > 0 && DiscountLbl.Enabled)
-                {
 
-                    discount = int.Parse(DiscountLbl.Text);
-
-                }
-
-            }
             if (CashOption.Checked == true && GcashOption.Checked == false)
             {
                 paymentmethod = "Cash";
@@ -604,11 +593,6 @@ namespace Flowershop_Thesis.OtherForms
                         return;
                     }
 
-                    if (!int.TryParse(DiscountTxtbox.Text, out discount))
-                    {
-                        MessageBox.Show("Invalid Discount format.");
-                        return;
-                    }
 
                     con.Open();
 
@@ -620,7 +604,7 @@ namespace Flowershop_Thesis.OtherForms
                     cmd.Parameters.AddWithValue("@MOP", CreateAdvanceOrder.ModeOfPayment);
                     cmd.Parameters.AddWithValue("@DateOfReservation", DateTime.Now);  // Current datetime
                     cmd.Parameters.AddWithValue("@Downpayment", downpayment);  // Use validated value
-                    cmd.Parameters.AddWithValue("@Discount", discount);  // Use validated value
+                    cmd.Parameters.AddWithValue("@Discount", 0);  // Use validated value
                     cmd.Parameters.AddWithValue("@OrderType", CreateAdvanceOrder.OrderType);
 
                     DateTime date = PickupDate.Value;
@@ -679,60 +663,9 @@ namespace Flowershop_Thesis.OtherForms
             DownpaymentLbl.Text = Math.Round(dp, 0).ToString();
         }
 
-        private void DiscountCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            if (DiscountCheckBox.Checked)
-            {
-                DiscountTxtbox.Enabled = true;
-            }
-            else
-            {
-                DiscountTxtbox.Text = "0";
-                DiscountLbl.Text = "0";
-                DiscountTxtbox.Enabled = false;
-            }
-
-        }
-
-        private void DiscountTxtbox_TextChanged(object sender, EventArgs e)
-        {
-            if (DiscountTxtbox.Text.Length > 0)
-            {
-                int indc = int.Parse(DiscountTxtbox.Text);
-                if (indc <= 50)
-                {
 
 
-                    // discount = int.Parse(TotalLbl.Text) * indc;
-                    if (PaymentTxtBox.ReadOnly == false)
-                    {
-                        string inp = DiscountTxtbox.Text;
-                        double dc = .01 * double.Parse(inp);
-                        double finaldc = dc * int.Parse(TotalLbl.Text);
-                        DiscountLbl.Text = Math.Round(finaldc).ToString();
 
-                        PaymentTxtBox.Text = DownpaymentLbl.Text;
-
-                    }
-                    else
-                    {
-                        string inp = DiscountTxtbox.Text;
-                        double dc = .01 * double.Parse(inp);
-                        double finaldc = dc * int.Parse(TotalLbl.Text);
-                        DiscountLbl.Text = finaldc.ToString();
-
-                    }
-                }
-                else
-                {
-                    DiscountTxtbox.Text = "0";
-                    MessageBox.Show("Discount exceeds the 50%");
-
-                }
-
-
-            }
-        }
 
         private void DiscountTxtbox_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -759,10 +692,6 @@ namespace Flowershop_Thesis.OtherForms
 
             double dc = 0;
 
-            if (DiscountTxtbox.Text.Length > 0)
-            {
-                dc = double.Parse(DiscountTxtbox.Text);
-            }
 
             double amount = double.Parse(TotalLbl.Text);
 
@@ -816,7 +745,7 @@ namespace Flowershop_Thesis.OtherForms
                         }
 
                     }
-                    else if (payment > 0 && DiscountCheckBox.Checked == false) //if payment is the only one present
+                    else if (payment > 0 ) //if payment is the only one present
                     {
 
                         change = payment - TotalAmount;
@@ -853,7 +782,7 @@ namespace Flowershop_Thesis.OtherForms
             if (GcashOption.Checked == true && CashOption.Checked == false)
             {
                 paymentStatus = "Unpaid";
-                //    PaymentTxtBox.Text = DownpaymentLbl.Text;
+                 PaymentTxtBox.Text = DownpaymentLbl.Text;
                 PaymentTxtBox.ReadOnly = true;
                 CreateAdvanceOrder.ModeOfPayment = "Gcash";
             }
@@ -913,6 +842,20 @@ namespace Flowershop_Thesis.OtherForms
                     }
                 }
             }
+        }
+
+        private void label22_VisibleChanged(object sender, EventArgs e)
+        {
+            if (label22.Visible) {
+                getCartList();
+                getPrice();
+                label22.Visible = false;
+            }
+        }
+
+        private void AdvanceOrderCart_FormClosed(object sender, FormClosedEventArgs e)
+        {
+
         }
     }
 }

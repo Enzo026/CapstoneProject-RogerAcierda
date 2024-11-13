@@ -63,14 +63,14 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(12, 12);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(491, 317);
+            this.panel1.Size = new System.Drawing.Size(491, 331);
             this.panel1.TabIndex = 0;
             // 
             // CancelBtn
             // 
             this.CancelBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CancelBtn.Font = new System.Drawing.Font("Montserrat SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CancelBtn.Location = new System.Drawing.Point(64, 248);
+            this.CancelBtn.Location = new System.Drawing.Point(64, 271);
             this.CancelBtn.Name = "CancelBtn";
             this.CancelBtn.Size = new System.Drawing.Size(154, 40);
             this.CancelBtn.TabIndex = 12;
@@ -82,7 +82,7 @@
             // 
             this.ProceedBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ProceedBtn.Font = new System.Drawing.Font("Montserrat SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ProceedBtn.Location = new System.Drawing.Point(264, 248);
+            this.ProceedBtn.Location = new System.Drawing.Point(264, 271);
             this.ProceedBtn.Name = "ProceedBtn";
             this.ProceedBtn.Size = new System.Drawing.Size(154, 40);
             this.ProceedBtn.TabIndex = 11;
@@ -206,7 +206,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MediumSlateBlue;
-            this.ClientSize = new System.Drawing.Size(515, 341);
+            this.ClientSize = new System.Drawing.Size(515, 355);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "CustomPopup";

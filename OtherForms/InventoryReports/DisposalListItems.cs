@@ -63,7 +63,12 @@ namespace Flowershop_Thesis.OtherForms.InventoryReports
         public string status
         {
             get { return Status; }
-            set { Status = value; StatusLbl.Text = value.ToString(); }
+            set { Status = value;
+                if (value == "Evaluated")
+                {
+                    StatusLbl.ForeColor = Color.Green;
+                }
+                StatusLbl.Text = value.ToString(); }
         }
         public string date
         {
@@ -73,7 +78,8 @@ namespace Flowershop_Thesis.OtherForms.InventoryReports
         public string Ordertype
         {
             get { return type; }
-            set { type = value; TypeLbl.Text = value.ToString(); }
+            set { type = value;
+                TypeLbl.Text = value.ToString(); }
         }
         #endregion
 
@@ -83,6 +89,14 @@ namespace Flowershop_Thesis.OtherForms.InventoryReports
             ViewInfo.type = TypeLbl.Text;
             OrderInfoFrm frm = new OrderInfoFrm();
             frm.ShowDialog();
+        }
+
+        private void DisposalListItems_Load(object sender, EventArgs e)
+        {
+            if(type.Trim() == "Evaluated")
+            {
+                TypeLbl.ForeColor = Color.Green;
+            }
         }
     }
 }

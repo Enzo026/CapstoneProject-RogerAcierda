@@ -210,10 +210,10 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement.AdvanceOrderfolder
             try
             {
                 flowLayoutPanel1.Controls.Clear();
-                using(SqlConnection con = new SqlConnection(Connect.connectionString))
+                using (SqlConnection con = new SqlConnection(Connect.connectionString))
                 {
                     con.Open();
-                    string countQuery = "select count(*) from Materials where ItemQuantity > 0 AND Usage > 1 AND ItemType = 'Cover';";
+                    string countQuery = "select count(*) FROM Materials where ItemQuantity > 0 AND Usage > 1 AND ItemType = 'Cover';";
                     using (SqlCommand countCommand = new SqlCommand(countQuery, con))
                     {
                         int rowCount = (int)countCommand.ExecuteScalar();
@@ -222,7 +222,6 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement.AdvanceOrderfolder
                         string sqlQuery = "SELECT * FROM Materials where ItemQuantity > 0 AND Usage > 1 AND ItemType = 'Cover';";
                         using (SqlCommand command = new SqlCommand(sqlQuery, con))
                         {
-                            //  command.Parameters.AddWithValue("@Search", textBox1.Text);
                             using (SqlDataReader reader = command.ExecuteReader())
                             {
                                 int index = 0;
@@ -231,15 +230,15 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement.AdvanceOrderfolder
                                     inv[index] = new Adv_CustomList();
                                     inv[index].Name = reader["ItemName"].ToString();
                                     inv[index].selection = Selected;
-                                    inv[index].Price = reader["Price"].ToString();
+                                    inv[index].Price = reader["UnitPrice"].ToString();
 
                                     int CI = reader.GetOrdinal("ItemID");
                                     inv[index].ItemID = reader.IsDBNull((int)CI) ? 0 : reader.GetInt32((int)CI);
                                     int IQ = reader.GetOrdinal("Usage");
                                     inv[index].Qty = reader.IsDBNull((int)IQ) ? 0 : reader.GetInt32((int)IQ);
-                                    if (reader["ItemImage"] != DBNull.Value)
+                                    if (reader["Image"] != DBNull.Value)
                                     {
-                                        byte[] imageData = (byte[])reader["ItemImage"];
+                                        byte[] imageData = (byte[])reader["Image"];
                                         using (MemoryStream ms = new MemoryStream(imageData))
                                         {
                                             inv[index].img = Image.FromStream(ms);
@@ -258,6 +257,7 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement.AdvanceOrderfolder
 
                 Console.WriteLine("Error on CartLsit() : " + ex.Message);
             }
+       
         }
 
         public void FillRibbon()
@@ -274,7 +274,7 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement.AdvanceOrderfolder
                         int rowCount = (int)countCommand.ExecuteScalar();
                         Adv_CustomList[] inv = new Adv_CustomList[rowCount];
 
-                        string sqlQuery = "SELECT * FROM Materials where ItemQuantity > 0 AND Usage > 1 AND ItemType = 'Ribbon';";
+                        string sqlQuery = "select * from Materials where ItemQuantity > 0 AND Usage > 1 AND ItemType = 'Ribbon';";
                         using (SqlCommand command = new SqlCommand(sqlQuery, con))
                         {
                             //  command.Parameters.AddWithValue("@Search", textBox1.Text);
@@ -286,16 +286,16 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement.AdvanceOrderfolder
                                     inv[index] = new Adv_CustomList();
                                     inv[index].Name = reader["ItemName"].ToString();
                                     inv[index].selection = Selected;
-                                    inv[index].Price = reader["Price"].ToString();
+                                    inv[index].Price = reader["UnitPrice"].ToString();
 
                                     int CI = reader.GetOrdinal("ItemID");
                                     inv[index].ItemID = reader.IsDBNull((int)CI) ? 0 : reader.GetInt32((int)CI);
                                     int IQ = reader.GetOrdinal("Usage");
                                     inv[index].Qty = reader.IsDBNull((int)IQ) ? 0 : reader.GetInt32((int)IQ);
 
-                                    if (reader["ItemImage"] != DBNull.Value)
+                                    if (reader["Image"] != DBNull.Value)
                                     {
-                                        byte[] imageData = (byte[])reader["ItemImage"];
+                                        byte[] imageData = (byte[])reader["Image"];
                                         using (MemoryStream ms = new MemoryStream(imageData))
                                         {
                                             inv[index].img = Image.FromStream(ms);
@@ -705,11 +705,12 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement.AdvanceOrderfolder
 
 
         }
+        bool goodtogo = false;
         private void ProceedBtn_Click(object sender, EventArgs e)
         {
             CheckName();
             if(ItemNameCount == 0)
-            {
+            {   
                 checker();
                 addInventory();
                 AddCart();
@@ -859,7 +860,9 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement.AdvanceOrderfolder
                 CardPrc.Visible = false;
                 CardQty.Visible = false;
                 CardPrc.Text = "0";
+               
             }
+            computePrice();
         }
     }
 }

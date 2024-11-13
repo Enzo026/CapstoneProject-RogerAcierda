@@ -98,11 +98,11 @@
             this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button7.Font = new System.Drawing.Font("Montserrat SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button7.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button7.Location = new System.Drawing.Point(3, 162);
+            this.button7.Location = new System.Drawing.Point(3, 146);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(315, 56);
             this.button7.TabIndex = 8;
-            this.button7.Text = "Inventory";
+            this.button7.Text = "Overview";
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
@@ -128,7 +128,7 @@
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button4.Font = new System.Drawing.Font("Montserrat SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button4.Location = new System.Drawing.Point(2, 410);
+            this.button4.Location = new System.Drawing.Point(2, 394);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(315, 56);
             this.button4.TabIndex = 5;
@@ -142,7 +142,7 @@
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Font = new System.Drawing.Font("Montserrat SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.Location = new System.Drawing.Point(2, 348);
+            this.button3.Location = new System.Drawing.Point(2, 332);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(315, 56);
             this.button3.TabIndex = 4;
@@ -156,7 +156,7 @@
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Montserrat SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.Location = new System.Drawing.Point(1, 286);
+            this.button2.Location = new System.Drawing.Point(1, 270);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(315, 56);
             this.button2.TabIndex = 3;
@@ -170,7 +170,7 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Montserrat SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(1, 224);
+            this.button1.Location = new System.Drawing.Point(1, 208);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(315, 56);
             this.button1.TabIndex = 2;

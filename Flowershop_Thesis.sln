@@ -5,6 +5,8 @@ VisualStudioVersion = 17.5.33627.172
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flowershop_Thesis", "Flowershop_Thesis.csproj", "{EA04AF66-01B1-457F-A95E-DA5EAC0B394A}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SystemApplicationRogerAcierdaFlowershop", "..\SystemApplicationRogerAcierdaFlowershop\SystemApplicationRogerAcierdaFlowershop.vdproj", "{C9FBFE21-1FBE-447A-A36A-7716870DA387}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,8 @@ Global
 		{EA04AF66-01B1-457F-A95E-DA5EAC0B394A}.Debug|Any CPU.Build.0 = Release|Any CPU
 		{EA04AF66-01B1-457F-A95E-DA5EAC0B394A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EA04AF66-01B1-457F-A95E-DA5EAC0B394A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9FBFE21-1FBE-447A-A36A-7716870DA387}.Debug|Any CPU.ActiveCfg = Release
+		{C9FBFE21-1FBE-447A-A36A-7716870DA387}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -20,12 +20,19 @@ namespace Capstone_Flowershop.AdminForms.Reports.SalesReports
 
         private void Reports_Load(object sender, EventArgs e)
         {
-            panel1.Controls.Clear();
-            SalesReport SR = new SalesReport();
-            SR.TopLevel = false;
-            panel1.Controls.Add(SR);
-            SR.BringToFront();
-            SR.Show();
+            try
+            {
+                panel1.Controls.Clear();
+                SalesReport SR = new SalesReport();
+                SR.TopLevel = false;
+                panel1.Controls.Add(SR);
+                SR.BringToFront();
+                SR.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)

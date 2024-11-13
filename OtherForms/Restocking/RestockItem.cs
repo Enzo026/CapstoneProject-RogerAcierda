@@ -43,6 +43,7 @@ namespace Flowershop_Thesis.OtherForms.Restocking
                 this.Close();
             }
         }
+
         private void LoadSuppliers()
         {
             try

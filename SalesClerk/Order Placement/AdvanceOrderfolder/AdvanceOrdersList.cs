@@ -114,6 +114,7 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement.AdvanceOrderfolder
                                 // Check if any rows were updated
                                 if (rowsAffected > 0)
                                 {
+                                    insertCancelledTransaction();
                                     MessageBox.Show("Order has been cancelled successfully!");
                                     getListOrder();
                                     ordertoday();
@@ -154,6 +155,52 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement.AdvanceOrderfolder
             }
 
         }
+        public void insertCancelledTransaction()
+        {
+            using (SqlConnection connection = new SqlConnection(Connect.connectionString))
+            {
+                using (SqlCommand command = new SqlCommand("CancellationOfOrder", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    // Add parameters
+                    command.Parameters.Add(new SqlParameter("@ID", ChangeIds.TransactionLogID));
+                    command.Parameters.Add(new SqlParameter("@TransactionType", "AdvanceOrder"));
+
+                    try
+                    {
+                        // Open the connection
+                        connection.Open();
+
+                        // Execute the stored procedure
+                        command.ExecuteNonQuery();
+
+                        // Optionally, log success
+                        MessageBox.Show("Cancellation executed successfully.");
+                    }
+                    catch (SqlException ex)
+                    {
+                        // Handle SQL errors
+                        MessageBox.Show("SQL Error: " + ex.Message);
+                        // Optionally log the error details
+                    }
+                    catch (Exception ex)
+                    {
+                        // Handle general errors
+                        MessageBox.Show("Error: " + ex.Message);
+                        // Optionally log the error details
+                    }
+                    finally
+                    {
+                        // Ensure the connection is closed
+                        if (connection.State == ConnectionState.Open)
+                        {
+                            connection.Close();
+                        }
+                    }
+                }
+            }
+        }
         public void getListOrder()
         {
             try
@@ -161,13 +208,13 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement.AdvanceOrderfolder
                 using(SqlConnection con = new SqlConnection(Connect.connectionString))
                 {
                     con.Open();
-                    string countQuery = "SELECT COUNT(*) FROM AdvanceOrders where Status = 'Active' ";
+                    string countQuery = "SELECT COUNT(*) FROM AdvanceOrders where Status = 'Active' and PickupDate > Getdate() ";
                     using (SqlCommand countCommand = new SqlCommand(countQuery, con))
                     {
                         int rowCount = (int)countCommand.ExecuteScalar();
                         AdvanceOrderListContents[] inv = new AdvanceOrderListContents[rowCount];
 
-                        string sqlQuery = "SELECT * FROM AdvanceOrders where Status = 'Active' ";
+                        string sqlQuery = "SELECT * FROM AdvanceOrders where Status = 'Active' and PickupDate > Getdate()";
                         using (SqlCommand command = new SqlCommand(sqlQuery, con))
                         {
                             using (SqlDataReader reader = command.ExecuteReader())

@@ -67,7 +67,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1164, 719);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1162, 719);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // panel1
@@ -78,7 +78,7 @@
             this.panel1.Controls.Add(this.label2);
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1158, 100);
+            this.panel1.Size = new System.Drawing.Size(1156, 100);
             this.panel1.TabIndex = 0;
             // 
             // label1
@@ -89,7 +89,7 @@
             this.label1.Font = new System.Drawing.Font("Montserrat SemiBold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(3, 54);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(1152, 32);
+            this.label1.Size = new System.Drawing.Size(1150, 32);
             this.label1.TabIndex = 7;
             this.label1.Text = "F L O W E R S H O P";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -102,7 +102,7 @@
             this.label2.Font = new System.Drawing.Font("Montserrat ExtraBold", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(3, -3);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(1152, 49);
+            this.label2.Size = new System.Drawing.Size(1150, 49);
             this.label2.TabIndex = 6;
             this.label2.Text = "Roger Acierda";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -127,7 +127,7 @@
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.514191F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 91.48581F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(1158, 570);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1156, 570);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
             // flowLayoutPanel3
@@ -136,7 +136,7 @@
             this.flowLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel3.Location = new System.Drawing.Point(773, 51);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(382, 516);
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(380, 516);
             this.flowLayoutPanel3.TabIndex = 13;
             // 
             // flowLayoutPanel2
@@ -182,7 +182,7 @@
             this.label5.Font = new System.Drawing.Font("Montserrat SemiBold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(773, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(382, 48);
+            this.label5.Size = new System.Drawing.Size(380, 48);
             this.label5.TabIndex = 10;
             this.label5.Text = "RECEIVING";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -201,7 +201,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkSlateBlue;
-            this.ClientSize = new System.Drawing.Size(1188, 743);
+            this.ClientSize = new System.Drawing.Size(1186, 743);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "QueuingFormFont";
             this.Text = "QueuingFormFont";

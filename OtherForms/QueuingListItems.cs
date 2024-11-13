@@ -100,7 +100,7 @@ namespace Flowershop_Thesis.OtherForms
                 {
                     using (SqlConnection con = new SqlConnection(Connect.connectionString))
                     {
-                        string updateQuery = "UPDATE TransactionsTbl SET Status = 'Payment' WHERE TransactionID = @ID;";
+                        string updateQuery = "UPDATE TransactionsTbl SET Status = 'Payment', OrderStatus = 'Complete' WHERE TransactionID = @ID;";
                         con.Open();
                         using (SqlCommand updateCommand = new SqlCommand(updateQuery, con))
                         {

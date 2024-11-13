@@ -105,7 +105,7 @@ namespace Flowershop_Thesis.MainForms
 
         private void InventoryClerk_BasePlatform_Load(object sender, EventArgs e)
         {
-            EmpName.Text = UserInfo.Empleyado + ", Sales Clerk";
+            EmpName.Text = UserInfo.Empleyado + ", Inventory Clerk";
           
         }
 

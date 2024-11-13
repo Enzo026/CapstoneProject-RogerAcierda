@@ -23,6 +23,7 @@ namespace Flowershop_Thesis.InventoryClerk.Restocking
         public Label RestockNum;
         public Label Idhandler;
         public Label ItmName;
+        public Label loading;
         public RestockNew()
         {
             InitializeComponent();
@@ -31,7 +32,9 @@ namespace Flowershop_Thesis.InventoryClerk.Restocking
            loadTableData();
             loadTableMaterials();
             RestockNum = label78;
-            
+            loading = label9;
+            dateTimePicker1.MaxDate = DateTime.Today;
+            dateTimePicker1.Value= DateTime.Today;
         }
 
         public void loadTableData()
@@ -42,13 +45,13 @@ namespace Flowershop_Thesis.InventoryClerk.Restocking
                 using (SqlConnection con = new SqlConnection(Connect.connectionString))
                 {
                     con.Open();
-                    string countQuery = "SELECT count(*) FROM ItemInventory WHERE ItemStatus = 'Available'";
+                    string countQuery = "SELECT count(*) FROM ItemInventory WHERE ItemStatus = 'Available' and ItemType = 'Individual'";
                     using (SqlCommand countCommand = new SqlCommand(countQuery, con))
                     {
                         int rowCount = (int)countCommand.ExecuteScalar();
                         RestockList[] itemList = new RestockList[rowCount];
 
-                        string sqlQuery = "SELECT * FROM ItemInventory WHERE ItemStatus = 'Available' ORDER BY ItemQuantity ASC";
+                        string sqlQuery = "SELECT * FROM ItemInventory WHERE ItemStatus = 'Available' and ItemType = 'Individual' ORDER BY ItemQuantity ASC";
                         using (SqlCommand command = new SqlCommand(sqlQuery, con))
                         {
                             using (SqlDataReader reader = command.ExecuteReader())
@@ -463,28 +466,39 @@ namespace Flowershop_Thesis.InventoryClerk.Restocking
         }
 
         private void button2_Click_1(object sender, EventArgs e)
-        {
-            using (SqlConnection con = new SqlConnection(Connect.connectionString))
+        {   
+            if(textBox4.Text.Length > 0)
             {
-                try
+                using (SqlConnection con = new SqlConnection(Connect.connectionString))
                 {
-                    con.Open();
-
-                    using (SqlCommand cmd = new SqlCommand("RestockingProcess", con))
+                    try
                     {
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@Employee", UserInfo.Empleyado);
-                        int rowsAffected = cmd.ExecuteNonQuery();
-                        MessageBox.Show($"Stored procedure executed successfully. Rows affected: {rowsAffected}");
-                        flowLayoutPanel2.Controls.Clear();
-                        getbatch();
+                        con.Open();
+
+                        using (SqlCommand cmd = new SqlCommand("RestockingProcess", con))
+                        {
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("@Employee", UserInfo.Empleyado);
+                            cmd.Parameters.AddWithValue("@ReceiptID", textBox4.Text.Trim());
+                            int rowsAffected = cmd.ExecuteNonQuery();
+                            MessageBox.Show($"Stored procedure executed successfully. Rows affected: {rowsAffected}");
+                            flowLayoutPanel2.Controls.Clear();
+                            loadrestock();
+                            label9.Visible = true;
+                            textBox4.Text = null;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"An error occurred: {ex.Message}");
                     }
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"An error occurred: {ex.Message}");
-                }
             }
+            else
+            {
+                MessageBox.Show("Please Input Receipt ID");
+            }
+
         }
         public void getbatch()
         {
@@ -500,7 +514,7 @@ namespace Flowershop_Thesis.InventoryClerk.Restocking
                         int rowCount = (int)countCommand.ExecuteScalar();
                         BatchListItems[] itemList = new BatchListItems[rowCount];
 
-                        string sqlQuery = "SELECT * FROM BatchRestockCompiled order by BatchID desc";
+                        string sqlQuery = "SELECT * FROM BatchRestockCompiled order by RestockingDate desc";
                         using (SqlCommand command = new SqlCommand(sqlQuery, con))
                         {
                             using (SqlDataReader reader = command.ExecuteReader())
@@ -590,6 +604,259 @@ namespace Flowershop_Thesis.InventoryClerk.Restocking
                         MessageBox.Show("An error occurred: " + ex.Message);
                     }
                 }
+            }
+        }
+
+        private void label9_VisibleChanged(object sender, EventArgs e)
+        {
+            if (label9.Visible) 
+            {
+                getbatch();
+                loadTableMaterials();
+                loadTableData();
+                label9.Visible = false;
+            }
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {   
+            dateTimePicker2.Enabled = true;
+            dateTimePicker2.MinDate = dateTimePicker1.Value; // Update MinDate
+            dateTimePicker2.MaxDate = DateTime.Today;
+        }
+
+        private void button22_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                flowLayoutPanel1.Controls.Clear();
+                DateTime date1 = dateTimePicker1.Value.Date;
+                DateTime date2 = dateTimePicker2.Value.Date;
+                using (SqlConnection con = new SqlConnection(Connect.connectionString))
+                {
+                    con.Open();
+                    string countQuery = "SELECT Count(*) FROM BatchRestockCompiled WHERE RestockingDate BETWEEN @startDate AND @endDate;";
+                    using (SqlCommand countCommand = new SqlCommand(countQuery, con))
+                    {   
+                        countCommand.Parameters.AddWithValue("@startDate", date1);
+                        countCommand.Parameters.AddWithValue("@endDate", date2);
+                        int rowCount = (int)countCommand.ExecuteScalar();
+                        BatchListItems[] itemList = new BatchListItems[rowCount];
+
+                        string sqlQuery = "SELECT * FROM BatchRestockCompiled WHERE RestockingDate BETWEEN @startDate AND @endDate order by BatchID desc";
+                        using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                        {
+                            command.Parameters.AddWithValue("@startDate", date1);
+                            command.Parameters.AddWithValue("@endDate", date2);
+                            using (SqlDataReader reader = command.ExecuteReader())
+                            {
+                                int index = 0;
+                                while (reader.Read() && index < itemList.Length)
+                                {
+                                    itemList[index] = new BatchListItems();
+                                    itemList[index].itemidData = reader["BatchID"].ToString();
+
+                                    // Convert string to DateTime
+                                    string givendate = reader["RestockingDate"].ToString();
+                                    DateTime rdate;
+                                    if (DateTime.TryParse(givendate, out rdate))
+                                    {
+                                        itemList[index].Date = rdate.ToString("MMM dd, yyyy");
+                                    }
+                                    else
+                                    {
+                                        itemList[index].Date = "Invalid Date";
+                                    }
+
+                                    itemList[index].itemquantityData = int.Parse(reader["TotalCount"].ToString());
+                                    flowLayoutPanel1.Controls.Add(itemList[index]);
+                                    index++;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void textBox1_TextChanged_1(object sender, EventArgs e)
+        {
+            if (textBox1.Text.Length > 0) 
+            {
+                try
+                {
+                    flowLayoutPanel1.Controls.Clear();
+                    using (SqlConnection con = new SqlConnection(Connect.connectionString))
+                    {
+                        con.Open();
+                        string countQuery = "SELECT Count(*) FROM BatchRestockCompiled where BatchID Like @input;";
+                        using (SqlCommand countCommand = new SqlCommand(countQuery, con))
+                        {   
+                            countCommand.Parameters.AddWithValue("@input", "%"+textBox1.Text+"%");
+                            int rowCount = (int)countCommand.ExecuteScalar();
+                            BatchListItems[] itemList = new BatchListItems[rowCount];
+
+                            string sqlQuery = "SELECT * FROM BatchRestockCompiled where BatchID Like @input order by BatchID desc";
+                            using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                            {
+                                command.Parameters.AddWithValue("@input", "%" + textBox1.Text + "%");
+                                using (SqlDataReader reader = command.ExecuteReader())
+                                {
+                                    int index = 0;
+                                    while (reader.Read() && index < itemList.Length)
+                                    {
+                                        itemList[index] = new BatchListItems();
+                                        itemList[index].itemidData = reader["BatchID"].ToString();
+
+                                        // Convert string to DateTime
+                                        string givendate = reader["RestockingDate"].ToString();
+                                        DateTime rdate;
+                                        if (DateTime.TryParse(givendate, out rdate))
+                                        {
+                                            itemList[index].Date = rdate.ToString("MMM dd, yyyy");
+                                        }
+                                        else
+                                        {
+                                            itemList[index].Date = "Invalid Date";
+                                        }
+
+                                        itemList[index].itemquantityData = int.Parse(reader["TotalCount"].ToString());
+                                        flowLayoutPanel1.Controls.Add(itemList[index]);
+                                        index++;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+            }
+            else
+            {
+                getbatch();
+            }
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox3.Text.Length > 0)
+            {
+                try
+                {
+                    flowLayoutPanel4.Controls.Clear();
+                    using (SqlConnection con = new SqlConnection(Connect.connectionString))
+                    {
+                        con.Open();
+                        string countQuery = "select count(*) from Materials where ItemName like @input"; //select count(*) from ItemInventory where ItemType = 'Individual'
+                        using (SqlCommand countCommand = new SqlCommand(countQuery, con))
+                        {   
+                            countCommand.Parameters.AddWithValue("@input", textBox3.Text+"%");
+                            int rowCount = (int)countCommand.ExecuteScalar();
+                            RestockList[] itemList = new RestockList[rowCount];
+
+                            string sqlQuery = "SELECT * FROM Materials where ItemName like @input order by ItemQuantity asc"; //SELECT * FROM ItemInventory where ItemType = 'Individual' order by ItemQuantity asc
+                            using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                            {
+                                command.Parameters.AddWithValue("@input",  textBox3.Text + "%");
+                                using (SqlDataReader reader = command.ExecuteReader())
+                                {
+                                    int index = 0;
+                                    while (reader.Read() && index < itemList.Length)
+                                    {
+                                        itemList[index] = new RestockList();
+                                        itemList[index].itemidData = int.Parse(reader["ItemID"].ToString());
+                                        itemList[index].itemnameData = reader["ItemName"].ToString();
+                                        int qty = reader.GetOrdinal("ItemQuantity");
+                                        int demo = int.Parse(reader["ItemQuantity"].ToString());
+                                        itemList[index].itemquantityData = demo;
+                                        itemList[index].Type = "Materials";
+
+
+
+
+                                        flowLayoutPanel4.Controls.Add(itemList[index]);
+                                        index++;
+
+                                    }
+                                }
+                            }
+                        }
+
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+            }
+            else
+            {
+                loadTableMaterials();
+            }
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox2.Text.Length > 0)
+            {
+                try
+                {
+                    flowLayoutPanel3.Controls.Clear();
+                    using (SqlConnection con = new SqlConnection(Connect.connectionString))
+                    {
+                        con.Open();
+                        string countQuery = "SELECT count(*) FROM ItemInventory WHERE ItemStatus = 'Available' AND ItemName like @input";
+                        using (SqlCommand countCommand = new SqlCommand(countQuery, con))
+                        {   
+                            countCommand.Parameters.AddWithValue("@input", textBox2.Text + "%");
+                            int rowCount = (int)countCommand.ExecuteScalar();
+                            RestockList[] itemList = new RestockList[rowCount];
+
+                            string sqlQuery = "SELECT * FROM ItemInventory WHERE ItemStatus = 'Available' AND ItemName like @input ORDER BY ItemQuantity ASC";
+                            using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                            {
+                                command.Parameters.AddWithValue("@input", textBox2.Text + "%");
+                                using (SqlDataReader reader = command.ExecuteReader())
+                                {
+                                    int index = 0;
+                                    while (reader.Read() && index < itemList.Length)
+                                    {
+                                        itemList[index] = new RestockList
+                                        {
+                                            itemidData = int.Parse(reader["ItemID"].ToString()),
+                                            itemnameData = reader["ItemName"].ToString(),
+                                            itemquantityData = reader.GetInt32(reader.GetOrdinal("ItemQuantity")),
+                                            Type = "Flowers",
+
+                                        };
+
+                                        flowLayoutPanel3.Controls.Add(itemList[index]);
+                                        index++;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+            }
+            else
+            {
+                loadTableData();
             }
         }
     }

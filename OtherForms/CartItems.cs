@@ -14,6 +14,7 @@ using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 using Flowershop_Thesis;
 using Capstone_Flowershop;
+using Flowershop_Thesis.OtherForms.WalkInTransactionsFolder;
 
 namespace Flowershop_Thesis.OtherForms
 {
@@ -79,36 +80,21 @@ namespace Flowershop_Thesis.OtherForms
             }
             else
             {
-                try
-                {   
-                    using(SqlConnection con = new SqlConnection(Connect.connectionString))
-                    {
-                        con.Open();
-                        cmd = new SqlCommand("Delete from ServingCart where CartID = " + CartID + " ;", con);
-                        cmd.ExecuteNonQuery();
-                        int cart = cartqty - 1;
-                        if (cart == 0)
-                        {
-                            OrderPlacement.instance.lbl.Text = cart.ToString();
-                        }
-                        else if (cart > 0)
-                        {
-                            this.Parent.Controls.Remove(this);
-                            OrderPlacement.instance.lbl.Text = cart.ToString();
-                        }
-                    }
-
-
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error : " + ex.Message);
-                }
+                WalkInTransaction.CancellationType = "Single";
+                WalkInTransaction.CancellationItemName = name;
+                WalkInTransaction.CancellationCartId = CartID.ToString();
+                CancellationOfOrderFrm frm = new CancellationOfOrderFrm();
+                frm.ShowDialog();
 
 
 
             }
            
+        }
+
+        private void button15_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

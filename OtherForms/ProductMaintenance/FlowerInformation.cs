@@ -1,4 +1,5 @@
 ﻿using Capstone_Flowershop;
+using Capstone_Flowershop.AdminForms.ProductMaintenance;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -75,6 +76,7 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
                         }
                         MessageBox.Show("Item Marked As Unavailable! Please refresh list to see changes");
                         addActivityLog();
+                        ProductMaintenanceFrm.instance.refresh.Visible = true;
                         this.Close();
                     }
                     else if (numId > 1){MessageBox.Show("There are multiple Users in this ID");}

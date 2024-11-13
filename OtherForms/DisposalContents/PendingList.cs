@@ -21,7 +21,7 @@ namespace Flowershop_Thesis.OtherForms.DisposalContents
         }
 
         #region FinishedQueue
-        private string Id, CustName, Price, Status, Date,Type;
+        private string Id, CustName, Price, Status, Date,OrderType;
 
         [Category("ActivityList")]
         public string id //ID
@@ -34,9 +34,21 @@ namespace Flowershop_Thesis.OtherForms.DisposalContents
         private void EvaluateBtn_Click_1(object sender, EventArgs e)
         {
             DisposalInfo.ID = id;
-            DisposalInfo.type = Type;
+            DisposalInfo.OrderType = OrderType;
+            DisposalInfo.OrderStatus = Status;
             DisposalItems frm = new DisposalItems();
             frm.ShowDialog();
+        }
+
+        private void PendingList_Load(object sender, EventArgs e)
+        {
+            if (Status == "Evaluated")
+            {
+                StatusLbl.ForeColor = Color.Green;
+                DisposalInfo.OrderStatus = Status;
+                EvaluateBtn.Text = "See Info...";
+
+            }
         }
 
         [Category("ActivityList")]
@@ -66,8 +78,8 @@ namespace Flowershop_Thesis.OtherForms.DisposalContents
         [Category("ActivityList")]
         public string type
         {
-            get { return Type; }
-            set { Type = value; TypeLbl.Text = value.ToString(); }
+            get { return OrderType; }
+            set { OrderType = value; TypeLbl.Text = value.ToString(); }
         }
 
         #endregion

@@ -57,6 +57,8 @@ namespace Flowershop_Thesis.OtherForms.Restocking
 
                         label3.Text = reader["employee"].ToString();
                         label7.Text = reader["totalItems"].ToString();
+                        label10.Text = reader["ReceiptID"].ToString();
+
                     }
 
                     reader.Close();

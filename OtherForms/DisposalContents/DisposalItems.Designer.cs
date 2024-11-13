@@ -33,27 +33,22 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
+            this.TypeLbl = new System.Windows.Forms.Label();
+            this.DateLbl = new System.Windows.Forms.Label();
+            this.TotalPriceLbl = new System.Windows.Forms.Label();
+            this.CustomerNameLbl = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.label45 = new System.Windows.Forms.Label();
-            this.label46 = new System.Windows.Forms.Label();
-            this.Type = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
             this.PriceLbl = new System.Windows.Forms.Label();
-            this.button4 = new System.Windows.Forms.Button();
             this.QtyLbl = new System.Windows.Forms.Label();
             this.ItemNameLbl = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.TypeLbl = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -81,14 +76,14 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(28, 99);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(31, 13);
+            this.label3.Size = new System.Drawing.Size(58, 13);
             this.label3.TabIndex = 2;
-            this.label3.Text = "Type";
+            this.label3.Text = "Total Price";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(180, 99);
+            this.label4.Location = new System.Drawing.Point(394, 99);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(31, 13);
             this.label4.TabIndex = 4;
@@ -103,41 +98,41 @@
             this.label5.TabIndex = 3;
             this.label5.Text = "Cancellation Date";
             // 
-            // label6
+            // TypeLbl
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(221, 99);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(31, 13);
-            this.label6.TabIndex = 8;
-            this.label6.Text = "Type";
+            this.TypeLbl.AutoSize = true;
+            this.TypeLbl.Location = new System.Drawing.Point(435, 99);
+            this.TypeLbl.Name = "TypeLbl";
+            this.TypeLbl.Size = new System.Drawing.Size(31, 13);
+            this.TypeLbl.TabIndex = 8;
+            this.TypeLbl.Text = "Type";
             // 
-            // label7
+            // DateLbl
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(435, 59);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(91, 13);
-            this.label7.TabIndex = 7;
-            this.label7.Text = "Cancellation Date";
+            this.DateLbl.AutoSize = true;
+            this.DateLbl.Location = new System.Drawing.Point(435, 59);
+            this.DateLbl.Name = "DateLbl";
+            this.DateLbl.Size = new System.Drawing.Size(91, 13);
+            this.DateLbl.TabIndex = 7;
+            this.DateLbl.Text = "Cancellation Date";
             // 
-            // label8
+            // TotalPriceLbl
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(65, 99);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(31, 13);
-            this.label8.TabIndex = 6;
-            this.label8.Text = "Type";
+            this.TotalPriceLbl.AutoSize = true;
+            this.TotalPriceLbl.Location = new System.Drawing.Point(92, 99);
+            this.TotalPriceLbl.Name = "TotalPriceLbl";
+            this.TotalPriceLbl.Size = new System.Drawing.Size(31, 13);
+            this.TotalPriceLbl.TabIndex = 6;
+            this.TotalPriceLbl.Text = "Type";
             // 
-            // label9
+            // CustomerNameLbl
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(129, 59);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(82, 13);
-            this.label9.TabIndex = 5;
-            this.label9.Text = "Customer Name";
+            this.CustomerNameLbl.AutoSize = true;
+            this.CustomerNameLbl.Location = new System.Drawing.Point(129, 59);
+            this.CustomerNameLbl.Name = "CustomerNameLbl";
+            this.CustomerNameLbl.Size = new System.Drawing.Size(82, 13);
+            this.CustomerNameLbl.TabIndex = 5;
+            this.CustomerNameLbl.Text = "Customer Name";
             // 
             // flowLayoutPanel1
             // 
@@ -149,23 +144,16 @@
             this.flowLayoutPanel1.Size = new System.Drawing.Size(533, 384);
             this.flowLayoutPanel1.TabIndex = 9;
             // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(477, 548);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(31, 13);
-            this.label10.TabIndex = 11;
-            this.label10.Text = "Type";
-            // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(338, 548);
+            this.label11.Location = new System.Drawing.Point(18, 537);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(133, 13);
+            this.label11.Size = new System.Drawing.Size(57, 13);
             this.label11.TabIndex = 10;
-            this.label11.Text = "Disposed Items Total Price";
+            this.label11.Text = "Loading ...";
+            this.label11.Visible = false;
+            this.label11.VisibleChanged += new System.EventHandler(this.label11_VisibleChanged);
             // 
             // button1
             // 
@@ -189,7 +177,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(221, 134);
+            this.label13.Location = new System.Drawing.Point(240, 134);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(46, 13);
             this.label13.TabIndex = 14;
@@ -198,77 +186,49 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(296, 134);
+            this.label14.Location = new System.Drawing.Point(338, 134);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(31, 13);
             this.label14.TabIndex = 15;
             this.label14.Text = "Price";
             // 
-            // label45
-            // 
-            this.label45.AutoSize = true;
-            this.label45.Location = new System.Drawing.Point(379, 99);
-            this.label45.Name = "label45";
-            this.label45.Size = new System.Drawing.Size(31, 13);
-            this.label45.TabIndex = 17;
-            this.label45.Text = "Type";
-            // 
-            // label46
-            // 
-            this.label46.AutoSize = true;
-            this.label46.Location = new System.Drawing.Point(338, 99);
-            this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(37, 13);
-            this.label46.TabIndex = 16;
-            this.label46.Text = "Status";
-            // 
-            // Type
-            // 
-            this.Type.AutoSize = true;
-            this.Type.Location = new System.Drawing.Point(379, 134);
-            this.Type.Name = "Type";
-            this.Type.Size = new System.Drawing.Size(31, 13);
-            this.Type.TabIndex = 18;
-            this.Type.Text = "Type";
-            // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.TypeLbl);
+            this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.PriceLbl);
-            this.panel1.Controls.Add(this.button4);
             this.panel1.Controls.Add(this.QtyLbl);
             this.panel1.Controls.Add(this.ItemNameLbl);
-            this.panel1.Controls.Add(this.button2);
+            this.panel1.Controls.Add(this.button3);
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(507, 40);
-            this.panel1.TabIndex = 2;
+            this.panel1.TabIndex = 4;
+            // 
+            // button2
+            // 
+            this.button2.BackgroundImage = global::Flowershop_Thesis.Properties.Resources.check1;
+            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Location = new System.Drawing.Point(469, 3);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(32, 32);
+            this.button2.TabIndex = 19;
+            this.button2.UseVisualStyleBackColor = true;
             // 
             // PriceLbl
             // 
             this.PriceLbl.AutoSize = true;
-            this.PriceLbl.Location = new System.Drawing.Point(272, 13);
+            this.PriceLbl.Location = new System.Drawing.Point(314, 13);
             this.PriceLbl.Name = "PriceLbl";
             this.PriceLbl.Size = new System.Drawing.Size(31, 13);
             this.PriceLbl.TabIndex = 18;
             this.PriceLbl.Text = "Price";
             // 
-            // button4
-            // 
-            this.button4.BackgroundImage = global::Flowershop_Thesis.Properties.Resources.bin;
-            this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.button4.FlatAppearance.BorderSize = 0;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Location = new System.Drawing.Point(472, 3);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(32, 32);
-            this.button4.TabIndex = 15;
-            this.button4.UseVisualStyleBackColor = true;
-            // 
             // QtyLbl
             // 
             this.QtyLbl.AutoSize = true;
-            this.QtyLbl.Location = new System.Drawing.Point(197, 13);
+            this.QtyLbl.Location = new System.Drawing.Point(216, 13);
             this.QtyLbl.Name = "QtyLbl";
             this.QtyLbl.Size = new System.Drawing.Size(46, 13);
             this.QtyLbl.TabIndex = 17;
@@ -283,46 +243,33 @@
             this.ItemNameLbl.TabIndex = 16;
             this.ItemNameLbl.Text = "Item Name";
             // 
-            // button2
+            // button3
             // 
-            this.button2.BackgroundImage = global::Flowershop_Thesis.Properties.Resources.reset;
-            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Location = new System.Drawing.Point(434, 3);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(32, 32);
-            this.button2.TabIndex = 13;
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // TypeLbl
-            // 
-            this.TypeLbl.AutoSize = true;
-            this.TypeLbl.Location = new System.Drawing.Point(355, 13);
-            this.TypeLbl.Name = "TypeLbl";
-            this.TypeLbl.Size = new System.Drawing.Size(31, 13);
-            this.TypeLbl.TabIndex = 19;
-            this.TypeLbl.Text = "Price";
+            this.button3.BackgroundImage = global::Flowershop_Thesis.Properties.Resources.reset;
+            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.button3.FlatAppearance.BorderSize = 0;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Location = new System.Drawing.Point(431, 3);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(32, 32);
+            this.button3.TabIndex = 13;
+            this.button3.UseVisualStyleBackColor = true;
             // 
             // DisposalItems
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(566, 627);
-            this.Controls.Add(this.Type);
-            this.Controls.Add(this.label45);
-            this.Controls.Add(this.label46);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.label10);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.flowLayoutPanel1);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.label9);
+            this.Controls.Add(this.TypeLbl);
+            this.Controls.Add(this.DateLbl);
+            this.Controls.Add(this.TotalPriceLbl);
+            this.Controls.Add(this.CustomerNameLbl);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label3);
@@ -331,6 +278,8 @@
             this.Name = "DisposalItems";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DisposalItems";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DisposalItems_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.DisposalItems_FormClosed);
             this.Load += new System.EventHandler(this.DisposalItems_Load);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
@@ -347,26 +296,21 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label TypeLbl;
+        private System.Windows.Forms.Label DateLbl;
+        private System.Windows.Forms.Label TotalPriceLbl;
+        private System.Windows.Forms.Label CustomerNameLbl;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label45;
-        private System.Windows.Forms.Label label46;
-        private System.Windows.Forms.Label Type;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label TypeLbl;
+        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label PriceLbl;
-        private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Label QtyLbl;
         private System.Windows.Forms.Label ItemNameLbl;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
     }
 }

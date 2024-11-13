@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel27 = new System.Windows.Forms.Panel();
+            this.TypeLbl = new System.Windows.Forms.Label();
             this.EmpLbl = new System.Windows.Forms.Label();
             this.button30 = new System.Windows.Forms.Button();
             this.StatusLbl = new System.Windows.Forms.Label();
@@ -36,7 +37,6 @@
             this.ItemsLbl = new System.Windows.Forms.Label();
             this.CustNameLbl = new System.Windows.Forms.Label();
             this.IdLbl = new System.Windows.Forms.Label();
-            this.TypeLbl = new System.Windows.Forms.Label();
             this.panel27.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,6 +55,16 @@
             this.panel27.Name = "panel27";
             this.panel27.Size = new System.Drawing.Size(1039, 30);
             this.panel27.TabIndex = 21;
+            // 
+            // TypeLbl
+            // 
+            this.TypeLbl.AutoSize = true;
+            this.TypeLbl.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TypeLbl.Location = new System.Drawing.Point(277, 7);
+            this.TypeLbl.Name = "TypeLbl";
+            this.TypeLbl.Size = new System.Drawing.Size(13, 15);
+            this.TypeLbl.TabIndex = 16;
+            this.TypeLbl.Text = "3";
             // 
             // EmpLbl
             // 
@@ -104,7 +114,7 @@
             // 
             this.ItemsLbl.AutoSize = true;
             this.ItemsLbl.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ItemsLbl.Location = new System.Drawing.Point(485, 7);
+            this.ItemsLbl.Location = new System.Drawing.Point(447, 7);
             this.ItemsLbl.Name = "ItemsLbl";
             this.ItemsLbl.Size = new System.Drawing.Size(13, 15);
             this.ItemsLbl.TabIndex = 10;
@@ -114,7 +124,7 @@
             // 
             this.CustNameLbl.AutoSize = true;
             this.CustNameLbl.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CustNameLbl.Location = new System.Drawing.Point(124, 7);
+            this.CustNameLbl.Location = new System.Drawing.Point(62, 7);
             this.CustNameLbl.Name = "CustNameLbl";
             this.CustNameLbl.Size = new System.Drawing.Size(39, 15);
             this.CustNameLbl.TabIndex = 9;
@@ -130,22 +140,13 @@
             this.IdLbl.TabIndex = 8;
             this.IdLbl.Text = "01";
             // 
-            // TypeLbl
-            // 
-            this.TypeLbl.AutoSize = true;
-            this.TypeLbl.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TypeLbl.Location = new System.Drawing.Point(347, 7);
-            this.TypeLbl.Name = "TypeLbl";
-            this.TypeLbl.Size = new System.Drawing.Size(13, 15);
-            this.TypeLbl.TabIndex = 16;
-            this.TypeLbl.Text = "3";
-            // 
             // DisposalListItems
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.Controls.Add(this.panel27);
             this.Name = "DisposalListItems";
             this.Size = new System.Drawing.Size(1046, 36);
+            this.Load += new System.EventHandler(this.DisposalListItems_Load);
             this.panel27.ResumeLayout(false);
             this.panel27.PerformLayout();
             this.ResumeLayout(false);

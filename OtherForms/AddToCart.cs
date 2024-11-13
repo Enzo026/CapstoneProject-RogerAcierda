@@ -76,6 +76,7 @@ namespace Flowershop_Thesis.OtherForms
             if (textBox1.Text.Length > 0)
             {
                 int OrderQty = int.Parse(textBox1.Text.ToString());
+                int minOrder = int.Parse(label13.Text.ToString());
                 if (OrderQty == 0 || OrderQty.Equals(null) || OrderQty.Equals(""))
                 {
                     MessageBox.Show("Please input a quantity");
@@ -84,8 +85,44 @@ namespace Flowershop_Thesis.OtherForms
                 {
                     MessageBox.Show("The order Quantity are higher than the available maximum order Quantity Please input equal or below the maximum");
                 }
+                else if(OrderQty < minOrder)
+                {
+                    MessageBox.Show("The order Quantity are lower than the minimum order Quantity. Please input equal or above the minimum Quantity or uncheck the bulk order checkbox");
+                }
                 else
                 {
+
+                    // Deduct Item in item in the inventory
+                    try
+                    {
+                        using (SqlConnection con = new SqlConnection(Connect.connectionString))
+                        {
+                            con.Open();
+
+                            // Correct the SQL query syntax
+                            string query = "UPDATE ItemInventory SET ItemQuantity = ItemQuantity - @input WHERE ItemID = @ID";
+
+                            using (SqlCommand cmd = new SqlCommand(query, con))
+                            {
+                                // Add parameters
+                                cmd.Parameters.AddWithValue("@input", textBox1.Text);  
+                                cmd.Parameters.AddWithValue("@ID", Convert.ToInt32(this.ItemID));  
+
+                                // Execute the query
+                                cmd.ExecuteNonQuery();
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Item Inventory Deduction Failed! : " + ex.Message);
+                    }
+
+
+
+
+
+
                     //Insert to cart database
                     try
                     {   
@@ -117,8 +154,9 @@ namespace Flowershop_Thesis.OtherForms
                     cart++;
                     MessageBox.Show("Item Successfully Added Cart Items: " + cart.ToString());
                     OrderPlacement.instance.lbl.Text = cart.ToString();
-
+                    OrderPlacement.instance.update.Visible = true;
                     this.Close();
+
                 }
             }
             else
@@ -138,14 +176,28 @@ namespace Flowershop_Thesis.OtherForms
             {   
                 
                 int OrderQty = int.Parse(textBox1.Text.ToString());
-                if(OrderQty > stocks)
+                int minOrder = int.Parse(label13.Text.ToString());
+                if (OrderQty > stocks)
                 {
                     MessageBox.Show("The order Quantity are higher than the available maximum order Quantity Please input equal or below the maximum");
+                    textBox1.Text = "1";
                 }
                 else
                 {
                     decimal OrderPrice = OrderQty * price;
-                    label6.Text = OrderPrice.ToString();
+                    decimal discountedvalue = OrderPrice * SystemInfo.discount;
+                    decimal discountedPrice = OrderPrice - discountedvalue;
+                    if (checkBox1.Checked)
+                    {
+           
+                        label6.Text = discountedPrice.ToString();
+                    }
+                    else
+                    {
+                        label6.Text = OrderPrice.ToString();
+                    }
+
+                   
                 }
             }
             else
@@ -160,6 +212,52 @@ namespace Flowershop_Thesis.OtherForms
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
                 e.Handled = true; // Reject the input if it's not a number
+            }
+        }
+
+        private void AddToCart_Load(object sender, EventArgs e)
+        {
+            if(WalkInTransaction.OrderType == "Individual")
+            {
+                checkBox1.Visible = true;
+                label12.Visible = true;
+                label13.Visible = true;
+            }
+            else
+            {
+                checkBox1.Visible = false;
+                label12.Visible = false;
+                label13.Visible = false;
+            }
+        }
+
+        private void checkBox1_CheckStateChanged(object sender, EventArgs e)
+        {
+            int OrderQty = int.Parse(textBox1.Text.ToString());
+            if (checkBox1.Checked == true)
+            {
+                label13.Text = SystemInfo.MinimumOrder.ToString();
+        
+                if (OrderQty > SystemInfo.MinimumOrder) {
+                    decimal OrderPrice = OrderQty * price;
+                    decimal discountedvalue = OrderPrice * SystemInfo.discount;
+                    decimal discountedPrice = OrderPrice - discountedvalue;
+                    label6.Text = discountedPrice.ToString();
+
+                }
+                else
+                {
+                    textBox1.Text = SystemInfo.MinimumOrder.ToString();
+                }
+              
+
+
+            }
+            else
+            {
+                label13.Text = "0";
+                decimal OrderPrice = OrderQty * price;
+                label6.Text = OrderPrice.ToString();
             }
         }
     }

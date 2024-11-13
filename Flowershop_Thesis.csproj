@@ -61,10 +61,42 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Bcl.AsyncInterfaces.8.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Win32.TaskScheduler, Version=2.11.0.0, Culture=neutral, PublicKeyToken=e25603a88b3aa7da, processorArchitecture=MSIL">
+      <HintPath>packages\TaskScheduler.2.11.0\lib\net45\Microsoft.Win32.TaskScheduler.dll</HintPath>
+    </Reference>
     <Reference Include="System">
       <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll</HintPath>
     </Reference>
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
     <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encodings.Web, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Text.Encodings.Web.8.0.0\lib\net462\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=8.0.0.5, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Text.Json.8.0.5\lib\net462\System.Text.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -82,6 +114,12 @@
     </Compile>
     <Compile Include="AdminForms\AccountsMaintenance\AccountMaintenance.Designer.cs">
       <DependentUpon>AccountMaintenance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdminForms\AccountsMaintenance\AddAccount.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminForms\AccountsMaintenance\AddAccount.Designer.cs">
+      <DependentUpon>AddAccount.cs</DependentUpon>
     </Compile>
     <Compile Include="AdminForms\History Logs\Activity Logs.cs">
       <SubType>Form</SubType>
@@ -101,11 +139,11 @@
     <Compile Include="AdminForms\History Logs\TransactionHistory.Designer.cs">
       <DependentUpon>TransactionHistory.cs</DependentUpon>
     </Compile>
-    <Compile Include="AdminForms\ProductMaintenance\ProductMaintenance.cs">
+    <Compile Include="AdminForms\ProductMaintenance\ProductMaintenanceFrm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AdminForms\ProductMaintenance\ProductMaintenance.Designer.cs">
-      <DependentUpon>ProductMaintenance.cs</DependentUpon>
+    <Compile Include="AdminForms\ProductMaintenance\ProductMaintenanceFrm.Designer.cs">
+      <DependentUpon>ProductMaintenanceFrm.cs</DependentUpon>
     </Compile>
     <Compile Include="AdminForms\ProductMaintenance\Supplier\Admin_Supplier.cs">
       <SubType>Form</SubType>
@@ -149,6 +187,12 @@
     <Compile Include="InventoryClerk\LandingPage\DashboardFrm.Designer.cs">
       <DependentUpon>DashboardFrm.cs</DependentUpon>
     </Compile>
+    <Compile Include="InventoryClerk\OrderQueue\OrderQueueFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InventoryClerk\OrderQueue\OrderQueueFrm.Designer.cs">
+      <DependentUpon>OrderQueueFrm.cs</DependentUpon>
+    </Compile>
     <Compile Include="InventoryClerk\Restocking\RestockNew.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -190,6 +234,12 @@
     </Compile>
     <Compile Include="MainForms\SalesClerk_BasePlatform.Designer.cs">
       <DependentUpon>SalesClerk_BasePlatform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForms\SystemSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForms\SystemSettings.Designer.cs">
+      <DependentUpon>SystemSettings.cs</DependentUpon>
     </Compile>
     <Compile Include="OtherForms\Accounts\AccountsList.cs">
       <SubType>UserControl</SubType>
@@ -251,6 +301,12 @@
     <Compile Include="OtherForms\AdvanceOrder\EventPackagesModalsAndList\EventPackagesModal.Designer.cs">
       <DependentUpon>EventPackagesModal.cs</DependentUpon>
     </Compile>
+    <Compile Include="OtherForms\DisposalContents\DisposalBouquetRetrieval.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForms\DisposalContents\DisposalBouquetRetrieval.Designer.cs">
+      <DependentUpon>DisposalBouquetRetrieval.cs</DependentUpon>
+    </Compile>
     <Compile Include="OtherForms\DisposalContents\DisposalItems.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -268,6 +324,18 @@
     </Compile>
     <Compile Include="OtherForms\DisposalContents\PendingList.Designer.cs">
       <DependentUpon>PendingList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\DisposalContents\RetrievedItemsList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OtherForms\DisposalContents\RetrievedItemsList.Designer.cs">
+      <DependentUpon>RetrievedItemsList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\EditOrderFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForms\EditOrderFrm.Designer.cs">
+      <DependentUpon>EditOrderFrm.cs</DependentUpon>
     </Compile>
     <Compile Include="OtherForms\HistoryLogs\ActivityLogsList.cs">
       <SubType>UserControl</SubType>
@@ -292,6 +360,12 @@
     </Compile>
     <Compile Include="OtherForms\InventoryReports\DisposalListItems.Designer.cs">
       <DependentUpon>DisposalListItems.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\InventoryReports\top5ProductList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OtherForms\InventoryReports\top5ProductList.Designer.cs">
+      <DependentUpon>top5ProductList.cs</DependentUpon>
     </Compile>
     <Compile Include="OtherForms\ProductMaintenance\AddMaterials.cs">
       <SubType>Form</SubType>
@@ -665,11 +739,41 @@
     <Compile Include="OtherForms\ReviewOrderList.Designer.cs">
       <DependentUpon>ReviewOrderList.cs</DependentUpon>
     </Compile>
+    <Compile Include="OtherForms\StockAdjustments\BatchListItems.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OtherForms\StockAdjustments\BatchListItems.Designer.cs">
+      <DependentUpon>BatchListItems.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\StockAdjustments\SA_ActivityLogs.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OtherForms\StockAdjustments\SA_ActivityLogs.Designer.cs">
+      <DependentUpon>SA_ActivityLogs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\StockAdjustments\SA_AdjustQuantity.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForms\StockAdjustments\SA_AdjustQuantity.Designer.cs">
+      <DependentUpon>SA_AdjustQuantity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\StockAdjustments\SA_BatchItems.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForms\StockAdjustments\SA_BatchItems.Designer.cs">
+      <DependentUpon>SA_BatchItems.cs</DependentUpon>
+    </Compile>
     <Compile Include="OtherForms\StockAdjustments\StockAdjustmentListItems.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="OtherForms\StockAdjustments\StockAdjustmentListItems.Designer.cs">
       <DependentUpon>StockAdjustmentListItems.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\Supplier\AddSupplier.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForms\Supplier\AddSupplier.Designer.cs">
+      <DependentUpon>AddSupplier.cs</DependentUpon>
     </Compile>
     <Compile Include="OtherForms\Supplier\Admin_SupplierList.cs">
       <SubType>UserControl</SubType>
@@ -694,6 +798,18 @@
     </Compile>
     <Compile Include="OtherForms\Supplier\Inv_Supplier.Designer.cs">
       <DependentUpon>Inv_Supplier.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\Supplier\SuppliedItemList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OtherForms\Supplier\SuppliedItemList.Designer.cs">
+      <DependentUpon>SuppliedItemList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\Supplier\SupplierSuppliedItemList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForms\Supplier\SupplierSuppliedItemList.Designer.cs">
+      <DependentUpon>SupplierSuppliedItemList.cs</DependentUpon>
     </Compile>
     <Compile Include="OtherForms\TimeDatefrm.cs">
       <SubType>Form</SubType>
@@ -725,8 +841,20 @@
     <Compile Include="OtherForms\UpdateStatus.Designer.cs">
       <DependentUpon>UpdateStatus.cs</DependentUpon>
     </Compile>
+    <Compile Include="OtherForms\WalkInTransactionsFolder\CancellationOfOrderFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForms\WalkInTransactionsFolder\CancellationOfOrderFrm.Designer.cs">
+      <DependentUpon>CancellationOfOrderFrm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SalesClerk\CustomizeList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SalesClerk\CustomizeList.Designer.cs">
+      <DependentUpon>CustomizeList.cs</DependentUpon>
+    </Compile>
     <Compile Include="SalesClerk\Order Placement\AdvanceOrderfolder\AdvanceOrderFrm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -781,6 +909,12 @@
     <Compile Include="SalesClerk\PriceList\PriceList.Designer.cs">
       <DependentUpon>PriceList.cs</DependentUpon>
     </Compile>
+    <Compile Include="SalesClerk\Queueing\FloristQueue.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SalesClerk\Queueing\FloristQueue.Designer.cs">
+      <DependentUpon>FloristQueue.cs</DependentUpon>
+    </Compile>
     <Compile Include="SalesClerk\Queueing\OrderInfo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -833,6 +967,9 @@
     <EmbeddedResource Include="AdminForms\AccountsMaintenance\AccountMaintenance.resx">
       <DependentUpon>AccountMaintenance.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AdminForms\AccountsMaintenance\AddAccount.resx">
+      <DependentUpon>AddAccount.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AdminForms\History Logs\Activity Logs.resx">
       <DependentUpon>Activity Logs.cs</DependentUpon>
     </EmbeddedResource>
@@ -842,8 +979,8 @@
     <EmbeddedResource Include="AdminForms\History Logs\TransactionHistory.resx">
       <DependentUpon>TransactionHistory.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AdminForms\ProductMaintenance\ProductMaintenance.resx">
-      <DependentUpon>ProductMaintenance.cs</DependentUpon>
+    <EmbeddedResource Include="AdminForms\ProductMaintenance\ProductMaintenanceFrm.resx">
+      <DependentUpon>ProductMaintenanceFrm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AdminForms\ProductMaintenance\Supplier\Admin_Supplier.resx">
       <DependentUpon>Admin_Supplier.cs</DependentUpon>
@@ -866,6 +1003,9 @@
     <EmbeddedResource Include="InventoryClerk\LandingPage\DashboardFrm.resx">
       <DependentUpon>DashboardFrm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="InventoryClerk\OrderQueue\OrderQueueFrm.resx">
+      <DependentUpon>OrderQueueFrm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="InventoryClerk\Restocking\RestockNew.resx">
       <DependentUpon>RestockNew.cs</DependentUpon>
     </EmbeddedResource>
@@ -886,6 +1026,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainForms\SalesClerk_BasePlatform.resx">
       <DependentUpon>SalesClerk_BasePlatform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForms\SystemSettings.resx">
+      <DependentUpon>SystemSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OtherForms\Accounts\AccountsList.resx">
       <DependentUpon>AccountsList.cs</DependentUpon>
@@ -917,6 +1060,9 @@
     <EmbeddedResource Include="OtherForms\AdvanceOrder\EventPackagesModalsAndList\EventPackagesModal.resx">
       <DependentUpon>EventPackagesModal.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\DisposalContents\DisposalBouquetRetrieval.resx">
+      <DependentUpon>DisposalBouquetRetrieval.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="OtherForms\DisposalContents\DisposalItems.resx">
       <DependentUpon>DisposalItems.cs</DependentUpon>
     </EmbeddedResource>
@@ -925,6 +1071,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="OtherForms\DisposalContents\PendingList.resx">
       <DependentUpon>PendingList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\DisposalContents\RetrievedItemsList.resx">
+      <DependentUpon>RetrievedItemsList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\EditOrderFrm.resx">
+      <DependentUpon>EditOrderFrm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OtherForms\HistoryLogs\ActivityLogsList.resx">
       <DependentUpon>ActivityLogsList.cs</DependentUpon>
@@ -937,6 +1089,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="OtherForms\InventoryReports\DisposalListItems.resx">
       <DependentUpon>DisposalListItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\InventoryReports\top5ProductList.resx">
+      <DependentUpon>top5ProductList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OtherForms\ProductMaintenance\AddMaterials.resx">
       <DependentUpon>AddMaterials.cs</DependentUpon>
@@ -1124,8 +1279,23 @@
     <EmbeddedResource Include="OtherForms\ReviewOrderList.resx">
       <DependentUpon>ReviewOrderList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\StockAdjustments\BatchListItems.resx">
+      <DependentUpon>BatchListItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\StockAdjustments\SA_ActivityLogs.resx">
+      <DependentUpon>SA_ActivityLogs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\StockAdjustments\SA_AdjustQuantity.resx">
+      <DependentUpon>SA_AdjustQuantity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\StockAdjustments\SA_BatchItems.resx">
+      <DependentUpon>SA_BatchItems.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="OtherForms\StockAdjustments\StockAdjustmentListItems.resx">
       <DependentUpon>StockAdjustmentListItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\Supplier\AddSupplier.resx">
+      <DependentUpon>AddSupplier.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OtherForms\Supplier\Admin_SupplierList.resx">
       <DependentUpon>Admin_SupplierList.cs</DependentUpon>
@@ -1138,6 +1308,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="OtherForms\Supplier\Inv_Supplier.resx">
       <DependentUpon>Inv_Supplier.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\Supplier\SuppliedItemList.resx">
+      <DependentUpon>SuppliedItemList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\Supplier\SupplierSuppliedItemList.resx">
+      <DependentUpon>SupplierSuppliedItemList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OtherForms\TimeDatefrm.resx">
       <DependentUpon>TimeDatefrm.cs</DependentUpon>
@@ -1154,6 +1330,9 @@
     <EmbeddedResource Include="OtherForms\UpdateStatus.resx">
       <DependentUpon>UpdateStatus.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\WalkInTransactionsFolder\CancellationOfOrderFrm.resx">
+      <DependentUpon>CancellationOfOrderFrm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -1164,6 +1343,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="SalesClerk\CustomizeList.resx">
+      <DependentUpon>CustomizeList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SalesClerk\Order Placement\AdvanceOrderfolder\AdvanceOrderFrm.resx">
       <DependentUpon>AdvanceOrderFrm.cs</DependentUpon>
     </EmbeddedResource>
@@ -1191,6 +1373,9 @@
     <EmbeddedResource Include="SalesClerk\PriceList\PriceList.resx">
       <DependentUpon>PriceList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SalesClerk\Queueing\FloristQueue.resx">
+      <DependentUpon>FloristQueue.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SalesClerk\Queueing\OrderInfo.resx">
       <DependentUpon>OrderInfo.cs</DependentUpon>
     </EmbeddedResource>
@@ -1216,6 +1401,8 @@
       <DependentUpon>TryCamera.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Flowershop_Thesis_TemporaryKey.pfx" />
+    <None Include="MainForms\SystemConfig.json" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -1225,6 +1412,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="MainForms\SystemStoredConfiguration.json" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -1249,6 +1437,12 @@
     <None Include="Resources\1a60c2f2fc65d70095705ddbcf188fd7.jpg" />
     <None Include="Resources\add-product.png" />
     <None Include="Resources\bin.png" />
+    <None Include="Resources\compose.png" />
+    <None Include="Resources\check.png" />
+    <None Include="Resources\circle.png" />
+    <None Include="Resources\circle %281%29.png" />
+    <None Include="Resources\67-676483_computer-icons-vendor-supplier-icon.png" />
+    <None Include="Resources\i.png" />
     <Content Include="Resources\LoginImg.png" />
     <None Include="Resources\LoginImg2.png" />
     <None Include="Resources\Welcome1.png" />
@@ -1259,11 +1453,15 @@
     <None Include="Resources\pexels-hilaryh-612331.jpg" />
     <None Include="Resources\pexels-pixabay-36729.jpg" />
     <None Include="Resources\payment-method-in-illustration-vector.jpg" />
+    <None Include="Resources\pen.png" />
     <Content Include="Resources\report.png" />
     <None Include="Resources\undraw_open_note_6nva.png" />
     <None Include="Resources\wedding_flowers.jpg" />
     <None Include="Resources\wedding_flowers1.jpg" />
     <None Include="Resources\reset.png" />
+    <None Include="Resources\supplier.png" />
+    <None Include="Resources\undraw_order_flowers_scc0.png" />
+    <None Include="Resources\settings %281%29.png" />
     <Content Include="Resources\Welcome.png" />
   </ItemGroup>
   <ItemGroup>

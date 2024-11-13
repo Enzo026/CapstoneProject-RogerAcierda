@@ -60,8 +60,6 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.DiscountLbl = new System.Windows.Forms.Label();
-            this.DiscountCheckBox = new System.Windows.Forms.CheckBox();
-            this.DiscountTxtbox = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.CustNameTxtbox = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -72,6 +70,7 @@
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.Progress = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -90,6 +89,7 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.label22);
             this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.textBox1);
             this.panel1.Controls.Add(this.EmployeeName);
@@ -120,8 +120,6 @@
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.DiscountLbl);
-            this.panel1.Controls.Add(this.DiscountCheckBox);
-            this.panel1.Controls.Add(this.DiscountTxtbox);
             this.panel1.Controls.Add(this.label8);
             this.panel1.Controls.Add(this.CustNameTxtbox);
             this.panel1.Controls.Add(this.label7);
@@ -454,29 +452,6 @@
             this.DiscountLbl.Text = "0";
             this.DiscountLbl.TextChanged += new System.EventHandler(this.DiscountLbl_TextChanged);
             // 
-            // DiscountCheckBox
-            // 
-            this.DiscountCheckBox.AutoSize = true;
-            this.DiscountCheckBox.Font = new System.Drawing.Font("Montserrat SemiBold", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DiscountCheckBox.Location = new System.Drawing.Point(484, 370);
-            this.DiscountCheckBox.Name = "DiscountCheckBox";
-            this.DiscountCheckBox.Size = new System.Drawing.Size(89, 22);
-            this.DiscountCheckBox.TabIndex = 11;
-            this.DiscountCheckBox.Text = "Discount";
-            this.DiscountCheckBox.UseVisualStyleBackColor = true;
-            this.DiscountCheckBox.CheckedChanged += new System.EventHandler(this.DiscountCheckBox_CheckedChanged);
-            // 
-            // DiscountTxtbox
-            // 
-            this.DiscountTxtbox.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DiscountTxtbox.Location = new System.Drawing.Point(579, 368);
-            this.DiscountTxtbox.Name = "DiscountTxtbox";
-            this.DiscountTxtbox.Size = new System.Drawing.Size(188, 23);
-            this.DiscountTxtbox.TabIndex = 10;
-            this.DiscountTxtbox.Text = "0";
-            this.DiscountTxtbox.TextChanged += new System.EventHandler(this.DiscountTxtbox_TextChanged);
-            this.DiscountTxtbox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DiscountTxtbox_KeyPress);
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -576,6 +551,17 @@
             this.Progress.TabIndex = 42;
             this.Progress.Text = "Price";
             // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Montserrat SemiBold", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.Location = new System.Drawing.Point(3, 409);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(76, 18);
+            this.label22.TabIndex = 43;
+            this.label22.Text = "Loading ...";
+            this.label22.VisibleChanged += new System.EventHandler(this.label22_VisibleChanged);
+            // 
             // AdvanceOrderCart
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -589,6 +575,7 @@
             this.Name = "AdvanceOrderCart";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AdvanceOrderCart";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AdvanceOrderCart_FormClosed);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -619,8 +606,6 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label DiscountLbl;
-        private System.Windows.Forms.CheckBox DiscountCheckBox;
-        private System.Windows.Forms.TextBox DiscountTxtbox;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox CustNameTxtbox;
         private System.Windows.Forms.Label label7;
@@ -641,5 +626,6 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label Progress;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Label label22;
     }
 }

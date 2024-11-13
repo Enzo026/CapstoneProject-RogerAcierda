@@ -1,6 +1,7 @@
 ﻿using Capstone_Flowershop;
 using Flowershop_Thesis.OtherForms;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -27,25 +28,25 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement
         //Primary Flower
         public Label iPFlowerName;
         public Label iPFlowerQty;
-        public Label iPFlowerRSP;
+
         public Label iPFlowerPrice;
 
         //Secondary
         public Label iSFlowerName;
         public Label iSFlowerQty;
-        public Label iSFlowerRSP;
+
         public Label iSFlowerPrice;
 
         //Cover
         public Label iCoverName;
         public Label iCoverQty;
-        public Label iCoverRSP;
+
         public Label iCoverPrice;
 
         //Ribbon
         public Label iRibbonName;
         public Label iRibbonQty;
-        public Label iRibbonRSP;
+
         public Label iRibbonPrice;
 
         //Size
@@ -53,43 +54,48 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement
         public RadioButton iMedium;
         public RadioButton iLarge;
 
+        public Label loadinglbl;
+
 
         string Selected;
         public CustomBuoquet()
         {
             InitializeComponent();
+
             Setup();
             instance = this;
-         
+
 
             iPFlowerName = PFlowerName;
             iPFlowerQty = PFlowerQty;
-            iPFlowerRSP = PFlowerRSP;
+         
             iPFlowerPrice = PFlowerPrc;
 
             iSFlowerName = SFlowerName;
             iSFlowerQty = SFlowerQty;
-            iSFlowerRSP = SFlowerRSP;
+   
             iSFlowerPrice = SFlowerPrc;
 
             iRibbonName = RibbonName;
             iRibbonQty = RibbonQty;
-            iRibbonRSP = RibbonRSP;
+    
             iRibbonPrice = RibbonPrc;
 
             iCoverName = CoverName;
             iCoverQty = CoverQty;
-            iCoverRSP = CoverRSP;
+
             iCoverPrice = CoverPrc;
 
             Selected = "Primary";
-          
+
             computePrice();
             FillFlowerTbl();
-            
+
+
+
         }
 
-
+       
 
         private void label27_Click(object sender, EventArgs e)
         {
@@ -99,7 +105,12 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement
         private void CustomBuoquet_Load(object sender, EventArgs e)
         {
 
+
+ 
+            computePrice();
+            FillFlowerTbl();
         }
+    
 
         private void label15_Click(object sender, EventArgs e)
         {
@@ -119,7 +130,7 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement
             int Cover = 0;
             int Card = 0;
 
-            if(SizePrc.Visible = true && SizePrc.Text != "0")
+            if (SizePrc.Visible = true && SizePrc.Text != "0")
             {
                 int prc = int.Parse(SizePrc.Text);
                 size = prc;
@@ -171,28 +182,28 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement
             SFlowerName.Visible = false;
             SFlowerPrc.Visible = false;
             SFlowerQty.Visible = false;
-            SFlowerRSP.Visible = false; 
+     
             SFlowerPrc.Text = "0";
 
             //Primary Flower
             PFlowerName.Visible = false;
             PFlowerPrc.Visible = false;
             PFlowerQty.Visible = false;
-            PFlowerRSP.Visible= false;
+       
             PFlowerPrc.Text = "0";
 
             //Ribbon
             RibbonName.Visible = false;
             RibbonPrc.Visible = false;
             RibbonQty.Visible = false;
-            RibbonRSP.Visible = false;
+      
             RibbonPrc.Text = "0";
 
             //Cover
             CoverName.Visible = false;
             CoverPrc.Visible = false;
             CoverQty.Visible = false;
-            CoverRSP.Visible = false;
+        
             CoverPrc.Text = "0";
 
             //Card
@@ -213,34 +224,34 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement
         }
 
         private void SizePrc_TextChanged(object sender, EventArgs e)
-        {   int price = int.Parse(PFlowerPrc.Text);
+        {
+            int price = int.Parse(PFlowerPrc.Text);
             if (price > 0)
             {
                 computePrice();
                 PFlowerName.Visible = true;
                 PFlowerQty.Visible = true;
-                PFlowerRSP.Visible = true;
+         
                 PFlowerPrc.Visible = true;
-            } 
+            }
             if (price <= 0)
             {
                 computePrice();
                 PFlowerName.Visible = false;
                 PFlowerQty.Visible = false;
-                PFlowerRSP.Visible = false;
+     
                 PFlowerPrc.Visible = false;
             }
-         
         }
         public void sizeprice()
         {
-            if(Small.Checked == true)
+            if (Small.Checked == true)
             {
                 SizePrc.Text = "300";
                 SizePrc.Visible = true;
 
             }
-            else if(Medium.Checked == true)
+            else if (Medium.Checked == true)
             {
                 SizePrc.Text = "700";
                 SizePrc.Visible = true;
@@ -258,22 +269,23 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement
         }
 
         private void SFlowerCheckBox_CheckedChanged(object sender, EventArgs e)
-        {   
-            if(SFlowerCheckBox.Checked == true)
+        {
+            if (SFlowerCheckBox.Checked == true)
             {
                 SFlowerBtn.Enabled = true;
             }
-            else 
-            { 
+            else
+            {
                 SFlowerBtn.Enabled = false;
                 SFlowerName.Visible = false;
                 SFlowerQty.Visible = false;
-                SFlowerRSP.Visible = false;
+
                 SFlowerPrc.Visible = false;
                 SFlowerPrc.Text = "0";
                 computePrice();
             }
-           
+
+
         }
 
         private void RibbonCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -282,12 +294,12 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement
             {
                 RibbonBtn.Enabled = true;
             }
-            else 
-            { 
+            else
+            {
                 RibbonBtn.Enabled = false;
                 RibbonName.Visible = false;
                 RibbonQty.Visible = false;
-                RibbonRSP.Visible = false;
+
                 RibbonPrc.Visible = false;
                 RibbonPrc.Text = "0";
                 computePrice();
@@ -300,12 +312,12 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement
             {
                 CoverBtn.Enabled = true;
             }
-            else 
-            { 
+            else
+            {
                 CoverBtn.Enabled = false;
                 CoverName.Visible = false;
                 CoverQty.Visible = false;
-                CoverRSP.Visible = false;
+ 
                 CoverPrc.Visible = false;
                 CoverPrc.Text = "0";
                 computePrice();
@@ -324,7 +336,7 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement
                 CardQty.Text = "1";
                 CardPrc.Text = "100";
             }
-            else 
+            else
             {
                 CardName.Visible = false;
                 CardPrc.Visible = false;
@@ -340,11 +352,11 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement
         }
         
         public void FillFlowerTbl()
-        {   
+        {
             try
             {
                 flowLayoutPanel1.Controls.Clear();
-                using(SqlConnection con = new SqlConnection(Connect.connectionString))
+                using (SqlConnection con = new SqlConnection(Connect.connectionString))
                 {
                     con.Open();
                     string countQuery = "select count(*) from ItemInventory where ItemQuantity > 0 AND ItemType = 'Individual';";
@@ -399,7 +411,7 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement
             try
             {
                 flowLayoutPanel1.Controls.Clear();
-                using(SqlConnection con = new SqlConnection(Connect.connectionString))
+                using (SqlConnection con = new SqlConnection(Connect.connectionString))
                 {
                     con.Open();
                     string countQuery = "select count(*) from Materials where ItemQuantity > 0 AND Usage > 1 AND ItemType = 'Cover';";
@@ -427,7 +439,7 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement
                                     inv[index] = new CustomList();
                                     inv[index].Name = reader["ItemName"].ToString();
                                     inv[index].selection = Selected;
-                                    inv[index].Price = reader["Price"].ToString();
+                                    inv[index].Price = reader["UnitPrice"].ToString();
 
                                     int CI = reader.GetOrdinal("ItemID");
                                     inv[index].ItemID = reader.IsDBNull((int)CI) ? 0 : reader.GetInt32((int)CI);
@@ -454,7 +466,7 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement
             try
             {
                 flowLayoutPanel1.Controls.Clear();
-                using(SqlConnection con = new SqlConnection (Connect.connectionString))
+                using (SqlConnection con = new SqlConnection(Connect.connectionString))
                 {
                     con.Open();
                     string countQuery = "select count(*) from Materials where ItemQuantity > 0 AND Usage > 1 AND ItemType = 'Ribbon';";
@@ -482,7 +494,7 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement
                                     inv[index] = new CustomList();
                                     inv[index].Name = reader["ItemName"].ToString();
                                     inv[index].selection = Selected;
-                                    inv[index].Price = reader["Price"].ToString();
+                                    inv[index].Price = reader["UnitPrice"].ToString();
 
                                     int CI = reader.GetOrdinal("ItemID");
                                     inv[index].ItemID = reader.IsDBNull((int)CI) ? 0 : reader.GetInt32((int)CI);
@@ -521,24 +533,27 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement
             Selected = "Ribbon";
             FillRibbon();
         }
-
+        bool g2g = false;
         private void ProceedBtn_Click(object sender, EventArgs e)
         {
+
             checker();
             addInventory();
             AddCart();
             Deduction();
 
+
         }
         public void addInventory()
         {
-          
-            if(desc != "null" && BuoquetName.Text.Length > 0 && PrimaryColorTxtBox.Text.Length > 0)
+
+
+            if (desc != "null" && BuoquetName.Text.Length > 0 && PrimaryColorTxtBox.Text.Length > 0)
             {
 
                 try
                 {
-                    using(SqlConnection con = new SqlConnection(Connect.connectionString)) 
+                    using (SqlConnection con = new SqlConnection(Connect.connectionString))
                     {
                         con.Open();
                         cmd = new SqlCommand("INSERT INTO ItemInventory(ItemName,ItemQuantity,ItemType,ItemColor,LifeSpan,SuppliedDate,Supplier,ItemDescription,Price,ItemStatus)Values" +
@@ -643,27 +658,23 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement
             {
                 FlowerDeduct(SFlowerName.Text.Trim(), int.Parse(SFlowerQty.Text));
             }
-            if(CoverCheckBox.Checked == true)
+            if (CoverCheckBox.Checked == true)
             {
                 MaterialDeduct(CoverName.Text.Trim(), int.Parse(CoverQty.Text));
             }
-            if(RibbonCheckBox.Checked == true)
+            if (RibbonCheckBox.Checked == true)
             {
                 MaterialDeduct(RibbonName.Text.Trim(), int.Parse(RibbonQty.Text));
             }
-    
-          
-         
-        
 
         }
 
         public void FlowerDeduct(string ItemName, int quantitee)
-        {   
+        {
             int rowCount;
 
             //Check if theres more than 1 items in the inventory making sure it will be 
-            using(SqlConnection con = new SqlConnection(Connect.connectionString))
+            using (SqlConnection con = new SqlConnection(Connect.connectionString))
             {
                 con.Open();
                 string countQuery = "select count(*) from ItemInventory where ItemName = @Name;";
@@ -673,10 +684,10 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement
                     rowCount = (int)countCommand.ExecuteScalar();
 
                 }
-           
+
                 if (rowCount == 1)
                 {
-                   
+
                     string invID = "0";
                     string sqlQuery = "SELECT * FROM ItemInventory where ItemName = @Name;";
                     using (SqlCommand command = new SqlCommand(sqlQuery, con))
@@ -691,10 +702,10 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement
                             }
                         }
                     }
-                 
+
 
                     string updateQuery = "UPDATE ItemInventory SET ItemQuantity = ItemQuantity - @Quantity WHERE ItemID = @ID;";
-                 
+
                     using (SqlCommand updateCommand = new SqlCommand(updateQuery, con))
                     {
 
@@ -711,12 +722,12 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement
                 }
             }
 
-          
+
         }
 
         public void DeductBuoquet(string ItemName, int quantitee)
-        {   
-            using(SqlConnection con = new SqlConnection(Connect.connectionString))
+        {
+            using (SqlConnection con = new SqlConnection(Connect.connectionString))
             {
                 int rowCount;
                 con.Open();
@@ -861,8 +872,8 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement
 
         int ItemID;
         public void AddCart()
-        {   
-            using(SqlConnection con = new SqlConnection(Connect.connectionString))
+        {
+            using (SqlConnection con = new SqlConnection(Connect.connectionString))
             {
                 con.Open();
                 string invID = "0";
@@ -911,3 +922,4 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement
         }
     }
 }
+

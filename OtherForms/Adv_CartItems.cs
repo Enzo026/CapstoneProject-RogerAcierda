@@ -1,7 +1,10 @@
-﻿using System;
+﻿using Capstone_Flowershop;
+using Flowershop_Thesis.SalesClerk.Order_Placement;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -57,5 +60,28 @@ namespace Flowershop_Thesis.OtherForms
             set { name = value; label7.Text = value; }
         }
         #endregion
+
+        private void button14_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(Connect.connectionString))
+                {
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand("Delete from Advance_ServingCart where CartID = @id ;", con);
+                    cmd.Parameters.AddWithValue("@id", CartID);
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Item cancelled!");
+                    AdvanceOrderCart.instance.Loadinglbl.Visible = true;
+                
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error : " + ex.Message);
+            }
+        }
     }
 }

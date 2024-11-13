@@ -36,7 +36,7 @@ namespace Capstone_Flowershop.MainForms
         private void button2_Click(object sender, EventArgs e)
         {
             panel2.Controls.Clear();
-            ProductMaintenance SR = new ProductMaintenance();
+            ProductMaintenanceFrm SR = new ProductMaintenanceFrm();
             SR.TopLevel = false;
             panel2.Controls.Add(SR);
             SR.BringToFront();
@@ -67,6 +67,13 @@ namespace Capstone_Flowershop.MainForms
             label8.Text = UserInfo.Empleyado + ", Administrator";
             DateTime date = DateTime.Now;
             label7.Text = date.ToString() ;
+
+            panel2.Controls.Clear();
+            Reports SR = new Reports();
+            SR.TopLevel = false;
+            panel2.Controls.Add(SR);
+            SR.BringToFront();
+            SR.Show();
         }
 
         private void button5_Click(object sender, EventArgs e)

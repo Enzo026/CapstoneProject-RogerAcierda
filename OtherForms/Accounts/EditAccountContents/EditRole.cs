@@ -69,7 +69,9 @@ namespace Flowershop_Thesis.OtherForms.Accounts.EditAccountContents
 
                                 if(initRole == "Admin")
                                 {
-                                    radioButton3.Checked = true;
+                                    label3.Visible = true;
+                                    radioButton1.Enabled = false;
+                                    radioButton2.Enabled = false;
                                 }
                                 else if(initRole == "SalesClerk")
                                 {
@@ -182,11 +184,6 @@ namespace Flowershop_Thesis.OtherForms.Accounts.EditAccountContents
                 else if (radioButton2.Checked == true)
                 {
                     SelectedRole = "InventoryClerk";
-                    button1.Enabled = true;
-                }
-                else if(radioButton3.Checked == true)
-                {
-                    SelectedRole = "Admin";
                     button1.Enabled = true;
                 }
                 else

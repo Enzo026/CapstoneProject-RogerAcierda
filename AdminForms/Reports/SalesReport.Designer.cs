@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea11 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series11 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea12 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series12 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -107,11 +107,15 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel9 = new System.Windows.Forms.Panel();
             this.panel12 = new System.Windows.Forms.Panel();
+            this.label43 = new System.Windows.Forms.Label();
+            this.label41 = new System.Windows.Forms.Label();
+            this.label42 = new System.Windows.Forms.Label();
+            this.label40 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.label39 = new System.Windows.Forms.Label();
             this.label37 = new System.Windows.Forms.Label();
             this.label36 = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
@@ -127,11 +131,10 @@
             this.button18 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label31 = new System.Windows.Forms.Label();
-            this.label39 = new System.Windows.Forms.Label();
-            this.label40 = new System.Windows.Forms.Label();
-            this.label41 = new System.Windows.Forms.Label();
-            this.label42 = new System.Windows.Forms.Label();
-            this.label43 = new System.Windows.Forms.Label();
+            this.label44 = new System.Windows.Forms.Label();
+            this.panel13 = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -152,10 +155,10 @@
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel9.SuspendLayout();
             this.panel12.SuspendLayout();
             this.panel11.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -175,6 +178,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1115, 780);
             this.panel1.TabIndex = 0;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // tabControl1
             // 
@@ -671,13 +675,13 @@
             // 
             // chart1
             // 
-            chartArea11.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea11);
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
             this.chart1.Location = new System.Drawing.Point(8, 91);
             this.chart1.Name = "chart1";
-            series11.ChartArea = "ChartArea1";
-            series11.Name = "SalesChart";
-            this.chart1.Series.Add(series11);
+            series1.ChartArea = "ChartArea1";
+            series1.Name = "SalesChart";
+            this.chart1.Series.Add(series1);
             this.chart1.Size = new System.Drawing.Size(715, 326);
             this.chart1.TabIndex = 47;
             this.chart1.Text = "chart1";
@@ -746,6 +750,9 @@
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.White;
+            this.panel5.Controls.Add(this.button2);
+            this.panel5.Controls.Add(this.label44);
+            this.panel5.Controls.Add(this.panel13);
             this.panel5.Controls.Add(this.chart2);
             this.panel5.Controls.Add(this.label20);
             this.panel5.Controls.Add(this.label19);
@@ -761,14 +768,15 @@
             // 
             // chart2
             // 
-            chartArea12.Name = "ChartArea1";
-            this.chart2.ChartAreas.Add(chartArea12);
+            chartArea2.Name = "ChartArea1";
+            this.chart2.ChartAreas.Add(chartArea2);
             this.chart2.Location = new System.Drawing.Point(28, 134);
             this.chart2.Name = "chart2";
-            series12.ChartArea = "ChartArea1";
-            series12.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series12.Name = "VisualComparison";
-            this.chart2.Series.Add(series12);
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series2.Legend = "Legend1";
+            series2.Name = "VisualComparison";
+            this.chart2.Series.Add(series2);
             this.chart2.Size = new System.Drawing.Size(266, 235);
             this.chart2.TabIndex = 21;
             this.chart2.Text = "chart2";
@@ -777,7 +785,7 @@
             // 
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Montserrat", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(177, 418);
+            this.label20.Location = new System.Drawing.Point(111, 387);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(117, 22);
             this.label20.TabIndex = 19;
@@ -796,7 +804,7 @@
             // panel8
             // 
             this.panel8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.panel8.Location = new System.Drawing.Point(151, 418);
+            this.panel8.Location = new System.Drawing.Point(85, 387);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(20, 21);
             this.panel8.TabIndex = 20;
@@ -811,19 +819,19 @@
             // 
             // label18
             // 
-            this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Montserrat", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(137, 91);
+            this.label18.Location = new System.Drawing.Point(7, 91);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(72, 29);
+            this.label18.Size = new System.Drawing.Size(314, 29);
             this.label18.TabIndex = 17;
             this.label18.Text = "JUNE";
+            this.label18.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // label17
             // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Montserrat", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(121, 37);
+            this.label17.Location = new System.Drawing.Point(111, 37);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(115, 22);
             this.label17.TabIndex = 16;
@@ -833,7 +841,7 @@
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Montserrat", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(84, 12);
+            this.label16.Location = new System.Drawing.Point(63, 11);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(211, 26);
             this.label16.TabIndex = 15;
@@ -970,16 +978,6 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Username";
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Flowershop_Thesis.Properties.Resources.Welcome;
-            this.pictureBox1.Location = new System.Drawing.Point(563, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(522, 159);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -1021,6 +1019,47 @@
             this.panel12.Size = new System.Drawing.Size(1066, 420);
             this.panel12.TabIndex = 8;
             // 
+            // label43
+            // 
+            this.label43.AutoSize = true;
+            this.label43.Font = new System.Drawing.Font("Montserrat SemiBold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label43.ForeColor = System.Drawing.Color.DarkSlateBlue;
+            this.label43.Location = new System.Drawing.Point(479, 169);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(104, 33);
+            this.label43.TabIndex = 13;
+            this.label43.Text = "No Info";
+            // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label41.Location = new System.Drawing.Point(966, 381);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(14, 15);
+            this.label41.TabIndex = 12;
+            this.label41.Text = "0";
+            // 
+            // label42
+            // 
+            this.label42.AutoSize = true;
+            this.label42.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label42.Location = new System.Drawing.Point(874, 381);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(86, 15);
+            this.label42.TabIndex = 11;
+            this.label42.Text = "Total Amount";
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label40.Location = new System.Drawing.Point(966, 400);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(14, 15);
+            this.label40.TabIndex = 10;
+            this.label40.Text = "0";
+            // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.AutoScroll = true;
@@ -1028,6 +1067,16 @@
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(1060, 378);
             this.flowLayoutPanel1.TabIndex = 0;
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label39.Location = new System.Drawing.Point(883, 400);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(78, 15);
+            this.label39.TabIndex = 9;
+            this.label39.Text = "Total Orders";
             // 
             // label37
             // 
@@ -1187,56 +1236,45 @@
             this.label31.TabIndex = 0;
             this.label31.Text = "SALES TRANSACTIONS";
             // 
-            // label39
+            // label44
             // 
-            this.label39.AutoSize = true;
-            this.label39.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label39.Location = new System.Drawing.Point(883, 400);
-            this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(78, 15);
-            this.label39.TabIndex = 9;
-            this.label39.Text = "Total Orders";
+            this.label44.AutoSize = true;
+            this.label44.Font = new System.Drawing.Font("Montserrat", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label44.Location = new System.Drawing.Point(192, 418);
+            this.label44.Name = "label44";
+            this.label44.Size = new System.Drawing.Size(113, 22);
+            this.label44.TabIndex = 22;
+            this.label44.Text = "Reservations";
             // 
-            // label40
+            // panel13
             // 
-            this.label40.AutoSize = true;
-            this.label40.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label40.Location = new System.Drawing.Point(966, 400);
-            this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(14, 15);
-            this.label40.TabIndex = 10;
-            this.label40.Text = "0";
+            this.panel13.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.panel13.Location = new System.Drawing.Point(166, 418);
+            this.panel13.Name = "panel13";
+            this.panel13.Size = new System.Drawing.Size(20, 21);
+            this.panel13.TabIndex = 23;
             // 
-            // label41
+            // button2
             // 
-            this.label41.AutoSize = true;
-            this.label41.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label41.Location = new System.Drawing.Point(966, 381);
-            this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(14, 15);
-            this.label41.TabIndex = 12;
-            this.label41.Text = "0";
+            this.button2.BackgroundImage = global::Flowershop_Thesis.Properties.Resources.i;
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Location = new System.Drawing.Point(12, 11);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(32, 32);
+            this.button2.TabIndex = 24;
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // label42
+            // pictureBox1
             // 
-            this.label42.AutoSize = true;
-            this.label42.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label42.Location = new System.Drawing.Point(874, 381);
-            this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(86, 15);
-            this.label42.TabIndex = 11;
-            this.label42.Text = "Total Amount";
-            // 
-            // label43
-            // 
-            this.label43.AutoSize = true;
-            this.label43.Font = new System.Drawing.Font("Montserrat SemiBold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label43.ForeColor = System.Drawing.Color.DarkSlateBlue;
-            this.label43.Location = new System.Drawing.Point(479, 169);
-            this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(104, 33);
-            this.label43.TabIndex = 13;
-            this.label43.Text = "No Info";
+            this.pictureBox1.Image = global::Flowershop_Thesis.Properties.Resources.Welcome;
+            this.pictureBox1.Location = new System.Drawing.Point(563, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(522, 159);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
             // 
             // SalesReport
             // 
@@ -1282,13 +1320,13 @@
             this.panel2.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel9.ResumeLayout(false);
             this.panel9.PerformLayout();
             this.panel12.ResumeLayout(false);
             this.panel12.PerformLayout();
             this.panel11.ResumeLayout(false);
             this.panel11.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1395,5 +1433,8 @@
         private System.Windows.Forms.Label label40;
         private System.Windows.Forms.Label label39;
         private System.Windows.Forms.Label label43;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label label44;
+        private System.Windows.Forms.Panel panel13;
     }
 }

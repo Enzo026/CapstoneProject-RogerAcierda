@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.panel2 = new System.Windows.Forms.Panel();
-            this.button15 = new System.Windows.Forms.Button();
             this.button14 = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -39,7 +38,6 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.button15);
             this.panel2.Controls.Add(this.button14);
             this.panel2.Controls.Add(this.label10);
             this.panel2.Controls.Add(this.label8);
@@ -48,18 +46,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(434, 31);
             this.panel2.TabIndex = 1;
-            // 
-            // button15
-            // 
-            this.button15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.button15.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button15.Font = new System.Drawing.Font("Montserrat Medium", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button15.Location = new System.Drawing.Point(301, 3);
-            this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(64, 24);
-            this.button15.TabIndex = 22;
-            this.button15.Text = "Edit";
-            this.button15.UseVisualStyleBackColor = false;
             // 
             // button14
             // 
@@ -72,6 +58,7 @@
             this.button14.TabIndex = 21;
             this.button14.Text = "Void";
             this.button14.UseVisualStyleBackColor = false;
+            this.button14.Click += new System.EventHandler(this.button14_Click);
             // 
             // label10
             // 
@@ -119,7 +106,6 @@
         #endregion
 
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button button15;
         private System.Windows.Forms.Button button14;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label8;

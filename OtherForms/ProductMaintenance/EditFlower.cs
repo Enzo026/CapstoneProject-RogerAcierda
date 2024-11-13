@@ -1,4 +1,5 @@
 ﻿using Capstone_Flowershop;
+using Capstone_Flowershop.AdminForms.ProductMaintenance;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -814,8 +815,12 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
 
         }
 
+
         #endregion
 
-
+        private void EditFlower_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            ProductMaintenanceFrm.instance.refresh.Visible = true;
+        }
     }
 }

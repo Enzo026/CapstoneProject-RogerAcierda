@@ -1,4 +1,5 @@
 ﻿using Capstone_Flowershop;
+using Capstone_Flowershop.AdminForms.ProductMaintenance;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -58,11 +59,12 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
 
                                         label1.Text = reader["ItemName"].ToString().Trim();
                                         label15.Text = reader["ItemQuantity"].ToString().Trim();
-                                        label14.Text = reader["Price"].ToString().Trim();
+                                      
                                         label23.Text = reader["UsageQuantity"].ToString().Trim()+ "/" + reader["UsageQuantity"].ToString().Trim();
                                         label13.Text = reader["ItemType"].ToString().Trim();
                                         label12.Text = reader["ItemColor"].ToString().Trim();
-                                        label17.Text = reader["SuppliedDate"].ToString().Trim();
+                                        label17.Text = Convert.ToDateTime(reader["SuppliedDate"]).ToString("MMM d, yyyy");
+
                                         label18.Text = reader["Supplier"].ToString().Trim();
                                         label19.Text = reader["ItemStatus"].ToString().Trim();
                                         label21.Text = reader["UnitPrice"].ToString().Trim();
@@ -180,6 +182,7 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
                         }
                         MessageBox.Show("Item Marked As Unavailable! Please refresh list to see changes");
                         addActivityLog();
+                        ProductMaintenanceFrm.instance.refresh.Visible = true;
                         this.Close();
                     }
                     else if (numId > 1) { MessageBox.Show("There are multiple Users in this ID"); }
@@ -197,6 +200,16 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
         {
             EditMaterials frm = new EditMaterials();
             frm.ShowDialog();
+        }
+
+        private void label11_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label18_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Capstone_Flowershop;
+using Flowershop_Thesis.AdminForms.ProductMaintenance.Supplier;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,7 +11,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using Flowershop_Thesis;
+using Capstone_Flowershop.AdminForms.ProductMaintenance;
 namespace Flowershop_Thesis.OtherForms.ProductMaintenance
 {
     public partial class AddProduct : Form
@@ -18,6 +21,7 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
         public AddProduct()
         {
             InitializeComponent();
+            LoadSuppliers();
         }
         public void addflower()
         {   
@@ -34,11 +38,11 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
                     SqlCommand cmd = new SqlCommand("INSERT INTO ItemInventory(ItemName,ItemQuantity,ItemType,ItemColor,LifeSpan,SuppliedDate,Supplier,ItemDescription,Price,ItemImage,ItemStatus)Values" +
                                 "(@Name,@Qty,@Type,@Color,@LifeSpan,getdate(),@Supplier,@Desc,@RSP,@ItemImage,'Available');", con);
                     cmd.Parameters.AddWithValue("@Name", Name.Text);
-                    cmd.Parameters.AddWithValue("@Qty", Convert.ToInt32(this.Qty.Text));
-                    cmd.Parameters.AddWithValue("@Type", Type.Text);
+                    cmd.Parameters.AddWithValue("@Qty", 0);
+                    cmd.Parameters.AddWithValue("@Type", "Individual");
                     cmd.Parameters.AddWithValue("@Color", Color.Text);
                     cmd.Parameters.AddWithValue("@LifeSpan", Convert.ToInt32(this.UsageQty.Text));
-                    cmd.Parameters.AddWithValue("@Supplier", Supplier.Text);
+                    cmd.Parameters.AddWithValue("@Supplier", comboBox1.Text);
                     cmd.Parameters.AddWithValue("@Desc", UnitPrice.Text);
                     cmd.Parameters.AddWithValue("@RSP", Convert.ToDecimal(this.Price.Text));
                     cmd.Parameters.AddWithValue("@ItemImage", ImageConvert);
@@ -46,6 +50,8 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("Item Added Successfully!");
                     addActivityLog();
+                    ProductMaintenanceFrm.instance.refresh.Visible = true;
+                    this.Close();
                 }
                 catch (Exception ex)
                 {
@@ -62,7 +68,27 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
 
         private void button1_Click(object sender, EventArgs e)
         {
-            addflower();
+            checker();
+            if(CanProceed == true)
+            {
+                addflower();
+            }
+         
+        }
+        bool CanProceed =false;
+        private void checker()
+        {
+            if (Name.Text.Length <= 0 || UsageQty.Text.Length <= 0 ||
+            Color.Text.Length <= 0 || Price.Text.Length <= 0 ||
+                UnitPrice.Text.Length <= 0 || comboBox1.SelectedIndex == -1||
+                Image.Image == null)
+            {
+                MessageBox.Show("Please Fill All the Needed Information");
+            }
+            else
+            {
+                CanProceed = true;
+            }
         }
         public void addActivityLog()
         {
@@ -99,7 +125,35 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
                 Image.Image = new Bitmap(open.FileName);
             }
         }
+        private void LoadSuppliers()
+        {
+            try
+            {
+                // Clear existing items in the ComboBox
+                comboBox1.Items.Clear();
 
+                using (SqlConnection con = new SqlConnection(Connect.connectionString))
+                {
+                    con.Open();
+                    string sqlQuery = "SELECT SupplierName FROM Supplier where status = 'Active' and SupplierType = 'Flowers' or SupplierType = 'Flowers and Materials'";
+
+                    using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                    {
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                comboBox1.Items.Add(reader["SupplierName"].ToString());
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Error loading suppliers: " + e.Message);
+            }
+        }
         private void label8_Click(object sender, EventArgs e)
         {
             this.Close();

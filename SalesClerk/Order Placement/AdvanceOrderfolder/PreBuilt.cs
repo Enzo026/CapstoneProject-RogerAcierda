@@ -30,13 +30,13 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement.AdvanceOrderfolder
                 {
                     con.Open();
 
-                    string countQuery = "SELECT COUNT(*) FROM ItemInventory where ItemStatus = 'Available' AND ItemType = 'Bouquet' ";
+                    string countQuery = "SELECT COUNT(*) FROM ItemInventory where ItemStatus = 'Available' AND ItemType = 'Bouquet' AND ItemQuantity > 0 ";
                     using (SqlCommand countCommand = new SqlCommand(countQuery, con))
                     {
                         int rowCount = (int)countCommand.ExecuteScalar();
                         Adv_IndividualListItems[] inv = new Adv_IndividualListItems[rowCount];
 
-                        string sqlQuery = "SELECT * FROM ItemInventory where ItemStatus = 'Available'  AND ItemType = 'Bouquet'";
+                        string sqlQuery = "SELECT * FROM ItemInventory where ItemStatus = 'Available'  AND ItemType = 'Bouquet' AND ItemQuantity > 0";
                         using (SqlCommand command = new SqlCommand(sqlQuery, con))
                         {
                             using (SqlDataReader reader = command.ExecuteReader())

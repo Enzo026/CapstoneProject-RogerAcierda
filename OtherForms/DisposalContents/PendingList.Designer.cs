@@ -139,6 +139,7 @@
             this.Controls.Add(this.panel3);
             this.Name = "PendingList";
             this.Size = new System.Drawing.Size(1070, 41);
+            this.Load += new System.EventHandler(this.PendingList_Load);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.ResumeLayout(false);

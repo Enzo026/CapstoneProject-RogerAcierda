@@ -34,7 +34,103 @@ namespace Flowershop_Thesis.InventoryClerk.Disposal
         {
 
         }
+        public void getDisposed()
+        {
+            try
+            {
+                flowLayoutPanel3.Controls.Clear();
+                using (SqlConnection con = new SqlConnection(Connect.connectionString))
+                {
+                    con.Open();
+                    string countQuery = "SELECT count(*) FROM DisposedItems";
+                    using (SqlCommand countCommand = new SqlCommand(countQuery, con))
+                    {
+                        int rowCount = (int)countCommand.ExecuteScalar();
+                        RetrievedItemsList[] itemList = new RetrievedItemsList[rowCount];
 
+                        string sqlQuery = "SELECT * FROM DisposedItems order by DisposalDate desc";
+                        using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                        {
+                            using (SqlDataReader reader = command.ExecuteReader())
+                            {
+                                int index = 0;
+                                while (reader.Read() && index < itemList.Length)
+                                {
+                                    itemList[index] = new RetrievedItemsList
+                                    {
+                                        id = reader["DisposalID"].ToString(),
+                                        ItmName = reader["ItemName"].ToString(),
+                                        date = reader["DisposalDate"] != DBNull.Value
+                                   ? Convert.ToDateTime(reader["DisposalDate"]).ToString("MMM dd, yyyy")
+                                   : string.Empty,
+                                        price = reader["Price"].ToString(),
+                                        qty = reader["Quantity"].ToString(),
+                                        Emp = reader["Employee"].ToString()
+
+                                    };
+
+                                    flowLayoutPanel3.Controls.Add(itemList[index]);
+                                    index++;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+        }
+        public void getRetrieved()
+        {
+            try
+            {
+                flowLayoutPanel4.Controls.Clear();
+                using (SqlConnection con = new SqlConnection(Connect.connectionString))
+                {
+                    con.Open();
+                    string countQuery = "SELECT count(*) FROM RetrieveItems";
+                    using (SqlCommand countCommand = new SqlCommand(countQuery, con))
+                    {
+                        int rowCount = (int)countCommand.ExecuteScalar();
+                        RetrievedItemsList[] itemList = new RetrievedItemsList[rowCount];
+
+                        string sqlQuery = "SELECT * FROM RetrieveItems order by RetrievalDate desc";
+                        using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                        {
+                            using (SqlDataReader reader = command.ExecuteReader())
+                            {
+                                int index = 0;
+                                while (reader.Read() && index < itemList.Length)
+                                {
+                                    itemList[index] = new RetrievedItemsList
+                                    {
+                                        id = reader["RetrievalID"].ToString(),
+                                        ItmName = reader["ItemName"].ToString(),
+                                        date = reader["RetrievalDate"] != DBNull.Value
+                                   ? Convert.ToDateTime(reader["RetrievalDate"]).ToString("MMM dd, yyyy")
+                                   : string.Empty,
+                                        price = "0.00",
+                                        //price = reader["Price"].ToString(),
+                                        qty = reader["RetrievedQuantity"].ToString(),
+                                        Emp = reader["Employee"].ToString()
+                                  
+                                    };
+
+                                    flowLayoutPanel4.Controls.Add(itemList[index]);
+                                    index++;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+        }
         public void getPending()
         {
             try
@@ -43,13 +139,13 @@ namespace Flowershop_Thesis.InventoryClerk.Disposal
                 using (SqlConnection con = new SqlConnection(Connect.connectionString))
                 {
                     con.Open();
-                    string countQuery = "SELECT count(*) FROM CancelledTransactions WHERE Evaluation = 'Pending'";
+                    string countQuery = "SELECT count(*) FROM CancelledTransactions WHERE Evaluation = 'Pending' AND OrderStatus = 'Complete'";
                     using (SqlCommand countCommand = new SqlCommand(countQuery, con))
                     {
                         int rowCount = (int)countCommand.ExecuteScalar();
                         PendingList[] itemList = new PendingList[rowCount];
 
-                        string sqlQuery = "SELECT * FROM CancelledTransactions WHERE Evaluation = 'Pending'";
+                        string sqlQuery = "SELECT * FROM CancelledTransactions WHERE Evaluation = 'Pending' AND OrderStatus = 'Complete' order by CancellationDate desc";
                         using (SqlCommand command = new SqlCommand(sqlQuery, con))
                         {
                             using (SqlDataReader reader = command.ExecuteReader())
@@ -96,7 +192,7 @@ namespace Flowershop_Thesis.InventoryClerk.Disposal
                         int rowCount = (int)countCommand.ExecuteScalar();
                         PendingList[] itemList = new PendingList[rowCount];
 
-                        string sqlQuery = "SELECT * FROM CancelledTransactions WHERE Evaluation = 'Evaluated'";
+                        string sqlQuery = "SELECT * FROM CancelledTransactions WHERE Evaluation = 'Evaluated' order by CancellationDate desc";
                         using (SqlCommand command = new SqlCommand(sqlQuery, con))
                         {
                             using (SqlDataReader reader = command.ExecuteReader())
@@ -134,6 +230,8 @@ namespace Flowershop_Thesis.InventoryClerk.Disposal
         {
             getPending();
             getFinished();
+            getRetrieved();
+            getDisposed();
         }
 
         private void label54_Click(object sender, EventArgs e)
@@ -148,6 +246,8 @@ namespace Flowershop_Thesis.InventoryClerk.Disposal
             {
                 getPending();
                 getFinished();
+                getRetrieved();
+                getDisposed ();
                 LoadingLbl.Visible = false;
             }
         }
