@@ -38,9 +38,7 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.label73 = new System.Windows.Forms.Label();
             this.label71 = new System.Windows.Forms.Label();
-            this.button30 = new System.Windows.Forms.Button();
             this.label72 = new System.Windows.Forms.Label();
-            this.button29 = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label70 = new System.Windows.Forms.Label();
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
@@ -73,8 +71,6 @@
             this.label94 = new System.Windows.Forms.Label();
             this.label95 = new System.Windows.Forms.Label();
             this.label96 = new System.Windows.Forms.Label();
-            this.button31 = new System.Windows.Forms.Button();
-            this.button32 = new System.Windows.Forms.Button();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label74 = new System.Windows.Forms.Label();
             this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
@@ -105,6 +101,12 @@
             this.button3 = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.textBox4 = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -182,16 +184,15 @@
             this.tabControl1.Location = new System.Drawing.Point(3, 3);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(687, 697);
+            this.tabControl1.Size = new System.Drawing.Size(687, 678);
             this.tabControl1.TabIndex = 12;
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.label12);
             this.tabPage1.Controls.Add(this.label73);
             this.tabPage1.Controls.Add(this.label71);
-            this.tabPage1.Controls.Add(this.button30);
             this.tabPage1.Controls.Add(this.label72);
-            this.tabPage1.Controls.Add(this.button29);
             this.tabPage1.Controls.Add(this.textBox2);
             this.tabPage1.Controls.Add(this.label70);
             this.tabPage1.Controls.Add(this.flowLayoutPanel3);
@@ -199,7 +200,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 31);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(679, 662);
+            this.tabPage1.Size = new System.Drawing.Size(679, 643);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Flowers And Bouquet";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -208,7 +209,7 @@
             // 
             this.label73.AutoSize = true;
             this.label73.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label73.Location = new System.Drawing.Point(472, 136);
+            this.label73.Location = new System.Drawing.Point(475, 111);
             this.label73.Name = "label73";
             this.label73.Size = new System.Drawing.Size(49, 18);
             this.label73.TabIndex = 37;
@@ -218,56 +219,39 @@
             // 
             this.label71.AutoSize = true;
             this.label71.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label71.Location = new System.Drawing.Point(271, 136);
+            this.label71.Location = new System.Drawing.Point(274, 111);
             this.label71.Name = "label71";
             this.label71.Size = new System.Drawing.Size(118, 18);
             this.label71.TabIndex = 36;
             this.label71.Text = "Current Quantity";
             // 
-            // button30
-            // 
-            this.button30.Location = new System.Drawing.Point(146, 79);
-            this.button30.Name = "button30";
-            this.button30.Size = new System.Drawing.Size(120, 35);
-            this.button30.TabIndex = 33;
-            this.button30.Text = "A - Z";
-            this.button30.UseVisualStyleBackColor = true;
-            // 
             // label72
             // 
             this.label72.AutoSize = true;
             this.label72.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label72.Location = new System.Drawing.Point(12, 136);
+            this.label72.Location = new System.Drawing.Point(15, 111);
             this.label72.Name = "label72";
             this.label72.Size = new System.Drawing.Size(95, 18);
             this.label72.TabIndex = 35;
             this.label72.Text = "Flower Name";
             // 
-            // button29
-            // 
-            this.button29.Location = new System.Drawing.Point(20, 79);
-            this.button29.Name = "button29";
-            this.button29.Size = new System.Drawing.Size(120, 35);
-            this.button29.TabIndex = 32;
-            this.button29.Text = "Low to High";
-            this.button29.UseVisualStyleBackColor = true;
-            // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(20, 46);
+            this.textBox2.Location = new System.Drawing.Point(20, 78);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(638, 23);
             this.textBox2.TabIndex = 31;
+            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // label70
             // 
             this.label70.AutoSize = true;
-            this.label70.Font = new System.Drawing.Font("Montserrat", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label70.Location = new System.Drawing.Point(15, 13);
+            this.label70.Font = new System.Drawing.Font("Montserrat SemiBold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label70.Location = new System.Drawing.Point(230, 8);
             this.label70.Name = "label70";
-            this.label70.Size = new System.Drawing.Size(94, 29);
+            this.label70.Size = new System.Drawing.Size(245, 29);
             this.label70.TabIndex = 30;
-            this.label70.Text = "Flowers";
+            this.label70.Text = "Flowers and Bouquet";
             // 
             // flowLayoutPanel3
             // 
@@ -277,9 +261,9 @@
             this.flowLayoutPanel3.Controls.Add(this.panel32);
             this.flowLayoutPanel3.Controls.Add(this.panel30);
             this.flowLayoutPanel3.Controls.Add(this.panel31);
-            this.flowLayoutPanel3.Location = new System.Drawing.Point(6, 157);
+            this.flowLayoutPanel3.Location = new System.Drawing.Point(6, 134);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(667, 499);
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(667, 507);
             this.flowLayoutPanel3.TabIndex = 0;
             // 
             // panel27
@@ -549,11 +533,10 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.label11);
             this.tabPage2.Controls.Add(this.label94);
             this.tabPage2.Controls.Add(this.label95);
             this.tabPage2.Controls.Add(this.label96);
-            this.tabPage2.Controls.Add(this.button31);
-            this.tabPage2.Controls.Add(this.button32);
             this.tabPage2.Controls.Add(this.textBox3);
             this.tabPage2.Controls.Add(this.label74);
             this.tabPage2.Controls.Add(this.flowLayoutPanel4);
@@ -561,7 +544,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 31);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(679, 662);
+            this.tabPage2.Size = new System.Drawing.Size(679, 643);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Materials";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -570,7 +553,7 @@
             // 
             this.label94.AutoSize = true;
             this.label94.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label94.Location = new System.Drawing.Point(488, 128);
+            this.label94.Location = new System.Drawing.Point(485, 114);
             this.label94.Name = "label94";
             this.label94.Size = new System.Drawing.Size(49, 18);
             this.label94.TabIndex = 41;
@@ -580,7 +563,7 @@
             // 
             this.label95.AutoSize = true;
             this.label95.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label95.Location = new System.Drawing.Point(287, 128);
+            this.label95.Location = new System.Drawing.Point(284, 114);
             this.label95.Name = "label95";
             this.label95.Size = new System.Drawing.Size(118, 18);
             this.label95.TabIndex = 40;
@@ -590,56 +573,40 @@
             // 
             this.label96.AutoSize = true;
             this.label96.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label96.Location = new System.Drawing.Point(28, 128);
+            this.label96.Location = new System.Drawing.Point(25, 114);
             this.label96.Name = "label96";
             this.label96.Size = new System.Drawing.Size(95, 18);
             this.label96.TabIndex = 39;
             this.label96.Text = "Flower Name";
             // 
-            // button31
-            // 
-            this.button31.Location = new System.Drawing.Point(146, 76);
-            this.button31.Name = "button31";
-            this.button31.Size = new System.Drawing.Size(120, 35);
-            this.button31.TabIndex = 38;
-            this.button31.Text = "A - Z";
-            this.button31.UseVisualStyleBackColor = true;
-            // 
-            // button32
-            // 
-            this.button32.Location = new System.Drawing.Point(20, 76);
-            this.button32.Name = "button32";
-            this.button32.Size = new System.Drawing.Size(120, 35);
-            this.button32.TabIndex = 37;
-            this.button32.Text = "Low to High";
-            this.button32.UseVisualStyleBackColor = true;
-            // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(20, 43);
+            this.textBox3.Location = new System.Drawing.Point(20, 79);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(638, 23);
             this.textBox3.TabIndex = 36;
+            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
             // label74
             // 
             this.label74.AutoSize = true;
-            this.label74.Font = new System.Drawing.Font("Montserrat", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label74.Location = new System.Drawing.Point(15, 10);
+            this.label74.Font = new System.Drawing.Font("Montserrat SemiBold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label74.Location = new System.Drawing.Point(289, 7);
             this.label74.Name = "label74";
-            this.label74.Size = new System.Drawing.Size(109, 29);
+            this.label74.Size = new System.Drawing.Size(113, 29);
             this.label74.TabIndex = 35;
             this.label74.Text = "Materials";
             // 
             // flowLayoutPanel4
             // 
-            this.flowLayoutPanel4.Location = new System.Drawing.Point(6, 149);
+            this.flowLayoutPanel4.Location = new System.Drawing.Point(6, 139);
             this.flowLayoutPanel4.Name = "flowLayoutPanel4";
-            this.flowLayoutPanel4.Size = new System.Drawing.Size(667, 507);
+            this.flowLayoutPanel4.Size = new System.Drawing.Size(667, 517);
             this.flowLayoutPanel4.TabIndex = 34;
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.label10);
             this.tabPage3.Controls.Add(this.button22);
             this.tabPage3.Controls.Add(this.label54);
             this.tabPage3.Controls.Add(this.dateTimePicker2);
@@ -655,7 +622,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 31);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(679, 662);
+            this.tabPage3.Size = new System.Drawing.Size(679, 643);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Batch List";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -663,18 +630,19 @@
             // button22
             // 
             this.button22.Font = new System.Drawing.Font("Montserrat SemiBold", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button22.Location = new System.Drawing.Point(370, 78);
+            this.button22.Location = new System.Drawing.Point(370, 105);
             this.button22.Name = "button22";
             this.button22.Size = new System.Drawing.Size(303, 57);
             this.button22.TabIndex = 39;
             this.button22.Text = "Search By Date";
             this.button22.UseVisualStyleBackColor = true;
+            this.button22.Click += new System.EventHandler(this.button22_Click);
             // 
             // label54
             // 
             this.label54.AutoSize = true;
             this.label54.Font = new System.Drawing.Font("Montserrat Medium", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label54.Location = new System.Drawing.Point(34, 113);
+            this.label54.Location = new System.Drawing.Point(34, 135);
             this.label54.Name = "label54";
             this.label54.Size = new System.Drawing.Size(28, 22);
             this.label54.TabIndex = 38;
@@ -682,16 +650,18 @@
             // 
             // dateTimePicker2
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(68, 108);
+            this.dateTimePicker2.Enabled = false;
+            this.dateTimePicker2.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker2.Location = new System.Drawing.Point(68, 135);
             this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(296, 27);
+            this.dateTimePicker2.Size = new System.Drawing.Size(296, 23);
             this.dateTimePicker2.TabIndex = 37;
             // 
             // label53
             // 
             this.label53.AutoSize = true;
             this.label53.Font = new System.Drawing.Font("Montserrat Medium", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label53.Location = new System.Drawing.Point(8, 83);
+            this.label53.Location = new System.Drawing.Point(8, 105);
             this.label53.Name = "label53";
             this.label53.Size = new System.Drawing.Size(54, 22);
             this.label53.TabIndex = 36;
@@ -699,55 +669,59 @@
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(68, 78);
+            this.dateTimePicker1.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker1.Location = new System.Drawing.Point(68, 105);
+            this.dateTimePicker1.MaxDate = new System.DateTime(2024, 10, 31, 0, 0, 0, 0);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(296, 27);
+            this.dateTimePicker1.Size = new System.Drawing.Size(296, 23);
             this.dateTimePicker1.TabIndex = 35;
+            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(9, 38);
+            this.textBox1.Location = new System.Drawing.Point(9, 67);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(664, 27);
             this.textBox1.TabIndex = 34;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged_1);
             // 
             // label34
             // 
             this.label34.AutoSize = true;
-            this.label34.Font = new System.Drawing.Font("Montserrat Medium", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label34.Location = new System.Drawing.Point(413, 146);
+            this.label34.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label34.Location = new System.Drawing.Point(420, 166);
             this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(146, 22);
+            this.label34.Size = new System.Drawing.Size(115, 18);
             this.label34.TabIndex = 33;
             this.label34.Text = "Restocking Date";
             // 
             // label33
             // 
             this.label33.AutoSize = true;
-            this.label33.Font = new System.Drawing.Font("Montserrat Medium", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label33.Location = new System.Drawing.Point(299, 146);
+            this.label33.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label33.Location = new System.Drawing.Point(306, 166);
             this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(57, 22);
+            this.label33.Size = new System.Drawing.Size(45, 18);
             this.label33.TabIndex = 32;
             this.label33.Text = "Items";
             // 
             // label32
             // 
             this.label32.AutoSize = true;
-            this.label32.Font = new System.Drawing.Font("Montserrat Medium", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label32.Location = new System.Drawing.Point(36, 146);
+            this.label32.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label32.Location = new System.Drawing.Point(43, 166);
             this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(81, 22);
+            this.label32.Size = new System.Drawing.Size(65, 18);
             this.label32.TabIndex = 31;
             this.label32.Text = "Batch ID";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Montserrat", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(4, 5);
+            this.label4.Font = new System.Drawing.Font("Montserrat SemiBold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(280, 6);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(119, 29);
+            this.label4.Size = new System.Drawing.Size(122, 29);
             this.label4.TabIndex = 29;
             this.label4.Text = "Batch List";
             // 
@@ -756,9 +730,9 @@
             this.flowLayoutPanel1.AutoScroll = true;
             this.flowLayoutPanel1.BackColor = System.Drawing.Color.White;
             this.flowLayoutPanel1.Controls.Add(this.panel15);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(9, 171);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(9, 190);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(665, 485);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(665, 466);
             this.flowLayoutPanel1.TabIndex = 30;
             // 
             // panel15
@@ -817,6 +791,9 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.label13);
+            this.panel3.Controls.Add(this.textBox4);
+            this.panel3.Controls.Add(this.label9);
             this.panel3.Controls.Add(this.label6);
             this.panel3.Controls.Add(this.label75);
             this.panel3.Controls.Add(this.label78);
@@ -835,7 +812,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Montserrat Medium", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(146, 290);
+            this.label6.Location = new System.Drawing.Point(156, 265);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(134, 22);
             this.label6.TabIndex = 19;
@@ -890,7 +867,7 @@
             this.flowLayoutPanel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.flowLayoutPanel2.Location = new System.Drawing.Point(16, 95);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(402, 441);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(402, 376);
             this.flowLayoutPanel2.TabIndex = 13;
             // 
             // button3
@@ -902,6 +879,7 @@
             this.button3.TabIndex = 15;
             this.button3.Text = "Cancel";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // label5
             // 
@@ -923,6 +901,65 @@
             this.button2.Text = "Restock Item";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click_1);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Montserrat Medium", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(19, 653);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(93, 22);
+            this.label9.TabIndex = 20;
+            this.label9.Text = "Loading ...";
+            this.label9.Visible = false;
+            this.label9.VisibleChanged += new System.EventHandler(this.label9_VisibleChanged);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(9, 46);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(132, 18);
+            this.label10.TabIndex = 40;
+            this.label10.Text = "Search by Batch ID";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(17, 56);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(150, 18);
+            this.label11.TabIndex = 42;
+            this.label11.Text = "Search by Item Name";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(17, 57);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(150, 18);
+            this.label12.TabIndex = 43;
+            this.label12.Text = "Search by Item Name";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(13, 490);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(135, 18);
+            this.label13.TabIndex = 45;
+            this.label13.Text = "Receipt ID/Number";
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(16, 511);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(402, 20);
+            this.textBox4.TabIndex = 44;
             // 
             // RestockNew
             // 
@@ -995,11 +1032,7 @@
         private System.Windows.Forms.Button button16;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.Label BatchIDLbl;
-        private System.Windows.Forms.Button button30;
-        private System.Windows.Forms.Button button29;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Button button31;
-        private System.Windows.Forms.Button button32;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label74;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel4;
@@ -1038,5 +1071,11 @@
         private System.Windows.Forms.Label label96;
         private System.Windows.Forms.Label label75;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox textBox4;
     }
 }

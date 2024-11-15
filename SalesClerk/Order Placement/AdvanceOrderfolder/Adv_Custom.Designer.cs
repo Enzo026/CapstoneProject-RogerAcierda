@@ -258,9 +258,9 @@
             this.CardPrc.Font = new System.Drawing.Font("Montserrat SemiBold", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CardPrc.Location = new System.Drawing.Point(1015, 399);
             this.CardPrc.Name = "CardPrc";
-            this.CardPrc.Size = new System.Drawing.Size(34, 18);
+            this.CardPrc.Size = new System.Drawing.Size(17, 18);
             this.CardPrc.TabIndex = 75;
-            this.CardPrc.Text = "200";
+            this.CardPrc.Text = "0";
             // 
             // CoverPrc
             // 

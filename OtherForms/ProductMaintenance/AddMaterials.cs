@@ -1,4 +1,5 @@
 ﻿using Capstone_Flowershop;
+using Capstone_Flowershop.AdminForms.ProductMaintenance;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Flowershop_Thesis.OtherForms.ProductMaintenance
 {
@@ -19,6 +21,7 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
         public AddMaterials()
         {
             InitializeComponent();
+            LoadSuppliers();
         }
 
         private void label8_Click(object sender, EventArgs e)
@@ -62,24 +65,26 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
 
                     //varchar
                     cmd.Parameters.AddWithValue("@Name", Name.Text);
-                    cmd.Parameters.AddWithValue("@Type", Type.Text);
+                    cmd.Parameters.AddWithValue("@Type", comboBox2.Text);
                     cmd.Parameters.AddWithValue("@Color", Color.Text);
                     cmd.Parameters.AddWithValue("@Size", Size.Text);
-                    cmd.Parameters.AddWithValue("@Supplier", Supplier.Text);
+                    cmd.Parameters.AddWithValue("@Supplier", comboBox1.Text);
                     cmd.Parameters.AddWithValue("@Status", "Available");
 
                     //int
-                    cmd.Parameters.AddWithValue("@Price", Convert.ToInt32(this.Price.Text));
+                    cmd.Parameters.AddWithValue("@Price", 0);
                     cmd.Parameters.AddWithValue("@UnitPrice", Convert.ToInt32(this.UnitPrice.Text));
-                    cmd.Parameters.AddWithValue("@Usage", Convert.ToInt32(this.UsageQty.Text));
+                    cmd.Parameters.AddWithValue("@Usage", 2);
                     cmd.Parameters.AddWithValue("@UsageQuantity", Convert.ToInt32(this.UsageQty.Text));
-                    cmd.Parameters.AddWithValue("@ItemQuantity", Convert.ToInt32(this.Qty.Text));
+                    cmd.Parameters.AddWithValue("@ItemQuantity", 0);
 
                     cmd.Parameters.AddWithValue("@Image", ImageConvert);
 
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("Item Added Successfully!");
                     addActivityLog();
+                    ProductMaintenanceFrm.instance.refresh.Visible = true;
+                    this.Close();
                 }
                 catch (Exception ex)
                 {
@@ -114,6 +119,36 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
             catch (Exception ex)
             {
                 MessageBox.Show("Adding Activity Failed!" + " : " + ex);
+            }
+        }
+
+        private void LoadSuppliers()
+        {
+            try
+            {
+                // Clear existing items in the ComboBox
+                comboBox1.Items.Clear();
+
+                using (SqlConnection con = new SqlConnection(Connect.connectionString))
+                {
+                    con.Open();
+                    string sqlQuery = "SELECT SupplierName FROM Supplier where status = 'Active' and SupplierType = 'Materials' or SupplierType = 'Flowers and Materials'";
+
+                    using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                    {
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                comboBox1.Items.Add(reader["SupplierName"].ToString());
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Error loading suppliers: " + e.Message);
             }
         }
     }

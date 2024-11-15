@@ -10,6 +10,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using Capstone_Flowershop;
+using Flowershop_Thesis;
 
 namespace Flowershop_Thesis.OtherForms
 {
@@ -87,6 +89,7 @@ namespace Flowershop_Thesis.OtherForms
             ATC.ItemID = itemID;
             ATC.Stock = stocks;
             ATC.type = OrderType;
+            WalkInTransaction.OrderType = OrderType;
             ATC.Show();
 
         }

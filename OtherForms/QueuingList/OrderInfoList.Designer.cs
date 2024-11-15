@@ -50,36 +50,40 @@
             // PriceLbl
             // 
             this.PriceLbl.AutoSize = true;
-            this.PriceLbl.Location = new System.Drawing.Point(445, 11);
+            this.PriceLbl.Font = new System.Drawing.Font("Montserrat Medium", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PriceLbl.Location = new System.Drawing.Point(445, 10);
             this.PriceLbl.Name = "PriceLbl";
-            this.PriceLbl.Size = new System.Drawing.Size(31, 13);
+            this.PriceLbl.Size = new System.Drawing.Size(34, 16);
             this.PriceLbl.TabIndex = 13;
             this.PriceLbl.Text = "1200";
             // 
             // QtyLbl
             // 
             this.QtyLbl.AutoSize = true;
-            this.QtyLbl.Location = new System.Drawing.Point(276, 11);
+            this.QtyLbl.Font = new System.Drawing.Font("Montserrat Medium", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.QtyLbl.Location = new System.Drawing.Point(276, 10);
             this.QtyLbl.Name = "QtyLbl";
-            this.QtyLbl.Size = new System.Drawing.Size(19, 13);
+            this.QtyLbl.Size = new System.Drawing.Size(18, 16);
             this.QtyLbl.TabIndex = 12;
             this.QtyLbl.Text = "12";
             // 
             // IDLbl
             // 
             this.IDLbl.AutoSize = true;
-            this.IDLbl.Location = new System.Drawing.Point(12, 11);
+            this.IDLbl.Font = new System.Drawing.Font("Montserrat Medium", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.IDLbl.Location = new System.Drawing.Point(12, 10);
             this.IDLbl.Name = "IDLbl";
-            this.IDLbl.Size = new System.Drawing.Size(25, 13);
+            this.IDLbl.Size = new System.Drawing.Size(27, 16);
             this.IDLbl.TabIndex = 11;
             this.IDLbl.Text = "001";
             // 
             // NameLbl
             // 
             this.NameLbl.AutoSize = true;
-            this.NameLbl.Location = new System.Drawing.Point(95, 11);
+            this.NameLbl.Font = new System.Drawing.Font("Montserrat Medium", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NameLbl.Location = new System.Drawing.Point(95, 10);
             this.NameLbl.Name = "NameLbl";
-            this.NameLbl.Size = new System.Drawing.Size(32, 13);
+            this.NameLbl.Size = new System.Drawing.Size(37, 16);
             this.NameLbl.TabIndex = 10;
             this.NameLbl.Text = "Rose";
             // 

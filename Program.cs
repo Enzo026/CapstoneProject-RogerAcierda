@@ -1,4 +1,5 @@
 ﻿using Capstone_Flowershop;
+using Microsoft.Win32.TaskScheduler;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,10 +15,19 @@ namespace Flowershop_Thesis
         /// </summary>
         [STAThread]
         static void Main()
-        {
+        {  
+            
+            //System Configurations
+            SystemInfo.SecurityCode = "Admin1233";
+            SystemInfo.discount = 0.10m;
+            SystemInfo.MinimumOrder = 10;
+
+
+            //Proceeding Application
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
         }
+
     }
 }

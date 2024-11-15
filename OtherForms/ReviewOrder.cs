@@ -41,7 +41,6 @@ namespace Flowershop_Thesis.OtherForms
 
        
             getlist();
-            DiscountComputation();
             NameIndicator.Visible = false;
             FormIsReady = true;
             
@@ -137,40 +136,8 @@ namespace Flowershop_Thesis.OtherForms
             }
         }
 
-        public void DiscountComputation()
-        {
-            int perc = int.Parse(Discount_txtbox.Text);
-
-            if (perc > 50 )
-            {
-                MessageBox.Show("Discount input is higher than max discount value");
-            }
-            
-            else if(perc >= 0  && perc <= 50) 
-            {
-                int Amount = int.Parse(Amount_lbl.Text);
-                double discount = perc * .01;
-                double less = Amount * discount;
-                Discount_lbl.Text = less.ToString();
-                double DiscountedPrice = Amount - less;
-                TotalAmountlbl.Text = DiscountedPrice.ToString();
-
-            }
-            else
-            {
-                MessageBox.Show("Invalid Discount Value");
-            }
 
 
-        }
-        private void Discount_txtbox_TextChanged(object sender, EventArgs e)
-        {
-            if(Discount_txtbox.Text.Length > 0)
-            {   
-                DiscountComputation();
-            }
-
-        }
         public void getPrice()
         {
             try
@@ -190,12 +157,6 @@ namespace Flowershop_Thesis.OtherForms
                             }
                         }
 
-
-                        if (Discount_txtbox.Text.Length == 0)
-                        {
-                            Discount_lbl.Text = "0";
-                            TotalAmountlbl.Text = Amount_lbl.Text;
-                        }
                     }
                 }
             }
@@ -208,71 +169,25 @@ namespace Flowershop_Thesis.OtherForms
 
 
         private void button1_Click(object sender, EventArgs e)
-        {
-            TransactionTableInput();
-            TransactionItemsInput();
-            DeductionOfItemInventory();
-            OrderPlacement.instance.cartlist.Enabled = true;
-            this.Close();
-
+        {   
+            if(NameIndicator.Text == "Name Available!")
+            {
+                TransactionTableInput();
+                TransactionItemsInput();
+                DeductionOfItemInventory();
+                OrderPlacement.instance.cartlist.Enabled = true;
+                this.Close();
+            }
         }
         public void DeductionOfItemInventory()
         {
             try
-            {
-                int CartCounter;
-
+            { 
                 // Deduction of items ordered in Cart
                 using (SqlConnection con = new SqlConnection(Connect.connectionString))
                 {
                     con.Open();
 
-                    // First, retrieve the CartCounter
-                    using (SqlCommand CartItems = new SqlCommand("Select Count(*) from ServingCart", con))
-                    {
-                        CartCounter = (int)CartItems.ExecuteScalar();
-
-                        int counter = int.Parse(counterlbl.Text);
-                        if (CartCounter != counter)
-                        {
-                            label4.Text = CartCounter.ToString();
-                        }
-                    }
-
-                    // Retrieve items from ServingCart
-                    List<(int ItemID, int Quantity)> items = new List<(int, int)>();
-                    string sqlQuery = "SELECT ItemID, OrderQty FROM ServingCart";
-
-                    using (SqlCommand cmds = new SqlCommand(sqlQuery, con))
-                    {
-                        using (SqlDataReader reader2 = cmds.ExecuteReader())
-                        {
-                            while (reader2.Read())
-                            {
-                                int ID = reader2.GetOrdinal("ItemID");
-                                int ItemID = reader2.IsDBNull(ID) ? 0 : reader2.GetInt32(ID);
-
-                                int StockQuantity = reader2.GetOrdinal("OrderQty");
-                                int qty = reader2.IsDBNull(StockQuantity) ? 0 : reader2.GetInt32(StockQuantity);
-
-                                items.Add((ItemID, qty));
-                            }
-                        }
-                    }
-
-                    // Now that the reader is closed, update ItemInventory for each item
-                    foreach (var item in items)
-                    {
-                        string updateQuery = "UPDATE ItemInventory SET ItemQuantity = ItemQuantity - @Quantity WHERE ItemID = @SID;";
-
-                        using (SqlCommand updateCommand = new SqlCommand(updateQuery, con))
-                        {
-                            updateCommand.Parameters.AddWithValue("@Quantity", item.Quantity);
-                            updateCommand.Parameters.AddWithValue("@SID", item.ItemID);
-
-                            updateCommand.ExecuteNonQuery();
-                        }
-                    }
 
                     // Deletion of cart items (after all operations are completed)
                     using (SqlCommand cmd = new SqlCommand("TRUNCATE TABLE ServingCart", con))
@@ -368,7 +283,7 @@ namespace Flowershop_Thesis.OtherForms
                         if (result != null)
                         {
                             TransId = (int)result;
-                            MessageBox.Show(TransId.ToString());
+                            //MessageBox.Show(TransId.ToString());
                         }
                         else
                         {
@@ -449,7 +364,7 @@ namespace Flowershop_Thesis.OtherForms
                 {
                     int TransId;
                     con.Open();
-                    using (SqlCommand TransactionID = new SqlCommand("Select TransactionID from transactionstbl where Status = 'Processing' and CustomerName = '" + CustName_txtbox.Text + "';", con))
+                    using (SqlCommand TransactionID = new SqlCommand("Select TransactionID from transactionstbl where Status = 'Processing'  and CustomerName = '" + CustName_txtbox.Text + "';", con))
                     {
                         TransId = (int)TransactionID.ExecuteScalar();
                         MessageBox.Show(TransId.ToString());
@@ -491,7 +406,7 @@ namespace Flowershop_Thesis.OtherForms
                                     int StockQuantity = reader3.GetOrdinal("OrderQty");
                                     int qty = reader3.IsDBNull(StockQuantity) ? 0 : reader3.GetInt32(StockQuantity);
 
-                                    cmd = new SqlCommand("INSERT INTO SalesItemTbl(ItemID,TransactionID,ItemName,ItemQuantity,ItemType,ItemPrice)Values" +
+                                    cmd = new SqlCommand("INSERT INTO SalesItemTbl(ItemID,TransactionID,ItemName,ItemQuantity,ItemType,ItemPrice )Values" +
                                                 "(@ItemID,@TransID,@Name,@Qty,@Type,@Price);", con);
 
                                     cmd.Parameters.AddWithValue("@Name", ItemName);
@@ -529,11 +444,11 @@ namespace Flowershop_Thesis.OtherForms
                using(SqlConnection con = new SqlConnection(Connect.connectionString))
                 {
                     con.Open();
-                    cmd = new SqlCommand("INSERT INTO TransactionsTbl(CustomerName,Discount,Price,Status,PaymentStatus,DateOfTransaction,Employee)Values" +
-                                "(@CustName,@Discount,@Price,@Status,@PaymentStatus,getdate(),@Employee);", con);
+                    cmd = new SqlCommand("INSERT INTO TransactionsTbl(CustomerName,Discount,Price,Status,PaymentStatus,DateOfTransaction,Employee, OrderStatus)Values" +
+                                "(@CustName,@Discount,@Price,@Status,@PaymentStatus,getdate(),@Employee,'On-Process');", con);
                     cmd.Parameters.AddWithValue("@CustName", CustName_txtbox.Text);
-                    cmd.Parameters.AddWithValue("@Discount", Convert.ToInt32(Discount_txtbox.Text));
-                    cmd.Parameters.AddWithValue("@Price", TotalAmountlbl.Text);
+                    cmd.Parameters.AddWithValue("@Discount", 0);
+                    cmd.Parameters.AddWithValue("@Price", Amount_lbl.Text);
                     cmd.Parameters.AddWithValue("@Status", "Processing");
                     cmd.Parameters.AddWithValue("@Employee", UserInfo.Empleyado);
                     cmd.Parameters.AddWithValue("@PaymentStatus", "Unpaid");

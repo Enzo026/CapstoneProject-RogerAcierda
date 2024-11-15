@@ -16,7 +16,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-
+using Flowershop_Thesis.InventoryClerk.Disposal;
 namespace Flowershop_Thesis.MainForms
 {
     public partial class InventoryClerk_BasePlatform : Form
@@ -95,7 +95,8 @@ namespace Flowershop_Thesis.MainForms
 
         private void button3_Click(object sender, EventArgs e)
         {
-            DisposalFrm DF = new DisposalFrm(); //tatawagin tapos papangalanan yung form na papalabasin
+            
+            DisposalMain DF = new DisposalMain(); //tatawagin tapos papangalanan yung form na papalabasin
             DF.TopLevel = false; //para di mag agaw ng place
             panel2.Controls.Add(DF); //ilalagay na natin yung form
             DF.BringToFront(); //front yung form 
@@ -104,7 +105,7 @@ namespace Flowershop_Thesis.MainForms
 
         private void InventoryClerk_BasePlatform_Load(object sender, EventArgs e)
         {
-            EmpName.Text = UserInfo.Empleyado + ", Sales Clerk";
+            EmpName.Text = UserInfo.Empleyado + ", Inventory Clerk";
           
         }
 

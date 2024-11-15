@@ -92,7 +92,7 @@ namespace Flowershop_Thesis.MainForms
 
         private void SalesClerk_BasePlatform_Load(object sender, EventArgs e)
         {
-            EmpName.Text = UserInfo.Empleyado + ", Administrator";
+            EmpName.Text = UserInfo.Empleyado + ", Sales Clerk";
         }
     }
 }

@@ -1,13 +1,16 @@
-﻿using Flowershop_Thesis.SalesClerk.Order_Placement;
+﻿using Capstone_Flowershop;
+using Flowershop_Thesis.SalesClerk.Order_Placement;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
 
 namespace Flowershop_Thesis.OtherForms
 {
@@ -70,7 +73,8 @@ namespace Flowershop_Thesis.OtherForms
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
-        {   if(textBox1.Text.Length > 0)
+        {
+            if (textBox1.Text.Length > 0)
             {
                 int input = int.Parse(textBox1.Text);
                 if (input <= qty)
@@ -84,7 +88,7 @@ namespace Flowershop_Thesis.OtherForms
                 }
 
             }
-  
+
         }
 
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
@@ -102,12 +106,12 @@ namespace Flowershop_Thesis.OtherForms
 
                 CustomBuoquet.instance.iPFlowerName.Visible = true;
                 CustomBuoquet.instance.iPFlowerQty.Visible = true;
-                CustomBuoquet.instance.iPFlowerRSP.Visible = true;
+  
                 CustomBuoquet.instance.iPFlowerPrice.Visible = true;
 
                 CustomBuoquet.instance.iPFlowerName.Text = name;
                 CustomBuoquet.instance.iPFlowerQty.Text = textBox1.Text.ToString();
-                CustomBuoquet.instance.iPFlowerRSP.Text = price;
+    
                 CustomBuoquet.instance.iPFlowerPrice.Text = TotalPriceLbl.Text;
 
                 this.Close();
@@ -117,12 +121,12 @@ namespace Flowershop_Thesis.OtherForms
             {
                 CustomBuoquet.instance.iSFlowerName.Visible = true;
                 CustomBuoquet.instance.iSFlowerQty.Visible = true;
-                CustomBuoquet.instance.iSFlowerRSP.Visible = true;
+     
                 CustomBuoquet.instance.iSFlowerPrice.Visible = true;
 
                 CustomBuoquet.instance.iSFlowerName.Text = name;
                 CustomBuoquet.instance.iSFlowerQty.Text = textBox1.Text.ToString();
-                CustomBuoquet.instance.iSFlowerRSP.Text = price;
+      
                 CustomBuoquet.instance.iSFlowerPrice.Text = TotalPriceLbl.Text;
 
                 this.Close();
@@ -131,12 +135,12 @@ namespace Flowershop_Thesis.OtherForms
             {
                 CustomBuoquet.instance.iCoverName.Visible = true;
                 CustomBuoquet.instance.iCoverQty.Visible = true;
-                CustomBuoquet.instance.iCoverRSP.Visible = true;
+
                 CustomBuoquet.instance.iCoverPrice.Visible = true;
 
                 CustomBuoquet.instance.iCoverName.Text = name;
                 CustomBuoquet.instance.iCoverQty.Text = textBox1.Text.ToString();
-                CustomBuoquet.instance.iCoverRSP.Text = price;
+     
                 CustomBuoquet.instance.iCoverPrice.Text = TotalPriceLbl.Text;
 
                 this.Close();
@@ -145,16 +149,17 @@ namespace Flowershop_Thesis.OtherForms
             {
                 CustomBuoquet.instance.iRibbonName.Visible = true;
                 CustomBuoquet.instance.iRibbonQty.Visible = true;
-                CustomBuoquet.instance.iRibbonRSP.Visible = true;
+        
                 CustomBuoquet.instance.iRibbonPrice.Visible = true;
 
                 CustomBuoquet.instance.iRibbonName.Text = name;
                 CustomBuoquet.instance.iRibbonQty.Text = textBox1.Text.ToString();
-                CustomBuoquet.instance.iRibbonRSP.Text = price;
+
                 CustomBuoquet.instance.iRibbonPrice.Text = TotalPriceLbl.Text;
 
                 this.Close();
             }
         }
+    
     }
 }

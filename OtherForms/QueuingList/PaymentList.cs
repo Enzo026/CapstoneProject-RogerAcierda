@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Serialization;
 
 namespace Flowershop_Thesis.OtherForms.QueuingList
 {
@@ -124,7 +125,7 @@ namespace Flowershop_Thesis.OtherForms.QueuingList
                 {
                     using (SqlConnection con = new SqlConnection(Connect.connectionString))
                     {
-                        string updateQuery = "UPDATE TransactionsTbl SET Status = 'Cancelled' WHERE TransactionID = @ID;";
+                        string updateQuery = "UPDATE TransactionsTbl SET Status = 'Cancelled', OrderStatus = 'Complete' WHERE TransactionID = @ID;";
                         con.Open();
                         using (SqlCommand updateCommand = new SqlCommand(updateQuery, con))
                         {
@@ -134,6 +135,7 @@ namespace Flowershop_Thesis.OtherForms.QueuingList
                             int addqueue = queue - 1;
                             QueuingFormBack.instance.lblcounter.Text = addqueue.ToString();
                         }
+                        insertCancelledTransaction();
                         string def = UserInfo.Empleyado + " Cancelled the order  of "+ name + " with the transaction id of " + transactionID ;
                         addTransactionLog(name, price.ToString(), transactionID.ToString(), def);
                         MessageBox.Show("Order cancelled!");
@@ -143,6 +145,53 @@ namespace Flowershop_Thesis.OtherForms.QueuingList
             catch (Exception ex)
             {
                 MessageBox.Show("Error on Cancelling the order" + ex.Message);
+            }
+        }
+
+        public void insertCancelledTransaction()
+        {
+            using (SqlConnection connection = new SqlConnection(Connect.connectionString))
+            {
+                using (SqlCommand command = new SqlCommand("CancellationOfOrder", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    // Add parameters
+                    command.Parameters.Add(new SqlParameter("@ID", transactionID));
+                    command.Parameters.Add(new SqlParameter("@TransactionType", "WalkIn"));
+
+                    try
+                    {
+                        // Open the connection
+                        connection.Open();
+
+                        // Execute the stored procedure
+                        command.ExecuteNonQuery();
+
+                        // Optionally, log success
+                        MessageBox.Show("Cancellation executed successfully.");
+                    }
+                    catch (SqlException ex)
+                    {
+                        // Handle SQL errors
+                        MessageBox.Show("SQL Error: " + ex.Message);
+                        // Optionally log the error details
+                    }
+                    catch (Exception ex)
+                    {
+                        // Handle general errors
+                        MessageBox.Show("Error: " + ex.Message);
+                        // Optionally log the error details
+                    }
+                    finally
+                    {
+                        // Ensure the connection is closed
+                        if (connection.State == ConnectionState.Open)
+                        {
+                            connection.Close();
+                        }
+                    }
+                }
             }
         }
         public void Processing()

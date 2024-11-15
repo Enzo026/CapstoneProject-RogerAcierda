@@ -32,10 +32,6 @@
             this.PFlowerBtn = new System.Windows.Forms.Button();
             this.SFlowerBtn = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.RibbonBtn = new System.Windows.Forms.Button();
             this.CoverBtn = new System.Windows.Forms.Button();
             this.ProceedBtn = new System.Windows.Forms.Button();
@@ -71,10 +67,11 @@
             this.label2 = new System.Windows.Forms.Label();
             this.BuoquetName = new System.Windows.Forms.TextBox();
             this.label30 = new System.Windows.Forms.Label();
-            this.CoverRSP = new System.Windows.Forms.Label();
-            this.RibbonRSP = new System.Windows.Forms.Label();
-            this.SFlowerRSP = new System.Windows.Forms.Label();
-            this.PFlowerRSP = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -119,46 +116,6 @@
             this.label3.Size = new System.Drawing.Size(138, 22);
             this.label3.TabIndex = 4;
             this.label3.Text = "Primary Flower";
-            // 
-            // panel1
-            // 
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.flowLayoutPanel1);
-            this.panel1.Controls.Add(this.label6);
-            this.panel1.Controls.Add(this.label5);
-            this.panel1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.panel1.Location = new System.Drawing.Point(344, 123);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(283, 401);
-            this.panel1.TabIndex = 8;
-            // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.AutoScroll = true;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 27);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(275, 369);
-            this.flowLayoutPanel1.TabIndex = 2;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(79, 9);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(89, 15);
-            this.label6.TabIndex = 1;
-            this.label6.Text = "Price per piece";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(3, 9);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(70, 15);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "Item Name";
             // 
             // RibbonBtn
             // 
@@ -256,7 +213,7 @@
             // 
             this.PFlowerQty.AutoSize = true;
             this.PFlowerQty.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PFlowerQty.Location = new System.Drawing.Point(161, 161);
+            this.PFlowerQty.Location = new System.Drawing.Point(184, 161);
             this.PFlowerQty.Name = "PFlowerQty";
             this.PFlowerQty.Size = new System.Drawing.Size(32, 18);
             this.PFlowerQty.TabIndex = 18;
@@ -266,7 +223,7 @@
             // 
             this.SFlowerQty.AutoSize = true;
             this.SFlowerQty.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SFlowerQty.Location = new System.Drawing.Point(161, 219);
+            this.SFlowerQty.Location = new System.Drawing.Point(184, 219);
             this.SFlowerQty.Name = "SFlowerQty";
             this.SFlowerQty.Size = new System.Drawing.Size(32, 18);
             this.SFlowerQty.TabIndex = 20;
@@ -286,7 +243,7 @@
             // 
             this.RibbonQty.AutoSize = true;
             this.RibbonQty.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RibbonQty.Location = new System.Drawing.Point(161, 284);
+            this.RibbonQty.Location = new System.Drawing.Point(184, 284);
             this.RibbonQty.Name = "RibbonQty";
             this.RibbonQty.Size = new System.Drawing.Size(32, 18);
             this.RibbonQty.TabIndex = 22;
@@ -307,7 +264,7 @@
             // 
             this.CoverQty.AutoSize = true;
             this.CoverQty.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CoverQty.Location = new System.Drawing.Point(161, 353);
+            this.CoverQty.Location = new System.Drawing.Point(184, 353);
             this.CoverQty.Name = "CoverQty";
             this.CoverQty.Size = new System.Drawing.Size(32, 18);
             this.CoverQty.TabIndex = 24;
@@ -340,15 +297,15 @@
             this.CardName.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CardName.Location = new System.Drawing.Point(12, 421);
             this.CardName.Name = "CardName";
-            this.CardName.Size = new System.Drawing.Size(39, 18);
+            this.CardName.Size = new System.Drawing.Size(109, 18);
             this.CardName.TabIndex = 25;
-            this.CardName.Text = "Rose";
+            this.CardName.Text = "Dedication Cart";
             // 
             // CardPrc
             // 
             this.CardPrc.AutoSize = true;
             this.CardPrc.Font = new System.Drawing.Font("Montserrat SemiBold", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CardPrc.Location = new System.Drawing.Point(300, 421);
+            this.CardPrc.Location = new System.Drawing.Point(271, 418);
             this.CardPrc.Name = "CardPrc";
             this.CardPrc.Size = new System.Drawing.Size(34, 18);
             this.CardPrc.TabIndex = 31;
@@ -359,7 +316,7 @@
             // 
             this.CoverPrc.AutoSize = true;
             this.CoverPrc.Font = new System.Drawing.Font("Montserrat SemiBold", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CoverPrc.Location = new System.Drawing.Point(300, 351);
+            this.CoverPrc.Location = new System.Drawing.Point(271, 348);
             this.CoverPrc.Name = "CoverPrc";
             this.CoverPrc.Size = new System.Drawing.Size(25, 18);
             this.CoverPrc.TabIndex = 30;
@@ -370,7 +327,7 @@
             // 
             this.RibbonPrc.AutoSize = true;
             this.RibbonPrc.Font = new System.Drawing.Font("Montserrat SemiBold", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RibbonPrc.Location = new System.Drawing.Point(300, 284);
+            this.RibbonPrc.Location = new System.Drawing.Point(271, 281);
             this.RibbonPrc.Name = "RibbonPrc";
             this.RibbonPrc.Size = new System.Drawing.Size(34, 18);
             this.RibbonPrc.TabIndex = 29;
@@ -381,7 +338,7 @@
             // 
             this.SFlowerPrc.AutoSize = true;
             this.SFlowerPrc.Font = new System.Drawing.Font("Montserrat SemiBold", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SFlowerPrc.Location = new System.Drawing.Point(300, 219);
+            this.SFlowerPrc.Location = new System.Drawing.Point(271, 216);
             this.SFlowerPrc.Name = "SFlowerPrc";
             this.SFlowerPrc.Size = new System.Drawing.Size(25, 18);
             this.SFlowerPrc.TabIndex = 28;
@@ -392,7 +349,7 @@
             // 
             this.PFlowerPrc.AutoSize = true;
             this.PFlowerPrc.Font = new System.Drawing.Font("Montserrat SemiBold", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PFlowerPrc.Location = new System.Drawing.Point(300, 164);
+            this.PFlowerPrc.Location = new System.Drawing.Point(271, 161);
             this.PFlowerPrc.Name = "PFlowerPrc";
             this.PFlowerPrc.Size = new System.Drawing.Size(17, 18);
             this.PFlowerPrc.TabIndex = 27;
@@ -422,7 +379,7 @@
             // 
             this.label26.AutoSize = true;
             this.label26.Font = new System.Drawing.Font("Montserrat SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label26.Location = new System.Drawing.Point(114, 602);
+            this.label26.Location = new System.Drawing.Point(20, 599);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(97, 22);
             this.label26.TabIndex = 34;
@@ -482,7 +439,7 @@
             // 
             this.SizePrc.AutoSize = true;
             this.SizePrc.Font = new System.Drawing.Font("Montserrat SemiBold", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SizePrc.Location = new System.Drawing.Point(300, 92);
+            this.SizePrc.Location = new System.Drawing.Point(271, 89);
             this.SizePrc.Name = "SizePrc";
             this.SizePrc.Size = new System.Drawing.Size(17, 18);
             this.SizePrc.TabIndex = 39;
@@ -493,7 +450,7 @@
             // 
             this.TotalPrc.AutoSize = true;
             this.TotalPrc.Font = new System.Drawing.Font("Montserrat ExtraBold", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TotalPrc.Location = new System.Drawing.Point(217, 588);
+            this.TotalPrc.Location = new System.Drawing.Point(123, 585);
             this.TotalPrc.Name = "TotalPrc";
             this.TotalPrc.Size = new System.Drawing.Size(37, 40);
             this.TotalPrc.TabIndex = 40;
@@ -537,55 +494,63 @@
             this.label30.TabIndex = 44;
             this.label30.Text = "Buoquet Name";
             // 
-            // CoverRSP
+            // label5
             // 
-            this.CoverRSP.AutoSize = true;
-            this.CoverRSP.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CoverRSP.Location = new System.Drawing.Point(207, 353);
-            this.CoverRSP.Name = "CoverRSP";
-            this.CoverRSP.Size = new System.Drawing.Size(44, 18);
-            this.CoverRSP.TabIndex = 48;
-            this.CoverRSP.Text = "0000";
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(3, 9);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(70, 15);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "Item Name";
             // 
-            // RibbonRSP
+            // label6
             // 
-            this.RibbonRSP.AutoSize = true;
-            this.RibbonRSP.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RibbonRSP.Location = new System.Drawing.Point(207, 286);
-            this.RibbonRSP.Name = "RibbonRSP";
-            this.RibbonRSP.Size = new System.Drawing.Size(44, 18);
-            this.RibbonRSP.TabIndex = 47;
-            this.RibbonRSP.Text = "0000";
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(79, 9);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(89, 15);
+            this.label6.TabIndex = 1;
+            this.label6.Text = "Price per piece";
             // 
-            // SFlowerRSP
+            // flowLayoutPanel1
             // 
-            this.SFlowerRSP.AutoSize = true;
-            this.SFlowerRSP.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SFlowerRSP.Location = new System.Drawing.Point(207, 221);
-            this.SFlowerRSP.Name = "SFlowerRSP";
-            this.SFlowerRSP.Size = new System.Drawing.Size(44, 18);
-            this.SFlowerRSP.TabIndex = 46;
-            this.SFlowerRSP.Text = "0000";
+            this.flowLayoutPanel1.AutoScroll = true;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 27);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(275, 369);
+            this.flowLayoutPanel1.TabIndex = 2;
             // 
-            // PFlowerRSP
+            // panel1
             // 
-            this.PFlowerRSP.AutoSize = true;
-            this.PFlowerRSP.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PFlowerRSP.Location = new System.Drawing.Point(207, 163);
-            this.PFlowerRSP.Name = "PFlowerRSP";
-            this.PFlowerRSP.Size = new System.Drawing.Size(44, 18);
-            this.PFlowerRSP.TabIndex = 45;
-            this.PFlowerRSP.Text = "0000";
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.flowLayoutPanel1);
+            this.panel1.Controls.Add(this.label6);
+            this.panel1.Controls.Add(this.label5);
+            this.panel1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.panel1.Location = new System.Drawing.Point(344, 123);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(283, 401);
+            this.panel1.TabIndex = 8;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(12, 628);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(74, 18);
+            this.label4.TabIndex = 45;
+            this.label4.Text = "Loading ...";
+   
             // 
             // CustomBuoquet
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(636, 655);
-            this.Controls.Add(this.CoverRSP);
-            this.Controls.Add(this.RibbonRSP);
-            this.Controls.Add(this.SFlowerRSP);
-            this.Controls.Add(this.PFlowerRSP);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.label30);
             this.Controls.Add(this.BuoquetName);
             this.Controls.Add(this.PrimaryColorTxtBox);
@@ -643,9 +608,6 @@
         private System.Windows.Forms.Button PFlowerBtn;
         private System.Windows.Forms.Button SFlowerBtn;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button RibbonBtn;
         private System.Windows.Forms.Button CoverBtn;
         private System.Windows.Forms.Button ProceedBtn;
@@ -681,10 +643,10 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox BuoquetName;
         private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.Label CoverRSP;
-        private System.Windows.Forms.Label RibbonRSP;
-        private System.Windows.Forms.Label SFlowerRSP;
-        private System.Windows.Forms.Label PFlowerRSP;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label4;
     }
 }

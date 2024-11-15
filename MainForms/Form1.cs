@@ -14,6 +14,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Text.Json;
+using Microsoft.Win32.TaskScheduler;
 
 namespace Capstone_Flowershop
 {   
@@ -21,12 +23,18 @@ namespace Capstone_Flowershop
     public partial class Form1 : Form
     {
         SqlDataReader sdr;
-
+        private  string configFilePath = "SystemConfig.json";
+        private AppConfig appConfig;
 
         public Form1()
         {
             InitializeComponent();
+            LoadConfig();
+
+            
         }
+   
+        #region Commentedregion
         //#region olddb-ToBeRemoved
         //public void LocalDBConnection()
         //{
@@ -37,7 +45,7 @@ namespace Capstone_Flowershop
         //    // Build the connection string with explicit pooling parameters
         //     //connectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={databaseFilePath};Initial Catalog=try;Integrated Security=True;Pooling=true;Max Pool Size=100;Min Pool Size=5;Connection Lifetime=600;";
 
-           
+
         //    // Use the connection string to connect to the database
         //    using (SqlConnection connection = new SqlConnection(connectionString))
         //    {
@@ -68,11 +76,11 @@ namespace Capstone_Flowershop
         //{
         //    string executableDirectory = AppDomain.CurrentDomain.BaseDirectory;
         //    string parentDirectory = Path.GetFullPath(Path.Combine(executableDirectory, @"..\..\"));
-            
-          
+
+
         //    string databaseFilePath = Path.Combine(parentDirectory, "try.mdf");
 
-            
+
 
         //    // Build the connection string
         //    string connectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={databaseFilePath};Initial Catalog=try;Integrated Security=True;";
@@ -105,6 +113,49 @@ namespace Capstone_Flowershop
         //    string conn = "Data Source=DESKTOP-IH4V487\\NEWMSSQL;Initial Catalog=try;Integrated Security=True";
         //}
         //#endregion
+        #endregion
+        private void LoadConfig()
+        {
+            if (File.Exists(configFilePath))
+            {
+                string json = File.ReadAllText(configFilePath);
+                appConfig = JsonSerializer.Deserialize<AppConfig>(json);
+            }
+            else
+            {
+                // Default values
+                appConfig = new AppConfig
+                {
+                    IP = "192.168.8.205",
+                    Port = "2626",
+                    MainPC = true
+                };
+            }
+
+            // Populate UI elements
+            //textBox5.Text = appConfig.IP;
+            //textBox6.Text = appConfig.Port;
+            //checkBox1.Checked = appConfig.MainPC;
+            //label8.Text = appConfig.CreateConnectionString();
+        }
+        public void CheckDB()
+        {
+            try
+            {
+                if (AppConfig.TestConnectionString(Connect.connectionString) == true)
+                {
+                    label7.Text = "Database Connected";
+                }
+                else
+                {
+                    label7.Text = "Cannot Connect to Database";
+                }
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
@@ -129,9 +180,6 @@ namespace Capstone_Flowershop
                     string Position = sdr["Role"].ToString().Trim();
                     string FirstName = sdr["FirstName"].ToString().Trim();
                     string LastName = sdr["LastName"].ToString().Trim();
-
-
-
 
                     if (textBox1.Text == iUserName && textBox2.Text == iPassword && Position == "Admin")
                     {
@@ -181,7 +229,24 @@ namespace Capstone_Flowershop
 
 
         }
-
+        public void DatabaseConnection()
+        {
+            try
+            {
+                if (AppConfig.TestConnectionString(appConfig.ConnectionString) == true)
+                {
+                    MessageBox.Show("Connected");
+                }
+                else
+                {
+                    MessageBox.Show("Cannot Connect");
+                }
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
         private void button2_Click(object sender, EventArgs e)
         {
             InvForm inventory = new InvForm();
@@ -194,6 +259,17 @@ namespace Capstone_Flowershop
             TryCamera frm = new TryCamera();
             frm.Show();
             this.Hide();
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            SystemSettings frm = new SystemSettings();
+            frm.ShowDialog();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            CheckDB();
         }
     }
 }

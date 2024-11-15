@@ -515,5 +515,16 @@ namespace Flowershop_Thesis.AdminForms.ProductMaintenance.Supplier
             }
             
         }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            AddSupplier frm = new AddSupplier();
+            frm.ShowDialog();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            DisplayList();
+        }
     }
 }

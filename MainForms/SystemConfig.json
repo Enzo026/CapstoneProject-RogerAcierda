@@ -1,0 +1,7 @@
+{
+  "IP": "192.168.8.205",
+  "Port": "2626",
+  "MainPC": true,
+  "ConnectionString": "Server=192.168.8.205,2626;Initial Catalog=TestApplicationDB;Persist Security Info=True;User ID=sa;Password=ApplicationDb123;Encrypt=True;TrustServerCertificate=True;",
+  "ConnectionStringHolder": "Server=DESKTOP-IH4V487\\NEWMSSQL;Database=YourDatabaseName;Integrated Security=True;"
+}

@@ -38,6 +38,12 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.dateBtn = new System.Windows.Forms.Button();
+            this.label90 = new System.Windows.Forms.Label();
+            this.date2 = new System.Windows.Forms.DateTimePicker();
+            this.label89 = new System.Windows.Forms.Label();
+            this.date1 = new System.Windows.Forms.DateTimePicker();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label12 = new System.Windows.Forms.Label();
@@ -62,28 +68,29 @@
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(972, 68);
+            this.button1.Location = new System.Drawing.Point(958, 9);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(119, 32);
+            this.button1.Size = new System.Drawing.Size(145, 32);
             this.button1.TabIndex = 2;
             this.button1.Text = "Print";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Visible = false;
             // 
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("Montserrat", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(27, 68);
+            this.textBox1.Location = new System.Drawing.Point(27, 79);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(261, 26);
+            this.textBox1.Size = new System.Drawing.Size(376, 26);
             this.textBox1.TabIndex = 1;
-            this.textBox1.Text = "Search item by Name";
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Montserrat", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Indigo;
-            this.label1.Location = new System.Drawing.Point(19, 15);
+            this.label1.Location = new System.Drawing.Point(19, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(237, 44);
             this.label1.TabIndex = 0;
@@ -147,6 +154,12 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Lavender;
+            this.panel1.Controls.Add(this.label6);
+            this.panel1.Controls.Add(this.dateBtn);
+            this.panel1.Controls.Add(this.label90);
+            this.panel1.Controls.Add(this.date2);
+            this.panel1.Controls.Add(this.label89);
+            this.panel1.Controls.Add(this.date1);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.textBox1);
             this.panel1.Controls.Add(this.label1);
@@ -154,6 +167,66 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1113, 112);
             this.panel1.TabIndex = 11;
+            // 
+            // label6
+            // 
+            this.label6.Font = new System.Drawing.Font("Montserrat", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(24, 60);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(190, 16);
+            this.label6.TabIndex = 26;
+            this.label6.Text = "Search By Employee Name";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // dateBtn
+            // 
+            this.dateBtn.BackColor = System.Drawing.Color.Gainsboro;
+            this.dateBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.dateBtn.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateBtn.Location = new System.Drawing.Point(958, 47);
+            this.dateBtn.Name = "dateBtn";
+            this.dateBtn.Size = new System.Drawing.Size(145, 52);
+            this.dateBtn.TabIndex = 25;
+            this.dateBtn.Text = "Search By Date";
+            this.dateBtn.UseVisualStyleBackColor = false;
+            this.dateBtn.Click += new System.EventHandler(this.dateBtn_Click);
+            // 
+            // label90
+            // 
+            this.label90.AutoSize = true;
+            this.label90.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label90.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.label90.Location = new System.Drawing.Point(709, 84);
+            this.label90.Name = "label90";
+            this.label90.Size = new System.Drawing.Size(20, 15);
+            this.label90.TabIndex = 24;
+            this.label90.Text = "To";
+            // 
+            // date2
+            // 
+            this.date2.Location = new System.Drawing.Point(742, 79);
+            this.date2.Name = "date2";
+            this.date2.Size = new System.Drawing.Size(200, 20);
+            this.date2.TabIndex = 23;
+            // 
+            // label89
+            // 
+            this.label89.AutoSize = true;
+            this.label89.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label89.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.label89.Location = new System.Drawing.Point(698, 45);
+            this.label89.Name = "label89";
+            this.label89.Size = new System.Drawing.Size(38, 15);
+            this.label89.TabIndex = 22;
+            this.label89.Text = "From";
+            // 
+            // date1
+            // 
+            this.date1.Location = new System.Drawing.Point(742, 45);
+            this.date1.Name = "date1";
+            this.date1.Size = new System.Drawing.Size(200, 20);
+            this.date1.TabIndex = 21;
+            this.date1.ValueChanged += new System.EventHandler(this.date1_ValueChanged);
             // 
             // flowLayoutPanel1
             // 
@@ -272,5 +345,11 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button dateBtn;
+        private System.Windows.Forms.Label label90;
+        private System.Windows.Forms.DateTimePicker date2;
+        private System.Windows.Forms.Label label89;
+        private System.Windows.Forms.DateTimePicker date1;
+        private System.Windows.Forms.Label label6;
     }
 }

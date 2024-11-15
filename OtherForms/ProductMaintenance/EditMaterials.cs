@@ -1,4 +1,5 @@
 ﻿using Capstone_Flowershop;
+using Capstone_Flowershop.AdminForms.ProductMaintenance;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -762,6 +763,11 @@ namespace Flowershop_Thesis.OtherForms.ProductMaintenance
                 pictureBox1.Enabled = false;
                 button1.Visible = false;
             }
+        }
+
+        private void EditMaterials_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            ProductMaintenanceFrm.instance.refresh.Visible = true;
         }
     }
 }

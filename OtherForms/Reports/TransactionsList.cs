@@ -20,6 +20,7 @@ namespace Flowershop_Thesis.OtherForms.Reports
         #region Myregion
         private string ItemID;
         private string ID;
+        private string showID;
         private string CustomerName;
         private string EmployeeName;
         private string TotalPrice;
@@ -29,14 +30,20 @@ namespace Flowershop_Thesis.OtherForms.Reports
         [Category("ItemList")]
         public string TransID
         {
-            get { return ItemID; }
-            set { ItemID = value; }
+            get { return ID; }
+            set { ID = value; }
         }
         [Category("ItemList")]
-        public string LocalID
+        public string sID
         {
-            get { return ID; }
-            set { ID = value; IDLbl.Text = value.ToString(); }
+            get { return showID; }
+            set { showID= value; IDLbl.Text = value.ToString(); }
+        }
+        [Category("ItemList")]
+        public string itmID
+        {
+            get { return ItemID; }
+            set { ItemID = value;  }
         }
         [Category("ItemList")]
         public string CustName
@@ -48,7 +55,7 @@ namespace Flowershop_Thesis.OtherForms.Reports
         public string Price
         {
             get { return TotalPrice; }
-            set { TotalPrice = value; PriceLbl.Text = value.ToString() + " Php"; }
+            set { TotalPrice = value; PriceLbl.Text = value.ToString(); }
         }
         [Category("ItemList")]
         public string Employee
@@ -72,7 +79,7 @@ namespace Flowershop_Thesis.OtherForms.Reports
         private void DetailsBtn_Click(object sender, EventArgs e)
         {
             ViewInfo.ID = TransID;
-            ViewInfo.type = TypeLbl.Text.Trim();
+            ViewInfo.type = OrderType;
             OrderInfoFrm frm = new OrderInfoFrm();
             frm.ShowDialog();
         }

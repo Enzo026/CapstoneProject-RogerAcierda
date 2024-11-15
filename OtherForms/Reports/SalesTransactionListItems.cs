@@ -49,7 +49,7 @@ namespace Flowershop_Thesis.OtherForms.Reports
         public string Price
         {
             get { return TotalPrice; }
-            set { TotalPrice = value; PriceLbl.Text = value.ToString() + " Php"; }
+            set { TotalPrice = value; PriceLbl.Text = value.ToString(); }
         }
         [Category("ItemList")]
         public string Employee
@@ -72,7 +72,8 @@ namespace Flowershop_Thesis.OtherForms.Reports
 
         private void DetailsBtn_Click(object sender, EventArgs e)
         {
-
+            ViewInfo.ID = TransID;
+            ViewInfo.type = OrderType;
 
 
             OrderInfoFrm frm = new OrderInfoFrm();

@@ -90,7 +90,7 @@ namespace Flowershop_Thesis.OtherForms.Accounts
 
                             MessageBox.Show("User Activated!");
                             //AccountMaintenance.instance.AccList.ControlRemoved();
-                            AccountMaintenance.instance.DeactCounter.Text = "0";
+                            AccountMaintenance.instance.refresh.Visible = true;
 
                         }
                         else if (numId > 1)

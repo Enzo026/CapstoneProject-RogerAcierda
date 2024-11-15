@@ -6,6 +6,7 @@ using System.IO;
 using System.Windows.Forms;
 using Flowershop_Thesis;
 using Capstone_Flowershop;
+using Flowershop_Thesis.OtherForms.WalkInTransactionsFolder;
 
 namespace Flowershop_Thesis.SalesClerk.Order_Placement
 
@@ -17,6 +18,7 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement
         public Label lbl;
         public FlowLayoutPanel cartlist;
         public Button refresher;
+        public Label update;
         public OrderPlacement()
         {
             InitializeComponent();
@@ -24,6 +26,7 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement
             instance = this;
             lbl = label4;
             cartlist = flowLayoutPanel2;
+            update = label7;
             getCartList();
             getPrice();
             FormIsReady = true;
@@ -47,6 +50,7 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement
 
         private void button3_Click(object sender, EventArgs e)
         {
+
             flowLayoutPanel1.Controls.Clear();
             CustomBuoquet CB = new CustomBuoquet();
             CB.TopLevel = false;
@@ -63,13 +67,13 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement
                 {
                     con.Open();
 
-                    string countQuery = "SELECT COUNT(*) FROM ItemInventory where ItemStatus = 'Available' AND ItemType = 'Individual' ";
+                    string countQuery = "SELECT COUNT(*) FROM ItemInventory where ItemStatus = 'Available' AND ItemType = 'Individual' AND ItemQuantity > 0 ";
                     using (SqlCommand countCommand = new SqlCommand(countQuery, con))
                     {
                         int rowCount = (int)countCommand.ExecuteScalar();
                         TransactionItemList[] inv = new TransactionItemList[rowCount];
 
-                        string sqlQuery = "SELECT * FROM ItemInventory where ItemStatus = 'Available' AND ItemType = 'Individual'";
+                        string sqlQuery = "SELECT * FROM ItemInventory where ItemStatus = 'Available' AND ItemType = 'Individual' AND ItemQuantity > 0 ";
                         using (SqlCommand command = new SqlCommand(sqlQuery, con))
                         {
                             using (SqlDataReader reader = command.ExecuteReader())
@@ -117,13 +121,13 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement
                 {
                     con.Open();
 
-                    string countQuery = "SELECT COUNT(*) FROM ItemInventory where ItemStatus = 'Available' AND ItemType = 'Bouquet'";
+                    string countQuery = "SELECT COUNT(*) FROM ItemInventory where ItemStatus = 'Available' AND ItemType = 'Bouquet' AND ItemQuantity > 0";
                     using (SqlCommand countCommand = new SqlCommand(countQuery, con))
                     {
                         int rowCount = (int)countCommand.ExecuteScalar();
                         TransactionItemList[] inv = new TransactionItemList[rowCount];
 
-                        string sqlQuery = "SELECT * FROM ItemInventory where ItemStatus = 'Available' AND ItemType = 'Bouquet'";
+                        string sqlQuery = "SELECT * FROM ItemInventory where ItemStatus = 'Available' AND ItemType = 'Bouquet' AND ItemQuantity > 0";
                         using (SqlCommand command = new SqlCommand(sqlQuery, con))
                         {
                             using (SqlDataReader reader = command.ExecuteReader())
@@ -250,15 +254,10 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement
             {
                 DialogResult result = MessageBox.Show("Do you want to Cancel all orders in cart?", "Cancel Cart Items", MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
-                {   
-                    using(SqlConnection con = new SqlConnection(Connect.connectionString))
-                    {
-                        con.Open();
-                        cmd = new SqlCommand("TRUNCATE TABLE ServingCart", con);
-                        cmd.ExecuteNonQuery();
-                        label4.Text = "0";
-                        MessageBox.Show("Items in the cart are now cancelled!");
-                    }
+                {
+                    WalkInTransaction.CancellationType = "AllItems";
+                    CancellationOfOrderFrm frm = new CancellationOfOrderFrm();
+                    frm.ShowDialog();
 
                 }
                 else
@@ -364,6 +363,30 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement
 
         private void OrderPlacement_Load(object sender, EventArgs e)
         {
+
+        }
+
+        private void label7_VisibleChanged(object sender, EventArgs e)
+        {
+            if (label6.Visible == true) {
+
+                flowLayoutPanel1.Controls.Clear();
+                DisplayIndividual();
+                getCartList();
+                getPrice();
+                label7.Visible = false;
+            }
+        }
+
+        private void label8_VisibleChanged(object sender, EventArgs e)
+        {
+            if (label8.Visible == true) {
+                flowLayoutPanel2.Controls.Clear();
+                getCartList();
+                getPrice();
+                label8.Visible = false;
+
+            }
 
         }
     }

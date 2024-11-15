@@ -85,7 +85,7 @@ namespace Flowershop_Thesis.SalesClerk.Queueing
                     using (SqlCommand countCommand = new SqlCommand(countQuery, con))
                     {
                         int rowCount = (int)countCommand.ExecuteScalar();
-                        
+                        tabControl1.TabPages[0].Text = "Processing   ("+ rowCount + ")";
 
 
                         QueuingListItems[] inv = new QueuingListItems[rowCount];
@@ -119,7 +119,7 @@ namespace Flowershop_Thesis.SalesClerk.Queueing
                     using (SqlCommand countCommand = new SqlCommand(countQuery, con))
                     {
                         int rowCount = (int)countCommand.ExecuteScalar();
-
+                        tabControl1.TabPages[1].Text = "Payment   (" + rowCount + ")";
                         PaymentList[] inv = new PaymentList[rowCount];
 
                         string sqlQuery = "SELECT * FROM TransactionsTbl where Status = 'Payment' AND Status != 'Cancelled';";
@@ -151,7 +151,7 @@ namespace Flowershop_Thesis.SalesClerk.Queueing
                     using (SqlCommand countCommand = new SqlCommand(countQuery, con))
                     {
                         int rowCount = (int)countCommand.ExecuteScalar();
-
+                        tabControl1.TabPages[2].Text = "Recieving   (" + rowCount + ")";
                         ReceivingList[] inv = new ReceivingList[rowCount];
 
                         string sqlQuery = "SELECT * FROM TransactionsTbl where Status = 'Receiving' AND Status != 'Cancelled' AND PaymentStatus = 'Paid';";
@@ -193,14 +193,14 @@ namespace Flowershop_Thesis.SalesClerk.Queueing
                 using(SqlConnection con = new SqlConnection(Connect.connectionString))
                 {
                     con.Open();
-                    string countQuery = "select count(*) from TransactionsTbl where Status = 'Completed';";
+                    string countQuery = "select count(*) from TransactionsTbl where Status = 'Completed' where DateOfTransaction = CAST(GETDATE() AS DATE);";
                     using (SqlCommand countCommand = new SqlCommand(countQuery, con))
                     {
                         int rowCount = (int)countCommand.ExecuteScalar();
                         
                         FinishedOrdersList[] inv = new FinishedOrdersList[rowCount];
 
-                        string sqlQuery = "SELECT * FROM TransactionsTbl where Status = 'Completed' ;";
+                        string sqlQuery = "SELECT * FROM TransactionsTbl where Status = 'Completed' where DateOfTransaction = CAST(GETDATE() AS DATE);";
                         using (SqlCommand command = new SqlCommand(sqlQuery, con))
                         {
                             using (SqlDataReader reader = command.ExecuteReader())
@@ -238,7 +238,7 @@ namespace Flowershop_Thesis.SalesClerk.Queueing
                 using(SqlConnection con = new SqlConnection(Connect.connectionString))
                 {
                     con.Open();
-                    string countQuery = "select count(*) from TransactionsTbl where Status = 'Cancelled';";
+                    string countQuery = "select count(*) from TransactionsTbl where Status = 'Cancelled' where DateOfTransaction = CAST(GETDATE() AS DATE);";
                     using (SqlCommand countCommand = new SqlCommand(countQuery, con))
                     {
                         int rowCount = (int)countCommand.ExecuteScalar();
@@ -248,7 +248,7 @@ namespace Flowershop_Thesis.SalesClerk.Queueing
 
                         CancelledOrderList[] inv = new CancelledOrderList[rowCount];
 
-                        string sqlQuery = "SELECT * FROM TransactionsTbl where Status = 'Cancelled' ;";
+                        string sqlQuery = "SELECT * FROM TransactionsTbl where Status = 'Cancelled' Where DateOfTransaction = CAST(GETDATE() AS DATE);";
                         using (SqlCommand command = new SqlCommand(sqlQuery, con))
                         {
                             using (SqlDataReader reader = command.ExecuteReader())
@@ -304,6 +304,12 @@ namespace Flowershop_Thesis.SalesClerk.Queueing
         private void counter_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            FloristQueue frm = new FloristQueue();
+            frm.Show();
         }
     }
 }

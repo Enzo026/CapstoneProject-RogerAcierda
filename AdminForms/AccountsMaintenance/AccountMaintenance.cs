@@ -1,4 +1,5 @@
-﻿using Flowershop_Thesis.OtherForms.Accounts;
+﻿using Flowershop_Thesis.AdminForms.AccountsMaintenance;
+using Flowershop_Thesis.OtherForms.Accounts;
 using System;
 using System.Data.SqlClient;
 using System.Drawing;
@@ -19,6 +20,7 @@ namespace Capstone_Flowershop.AdminForms.AccountsMaintenance
         public Label AccStatus;
         public PictureBox AccImg;
         public Label DeactCounter;
+        public Label refresh;
 
         public bool isLoaded;
 
@@ -36,6 +38,7 @@ namespace Capstone_Flowershop.AdminForms.AccountsMaintenance
             AccStatus = label18;
             AccImg = pictureBox2;
             DeactCounter = label2;
+            refresh = label4;
 
 
         }
@@ -309,7 +312,7 @@ namespace Capstone_Flowershop.AdminForms.AccountsMaintenance
                         
                         MessageBox.Show("User Deactivated!");
                         //AccountMaintenance.instance.AccList.ControlRemoved();
-                        label2.Text ="0";
+                        label4.Visible = true;
 
                     }
                     else if (numId > 1)
@@ -372,16 +375,13 @@ namespace Capstone_Flowershop.AdminForms.AccountsMaintenance
 
         private void label2_TextChanged(object sender, EventArgs e)
         {
-            if (isLoaded == true)
-            {
-                flowLayoutPanel2.Controls.Clear();
-                LoadList();
-            }
+
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            AddAccount frm = new AddAccount();
+            frm.ShowDialog();
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -394,6 +394,20 @@ namespace Capstone_Flowershop.AdminForms.AccountsMaintenance
             {
                 LoadList();
             }
+        }
+
+        private void label4_VisibleChanged(object sender, EventArgs e)
+        {
+            if(label4.Visible == true)
+            {
+                flowLayoutPanel1.Controls.Clear();
+                flowLayoutPanel2.Controls.Clear();
+                DisplayList();
+                DisplayDeactivated();
+                AccInfo();
+                label4.Visible = false;
+            }
+            
         }
     }
 }

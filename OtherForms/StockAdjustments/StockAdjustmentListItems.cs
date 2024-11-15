@@ -1,4 +1,5 @@
-﻿using Flowershop_Thesis.InventoryClerk.StockAdjustment;
+﻿using Capstone_Flowershop;
+using Flowershop_Thesis.InventoryClerk.StockAdjustment;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,36 +20,34 @@ namespace Flowershop_Thesis.OtherForms.StockAdjustments
         }
 
         #region Myregion
-        private int itemId;
-        private string itemName;
-        private int itemQuantity;
+        private string BatchID,Qty,Date;
 
         [Category("ItemList")]
-        public int itemidData
+        public string ID
         {
-            get { return itemId; }
-            set { itemId = value; ItmIDLbl.Text = value.ToString(); }
+            get { return BatchID; }
+            set { BatchID = value; BatchIDLbl.Text = value.ToString(); }
+        }
+
+        [Category("ItemList")]
+        public string qty
+        {
+            get { return Qty; }
+            set { Qty = value; QtyLbl.Text = value.ToString(); }
         }
         [Category("ItemList")]
-        public string itemnameData
+        public string date
         {
-            get { return itemName; }
-            set { itemName = value; ItmNameLbl.Text = value.ToString(); }
-        }
-        [Category("ItemList")]
-        public int itemquantityData
-        {
-            get { return itemQuantity; }
-            set { itemQuantity = value; ItmQtyLbl.Text = value.ToString(); }
+            get { return Date; }
+            set { Date = value; DateLbl.Text = value.ToString(); }
         }
 
         #endregion
-
-        private void AdjustBtn_Click(object sender, EventArgs e)
-        {
-            StockAdjustmentFrmcs.Instance.Idhandler.Text = itemId.ToString();
-            StockAdjustmentFrmcs.Instance.ItmName.Text = itemName.ToString();
-            StockAdjustmentFrmcs.Instance.currentqty.Text = itemQuantity.ToString();
+        private void button1_Click(object sender, EventArgs e)
+        {   
+            SA_Info.BatchID = BatchID;
+            SA_BatchItems frm = new SA_BatchItems();
+            frm.ShowDialog();
         }
     }
 }

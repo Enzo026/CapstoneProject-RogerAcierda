@@ -217,11 +217,11 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(357, 235);
+            this.label11.Location = new System.Drawing.Point(308, 235);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(64, 18);
+            this.label11.Size = new System.Drawing.Size(113, 18);
             this.label11.TabIndex = 11;
-            this.label11.Text = "Supplier";
+            this.label11.Text = "Recent Supplier";
             // 
             // label8
             // 

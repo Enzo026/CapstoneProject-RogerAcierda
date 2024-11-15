@@ -32,7 +32,6 @@
             this.label20 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.button5 = new System.Windows.Forms.Button();
             this.label19 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
@@ -50,7 +49,6 @@
             this.panel4.Controls.Add(this.label20);
             this.panel4.Controls.Add(this.label21);
             this.panel4.Controls.Add(this.label9);
-            this.panel4.Controls.Add(this.label4);
             this.panel4.Controls.Add(this.button5);
             this.panel4.Controls.Add(this.label19);
             this.panel4.Controls.Add(this.label18);
@@ -91,16 +89,6 @@
             this.label9.Size = new System.Drawing.Size(43, 18);
             this.label9.TabIndex = 9;
             this.label9.Text = "Price:";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(152, 14);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(52, 18);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "Name:";
             // 
             // button5
             // 
@@ -147,11 +135,10 @@
             // 
             // label16
             // 
-            this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(205, 14);
+            this.label16.Location = new System.Drawing.Point(156, 7);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(52, 16);
+            this.label16.Size = new System.Drawing.Size(154, 35);
             this.label16.TabIndex = 1;
             this.label16.Text = "Roses";
             // 
@@ -185,7 +172,6 @@
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label18;

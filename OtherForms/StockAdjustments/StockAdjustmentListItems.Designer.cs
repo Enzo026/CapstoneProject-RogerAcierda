@@ -28,86 +28,89 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel24 = new System.Windows.Forms.Panel();
-            this.AdjustBtn = new System.Windows.Forms.Button();
-            this.ItmQtyLbl = new System.Windows.Forms.Label();
-            this.ItmNameLbl = new System.Windows.Forms.Label();
-            this.ItmIDLbl = new System.Windows.Forms.Label();
-            this.panel24.SuspendLayout();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.DateLbl = new System.Windows.Forms.Label();
+            this.QtyLbl = new System.Windows.Forms.Label();
+            this.BatchIDLbl = new System.Windows.Forms.Label();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panel24
+            // panel3
             // 
-            this.panel24.BackColor = System.Drawing.SystemColors.InactiveBorder;
-            this.panel24.Controls.Add(this.AdjustBtn);
-            this.panel24.Controls.Add(this.ItmQtyLbl);
-            this.panel24.Controls.Add(this.ItmNameLbl);
-            this.panel24.Controls.Add(this.ItmIDLbl);
-            this.panel24.Location = new System.Drawing.Point(2, 5);
-            this.panel24.Name = "panel24";
-            this.panel24.Size = new System.Drawing.Size(670, 38);
-            this.panel24.TabIndex = 19;
+            this.panel3.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel3.Controls.Add(this.button1);
+            this.panel3.Controls.Add(this.DateLbl);
+            this.panel3.Controls.Add(this.QtyLbl);
+            this.panel3.Controls.Add(this.BatchIDLbl);
+            this.panel3.Location = new System.Drawing.Point(3, 3);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(656, 36);
+            this.panel3.TabIndex = 1;
             // 
-            // AdjustBtn
+            // button1
             // 
-            this.AdjustBtn.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AdjustBtn.Location = new System.Drawing.Point(539, 6);
-            this.AdjustBtn.Name = "AdjustBtn";
-            this.AdjustBtn.Size = new System.Drawing.Size(122, 27);
-            this.AdjustBtn.TabIndex = 3;
-            this.AdjustBtn.Text = "Adjust Quantity";
-            this.AdjustBtn.UseVisualStyleBackColor = true;
-            this.AdjustBtn.Click += new System.EventHandler(this.AdjustBtn_Click);
+            this.button1.BackgroundImage = global::Flowershop_Thesis.Properties.Resources.compose;
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Location = new System.Drawing.Point(613, 2);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(32, 32);
+            this.button1.TabIndex = 9;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // ItmQtyLbl
+            // DateLbl
             // 
-            this.ItmQtyLbl.AutoSize = true;
-            this.ItmQtyLbl.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ItmQtyLbl.Location = new System.Drawing.Point(357, 10);
-            this.ItmQtyLbl.Name = "ItmQtyLbl";
-            this.ItmQtyLbl.Size = new System.Drawing.Size(20, 18);
-            this.ItmQtyLbl.TabIndex = 2;
-            this.ItmQtyLbl.Text = "12";
+            this.DateLbl.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DateLbl.Location = new System.Drawing.Point(414, 9);
+            this.DateLbl.Name = "DateLbl";
+            this.DateLbl.Size = new System.Drawing.Size(165, 18);
+            this.DateLbl.TabIndex = 8;
+            this.DateLbl.Text = "Oct 31, 2024";
+            this.DateLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // ItmNameLbl
+            // QtyLbl
             // 
-            this.ItmNameLbl.AutoSize = true;
-            this.ItmNameLbl.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ItmNameLbl.Location = new System.Drawing.Point(99, 10);
-            this.ItmNameLbl.Name = "ItmNameLbl";
-            this.ItmNameLbl.Size = new System.Drawing.Size(39, 18);
-            this.ItmNameLbl.TabIndex = 1;
-            this.ItmNameLbl.Text = "Rose";
+            this.QtyLbl.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.QtyLbl.Location = new System.Drawing.Point(287, 9);
+            this.QtyLbl.Name = "QtyLbl";
+            this.QtyLbl.Size = new System.Drawing.Size(87, 18);
+            this.QtyLbl.TabIndex = 7;
+            this.QtyLbl.Text = "2";
+            this.QtyLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // ItmIDLbl
+            // BatchIDLbl
             // 
-            this.ItmIDLbl.AutoSize = true;
-            this.ItmIDLbl.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ItmIDLbl.Location = new System.Drawing.Point(23, 10);
-            this.ItmIDLbl.Name = "ItmIDLbl";
-            this.ItmIDLbl.Size = new System.Drawing.Size(13, 18);
-            this.ItmIDLbl.TabIndex = 0;
-            this.ItmIDLbl.Text = "1";
+            this.BatchIDLbl.AutoSize = true;
+            this.BatchIDLbl.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BatchIDLbl.Location = new System.Drawing.Point(12, 9);
+            this.BatchIDLbl.Name = "BatchIDLbl";
+            this.BatchIDLbl.Size = new System.Drawing.Size(65, 18);
+            this.BatchIDLbl.TabIndex = 6;
+            this.BatchIDLbl.Text = "B3110241";
             // 
             // StockAdjustmentListItems
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.panel24);
+            this.Controls.Add(this.panel3);
             this.Name = "StockAdjustmentListItems";
-            this.Size = new System.Drawing.Size(674, 48);
-            this.panel24.ResumeLayout(false);
-            this.panel24.PerformLayout();
+            this.Size = new System.Drawing.Size(662, 43);
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel panel24;
-        private System.Windows.Forms.Button AdjustBtn;
-        private System.Windows.Forms.Label ItmQtyLbl;
-        private System.Windows.Forms.Label ItmNameLbl;
-        private System.Windows.Forms.Label ItmIDLbl;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label DateLbl;
+        private System.Windows.Forms.Label QtyLbl;
+        private System.Windows.Forms.Label BatchIDLbl;
     }
 }

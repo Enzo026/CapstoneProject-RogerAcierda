@@ -30,7 +30,6 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -39,18 +38,15 @@
             this.label7 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.date1 = new System.Windows.Forms.DateTimePicker();
             this.label89 = new System.Windows.Forms.Label();
             this.label90 = new System.Windows.Forms.Label();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.label88 = new System.Windows.Forms.Label();
+            this.date2 = new System.Windows.Forms.DateTimePicker();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.label83 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.dateBtn = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -73,19 +69,6 @@
             this.label1.Size = new System.Drawing.Size(345, 44);
             this.label1.TabIndex = 0;
             this.label1.Text = "Transaction History";
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.Gainsboro;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(794, 745);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(321, 45);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Print";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.TextChanged += new System.EventHandler(this.button1_TextChanged);
             // 
             // textBox1
             // 
@@ -169,52 +152,45 @@
             this.flowLayoutPanel1.TabIndex = 0;
             this.flowLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.flowLayoutPanel1_Paint);
             // 
-            // dateTimePicker1
+            // date1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(857, 384);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker1.TabIndex = 13;
+            this.date1.Location = new System.Drawing.Point(853, 265);
+            this.date1.Name = "date1";
+            this.date1.Size = new System.Drawing.Size(200, 20);
+            this.date1.TabIndex = 13;
+            this.date1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // label89
             // 
             this.label89.AutoSize = true;
             this.label89.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label89.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.label89.Location = new System.Drawing.Point(813, 384);
+            this.label89.Location = new System.Drawing.Point(809, 265);
             this.label89.Name = "label89";
             this.label89.Size = new System.Drawing.Size(38, 15);
             this.label89.TabIndex = 14;
             this.label89.Text = "From";
+            this.label89.Click += new System.EventHandler(this.label89_Click);
             // 
             // label90
             // 
             this.label90.AutoSize = true;
             this.label90.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label90.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.label90.Location = new System.Drawing.Point(824, 423);
+            this.label90.Location = new System.Drawing.Point(820, 304);
             this.label90.Name = "label90";
             this.label90.Size = new System.Drawing.Size(20, 15);
             this.label90.TabIndex = 16;
             this.label90.Text = "To";
+            this.label90.Click += new System.EventHandler(this.label90_Click);
             // 
-            // dateTimePicker2
+            // date2
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(857, 418);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker2.TabIndex = 15;
-            // 
-            // label88
-            // 
-            this.label88.AutoSize = true;
-            this.label88.Font = new System.Drawing.Font("Montserrat Medium", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label88.ForeColor = System.Drawing.Color.Indigo;
-            this.label88.Location = new System.Drawing.Point(808, 351);
-            this.label88.Name = "label88";
-            this.label88.Size = new System.Drawing.Size(51, 22);
-            this.label88.TabIndex = 12;
-            this.label88.Text = "Print";
+            this.date2.Location = new System.Drawing.Point(853, 299);
+            this.date2.Name = "date2";
+            this.date2.Size = new System.Drawing.Size(200, 20);
+            this.date2.TabIndex = 15;
+            this.date2.ValueChanged += new System.EventHandler(this.date2_ValueChanged);
             // 
             // textBox2
             // 
@@ -224,55 +200,6 @@
             this.textBox2.Size = new System.Drawing.Size(285, 26);
             this.textBox2.TabIndex = 3;
             this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
-            // 
-            // radioButton2
-            // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton2.Location = new System.Drawing.Point(941, 294);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(58, 22);
-            this.radioButton2.TabIndex = 19;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Date";
-            this.radioButton2.UseVisualStyleBackColor = true;
-            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
-            // 
-            // radioButton1
-            // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton1.Location = new System.Drawing.Point(815, 294);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(59, 22);
-            this.radioButton1.TabIndex = 17;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Price";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
-            // 
-            // label83
-            // 
-            this.label83.AutoSize = true;
-            this.label83.Font = new System.Drawing.Font("Montserrat Medium", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label83.ForeColor = System.Drawing.Color.Indigo;
-            this.label83.Location = new System.Drawing.Point(810, 255);
-            this.label83.Name = "label83";
-            this.label83.Size = new System.Drawing.Size(72, 22);
-            this.label83.TabIndex = 18;
-            this.label83.Text = "Sort by:";
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.Gainsboro;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(814, 452);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(284, 27);
-            this.button2.TabIndex = 20;
-            this.button2.Text = "Search By Date";
-            this.button2.UseVisualStyleBackColor = false;
             // 
             // label4
             // 
@@ -296,6 +223,33 @@
             this.label8.TabIndex = 22;
             this.label8.Text = "Search by Employee Name";
             // 
+            // dateBtn
+            // 
+            this.dateBtn.BackColor = System.Drawing.Color.Gainsboro;
+            this.dateBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.dateBtn.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateBtn.Location = new System.Drawing.Point(809, 348);
+            this.dateBtn.Name = "dateBtn";
+            this.dateBtn.Size = new System.Drawing.Size(284, 27);
+            this.dateBtn.TabIndex = 20;
+            this.dateBtn.Text = "Search By Date";
+            this.dateBtn.UseVisualStyleBackColor = false;
+            this.dateBtn.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Gainsboro;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(794, 745);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(321, 45);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "Print";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Visible = false;
+            this.button1.TextChanged += new System.EventHandler(this.button1_TextChanged);
+            // 
             // Transaction_History
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -303,17 +257,13 @@
             this.ClientSize = new System.Drawing.Size(1118, 795);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.radioButton2);
-            this.Controls.Add(this.radioButton1);
-            this.Controls.Add(this.label83);
+            this.Controls.Add(this.dateBtn);
             this.Controls.Add(this.label90);
             this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.dateTimePicker2);
+            this.Controls.Add(this.date2);
             this.Controls.Add(this.label89);
             this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.label88);
+            this.Controls.Add(this.date1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.panel2);
@@ -336,7 +286,6 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
@@ -347,16 +296,13 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker date1;
         private System.Windows.Forms.Label label89;
         private System.Windows.Forms.Label label90;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
-        private System.Windows.Forms.Label label88;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.Label label83;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.DateTimePicker date2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button dateBtn;
+        private System.Windows.Forms.Button button1;
     }
 }

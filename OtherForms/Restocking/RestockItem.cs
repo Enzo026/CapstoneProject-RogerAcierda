@@ -43,6 +43,7 @@ namespace Flowershop_Thesis.OtherForms.Restocking
                 this.Close();
             }
         }
+
         private void LoadSuppliers()
         {
             try
@@ -211,5 +212,9 @@ namespace Flowershop_Thesis.OtherForms.Restocking
             return true; // All checks passed
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

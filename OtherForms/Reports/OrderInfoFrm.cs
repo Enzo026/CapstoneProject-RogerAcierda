@@ -233,21 +233,40 @@ namespace Flowershop_Thesis.OtherForms.Reports
         }
 
         private void OrderInfoFrm_Load(object sender, EventArgs e)
+        {   
+            try
+            {
+
+                if (ViewInfo.type.Trim() == "Walk-inTransaction")
+                {
+                    WI_Info();
+                    WIgetListInfo();
+                }
+                else if (ViewInfo.type.Trim() == "AdvanceOrder")
+                {
+                    AO_Info();
+                    AOgetListInfo();
+                }
+                else
+                {
+                    MessageBox.Show("Im having Trouble pickup up the type");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("OrderInfoFrm Error : " + ex.Message);
+            }
+
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
         {
-            if(ViewInfo.type.Trim() == "Walk-inTransaction")
-            {
-                WI_Info();
-                WIgetListInfo();
-            }
-            else if(ViewInfo.type.Trim() == "AdvanceOrder")
-            {
-                AO_Info();
-                AOgetListInfo();
-            }
-            else
-            {
-                MessageBox.Show("Im having Trouble pickup up the type");
-            }
+            this.Close();
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

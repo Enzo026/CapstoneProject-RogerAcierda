@@ -100,7 +100,7 @@ namespace Flowershop_Thesis.OtherForms
                 {
                     using (SqlConnection con = new SqlConnection(Connect.connectionString))
                     {
-                        string updateQuery = "UPDATE TransactionsTbl SET Status = 'Payment' WHERE TransactionID = @ID;";
+                        string updateQuery = "UPDATE TransactionsTbl SET Status = 'Payment', OrderStatus = 'Complete' WHERE TransactionID = @ID;";
                         con.Open();
                         using (SqlCommand updateCommand = new SqlCommand(updateQuery, con))
                         {
@@ -111,6 +111,7 @@ namespace Flowershop_Thesis.OtherForms
                             QueuingFormBack.instance.lblcounter.Text = addqueue.ToString();
                         }
                     }
+           
                 }
             }
             catch (Exception ex)
@@ -118,7 +119,52 @@ namespace Flowershop_Thesis.OtherForms
                 MessageBox.Show("Error on Cancelling the order" + ex.Message);
             }
         }
+        public void insertCancelledTransaction()
+        {
+            using (SqlConnection connection = new SqlConnection(Connect.connectionString))
+            {
+                using (SqlCommand command = new SqlCommand("CancellationOfOrder", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
 
+                    // Add parameters
+                    command.Parameters.Add(new SqlParameter("@ID", transactionID));
+                    command.Parameters.Add(new SqlParameter("@TransactionType", "WalkIn"));
+
+                    try
+                    {
+                        // Open the connection
+                        connection.Open();
+
+                        // Execute the stored procedure
+                        command.ExecuteNonQuery();
+
+                        // Optionally, log success
+                        MessageBox.Show("Cancellation executed successfully.");
+                    }
+                    catch (SqlException ex)
+                    {
+                        // Handle SQL errors
+                        MessageBox.Show("SQL Error: " + ex.Message);
+                        // Optionally log the error details
+                    }
+                    catch (Exception ex)
+                    {
+                        // Handle general errors
+                        MessageBox.Show("Error: " + ex.Message);
+                        // Optionally log the error details
+                    }
+                    finally
+                    {
+                        // Ensure the connection is closed
+                        if (connection.State == ConnectionState.Open)
+                        {
+                            connection.Close();
+                        }
+                    }
+                }
+            }
+        }
         private void button4_Click(object sender, EventArgs e)
         {
             try
@@ -143,6 +189,7 @@ namespace Flowershop_Thesis.OtherForms
                         MessageBox.Show("Order cancelled!");
                     }
                 }
+                insertCancelledTransaction();
             }
             catch(Exception ex)
             {
