@@ -125,5 +125,9 @@ namespace Flowershop_Thesis.OtherForms.Supplier
             }
         }
 
+        private void CloseBtn_Click_1(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

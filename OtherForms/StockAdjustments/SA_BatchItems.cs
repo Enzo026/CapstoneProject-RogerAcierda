@@ -103,5 +103,10 @@ namespace Flowershop_Thesis.OtherForms.StockAdjustments
             label30.Visible = false;
             }
         }
+
+        private void button13_Click_1(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

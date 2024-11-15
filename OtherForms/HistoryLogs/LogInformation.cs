@@ -67,5 +67,10 @@ namespace Flowershop_Thesis.OtherForms.HistoryLogs
                 MessageBox.Show("Error on Fetching Information | GetInfo() : " + ex.Message);
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

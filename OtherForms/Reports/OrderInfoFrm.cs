@@ -258,5 +258,15 @@ namespace Flowershop_Thesis.OtherForms.Reports
             }
 
         }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

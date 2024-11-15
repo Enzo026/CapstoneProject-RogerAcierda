@@ -28,64 +28,65 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label30 = new System.Windows.Forms.Label();
+            this.button13 = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
-            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
-            this.panel4 = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
-            this.panel5 = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.button5 = new System.Windows.Forms.Button();
-            this.panel6 = new System.Windows.Forms.Panel();
+            this.panel7 = new System.Windows.Forms.Panel();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.button6 = new System.Windows.Forms.Button();
-            this.panel7 = new System.Windows.Forms.Panel();
+            this.panel8 = new System.Windows.Forms.Panel();
             this.label18 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.button7 = new System.Windows.Forms.Button();
-            this.panel8 = new System.Windows.Forms.Panel();
+            this.panel9 = new System.Windows.Forms.Panel();
             this.label20 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.button8 = new System.Windows.Forms.Button();
-            this.panel9 = new System.Windows.Forms.Panel();
+            this.panel10 = new System.Windows.Forms.Panel();
             this.label22 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.button9 = new System.Windows.Forms.Button();
-            this.panel10 = new System.Windows.Forms.Panel();
+            this.panel11 = new System.Windows.Forms.Panel();
             this.label24 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.button10 = new System.Windows.Forms.Button();
-            this.panel11 = new System.Windows.Forms.Panel();
+            this.panel12 = new System.Windows.Forms.Panel();
             this.label26 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
             this.button11 = new System.Windows.Forms.Button();
-            this.panel12 = new System.Windows.Forms.Panel();
+            this.panel13 = new System.Windows.Forms.Panel();
             this.label28 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
             this.button12 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.button13 = new System.Windows.Forms.Button();
-            this.label30 = new System.Windows.Forms.Label();
-            this.flowLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -97,12 +98,98 @@
             this.panel10.SuspendLayout();
             this.panel11.SuspendLayout();
             this.panel12.SuspendLayout();
+            this.panel13.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.label30);
+            this.panel1.Controls.Add(this.button13);
+            this.panel1.Controls.Add(this.label5);
+            this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.flowLayoutPanel1);
+            this.panel1.Location = new System.Drawing.Point(12, 12);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(653, 717);
+            this.panel1.TabIndex = 0;
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label30.Location = new System.Drawing.Point(30, 635);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(75, 18);
+            this.label30.TabIndex = 15;
+            this.label30.Text = "Loading ...";
+            this.label30.Visible = false;
+            // 
+            // button13
+            // 
+            this.button13.Location = new System.Drawing.Point(277, 662);
+            this.button13.Name = "button13";
+            this.button13.Size = new System.Drawing.Size(136, 31);
+            this.button13.TabIndex = 14;
+            this.button13.Text = "Close";
+            this.button13.UseVisualStyleBackColor = true;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(372, 102);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(66, 18);
+            this.label5.TabIndex = 13;
+            this.label5.Text = "Quantity";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(81, 102);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(83, 18);
+            this.label4.TabIndex = 12;
+            this.label4.Text = "Item Name";
+            // 
+            // label3
+            // 
+            this.label3.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(294, 60);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(132, 18);
+            this.label3.TabIndex = 11;
+            this.label3.Text = "Batch ID :";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(226, 60);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(71, 18);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "Batch ID :";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Montserrat", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(226, 23);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(212, 37);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "BATCH ITEMS";
             // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.AutoScroll = true;
-            this.flowLayoutPanel1.Controls.Add(this.panel1);
             this.flowLayoutPanel1.Controls.Add(this.panel2);
             this.flowLayoutPanel1.Controls.Add(this.panel3);
             this.flowLayoutPanel1.Controls.Add(this.panel4);
@@ -114,21 +201,21 @@
             this.flowLayoutPanel1.Controls.Add(this.panel10);
             this.flowLayoutPanel1.Controls.Add(this.panel11);
             this.flowLayoutPanel1.Controls.Add(this.panel12);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(12, 109);
+            this.flowLayoutPanel1.Controls.Add(this.panel13);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(33, 123);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(589, 507);
-            this.flowLayoutPanel1.TabIndex = 0;
-            this.flowLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.flowLayoutPanel1_Paint);
+            this.flowLayoutPanel1.TabIndex = 8;
             // 
-            // panel1
+            // panel2
             // 
-            this.panel1.Controls.Add(this.label6);
-            this.panel1.Controls.Add(this.label7);
-            this.panel1.Controls.Add(this.button1);
-            this.panel1.Location = new System.Drawing.Point(3, 3);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(557, 42);
-            this.panel1.TabIndex = 0;
+            this.panel2.Controls.Add(this.label6);
+            this.panel2.Controls.Add(this.label7);
+            this.panel2.Controls.Add(this.button1);
+            this.panel2.Location = new System.Drawing.Point(3, 3);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(557, 42);
+            this.panel2.TabIndex = 0;
             // 
             // label6
             // 
@@ -162,17 +249,16 @@
             this.button1.Size = new System.Drawing.Size(32, 32);
             this.button1.TabIndex = 10;
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // panel2
+            // panel3
             // 
-            this.panel2.Controls.Add(this.label8);
-            this.panel2.Controls.Add(this.label9);
-            this.panel2.Controls.Add(this.button2);
-            this.panel2.Location = new System.Drawing.Point(3, 51);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(557, 42);
-            this.panel2.TabIndex = 1;
+            this.panel3.Controls.Add(this.label8);
+            this.panel3.Controls.Add(this.label9);
+            this.panel3.Controls.Add(this.button2);
+            this.panel3.Location = new System.Drawing.Point(3, 51);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(557, 42);
+            this.panel3.TabIndex = 1;
             // 
             // label8
             // 
@@ -207,15 +293,15 @@
             this.button2.TabIndex = 10;
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // panel3
+            // panel4
             // 
-            this.panel3.Controls.Add(this.label10);
-            this.panel3.Controls.Add(this.label11);
-            this.panel3.Controls.Add(this.button3);
-            this.panel3.Location = new System.Drawing.Point(3, 99);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(557, 42);
-            this.panel3.TabIndex = 2;
+            this.panel4.Controls.Add(this.label10);
+            this.panel4.Controls.Add(this.label11);
+            this.panel4.Controls.Add(this.button3);
+            this.panel4.Location = new System.Drawing.Point(3, 99);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(557, 42);
+            this.panel4.TabIndex = 2;
             // 
             // label10
             // 
@@ -250,15 +336,15 @@
             this.button3.TabIndex = 10;
             this.button3.UseVisualStyleBackColor = true;
             // 
-            // panel4
+            // panel5
             // 
-            this.panel4.Controls.Add(this.label12);
-            this.panel4.Controls.Add(this.label13);
-            this.panel4.Controls.Add(this.button4);
-            this.panel4.Location = new System.Drawing.Point(3, 147);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(557, 42);
-            this.panel4.TabIndex = 3;
+            this.panel5.Controls.Add(this.label12);
+            this.panel5.Controls.Add(this.label13);
+            this.panel5.Controls.Add(this.button4);
+            this.panel5.Location = new System.Drawing.Point(3, 147);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(557, 42);
+            this.panel5.TabIndex = 3;
             // 
             // label12
             // 
@@ -293,15 +379,15 @@
             this.button4.TabIndex = 10;
             this.button4.UseVisualStyleBackColor = true;
             // 
-            // panel5
+            // panel6
             // 
-            this.panel5.Controls.Add(this.label14);
-            this.panel5.Controls.Add(this.label15);
-            this.panel5.Controls.Add(this.button5);
-            this.panel5.Location = new System.Drawing.Point(3, 195);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(557, 42);
-            this.panel5.TabIndex = 4;
+            this.panel6.Controls.Add(this.label14);
+            this.panel6.Controls.Add(this.label15);
+            this.panel6.Controls.Add(this.button5);
+            this.panel6.Location = new System.Drawing.Point(3, 195);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(557, 42);
+            this.panel6.TabIndex = 4;
             // 
             // label14
             // 
@@ -336,15 +422,15 @@
             this.button5.TabIndex = 10;
             this.button5.UseVisualStyleBackColor = true;
             // 
-            // panel6
+            // panel7
             // 
-            this.panel6.Controls.Add(this.label16);
-            this.panel6.Controls.Add(this.label17);
-            this.panel6.Controls.Add(this.button6);
-            this.panel6.Location = new System.Drawing.Point(3, 243);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(557, 42);
-            this.panel6.TabIndex = 5;
+            this.panel7.Controls.Add(this.label16);
+            this.panel7.Controls.Add(this.label17);
+            this.panel7.Controls.Add(this.button6);
+            this.panel7.Location = new System.Drawing.Point(3, 243);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(557, 42);
+            this.panel7.TabIndex = 5;
             // 
             // label16
             // 
@@ -379,15 +465,15 @@
             this.button6.TabIndex = 10;
             this.button6.UseVisualStyleBackColor = true;
             // 
-            // panel7
+            // panel8
             // 
-            this.panel7.Controls.Add(this.label18);
-            this.panel7.Controls.Add(this.label19);
-            this.panel7.Controls.Add(this.button7);
-            this.panel7.Location = new System.Drawing.Point(3, 291);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(557, 42);
-            this.panel7.TabIndex = 6;
+            this.panel8.Controls.Add(this.label18);
+            this.panel8.Controls.Add(this.label19);
+            this.panel8.Controls.Add(this.button7);
+            this.panel8.Location = new System.Drawing.Point(3, 291);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(557, 42);
+            this.panel8.TabIndex = 6;
             // 
             // label18
             // 
@@ -422,15 +508,15 @@
             this.button7.TabIndex = 10;
             this.button7.UseVisualStyleBackColor = true;
             // 
-            // panel8
+            // panel9
             // 
-            this.panel8.Controls.Add(this.label20);
-            this.panel8.Controls.Add(this.label21);
-            this.panel8.Controls.Add(this.button8);
-            this.panel8.Location = new System.Drawing.Point(3, 339);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(557, 42);
-            this.panel8.TabIndex = 7;
+            this.panel9.Controls.Add(this.label20);
+            this.panel9.Controls.Add(this.label21);
+            this.panel9.Controls.Add(this.button8);
+            this.panel9.Location = new System.Drawing.Point(3, 339);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(557, 42);
+            this.panel9.TabIndex = 7;
             // 
             // label20
             // 
@@ -465,15 +551,15 @@
             this.button8.TabIndex = 10;
             this.button8.UseVisualStyleBackColor = true;
             // 
-            // panel9
+            // panel10
             // 
-            this.panel9.Controls.Add(this.label22);
-            this.panel9.Controls.Add(this.label23);
-            this.panel9.Controls.Add(this.button9);
-            this.panel9.Location = new System.Drawing.Point(3, 387);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(557, 42);
-            this.panel9.TabIndex = 8;
+            this.panel10.Controls.Add(this.label22);
+            this.panel10.Controls.Add(this.label23);
+            this.panel10.Controls.Add(this.button9);
+            this.panel10.Location = new System.Drawing.Point(3, 387);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(557, 42);
+            this.panel10.TabIndex = 8;
             // 
             // label22
             // 
@@ -508,15 +594,15 @@
             this.button9.TabIndex = 10;
             this.button9.UseVisualStyleBackColor = true;
             // 
-            // panel10
+            // panel11
             // 
-            this.panel10.Controls.Add(this.label24);
-            this.panel10.Controls.Add(this.label25);
-            this.panel10.Controls.Add(this.button10);
-            this.panel10.Location = new System.Drawing.Point(3, 435);
-            this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(557, 42);
-            this.panel10.TabIndex = 9;
+            this.panel11.Controls.Add(this.label24);
+            this.panel11.Controls.Add(this.label25);
+            this.panel11.Controls.Add(this.button10);
+            this.panel11.Location = new System.Drawing.Point(3, 435);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(557, 42);
+            this.panel11.TabIndex = 9;
             // 
             // label24
             // 
@@ -551,15 +637,15 @@
             this.button10.TabIndex = 10;
             this.button10.UseVisualStyleBackColor = true;
             // 
-            // panel11
+            // panel12
             // 
-            this.panel11.Controls.Add(this.label26);
-            this.panel11.Controls.Add(this.label27);
-            this.panel11.Controls.Add(this.button11);
-            this.panel11.Location = new System.Drawing.Point(3, 483);
-            this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(557, 42);
-            this.panel11.TabIndex = 10;
+            this.panel12.Controls.Add(this.label26);
+            this.panel12.Controls.Add(this.label27);
+            this.panel12.Controls.Add(this.button11);
+            this.panel12.Location = new System.Drawing.Point(3, 483);
+            this.panel12.Name = "panel12";
+            this.panel12.Size = new System.Drawing.Size(557, 42);
+            this.panel12.TabIndex = 10;
             // 
             // label26
             // 
@@ -594,15 +680,15 @@
             this.button11.TabIndex = 10;
             this.button11.UseVisualStyleBackColor = true;
             // 
-            // panel12
+            // panel13
             // 
-            this.panel12.Controls.Add(this.label28);
-            this.panel12.Controls.Add(this.label29);
-            this.panel12.Controls.Add(this.button12);
-            this.panel12.Location = new System.Drawing.Point(3, 531);
-            this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(557, 42);
-            this.panel12.TabIndex = 11;
+            this.panel13.Controls.Add(this.label28);
+            this.panel13.Controls.Add(this.label29);
+            this.panel13.Controls.Add(this.button12);
+            this.panel13.Location = new System.Drawing.Point(3, 531);
+            this.panel13.Name = "panel13";
+            this.panel13.Size = new System.Drawing.Size(557, 42);
+            this.panel13.TabIndex = 11;
             // 
             // label28
             // 
@@ -637,98 +723,21 @@
             this.button12.TabIndex = 10;
             this.button12.UseVisualStyleBackColor = true;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Montserrat", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(205, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(212, 37);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "BATCH ITEMS";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(205, 46);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(71, 18);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Batch ID :";
-            // 
-            // label3
-            // 
-            this.label3.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(273, 46);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(132, 18);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "Batch ID :";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(60, 88);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(83, 18);
-            this.label4.TabIndex = 4;
-            this.label4.Text = "Item Name";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(351, 88);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(66, 18);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "Quantity";
-            // 
-            // button13
-            // 
-            this.button13.Location = new System.Drawing.Point(256, 648);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(136, 31);
-            this.button13.TabIndex = 6;
-            this.button13.Text = "Close";
-            this.button13.UseVisualStyleBackColor = true;
-            this.button13.Click += new System.EventHandler(this.button13_Click);
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label30.Location = new System.Drawing.Point(9, 621);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(75, 18);
-            this.label30.TabIndex = 7;
-            this.label30.Text = "Loading ...";
-            this.label30.Visible = false;
-            this.label30.VisibleChanged += new System.EventHandler(this.label30_VisibleChanged);
-            // 
             // SA_BatchItems
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(613, 693);
-            this.Controls.Add(this.label30);
-            this.Controls.Add(this.button13);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.flowLayoutPanel1);
+            this.BackColor = System.Drawing.Color.SlateBlue;
+            this.ClientSize = new System.Drawing.Size(677, 741);
+            this.Controls.Add(this.panel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "SA_BatchItems";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SA_BatchItems";
             this.Load += new System.EventHandler(this.SA_BatchItems_Load);
-            this.flowLayoutPanel1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.flowLayoutPanel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
@@ -751,68 +760,70 @@
             this.panel11.PerformLayout();
             this.panel12.ResumeLayout(false);
             this.panel12.PerformLayout();
+            this.panel13.ResumeLayout(false);
+            this.panel13.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.Button button13;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.Panel panel9;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Panel panel9;
+        private System.Windows.Forms.Panel panel10;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.Panel panel10;
+        private System.Windows.Forms.Panel panel11;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Button button10;
-        private System.Windows.Forms.Panel panel11;
+        private System.Windows.Forms.Panel panel12;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Button button11;
-        private System.Windows.Forms.Panel panel12;
+        private System.Windows.Forms.Panel panel13;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.Button button12;
-        private System.Windows.Forms.Button button13;
-        private System.Windows.Forms.Label label30;
     }
 }

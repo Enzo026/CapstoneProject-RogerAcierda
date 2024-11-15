@@ -109,5 +109,10 @@ namespace Flowershop_Thesis.SalesClerk.Queueing
         {
             this.Close();
         }
+
+        private void Close_Click_1(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

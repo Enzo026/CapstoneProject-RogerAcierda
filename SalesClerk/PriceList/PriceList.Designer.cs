@@ -398,10 +398,10 @@
             // ItmCat
             // 
             this.ItmCat.AutoSize = true;
-            this.ItmCat.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ItmCat.Font = new System.Drawing.Font("Montserrat", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ItmCat.Location = new System.Drawing.Point(516, 92);
             this.ItmCat.Name = "ItmCat";
-            this.ItmCat.Size = new System.Drawing.Size(75, 19);
+            this.ItmCat.Size = new System.Drawing.Size(81, 20);
             this.ItmCat.TabIndex = 19;
             this.ItmCat.TabStop = true;
             this.ItmCat.Text = "Category";
@@ -410,10 +410,10 @@
             // ItmColor
             // 
             this.ItmColor.AutoSize = true;
-            this.ItmColor.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ItmColor.Font = new System.Drawing.Font("Montserrat", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ItmColor.Location = new System.Drawing.Point(187, 92);
             this.ItmColor.Name = "ItmColor";
-            this.ItmColor.Size = new System.Drawing.Size(54, 19);
+            this.ItmColor.Size = new System.Drawing.Size(58, 20);
             this.ItmColor.TabIndex = 20;
             this.ItmColor.TabStop = true;
             this.ItmColor.Text = "Color";
@@ -422,10 +422,10 @@
             // ItmName
             // 
             this.ItmName.AutoSize = true;
-            this.ItmName.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ItmName.Font = new System.Drawing.Font("Montserrat", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ItmName.Location = new System.Drawing.Point(76, 92);
             this.ItmName.Name = "ItmName";
-            this.ItmName.Size = new System.Drawing.Size(88, 19);
+            this.ItmName.Size = new System.Drawing.Size(94, 20);
             this.ItmName.TabIndex = 21;
             this.ItmName.TabStop = true;
             this.ItmName.Text = "Item Name";
@@ -434,10 +434,10 @@
             // ItmPrice
             // 
             this.ItmPrice.AutoSize = true;
-            this.ItmPrice.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ItmPrice.Font = new System.Drawing.Font("Montserrat", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ItmPrice.Location = new System.Drawing.Point(277, 92);
             this.ItmPrice.Name = "ItmPrice";
-            this.ItmPrice.Size = new System.Drawing.Size(82, 19);
+            this.ItmPrice.Size = new System.Drawing.Size(88, 20);
             this.ItmPrice.TabIndex = 22;
             this.ItmPrice.TabStop = true;
             this.ItmPrice.Text = "Item Price";
@@ -446,10 +446,10 @@
             // ItmId
             // 
             this.ItmId.AutoSize = true;
-            this.ItmId.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ItmId.Font = new System.Drawing.Font("Montserrat", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ItmId.Location = new System.Drawing.Point(407, 92);
             this.ItmId.Name = "ItmId";
-            this.ItmId.Size = new System.Drawing.Size(66, 19);
+            this.ItmId.Size = new System.Drawing.Size(71, 20);
             this.ItmId.TabIndex = 23;
             this.ItmId.TabStop = true;
             this.ItmId.Text = "Item ID";

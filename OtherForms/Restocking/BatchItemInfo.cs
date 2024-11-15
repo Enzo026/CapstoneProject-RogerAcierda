@@ -117,5 +117,9 @@ namespace Flowershop_Thesis.OtherForms.Restocking
 
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();   
+        }
     }
 }

@@ -225,6 +225,10 @@ namespace Flowershop_Thesis.OtherForms.StockAdjustments
                 MessageBox.Show("Adding Activity Failed!" + " : " + ex);
             }
         }
-    
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
