@@ -81,14 +81,20 @@ namespace Flowershop_Thesis.OtherForms.QueuingList
 
         private void button3_Click(object sender, EventArgs e)
         {
+            
+        }
+
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {
             try
             {
-                DialogResult result = MessageBox.Show("Proceed to Payments", "Order Update", MessageBoxButtons.YesNo);
+                DialogResult result = MessageBox.Show("Proceed to Receiving", "Order Update", MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
                 {
                     using (SqlConnection con = new SqlConnection(Connect.connectionString))
                     {
-                        string updateQuery = "UPDATE TransactionsTbl SET Status = 'Payment' WHERE TransactionID = @ID;";
+                        string updateQuery = "UPDATE TransactionsTbl SET Status = 'Receiving' WHERE TransactionID = @ID;";
                         con.Open();
                         using (SqlCommand updateCommand = new SqlCommand(updateQuery, con))
                         {
@@ -107,15 +113,6 @@ namespace Flowershop_Thesis.OtherForms.QueuingList
             }
         }
 
-
-        private void button3_Click_1(object sender, EventArgs e)
-        {
-            UpdateStatus US = new UpdateStatus();
-            US.Name = name;
-            US.transID = transactionID;
-            US.ShowDialog();
-        }
-
         private void button4_Click_1(object sender, EventArgs e)
         {
             try
@@ -125,7 +122,7 @@ namespace Flowershop_Thesis.OtherForms.QueuingList
                 {
                     using (SqlConnection con = new SqlConnection(Connect.connectionString))
                     {
-                        string updateQuery = "UPDATE TransactionsTbl SET Status = 'Cancelled', OrderStatus = 'Complete' WHERE TransactionID = @ID;";
+                        string updateQuery = "UPDATE TransactionsTbl SET Status = 'Cancelled' WHERE TransactionID = @ID;";
                         con.Open();
                         using (SqlCommand updateCommand = new SqlCommand(updateQuery, con))
                         {
@@ -194,40 +191,8 @@ namespace Flowershop_Thesis.OtherForms.QueuingList
                 }
             }
         }
-        public void Processing()
-        {
-            try
-            {
-                DialogResult result = MessageBox.Show("Proceed with changes?", "Update Status", MessageBoxButtons.YesNo);
-                if (result == DialogResult.Yes)
-                {
-                    using (SqlConnection con = new SqlConnection(Connect.connectionString))
-                    {
-                        string updateQuery = "UPDATE TransactionsTbl SET Status = 'Processing' WHERE TransactionID = @ID;";
-                        con.Open();
-                        using (SqlCommand updateCommand = new SqlCommand(updateQuery, con))
-                        {
-                            updateCommand.Parameters.AddWithValue("@ID", transactionID);
-                            updateCommand.ExecuteNonQuery();
-                       
-                        }
-                        MessageBox.Show("Status Updated!");
-                        string def = UserInfo.Empleyado + " Reverted back the status of order(" + transactionID + ") to Processing ";
-                        addTransactionLog(name, price.ToString(), transactionID.ToString(), def);
-                        QueuingFormBack.instance.lblcounter.Text = "0";
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.ToString());
-            }
-        }
+        
 
-        private void button2_Click(object sender, EventArgs e)
-        {   
-            Processing();
-        }
 
         private void button1_Click(object sender, EventArgs e)
         {

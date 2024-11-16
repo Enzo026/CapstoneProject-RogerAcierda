@@ -32,7 +32,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.PriceLbl = new System.Windows.Forms.Label();
             this.NameLbl = new System.Windows.Forms.Label();
@@ -44,7 +43,6 @@
             // 
             this.panel1.Controls.Add(this.button4);
             this.panel1.Controls.Add(this.button3);
-            this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.PriceLbl);
             this.panel1.Controls.Add(this.NameLbl);
@@ -82,20 +80,6 @@
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click_1);
             // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.White;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
-            this.button2.Location = new System.Drawing.Point(493, 3);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(39, 38);
-            this.button2.TabIndex = 14;
-            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.White;
@@ -113,30 +97,30 @@
             // PriceLbl
             // 
             this.PriceLbl.AutoSize = true;
-            this.PriceLbl.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PriceLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PriceLbl.Location = new System.Drawing.Point(364, 13);
             this.PriceLbl.Name = "PriceLbl";
-            this.PriceLbl.Size = new System.Drawing.Size(61, 18);
+            this.PriceLbl.Size = new System.Drawing.Size(59, 16);
             this.PriceLbl.TabIndex = 9;
             this.PriceLbl.Text = "1000.00";
             // 
             // NameLbl
             // 
             this.NameLbl.AutoSize = true;
-            this.NameLbl.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NameLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.NameLbl.Location = new System.Drawing.Point(94, 13);
             this.NameLbl.Name = "NameLbl";
-            this.NameLbl.Size = new System.Drawing.Size(48, 18);
+            this.NameLbl.Size = new System.Drawing.Size(49, 16);
             this.NameLbl.TabIndex = 8;
             this.NameLbl.Text = "Alexis";
             // 
             // IdLbl
             // 
             this.IdLbl.AutoSize = true;
-            this.IdLbl.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.IdLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.IdLbl.Location = new System.Drawing.Point(8, 14);
             this.IdLbl.Name = "IdLbl";
-            this.IdLbl.Size = new System.Drawing.Size(22, 18);
+            this.IdLbl.Size = new System.Drawing.Size(23, 16);
             this.IdLbl.TabIndex = 7;
             this.IdLbl.Text = "01";
             // 
@@ -157,7 +141,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label PriceLbl;
         private System.Windows.Forms.Label NameLbl;

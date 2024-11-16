@@ -181,12 +181,12 @@ namespace Flowershop_Thesis.OtherForms
             {
                 try
                 {
-                    DialogResult result = MessageBox.Show("Proceed Payment?", "Payment", MessageBoxButtons.YesNo);
+                    DialogResult result = MessageBox.Show("Proceed Assembly", "Payment", MessageBoxButtons.YesNo);
                     if (result == DialogResult.Yes)
                     {
                         using (SqlConnection con = new SqlConnection(Connect.connectionString))
                         {
-                            string updateQuery = "UPDATE TransactionsTbl SET Status='Receiving',PaymentStatus = 'Paid', PaymentMethod = 'Cash' WHERE TransactionID = @ID;";
+                            string updateQuery = "UPDATE TransactionsTbl SET Status='Processing',PaymentStatus = 'Paid', PaymentMethod = 'Cash' WHERE TransactionID = @ID;";
                             con.Open();
                             using (SqlCommand updateCommand = new SqlCommand(updateQuery, con))
                             {
@@ -227,7 +227,7 @@ namespace Flowershop_Thesis.OtherForms
                     {
                         using (SqlConnection con = new SqlConnection(Connect.connectionString))
                         {
-                            string updateQuery = "UPDATE TransactionsTbl SET Status='Receiving',PaymentStatus = 'Paid', PaymentMethod = 'GCash', PaymentImage = @Image WHERE TransactionID = @ID;";
+                            string updateQuery = "UPDATE TransactionsTbl SET Status='Processing',PaymentStatus = 'Paid', PaymentMethod = 'GCash', PaymentImage = @Image WHERE TransactionID = @ID;";
 
                             con.Open();
                             using (SqlCommand updateCommand = new SqlCommand(updateQuery, con))

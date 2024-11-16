@@ -81,16 +81,16 @@ namespace Flowershop_Thesis.SalesClerk.Queueing
                 using (SqlConnection con = new SqlConnection(Connect.connectionString))
                 {
                     con.Open();
-                    string countQuery = "select count(*) from TransactionsTbl where Status = 'Processing' AND Status != 'Cancelled';";
+                    string countQuery = "select count(*) from TransactionsTbl where Status = 'Payment' AND Status != 'Cancelled';";
                     using (SqlCommand countCommand = new SqlCommand(countQuery, con))
                     {
                         int rowCount = (int)countCommand.ExecuteScalar();
-                        tabControl1.TabPages[0].Text = "Processing   ("+ rowCount + ")";
+                        tabControl1.TabPages[0].Text = "Payment   ("+ rowCount + ")";
 
 
                         QueuingListItems[] inv = new QueuingListItems[rowCount];
 
-                        string sqlQuery = "SELECT * FROM TransactionsTbl where Status = 'Processing' AND Status != 'Cancelled';";
+                        string sqlQuery = "SELECT * FROM TransactionsTbl where Status = 'Payment' AND Status != 'Cancelled';";
                         using (SqlCommand command = new SqlCommand(sqlQuery, con))
                         {
                             using (SqlDataReader reader = command.ExecuteReader())
@@ -115,14 +115,14 @@ namespace Flowershop_Thesis.SalesClerk.Queueing
                 using (SqlConnection con = new SqlConnection(Connect.connectionString))
                 {
                     con.Open();
-                    string countQuery = "select count(*) from TransactionsTbl where Status = 'Payment' AND Status != 'Cancelled';";
+                    string countQuery = "select count(*) from TransactionsTbl where Status = 'Assembly' AND Status != 'Cancelled';";
                     using (SqlCommand countCommand = new SqlCommand(countQuery, con))
                     {
                         int rowCount = (int)countCommand.ExecuteScalar();
-                        tabControl1.TabPages[1].Text = "Payment   (" + rowCount + ")";
+                        tabControl1.TabPages[1].Text = "Assembly   (" + rowCount + ")";
                         PaymentList[] inv = new PaymentList[rowCount];
 
-                        string sqlQuery = "SELECT * FROM TransactionsTbl where Status = 'Payment' AND Status != 'Cancelled';";
+                        string sqlQuery = "SELECT * FROM TransactionsTbl where Status = 'Assembly' AND Status != 'Cancelled';";
                         using (SqlCommand command = new SqlCommand(sqlQuery, con))
                         {
                             using (SqlDataReader reader = command.ExecuteReader())
@@ -310,6 +310,26 @@ namespace Flowershop_Thesis.SalesClerk.Queueing
         {
             FloristQueue frm = new FloristQueue();
             frm.Show();
+        }
+
+        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void NameLbl_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void flowLayoutPanel4_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
