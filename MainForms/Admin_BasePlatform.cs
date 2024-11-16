@@ -64,9 +64,8 @@ namespace Capstone_Flowershop.MainForms
         private void Admin_BasePlatform_Load(object sender, EventArgs e)
         {
             EmpName.Text = UserInfo.Empleyado + ", Administrator";
-            label8.Text = UserInfo.Empleyado + ", Administrator";
+   
             DateTime date = DateTime.Now;
-            label7.Text = date.ToString() ;
 
             panel2.Controls.Clear();
             Reports SR = new Reports();

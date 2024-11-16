@@ -211,6 +211,18 @@
     <Compile Include="InventoryClerk\Supplier\SupplierFrm.Designer.cs">
       <DependentUpon>SupplierFrm.cs</DependentUpon>
     </Compile>
+    <Compile Include="MainForms\CustomAccount_BasePlatform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForms\CustomAccount_BasePlatform.Designer.cs">
+      <DependentUpon>CustomAccount_BasePlatform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForms\CustomRoleList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MainForms\CustomRoleList.Designer.cs">
+      <DependentUpon>CustomRoleList.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForms\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -265,6 +277,12 @@
     <Compile Include="OtherForms\Accounts\EditAccountContents\AccountInfo.Designer.cs">
       <DependentUpon>AccountInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="OtherForms\Accounts\EditAccountContents\AddUserRole.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForms\Accounts\EditAccountContents\AddUserRole.Designer.cs">
+      <DependentUpon>AddUserRole.cs</DependentUpon>
+    </Compile>
     <Compile Include="OtherForms\Accounts\EditAccountContents\EditRole.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -276,6 +294,18 @@
     </Compile>
     <Compile Include="OtherForms\Accounts\EditAccountContents\EditUserInfo.Designer.cs">
       <DependentUpon>EditUserInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\Accounts\EditAccountContents\EditUserRole.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForms\Accounts\EditAccountContents\EditUserRole.Designer.cs">
+      <DependentUpon>EditUserRole.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\Accounts\EditAccountContents\UserRoleList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OtherForms\Accounts\EditAccountContents\UserRoleList.Designer.cs">
+      <DependentUpon>UserRoleList.cs</DependentUpon>
     </Compile>
     <Compile Include="OtherForms\AdminDashboard\ReportTabContents.cs">
       <SubType>Form</SubType>
@@ -330,6 +360,12 @@
     </Compile>
     <Compile Include="OtherForms\DisposalContents\RetrievedItemsList.Designer.cs">
       <DependentUpon>RetrievedItemsList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\DisposalContents\SoonToExpiredList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OtherForms\DisposalContents\SoonToExpiredList.Designer.cs">
+      <DependentUpon>SoonToExpiredList.cs</DependentUpon>
     </Compile>
     <Compile Include="OtherForms\EditOrderFrm.cs">
       <SubType>Form</SubType>
@@ -1015,6 +1051,12 @@
     <EmbeddedResource Include="InventoryClerk\Supplier\SupplierFrm.resx">
       <DependentUpon>SupplierFrm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MainForms\CustomAccount_BasePlatform.resx">
+      <DependentUpon>CustomAccount_BasePlatform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForms\CustomRoleList.resx">
+      <DependentUpon>CustomRoleList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForms\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -1042,11 +1084,20 @@
     <EmbeddedResource Include="OtherForms\Accounts\EditAccountContents\AccountInfo.resx">
       <DependentUpon>AccountInfo.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\Accounts\EditAccountContents\AddUserRole.resx">
+      <DependentUpon>AddUserRole.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="OtherForms\Accounts\EditAccountContents\EditRole.resx">
       <DependentUpon>EditRole.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OtherForms\Accounts\EditAccountContents\EditUserInfo.resx">
       <DependentUpon>EditUserInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\Accounts\EditAccountContents\EditUserRole.resx">
+      <DependentUpon>EditUserRole.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\Accounts\EditAccountContents\UserRoleList.resx">
+      <DependentUpon>UserRoleList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OtherForms\AdminDashboard\ReportTabContents.resx">
       <DependentUpon>ReportTabContents.cs</DependentUpon>
@@ -1074,6 +1125,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="OtherForms\DisposalContents\RetrievedItemsList.resx">
       <DependentUpon>RetrievedItemsList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\DisposalContents\SoonToExpiredList.resx">
+      <DependentUpon>SoonToExpiredList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OtherForms\EditOrderFrm.resx">
       <DependentUpon>EditOrderFrm.cs</DependentUpon>

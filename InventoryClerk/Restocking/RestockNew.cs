@@ -460,7 +460,7 @@ namespace Flowershop_Thesis.InventoryClerk.Restocking
 
         private void RestockNew_Load(object sender, EventArgs e)
         {
-
+            TotalAmount();
             loadrestock();
             getbatch();
         }
@@ -597,7 +597,8 @@ namespace Flowershop_Thesis.InventoryClerk.Restocking
                     {
                         int rowsAffected = command.ExecuteNonQuery();
                         MessageBox.Show($"{rowsAffected} rows deleted from temprestocktbl.");
-                        loadrestock();
+
+                        label9.Visible = true;
                     }
                     catch (Exception ex)
                     {
@@ -606,14 +607,41 @@ namespace Flowershop_Thesis.InventoryClerk.Restocking
                 }
             }
         }
+        public void TotalAmount()
+        {
+            string connectionString = Connect.connectionString;
+            string query = "SELECT COALESCE(SUM(TotalPrice), 0) FROM TempRestockTbl";
 
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        object result = cmd.ExecuteScalar();
+                        label14.Text = result.ToString();
+                    }
+                }
+                catch (SqlException sqlEx)
+                {
+                    MessageBox.Show("SQL Error occurred: " + sqlEx.Message);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred: " + ex.Message);
+                }
+            }
+        }
         private void label9_VisibleChanged(object sender, EventArgs e)
         {
             if (label9.Visible) 
             {
                 getbatch();
+                loadrestock();
                 loadTableMaterials();
                 loadTableData();
+                TotalAmount();
                 label9.Visible = false;
             }
         }

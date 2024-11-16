@@ -199,5 +199,230 @@ namespace Capstone_Flowershop.AdminForms.ProductMaintenance
             
             }
         }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            if(textBox1.Text.Length > 0)
+            {
+                if(selectedPage == "Flower")
+                {
+                    if (radioButton1.Checked)
+                    {
+                        try
+                        {
+                            flowLayoutPanel1.Controls.Clear();
+                            using (SqlConnection con = new SqlConnection(Connect.connectionString))
+                            {
+                                con.Open();
+                                string countQuery = "SELECT COUNT(*) FROM ItemInventory where ItemStatus = 'Available' AND ItemName Like @Name ";
+                                using (SqlCommand countCommand = new SqlCommand(countQuery, con))
+                                {
+                                    countCommand.Parameters.AddWithValue("@Name", textBox1.Text.Trim() + "%");
+                                    int rowCount = (int)countCommand.ExecuteScalar();
+                                    ProductMaintenanceListItem[] inv = new ProductMaintenanceListItem[rowCount];
+
+                                    string sqlQuery = "SELECT * FROM ItemInventory where ItemStatus = 'Available' AND ItemName Like @Name ";
+                                    using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                                    {
+                                        command.Parameters.AddWithValue("@Name", textBox1.Text.Trim() + "%");
+                                        using (SqlDataReader reader = command.ExecuteReader())
+                                        {
+                                            int index = 0;
+                                            while (reader.Read() && index < inv.Length)
+                                            {
+                                                inv[index] = new ProductMaintenanceListItem();
+                                                inv[index].ItmID = reader["ItemID"].ToString().Trim();
+                                                inv[index].ItmName = reader["ItemName"].ToString().Trim();
+                                                inv[index].ItmQty = reader["ItemQuantity"].ToString().Trim();
+                                                inv[index].ItmPrice = reader["Price"].ToString().Trim();
+
+                                                if (reader["ItemImage"] != DBNull.Value)
+                                                {
+                                                    byte[] imageData = (byte[])reader["ItemImage"];
+                                                    using (MemoryStream ms = new MemoryStream(imageData))
+                                                    {
+                                                        inv[index].img = Image.FromStream(ms);
+                                                    }
+                                                }
+
+                                                flowLayoutPanel1.Controls.Add(inv[index]);
+                                                index++;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Error Individual: " + ex.Message);
+                        }
+
+                    }
+                    else if (radioButton2.Checked)
+                    {
+                        try
+                        {
+                            flowLayoutPanel1.Controls.Clear();
+                            using (SqlConnection con = new SqlConnection(Connect.connectionString))
+                            {
+                                con.Open();
+                                string countQuery = "SELECT COUNT(*) FROM ItemInventory where ItemStatus = 'Available' AND Supplier Like @Name ";
+                                using (SqlCommand countCommand = new SqlCommand(countQuery, con))
+                                {
+                                    countCommand.Parameters.AddWithValue("@Name", textBox1.Text.Trim() + "%");
+                                    int rowCount = (int)countCommand.ExecuteScalar();
+                                    ProductMaintenanceListItem[] inv = new ProductMaintenanceListItem[rowCount];
+
+                                    string sqlQuery = "SELECT * FROM ItemInventory where ItemStatus = 'Available' AND Supplier Like @Name ";
+                                    using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                                    {
+                                        command.Parameters.AddWithValue("@Name", textBox1.Text.Trim() + "%");
+                                        using (SqlDataReader reader = command.ExecuteReader())
+                                        {
+                                            int index = 0;
+                                            while (reader.Read() && index < inv.Length)
+                                            {
+                                                inv[index] = new ProductMaintenanceListItem();
+                                                inv[index].ItmID = reader["ItemID"].ToString().Trim();
+                                                inv[index].ItmName = reader["ItemName"].ToString().Trim();
+                                                inv[index].ItmQty = reader["ItemQuantity"].ToString().Trim();
+                                                inv[index].ItmPrice = reader["Price"].ToString().Trim();
+
+                                                if (reader["ItemImage"] != DBNull.Value)
+                                                {
+                                                    byte[] imageData = (byte[])reader["ItemImage"];
+                                                    using (MemoryStream ms = new MemoryStream(imageData))
+                                                    {
+                                                        inv[index].img = Image.FromStream(ms);
+                                                    }
+                                                }
+
+                                                flowLayoutPanel1.Controls.Add(inv[index]);
+                                                index++;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Error Individual: " + ex.Message);
+                        }
+
+                    }
+                }
+                else if (selectedPage == "Material")
+                {
+                    if (radioButton1.Checked)
+                    {
+                        try
+                        {
+                            flowLayoutPanel1.Controls.Clear();
+                            using (SqlConnection con = new SqlConnection(Connect.connectionString))
+                            {
+                                con.Open();
+                                string countQuery = "SELECT COUNT(*) FROM Materials where ItemStatus = 'Available' AND ItemName Like @Name ";
+                                using (SqlCommand countCommand = new SqlCommand(countQuery, con))
+                                {
+                                    countCommand.Parameters.AddWithValue("@Name", textBox1.Text.Trim() + "%");
+                                    int rowCount = (int)countCommand.ExecuteScalar();
+                                    ProductMaintenanceListItem[] inv = new ProductMaintenanceListItem[rowCount];
+
+                                    string sqlQuery = "SELECT * FROM Materials where ItemStatus = 'Available' AND ItemName Like @Name ";
+                                    using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                                    {
+                                        command.Parameters.AddWithValue("@Name", textBox1.Text.Trim() + "%");
+                                        using (SqlDataReader reader = command.ExecuteReader())
+                                        {
+                                            int index = 0;
+                                            while (reader.Read() && index < inv.Length)
+                                            {
+                                                inv[index] = new ProductMaintenanceListItem();
+                                                inv[index].ItmID = reader["ItemID"].ToString().Trim();
+                                                inv[index].ItmName = reader["ItemName"].ToString().Trim();
+                                                inv[index].ItmQty = reader["ItemQuantity"].ToString().Trim();
+                                                inv[index].ItmPrice = reader["Price"].ToString().Trim();
+
+                                                if (reader["Image"] != DBNull.Value)
+                                                {
+                                                    byte[] imageData = (byte[])reader["Image"];
+                                                    using (MemoryStream ms = new MemoryStream(imageData))
+                                                    {
+                                                        inv[index].img = Image.FromStream(ms);
+                                                    }
+                                                }
+
+                                                flowLayoutPanel1.Controls.Add(inv[index]);
+                                                index++;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Error Individual: " + ex.Message);
+                        }
+
+                    }
+                    else if (radioButton2.Checked)
+                    {
+                        try
+                        {
+                            flowLayoutPanel1.Controls.Clear();
+                            using (SqlConnection con = new SqlConnection(Connect.connectionString))
+                            {
+                                con.Open();
+                                string countQuery = "SELECT COUNT(*) FROM Materials where ItemStatus = 'Available' AND Supplier Like @Name ";
+                                using (SqlCommand countCommand = new SqlCommand(countQuery, con))
+                                {
+                                    countCommand.Parameters.AddWithValue("@Name", textBox1.Text.Trim() + "%");
+                                    int rowCount = (int)countCommand.ExecuteScalar();
+                                    ProductMaintenanceListItem[] inv = new ProductMaintenanceListItem[rowCount];
+
+                                    string sqlQuery = "SELECT * FROM Materials where ItemStatus = 'Available' AND Supplier Like @Name ";
+                                    using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                                    {
+                                        command.Parameters.AddWithValue("@Name", textBox1.Text.Trim() + "%");
+                                        using (SqlDataReader reader = command.ExecuteReader())
+                                        {
+                                            int index = 0;
+                                            while (reader.Read() && index < inv.Length)
+                                            {
+                                                inv[index] = new ProductMaintenanceListItem();
+                                                inv[index].ItmID = reader["ItemID"].ToString().Trim();
+                                                inv[index].ItmName = reader["ItemName"].ToString().Trim();
+                                                inv[index].ItmQty = reader["ItemQuantity"].ToString().Trim();
+                                                inv[index].ItmPrice = reader["Price"].ToString().Trim();
+
+                                                if (reader["Image"] != DBNull.Value)
+                                                {
+                                                    byte[] imageData = (byte[])reader["Image"];
+                                                    using (MemoryStream ms = new MemoryStream(imageData))
+                                                    {
+                                                        inv[index].img = Image.FromStream(ms);
+                                                    }
+                                                }
+
+                                                flowLayoutPanel1.Controls.Add(inv[index]);
+                                                index++;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Error Individual: " + ex.Message);
+                        }
+
+                    }
+                }
+            }
+        }
     }
 }

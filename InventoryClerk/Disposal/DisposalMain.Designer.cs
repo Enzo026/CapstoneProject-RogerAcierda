@@ -85,6 +85,13 @@
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.label32 = new System.Windows.Forms.Label();
+            this.flowLayoutPanel5 = new System.Windows.Forms.FlowLayoutPanel();
+            this.label36 = new System.Windows.Forms.Label();
+            this.label37 = new System.Windows.Forms.Label();
+            this.label38 = new System.Windows.Forms.Label();
+            this.label33 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -96,6 +103,7 @@
             this.tabPage4.SuspendLayout();
             this.flowLayoutPanel4.SuspendLayout();
             this.panel4.SuspendLayout();
+            this.tabPage5.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -168,6 +176,7 @@
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage4);
+            this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.ItemSize = new System.Drawing.Size(200, 25);
             this.tabControl1.Location = new System.Drawing.Point(7, 3);
             this.tabControl1.Name = "tabControl1";
@@ -749,6 +758,81 @@
             this.label19.TabIndex = 43;
             this.label19.Text = "#";
             // 
+            // tabPage5
+            // 
+            this.tabPage5.Controls.Add(this.label33);
+            this.tabPage5.Controls.Add(this.label36);
+            this.tabPage5.Controls.Add(this.flowLayoutPanel5);
+            this.tabPage5.Controls.Add(this.label37);
+            this.tabPage5.Controls.Add(this.label38);
+            this.tabPage5.Controls.Add(this.label32);
+            this.tabPage5.Location = new System.Drawing.Point(4, 29);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage5.Size = new System.Drawing.Size(1117, 677);
+            this.tabPage5.TabIndex = 4;
+            this.tabPage5.Text = "Item Expiration";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Font = new System.Drawing.Font("Montserrat", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label32.Location = new System.Drawing.Point(28, 18);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(181, 29);
+            this.label32.TabIndex = 0;
+            this.label32.Text = "Item Expiration";
+            // 
+            // flowLayoutPanel5
+            // 
+            this.flowLayoutPanel5.AutoScroll = true;
+            this.flowLayoutPanel5.Location = new System.Drawing.Point(33, 93);
+            this.flowLayoutPanel5.Name = "flowLayoutPanel5";
+            this.flowLayoutPanel5.Size = new System.Drawing.Size(729, 551);
+            this.flowLayoutPanel5.TabIndex = 1;
+            // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.Font = new System.Drawing.Font("Montserrat", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label36.Location = new System.Drawing.Point(589, 69);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(125, 21);
+            this.label36.TabIndex = 7;
+            this.label36.Text = "Expiration Date";
+            this.label36.Click += new System.EventHandler(this.label36_Click);
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Font = new System.Drawing.Font("Montserrat", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label37.Location = new System.Drawing.Point(333, 69);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(37, 21);
+            this.label37.TabIndex = 6;
+            this.label37.Text = "Qty";
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Font = new System.Drawing.Font("Montserrat", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label38.Location = new System.Drawing.Point(65, 69);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(96, 21);
+            this.label38.TabIndex = 5;
+            this.label38.Text = "Item Name";
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Font = new System.Drawing.Font("Montserrat", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label33.Location = new System.Drawing.Point(396, 69);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(45, 21);
+            this.label33.TabIndex = 8;
+            this.label33.Text = "Type";
+            // 
             // DisposalMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -780,6 +864,8 @@
             this.flowLayoutPanel4.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            this.tabPage5.ResumeLayout(false);
+            this.tabPage5.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -843,5 +929,12 @@
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.Label label36;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel5;
+        private System.Windows.Forms.Label label37;
+        private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.Label label33;
     }
 }

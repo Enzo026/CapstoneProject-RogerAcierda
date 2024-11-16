@@ -34,6 +34,53 @@ namespace Flowershop_Thesis.InventoryClerk.Disposal
         {
 
         }
+        public void SoonToExpire()
+        {
+            try
+            {
+                flowLayoutPanel5.Controls.Clear();
+                using (SqlConnection con = new SqlConnection(Connect.connectionString))
+                {
+                    con.Open();
+                    string countQuery = "SELECT count(*) FROM DisposedItems";
+                    using (SqlCommand countCommand = new SqlCommand(countQuery, con))
+                    {
+                        int rowCount = (int)countCommand.ExecuteScalar();
+                        SoonToExpiredList[] itemList = new SoonToExpiredList[rowCount];
+
+                        string sqlQuery = "  Select * from RestockingTbl where ExpirationDate >= getdate() order by ExpirationDate asc;";
+                        using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                        {
+                            using (SqlDataReader reader = command.ExecuteReader())
+                            {
+                                int index = 0;
+                                while (reader.Read() && index < itemList.Length)
+                                {
+                                    itemList[index] = new SoonToExpiredList()
+                                    {
+                                        qty = reader["Qty"].ToString(),
+                                        name = reader["ItemName"].ToString(),
+                                        date = reader["ExpirationDate"] != DBNull.Value
+                                   ? Convert.ToDateTime(reader["ExpirationDate"]).ToString("MMM dd, yyyy")
+                                   : string.Empty,
+                                        type = reader["Type"].ToString()
+       
+
+                                    };
+
+                                    flowLayoutPanel5.Controls.Add(itemList[index]);
+                                    index++;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+        }
         public void getDisposed()
         {
             try
@@ -232,6 +279,7 @@ namespace Flowershop_Thesis.InventoryClerk.Disposal
             getFinished();
             getRetrieved();
             getDisposed();
+            SoonToExpire();
         }
 
         private void label54_Click(object sender, EventArgs e)
@@ -250,6 +298,11 @@ namespace Flowershop_Thesis.InventoryClerk.Disposal
                 getDisposed ();
                 LoadingLbl.Visible = false;
             }
+        }
+
+        private void label36_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
