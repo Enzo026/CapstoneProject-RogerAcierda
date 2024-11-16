@@ -146,18 +146,6 @@ namespace Flowershop_Thesis.OtherForms.Restocking
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            bool stat = ValidateInputs();
-            if(stat == true)
-            {
-                InsertIntoTempRestockTbl();
-            }
-            else
-            {
-                MessageBox.Show("Please make sure all needed fields are filled");
-            }
-        }
         private void InsertIntoTempRestockTbl()
         {
             try
@@ -165,7 +153,7 @@ namespace Flowershop_Thesis.OtherForms.Restocking
                 using (SqlConnection con = new SqlConnection(Connect.connectionString))
                 {
                     con.Open();
-                    string sqlQuery = "INSERT INTO TempRestockTbl (ItemID, Qty, Supplier, ItemName, Type) VALUES (@ItemID, @Qty, @Supplier, @ItemName , @Type)";
+                    string sqlQuery = "INSERT INTO TempRestockTbl (ItemID, Qty, Supplier, ItemName, Type, TotalPrice) VALUES (@ItemID, @Qty, @Supplier, @ItemName , @Type, @Price)";
 
                     using (SqlCommand command = new SqlCommand(sqlQuery, con))
                     {
@@ -175,6 +163,7 @@ namespace Flowershop_Thesis.OtherForms.Restocking
                         command.Parameters.AddWithValue("@Supplier", comboBox1.SelectedItem.ToString());
                         command.Parameters.AddWithValue("@ItemName", label2.Text);
                         command.Parameters.AddWithValue("@Type", type);
+                        command.Parameters.AddWithValue("@Price", textBox2.Text);
 
 
                         // Execute the command
@@ -182,7 +171,8 @@ namespace Flowershop_Thesis.OtherForms.Restocking
                         
                         if(affectedrows > 0)
                         {
-                            RestockNew.instance.RestockNum.Text = "loading";
+                            RestockNew.instance.loading.Visible = true;
+
                             this.Close();
                         }
                     }
@@ -215,6 +205,34 @@ namespace Flowershop_Thesis.OtherForms.Restocking
         private void button2_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Allow control keys (backspace, delete, etc.)
+            if (char.IsControl(e.KeyChar))
+            {
+                return;
+            }
+
+            // Allow digits only
+            if (!char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            bool stat = ValidateInputs();
+            if (stat == true)
+            {
+                InsertIntoTempRestockTbl();
+            }
+            else
+            {
+                MessageBox.Show("Please make sure all needed fields are filled");
+            }
         }
     }
 }

@@ -93,7 +93,8 @@ namespace Flowershop_Thesis.OtherForms.Restocking
                         command.Parameters.AddWithValue("@ItemID", itemId);
 
                         int rowsAffected = command.ExecuteNonQuery();
-                        RestockNew.instance.RestockNum.Text = "0";
+               
+                        RestockNew.instance.loading.Visible = true;
                         if (rowsAffected > 0)
                         {
                             MessageBox.Show("Item deleted successfully.");

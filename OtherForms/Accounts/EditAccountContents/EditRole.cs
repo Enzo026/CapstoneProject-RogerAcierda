@@ -16,91 +16,66 @@ namespace Flowershop_Thesis.OtherForms.Accounts.EditAccountContents
 {
     public partial class EditRole : Form
     {
+        public static EditRole instance;
+        public Label reload;
         string initRole;
         string SelectedRole;
         bool FrmLoad;
         public EditRole()
         {
             InitializeComponent();
+            instance = this;
+            reload = label4;
+            LoadRole();
         }
 
         private void EditRole_Load(object sender, EventArgs e)
         {
-            LoadRole();
+           // LoadRole();
             FrmLoad = true;
         }
         public void LoadRole()
         {
             try
             {
-                int numId;
-                using (SqlConnection conn = new SqlConnection(Connect.connectionString))
+                flowLayoutPanel1.Controls.Clear();
+                using (SqlConnection con = new SqlConnection(Connect.connectionString))
                 {
-
-                    string countQuery = "Select count(*) from UserAccounts where AccountID = @ID";
-                    using (SqlCommand countCommand = new SqlCommand(countQuery, conn))
+                    con.Open();
+                    string countQuery = "select count(*) from UserRoles where Name != 'Admin';";
+                    using (SqlCommand countCommand = new SqlCommand(countQuery, con))
                     {
-                        conn.Open();
-                        countCommand.Parameters.AddWithValue("@ID", ChangeIds.AccountID.Trim());
-                        numId = (int)countCommand.ExecuteScalar();
+                        int rowCount = (int)countCommand.ExecuteScalar();
 
 
-                    }
-                }
+                        // counter.Text = rowCount.ToString();
 
 
 
+                        UserRoleList[] inv = new UserRoleList[rowCount];
 
-                if (numId == 1)
-                {
-                    using (SqlConnection conn = new SqlConnection(Connect.connectionString))
-                    {
-                       
-                        string updateQuery = " Select Role from UserAccounts where AccountID = @ID";
-                        //string updateQuery = "UPDATE UserAccounts SET Username = @input WHERE AccountID = @ID;";
-                        using (SqlCommand updateCommand = new SqlCommand(updateQuery, conn))
+                        string sqlQuery = "select Name from UserRoles where Name != 'Admin';";
+                        using (SqlCommand command = new SqlCommand(sqlQuery, con))
                         {
-                            conn.Open();
-                            updateCommand.Parameters.AddWithValue("@ID", ChangeIds.AccountID.Trim());
-                            SqlDataReader reader = updateCommand.ExecuteReader();
-                            while (reader.Read())
+                            using (SqlDataReader reader = command.ExecuteReader())
                             {
-                                initRole = reader["Role"].ToString().Trim();
-
-                                if(initRole == "Admin")
+                                int index = 0;
+                                while (reader.Read() && index < inv.Length)
                                 {
-                                    label3.Visible = true;
-                                    radioButton1.Enabled = false;
-                                    radioButton2.Enabled = false;
-                                }
-                                else if(initRole == "SalesClerk")
-                                {
-                                    radioButton1.Checked = true;
-                                }
-                                else if(initRole == "InventoryClerk")
-                                {
-                                    radioButton2.Checked = true;
-                                }
-                                else
-                                {
-                                    MessageBox.Show("The system does not find a condition for " + initRole);
+                                    inv[index] = new UserRoleList();
+                                    inv[index].Role = reader["Name"].ToString();
+                                    flowLayoutPanel1.Controls.Add(inv[index]);
+                                    index++;
                                 }
                             }
                         }
                     }
                 }
-                else if (numId > 1)
-                {
-                    MessageBox.Show("There are multiple Users in this ID");
-                }
-                else
-                {
-                    MessageBox.Show("No Account Found!");
-                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error on Deactivating account :" + ex.Message);
+
+               MessageBox.Show("Error on CartLsit() : " + ex.Message);
             }
         }
         public void UpdateRole()
@@ -172,27 +147,7 @@ namespace Flowershop_Thesis.OtherForms.Accounts.EditAccountContents
                 MessageBox.Show("Error on Deactivating account :" + ex.Message);
             }
         }
-        private void radioButton1_CheckedChanged(object sender, EventArgs e)
-        {
-            if(FrmLoad == true)
-            {
-                if(radioButton1.Checked == true)
-                {
-                    SelectedRole = "SalesClerk";
-                    button1.Enabled = true;
-                }
-                else if (radioButton2.Checked == true)
-                {
-                    SelectedRole = "InventoryClerk";
-                    button1.Enabled = true;
-                }
-                else
-                {
-                    MessageBox.Show("Error on selecting Role");
-                    button1.Enabled = false;
-                }
-            }
-        }
+
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -203,6 +158,21 @@ namespace Flowershop_Thesis.OtherForms.Accounts.EditAccountContents
         {
             LoadRole();
             button1.Enabled=false;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            AddUserRole frm = new AddUserRole();
+            frm.ShowDialog();
+        }
+
+        private void label4_VisibleChanged(object sender, EventArgs e)
+        {
+            if (label4.Visible)
+            {
+                LoadRole();
+                label4.Visible = false;
+            }
         }
     }
 }

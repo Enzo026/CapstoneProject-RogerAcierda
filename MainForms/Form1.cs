@@ -181,38 +181,19 @@ namespace Capstone_Flowershop
                     string FirstName = sdr["FirstName"].ToString().Trim();
                     string LastName = sdr["LastName"].ToString().Trim();
 
-                    if (textBox1.Text == iUserName && textBox2.Text == iPassword && Position == "Admin")
+                    if (textBox1.Text == iUserName && textBox2.Text == iPassword)
                     {
-                        Admin_BasePlatform admin = new Admin_BasePlatform();
-                        //   admin.empName = FirstName;
+                        CustomAccount_BasePlatform frm = new CustomAccount_BasePlatform();
                         UserInfo.Empleyado = FirstName;
                         UserInfo.FullName = FirstName + " " + LastName;
                         UserInfo.EmpID = iAccID;
 
+                        UserInfo.Role = Position;
                         this.Hide();
-                        admin.Show();
+                        frm.Show();
 
                     }
-                    else if (textBox1.Text == iUserName && textBox2.Text == iPassword && Position == "SalesClerk")
-                    {
-                        SalesClerk_BasePlatform admin = new SalesClerk_BasePlatform();
-                        //   admin.empName = FirstName;
-                        UserInfo.Empleyado = FirstName;
-                        UserInfo.FullName = FirstName + " " + LastName;
-                        UserInfo.EmpID = iAccID;
-                        this.Hide();
-                        admin.Show();
-                    }
-                    else if (textBox1.Text == iUserName && textBox2.Text == iPassword && Position == "InventoryClerk")
-                    {
-                        InventoryClerk_BasePlatform admin = new InventoryClerk_BasePlatform();
-                        //     admin.empName = FirstName;
-                        UserInfo.Empleyado = FirstName;
-                        UserInfo.FullName = FirstName + " " + LastName;
-                        UserInfo.EmpID = iAccID;
-                        this.Hide();
-                        admin.Show();
-                    }
+
                     else
                     {
                         MessageBox.Show("Invalid account");
@@ -229,6 +210,8 @@ namespace Capstone_Flowershop
 
 
         }
+
+        
         public void DatabaseConnection()
         {
             try
@@ -256,7 +239,8 @@ namespace Capstone_Flowershop
 
         private void button3_Click(object sender, EventArgs e)
         {
-            TryCamera frm = new TryCamera();
+            CustomAccount_BasePlatform frm = new CustomAccount_BasePlatform();
+            UserInfo.Role = "Admin";
             frm.Show();
             this.Hide();
         }

@@ -56,10 +56,14 @@ namespace Capstone_Flowershop
         public static string connectionString2 = $"Data Source=DESKTOP-IH4V487\\NEWMSSQL;AttachDbFilename=D:\\CapstoneProject-RogerAcierda\\FlowershopSystemDB.mdf;Initial Catalog=FlowershopSystemDB;Integrated Security=True";
 
         //laptop
-        public static string connectionString = $"Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"D:\\Thesis Repository Capstone\\CapstoneProject-RogerAcierda\\FlowershopSystemDB.mdf\";Integrated Security=True";
+        public static string connectionStringzx = $"Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"D:\\Thesis Repository Capstone\\CapstoneProject-RogerAcierda\\FlowershopSystemDB.mdf\";Integrated Security=True";
 
         public static string connectionStringz = "Server=192.168.8.205,2626;Initial Catalog=RogerAcierdaFlowerShop;Persist Security Info=True;User ID=sa;Password=ApplicationDb123;Encrypt=True;TrustServerCertificate=True;";
         public static string csRestore = "Server=192.168.8.205,2626;Initial Catalog=master;Persist Security Info=True;User ID=sa;Password=ApplicationDb123;Encrypt=True;TrustServerCertificate=True;";
+        //pc
+        public static string connectionStringssss = $"Data Source = (LocalDB)\\MSSQLLocalDB;AttachDbFilename=D:\\CapstoneProject-RogerAcierda\\FlowershopSystemDB.mdf;Integrated Security = True";
+        //Juan
+        public static string connectionString = $"Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=D:\\CapstoneProject-RogerAcierda\\FlowershopSystemDB.mdf;Integrated Security=True";
 
     }
     public static class UserInfo
@@ -67,7 +71,7 @@ namespace Capstone_Flowershop
         public static string Empleyado { get; set; }
         public static string EmpID { get; set; }
         public static string FullName { get; set; }
-
+        public static string Role { get; set;}
         public static string AdminCode { get; set; }
     }
     public static class CreateAdvanceOrder
@@ -105,9 +109,9 @@ namespace Capstone_Flowershop
         public static string ItemType { get; set;}
 
         public static string TransactionLogID { get; set; } 
-
+        public static string ChangeUserRoleName { get; set; }   
         public static string OrderInfo { get; set; }
-
+        public static string EditUserRole { get; set; }
  
 
     }

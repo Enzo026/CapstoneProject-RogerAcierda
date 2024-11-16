@@ -24,6 +24,7 @@ namespace Flowershop_Thesis.OtherForms.Restocking
         {
             showinfo();
             getList();
+            ShowPrice();
         }
         public void showinfo()
         {
@@ -70,7 +71,35 @@ namespace Flowershop_Thesis.OtherForms.Restocking
             }
 
         }
-        
+
+        public void ShowPrice()
+        {
+            string connectionString = Connect.connectionString;
+            string query = "SELECT COALESCE(SUM(RestockingPrice), 0) FROM RestockingTbl WHERE BatchID = @ID";
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@ID", ViewInfo.RI_Id);
+                        object result = cmd.ExecuteScalar();
+                        label12.Text = result.ToString();
+                    }
+                }
+                catch (SqlException sqlEx)
+                {
+                    MessageBox.Show("SQL Error occurred: " + sqlEx.Message);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred: " + ex.Message);
+                }
+            }
+        }
+
         public void getList()
         {
             using (SqlConnection con = new SqlConnection(Connect.connectionString))

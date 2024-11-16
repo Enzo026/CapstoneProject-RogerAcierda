@@ -21,7 +21,6 @@ namespace Flowershop_Thesis.OtherForms.Accounts.EditAccountContents
         public AccountInfo()
         {
             InitializeComponent();
-            UserInfo.AdminCode = "admin1233";
             textBox1.Enabled = false;
             textBox2.Enabled = false;
             panel1.Visible = false;
