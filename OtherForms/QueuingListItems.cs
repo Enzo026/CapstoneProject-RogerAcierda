@@ -95,17 +95,12 @@ namespace Flowershop_Thesis.OtherForms
         {
             try
             {
-                DialogResult result = MessageBox.Show("Proceed to Assembly", "Order Update", MessageBoxButtons.YesNo);
+                DialogResult result = MessageBox.Show("Proceed to Payments", "Order Update", MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
                 {
-                    UpdateStatus US = new UpdateStatus();
-                    US.Name = name;
-                    US.transID = transactionID;
-                    US.ShowDialog();
-
                     using (SqlConnection con = new SqlConnection(Connect.connectionString))
                     {
-                        string updateQuery = "UPDATE TransactionsTbl SET Status = 'Assembly', OrderStatus = 'Complete' WHERE TransactionID = @ID;";
+                        string updateQuery = "UPDATE TransactionsTbl SET Status = 'Payment', OrderStatus = 'Complete' WHERE TransactionID = @ID;";
                         con.Open();
                         using (SqlCommand updateCommand = new SqlCommand(updateQuery, con))
                         {
@@ -124,7 +119,52 @@ namespace Flowershop_Thesis.OtherForms
                 MessageBox.Show("Error on Cancelling the order" + ex.Message);
             }
         }
-        
+        public void insertCancelledTransaction()
+        {
+            using (SqlConnection connection = new SqlConnection(Connect.connectionString))
+            {
+                using (SqlCommand command = new SqlCommand("CancellationOfOrder", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    // Add parameters
+                    command.Parameters.Add(new SqlParameter("@ID", transactionID));
+                    command.Parameters.Add(new SqlParameter("@TransactionType", "WalkIn"));
+
+                    try
+                    {
+                        // Open the connection
+                        connection.Open();
+
+                        // Execute the stored procedure
+                        command.ExecuteNonQuery();
+
+                        // Optionally, log success
+                        MessageBox.Show("Cancellation executed successfully.");
+                    }
+                    catch (SqlException ex)
+                    {
+                        // Handle SQL errors
+                        MessageBox.Show("SQL Error: " + ex.Message);
+                        // Optionally log the error details
+                    }
+                    catch (Exception ex)
+                    {
+                        // Handle general errors
+                        MessageBox.Show("Error: " + ex.Message);
+                        // Optionally log the error details
+                    }
+                    finally
+                    {
+                        // Ensure the connection is closed
+                        if (connection.State == ConnectionState.Open)
+                        {
+                            connection.Close();
+                        }
+                    }
+                }
+            }
+        }
         private void button4_Click(object sender, EventArgs e)
         {
             try
@@ -134,7 +174,7 @@ namespace Flowershop_Thesis.OtherForms
                 {
                     using (SqlConnection con = new SqlConnection(Connect.connectionString))
                     {
-                        string updateQuery = "UPDATE TransactionsTbl SET Status = 'Remove', OrderStatus = 'Complete' WHERE TransactionID = @ID;";
+                        string updateQuery = "UPDATE TransactionsTbl SET Status = 'Cancelled' WHERE TransactionID = @ID;";
                         con.Open();
                         using (SqlCommand updateCommand = new SqlCommand(updateQuery, con))
                         {
@@ -149,7 +189,7 @@ namespace Flowershop_Thesis.OtherForms
                         MessageBox.Show("Order cancelled!");
                     }
                 }
- 
+                insertCancelledTransaction();
             }
             catch(Exception ex)
             {

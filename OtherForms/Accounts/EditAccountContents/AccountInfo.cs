@@ -17,12 +17,6 @@ namespace Flowershop_Thesis.OtherForms.Accounts.EditAccountContents
 {
     public partial class AccountInfo : Form
     {
-        public bool IsCheckBoxChecked
-        {
-            get => checkBox2.Checked;
-            set => checkBox2.Checked = value;
-        }
-
 
         public AccountInfo()
         {
@@ -240,7 +234,6 @@ namespace Flowershop_Thesis.OtherForms.Accounts.EditAccountContents
         {
 
         }
-        public string asd { get; set; }
         private void checkBox2_CheckStateChanged(object sender, EventArgs e)
         {
             if (checkBox2.Checked == true)
@@ -274,42 +267,6 @@ namespace Flowershop_Thesis.OtherForms.Accounts.EditAccountContents
         private void button2_Click(object sender, EventArgs e)
         {
             reset();
-        }
-
-        private void AccountInfo_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox3_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-
-        public string TextBoxValue
-        {
-            get => textBox2.Text;
-            set => textBox2.Text = value;
-        }
-        public void textBox2_TextChanged(object sender, EventArgs e)
-        {
-               
-        }
-
-        private void textBox5_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

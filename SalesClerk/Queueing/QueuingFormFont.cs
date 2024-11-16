@@ -64,13 +64,13 @@ namespace Flowershop_Thesis.SalesClerk.Queueing
                 using(SqlConnection con = new SqlConnection(Connect.connectionString))
                 {
                     con.Open();
-                    string countQuery = "select count(*) from TransactionsTbl where Status = 'Payment';";
+                    string countQuery = "select count(*) from TransactionsTbl where Status = 'Processing';";
                     using (SqlCommand countCommand = new SqlCommand(countQuery, con))
                     {
                         int rowCount = (int)countCommand.ExecuteScalar();
                         QueueBoardContent[] inv = new QueueBoardContent[rowCount];
 
-                        string sqlQuery = "SELECT * FROM TransactionsTbl where Status = 'Payment' ;";
+                        string sqlQuery = "SELECT * FROM TransactionsTbl where Status = 'Processing' ;";
                         using (SqlCommand command = new SqlCommand(sqlQuery, con))
                         {
                             using (SqlDataReader reader = command.ExecuteReader())
@@ -102,13 +102,13 @@ namespace Flowershop_Thesis.SalesClerk.Queueing
                 using(SqlConnection con = new SqlConnection(Connect.connectionString))
                 {
                     con.Open();
-                    string countQuery = "select count(*) from TransactionsTbl where Status = 'Assembly';";
+                    string countQuery = "select count(*) from TransactionsTbl where Status = 'Payment';";
                     using (SqlCommand countCommand = new SqlCommand(countQuery, con))
                     {
                         int rowCount = (int)countCommand.ExecuteScalar();
                         QueueBoardContent[] inv = new QueueBoardContent[rowCount];
 
-                        string sqlQuery = "SELECT * FROM TransactionsTbl where Status = 'Assembly' ;";
+                        string sqlQuery = "SELECT * FROM TransactionsTbl where Status = 'Payment' ;";
                         using (SqlCommand command = new SqlCommand(sqlQuery, con))
                         {
                             using (SqlDataReader reader = command.ExecuteReader())

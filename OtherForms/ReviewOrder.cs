@@ -274,7 +274,7 @@ namespace Flowershop_Thesis.OtherForms
                     con.Open();
 
                     // Use parameterized query to prevent SQL injection
-                    using (SqlCommand TransactionID = new SqlCommand("SELECT TransactionID FROM transactionstbl WHERE Status = 'Payment' AND CustomerName = @CustName;", con))
+                    using (SqlCommand TransactionID = new SqlCommand("SELECT TransactionID FROM transactionstbl WHERE Status = 'Processing' AND CustomerName = @CustName;", con))
                     {
                         TransactionID.Parameters.AddWithValue("@CustName", CustName_txtbox.Text);
 
@@ -449,7 +449,7 @@ namespace Flowershop_Thesis.OtherForms
                     cmd.Parameters.AddWithValue("@CustName", CustName_txtbox.Text);
                     cmd.Parameters.AddWithValue("@Discount", 0);
                     cmd.Parameters.AddWithValue("@Price", Amount_lbl.Text);
-                    cmd.Parameters.AddWithValue("@Status", "Payment");
+                    cmd.Parameters.AddWithValue("@Status", "Processing");
                     cmd.Parameters.AddWithValue("@Employee", UserInfo.Empleyado);
                     cmd.Parameters.AddWithValue("@PaymentStatus", "Unpaid");
                     cmd.ExecuteNonQuery();

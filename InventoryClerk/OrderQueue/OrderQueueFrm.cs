@@ -16,10 +16,5 @@ namespace Flowershop_Thesis.InventoryClerk.OrderQueue
         {
             InitializeComponent();
         }
-
-        private void OrderQueueFrm_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

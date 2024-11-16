@@ -97,30 +97,30 @@
             // PriceLbl
             // 
             this.PriceLbl.AutoSize = true;
-            this.PriceLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PriceLbl.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PriceLbl.Location = new System.Drawing.Point(364, 13);
             this.PriceLbl.Name = "PriceLbl";
-            this.PriceLbl.Size = new System.Drawing.Size(59, 16);
+            this.PriceLbl.Size = new System.Drawing.Size(61, 18);
             this.PriceLbl.TabIndex = 9;
             this.PriceLbl.Text = "1000.00";
             // 
             // NameLbl
             // 
             this.NameLbl.AutoSize = true;
-            this.NameLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NameLbl.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.NameLbl.Location = new System.Drawing.Point(94, 13);
             this.NameLbl.Name = "NameLbl";
-            this.NameLbl.Size = new System.Drawing.Size(49, 16);
+            this.NameLbl.Size = new System.Drawing.Size(48, 18);
             this.NameLbl.TabIndex = 8;
             this.NameLbl.Text = "Alexis";
             // 
             // IdLbl
             // 
             this.IdLbl.AutoSize = true;
-            this.IdLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.IdLbl.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.IdLbl.Location = new System.Drawing.Point(8, 14);
             this.IdLbl.Name = "IdLbl";
-            this.IdLbl.Size = new System.Drawing.Size(23, 16);
+            this.IdLbl.Size = new System.Drawing.Size(22, 18);
             this.IdLbl.TabIndex = 7;
             this.IdLbl.Text = "01";
             // 

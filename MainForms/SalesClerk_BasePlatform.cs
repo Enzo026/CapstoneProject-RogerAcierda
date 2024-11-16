@@ -94,10 +94,5 @@ namespace Flowershop_Thesis.MainForms
         {
             EmpName.Text = UserInfo.Empleyado + ", Sales Clerk";
         }
-
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
     }
 }

@@ -13,7 +13,6 @@ using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Flowershop_Thesis.OtherForms.Accounts
 {
@@ -24,7 +23,6 @@ namespace Flowershop_Thesis.OtherForms.Accounts
         {
             InitializeComponent();
         }
-
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -172,7 +170,11 @@ namespace Flowershop_Thesis.OtherForms.Accounts
                             {
                                 MessageBox.Show("No Account Found!");
                             }
+
+
                         }
+
+
                     }
                     else
                     {
@@ -190,97 +192,6 @@ namespace Flowershop_Thesis.OtherForms.Accounts
         private void button6_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            DialogResult result = MessageBox.Show(
-             "Do you want to proceed?",  
-             "Confirmation",            
-             MessageBoxButtons.YesNo,   
-             MessageBoxIcon.Question);    
-
-            if (result == DialogResult.Yes)
-            {
-
-                panel2.Controls.Clear();
-                AccountInfo frm = new AccountInfo();
-                frm.TopLevel = false;
-                panel2.Controls.Add(frm);
-                frm.BringToFront();
-                frm.Show();
-
-                try
-                {
-                    int numId;
-                    using (SqlConnection conn = new SqlConnection(Connect.connectionString))
-                    {
-
-                        string countQuery = "Select count(*) from UserAccounts where AccountID = @ID";
-                        using (SqlCommand countCommand = new SqlCommand(countQuery, conn))
-                        {
-                            conn.Open();
-                            countCommand.Parameters.AddWithValue("@ID", ChangeIds.AccountID.Trim());
-                            numId = (int)countCommand.ExecuteScalar();
-
-
-                        }
-                    }
-
-
-
-
-                    if (numId == 1)
-                    {
-                        using (SqlConnection conn = new SqlConnection(Connect.connectionString))
-                        {
-
-                            string updateQuery = "UPDATE UserAccounts SET Password = @Pass WHERE AccountID = @ID;";
-                            using (SqlCommand updateCommand = new SqlCommand(updateQuery, conn))
-                            {
-
-                                updateCommand.Parameters.AddWithValue("@ID", ChangeIds.AccountID.Trim());
-                                updateCommand.Parameters.AddWithValue("@Pass", "RogerAcierda123");
-                                conn.Open();
-                                updateCommand.ExecuteNonQuery();
-                                MessageBox.Show("RogerAcierda123 is your new password");
-
-
-                            }
-                        }
-                    }
-                    else if (numId > 1)
-                    {
-                        MessageBox.Show("There are multiple Users in this ID");
-                    }
-                    else
-                    {
-                        MessageBox.Show("No Account Found!");
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error on Deactivating account :" + ex.Message);
-                }
-
-                this.Close();
-
-            }
-            else if (result == DialogResult.No)
-            {
-                
-            }
-
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }
