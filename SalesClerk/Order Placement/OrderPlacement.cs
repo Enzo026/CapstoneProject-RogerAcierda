@@ -389,5 +389,10 @@ namespace Flowershop_Thesis.SalesClerk.Order_Placement
             }
 
         }
+
+        private void flowLayoutPanel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
